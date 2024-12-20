@@ -1,26 +1,43 @@
-# fumadocs-shadcn
+## Fumadocs + Shadcn UI
 
-This is a Next.js application generated with
-[Create Fumadocs](https://github.com/fuma-nama/fumadocs).
+Fumadocs UI uses a Tailwind CSS preset to add its own styles. With this design, we can improve the themes regularly and release as updates.
 
-Run development server:
+It adds colors, utilities, as well as some base styles including default `border-color`, `background-color` and `color`.
 
-```bash
-npm run dev
-# or
-pnpm dev
-# or
-yarn dev
+### With Shadcn UI
+
+After `shadcn init`, the CSS variables may conflict. You can add the following to `createPreset` in `tailwind.config.js`:
+
+```js
+import { createPreset } from "fumadocs-ui/tailwind-plugin";
+
+/** @type {import('tailwindcss').Config} */
+export default {
+  presets: [
+    createPreset({
+      cssPrefix: "fuma-", // here!
+    }),
+  ],
+  // other options
+};
 ```
 
-Open http://localhost:3000 with your browser to see the result.
+This will force Fumadocs to add prefixes to CSS variables.
 
-## Learn More
+Since Shadcn UI has its own default background color & text color, you need to remove these defaults from `global.css`, and instead apply them on layouts, like `app/(home)/layout.tsx` for example:
 
-To learn more about Next.js and Fumadocs, take a look at the following
-resources:
+```tsx
+import type { ReactNode } from "react";
+import { HomeLayout } from "fumadocs-ui/layouts/home";
+import { baseOptions } from "@/app/layout.config";
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js
-  features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [Fumadocs](https://fumadocs.vercel.app) - learn about Fumadocs
+export default function Layout({ children }: { children: ReactNode }) {
+  return (
+    <HomeLayout className="bg-background text-foreground" {...baseOptions}>
+      {children}
+    </HomeLayout>
+  );
+}
+```
+
+Now Fumadocs should work well with Shadcn UI.
