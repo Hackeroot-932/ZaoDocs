@@ -7,9 +7,8 @@ icon: Server
 import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 import { Step, Steps } from 'fumadocs-ui/components/steps';
 import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
-import { Callout } from 'fumadocs-ui/components/Callout';
 
-<Callout type="info">
+<Callout title="Despliegue de sistemas operativos" type="info">
   Although OS deployment may sound like a simple task, there are numerous approaches to installing Windows and other operating systems depending on the organization's needs, scale, and specific requirements.
 </Callout>
 
@@ -105,7 +104,7 @@ The appropriate method depends on the desired outcome. Let's examine the Windows
 
 ## 2. Audit Mode Windows Installation
 
-<Callout type="info">
+<Callout title="Modo de auditoría" type="info">
   Audit Mode allows OEMs and system administrators to customize Windows before delivering it to the end user. This mode bypasses OOBE to permit configuration and software installations without creating user accounts.
 </Callout>
 
@@ -159,7 +158,7 @@ The appropriate method depends on the desired outcome. Let's examine the Windows
 
 ## 3. Unattended Windows (and Linux) Installation
 
-<Callout type="warning">
+<Callout title="Instalación sin intervención" type="warning">
   A fully unattended installation can destroy existing disk content to repartition it, so it's not always the most suitable solution. Consider creating "mostly unattended" installations that allow configuration of critical elements like edition selection and destination drive.
 </Callout>
 
@@ -236,7 +235,7 @@ The appropriate method depends on the desired outcome. Let's examine the Windows
 
 ## 4. OS Cloning
 
-<Callout type="info">
+<Callout title="Clonación" type="info">
   Cloning offers an alternative deployment method that's often independent of the computer and OS, creating identical disk copies that can be transferred to similar hardware.
 </Callout>
 
@@ -286,7 +285,7 @@ The appropriate method depends on the desired outcome. Let's examine the Windows
 
 ## 5. Linux Deployment Methods
 
-<Callout type="info">
+<Callout title="Despliegue de sistemas operativos Linux" type="info">
   Linux distributions offer powerful, flexible, and often free deployment solutions that are especially valuable in enterprise environments, educational institutions, and organizations with budget constraints.
 </Callout>
 
@@ -793,6 +792,6 @@ EOF`}
   </Steps>
 </div>
 
-<Callout type="info">
+<Callout title="Despliegue de sistemas operativos" type="info">
   Choosing the right deployment strategy depends on scale, infrastructure, and specific organizational needs. For small deployments, manual installation may suffice, while enterprise environments typically benefit from automated solutions with central management.
 </Callout>

@@ -7,11 +7,6 @@ icon: MonitorPlay
 import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 import { Step, Steps } from 'fumadocs-ui/components/steps';
 import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
-import { Callout } from 'fumadocs-ui/components/Callout';
-
-<Callout type="info">
-  Virtualization is a set of technologies that allow the creation of virtual machines, enabling multiple operating systems to run simultaneously on a single physical computer.
-</Callout>
 
 ## 1. Definition of Virtualization
 
@@ -138,9 +133,11 @@ import { Callout } from 'fumadocs-ui/components/Callout';
 
 ## 4. Types of Hypervisors
 
-<Callout type="info">
-  There are two main types of hypervisors, each with its own advantages and disadvantages, suitable for different use cases.
-</Callout>
+<Accordions>
+  <Accordion title="Tipos de Hypervisores">
+    <p>There are two main types of hypervisors, each with its own advantages and disadvantages, suitable for different use cases.</p>
+  </Accordion>
+</Accordions>
 
 <Tabs items={["Type 1 Hypervisors", "Type 2 Hypervisors", "Virtualization vs. Simulation vs. Emulation"]}>
   <Tab>
@@ -224,9 +221,11 @@ import { Callout } from 'fumadocs-ui/components/Callout';
 
 ## 5. Paravirtualization
 
-<Callout type="info">
-  Paravirtualization is a virtualization technique that aims to increase the proportion of execution on the host, thereby reducing execution on the guest and thus increasing the performance of a virtualized OS.
-</Callout>
+<Accordions>
+  <Accordion title="Paravirtualización">
+    <p>Paravirtualization is a virtualization technique that aims to increase the proportion of execution on the host, thereby reducing execution on the guest and thus increasing the performance of a virtualized OS.</p>
+  </Accordion>
+</Accordions>
 
 <div className="p-4 border rounded-lg bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 my-6 shadow-md">
   <h4 className="text-center text-lg font-semibold mb-4">Full Virtualization vs. Paravirtualization</h4>
@@ -297,9 +296,11 @@ import { Callout } from 'fumadocs-ui/components/Callout';
 
 ## 6. VirtualBox Installation Guide
 
-<Callout type="info">
-  Oracle VirtualBox is one of the most popular type 2 hypervisors. This guide covers the installation process, virtualization requirements verification, and basic configuration settings to get started with virtualization.
-</Callout>
+<Accordions>
+  <Accordion title="Guía de Instalación de VirtualBox">
+    <p>Oracle VirtualBox is one of the most popular type 2 hypervisors. This guide covers the installation process, virtualization requirements verification, and basic configuration settings to get started with virtualization.</p>
+  </Accordion>
+</Accordions>
 
 ### 6.1 Download
 
@@ -430,9 +431,11 @@ import { Callout } from 'fumadocs-ui/components/Callout';
 
 ### 6.4 Activating Virtualization
 
-<Callout type="warning">
-  To activate hardware virtualization support in the BIOS, you need to look for settings with names such as Intel Virtualization Technology, Intel VT-x, Intel VM, Intel VMX, AMD-V, or SVM. Additionally, you could activate supporting technologies like Intel VT-d or IOMMU.
-</Callout>
+<Accordions>
+  <Accordion title="Advertencia">
+    <p>To activate hardware virtualization support in the BIOS, you need to look for settings with names such as Intel Virtualization Technology, Intel VT-x, Intel VM, Intel VMX, AMD-V, or SVM. Additionally, you could activate supporting technologies like Intel VT-d or IOMMU.</p>
+  </Accordion>
+</Accordions>
 
 <Tabs items={["Approach Methods", "BIOS Settings", "Windows 11 Considerations"]}>
   <Tab>
@@ -494,9 +497,11 @@ import { Callout } from 'fumadocs-ui/components/Callout';
 
 ### 6.5 Basic Configuration
 
-<Callout type="info">
-  These are the most basic and common options when creating and configuring a virtual machine in VirtualBox.
-</Callout>
+<Accordions>
+  <Accordion title="Configuración Básica">
+    <p>These are the most basic and common options when creating and configuring a virtual machine in VirtualBox.</p>
+  </Accordion>
+</Accordions>
 
 <Tabs items={["General", "System", "Storage", "Network and USB", "Display"]}>
   <Tab>

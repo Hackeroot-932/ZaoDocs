@@ -7,9 +7,8 @@ icon: CirclePower
 import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 import { Step, Steps } from 'fumadocs-ui/components/steps';
 import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
-import { Callout } from 'fumadocs-ui/components/Callout';
 
-<Callout type="info">
+<Callout title="Gestores de arranque" type="info">
   Boot loaders are essential software components that locate necessary resources and initiate all processes required for the operating system to start and execute until control is given to the user.
 </Callout>
 
@@ -132,7 +131,7 @@ import { Callout } from 'fumadocs-ui/components/Callout';
   
   <p className="mb-3">Similarly, a multiboot system allows booting multiple operating systems. Each OS is installed on at least one partition, so a multiboot system with 5 OSes will need at least 5 partitions.</p>
   
-  <Callout type="warning">
+  <Callout title="Advertencia" type="warning">
     It's very important to plan in advance what sizes and in what order these partitions should be placed, as the performance of magnetic hard drives deteriorates as the tracks get closer to the center.
   </Callout>
   
@@ -185,7 +184,7 @@ import { Callout } from 'fumadocs-ui/components/Callout';
 
 ## 4. Dual Boot System Installation: Linux and Hybrid Systems
 
-<Callout type="info">
+<Callout title="Información" type="info">
   When we enter the Linux sphere, boot managers are more homogenized, and there are usually no conflicts between the OSes in a dual boot. However, in the case of a hybrid boot, it is advisable to follow the recommendations.
 </Callout>
 

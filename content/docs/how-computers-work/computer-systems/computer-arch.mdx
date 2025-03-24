@@ -7,9 +7,8 @@ icon: Computer
 import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 import { Step, Steps } from 'fumadocs-ui/components/steps';
 import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
-import { Callout } from 'fumadocs-ui/components/Callout';
 
-<Callout type="info">
+<Callout title="Fundamentos de arquitectura" type="info">
   Computer architecture is fundamental to understanding how modern computer systems work. It defines how hardware components interact to create functional computing systems.
 </Callout>
 
@@ -85,7 +84,7 @@ import { Callout } from 'fumadocs-ui/components/Callout';
   </Steps>
 </div>
 
-<Callout type="info">
+<Callout title="Evolución de las computadoras" type="info">
   **Evolutionary Conclusions**:
   - Computers have evolved from room-sized to palm-sized devices
   - Costs have dramatically decreased over time
@@ -110,7 +109,7 @@ import { Callout } from 'fumadocs-ui/components/Callout';
         <li><strong>I/O Unit</strong>: Interface between internal and external elements</li>
         <li><strong>Buses</strong>: Communication lines between elements</li>
       </ul>
-      <Callout type="warn">
+      <Callout title="Cuello de botella de von Neumann" type="warn">
         The main drawback is the "von Neumann bottleneck," where instructions and data share the same bus, limiting performance.
       </Callout>
     </Step>
@@ -141,7 +140,7 @@ import { Callout } from 'fumadocs-ui/components/Callout';
     <Step>
       <h4>Current Applications</h4>
       Used primarily in microcontrollers and DSP (Digital Signal Processor) chips for applications such as sound filters, voice recognition, and image processing.
-      <Callout type="warn">
+      <Callout title="Limitaciones de Harvard" type="warn">
         The complexity of duplicate wiring made it difficult to build and maintain these systems.
       </Callout>
     </Step>
@@ -315,7 +314,7 @@ import { Callout } from 'fumadocs-ui/components/Callout';
          - **EX**: Execute the instruction
          - **MEM/WB**: Write results to memory
 
-      <Callout type="info">
+      <Callout title="Procesamiento paralelo" type="info">
         Modern processors execute these steps in parallel (pipelining).
       </Callout>
     </Step>

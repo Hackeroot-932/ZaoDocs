@@ -11,7 +11,6 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 import { CodeBlock } from 'fumadocs-ui/components/codeblock';
 import { Files, Folder, File } from 'fumadocs-ui/components/files';
 import { InlineTOC } from 'fumadocs-ui/components/inline-toc';
-import { Callout } from 'fumadocs-ui/components/callout';
 
 ## Installation
 
@@ -68,7 +67,7 @@ import { Callout } from 'fumadocs-ui/components/callout';
 
 ## Basic Commands
 
-<Callout type="info">
+<Callout title="Framework Metasploit" type="info">
   Metasploit Framework is a powerful open-source penetration testing platform that enables you to find, exploit, and validate vulnerabilities.
 </Callout>
 
@@ -237,14 +236,13 @@ import { Callout } from 'fumadocs-ui/components/callout';
 
 # 🔎 Reconnaissance and Scanning
 
-<Callout type="tip">
+<Callout title="Reconocimiento y escaneo" type="tip">
   ```bash
   # Run Nmap scan from within Metasploit
   db_nmap -sV -p 1-1000 192.168.1.0/24
   
   # View discovered hosts and services
   hosts
-  services -p 80
   ```
 </Callout>
 
