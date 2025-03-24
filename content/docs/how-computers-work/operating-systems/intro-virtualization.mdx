@@ -1,0 +1,554 @@
+---
+title: Intro to Virtualization
+description: Comprehensive guide to Introduction to Virtualization
+icon: MonitorPlay
+---
+
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
+import { Callout } from 'fumadocs-ui/components/Callout';
+
+<Callout type="info">
+  Virtualization is a set of technologies that allow the creation of virtual machines, enabling multiple operating systems to run simultaneously on a single physical computer.
+</Callout>
+
+## 1. Definition of Virtualization
+
+<Accordions>
+  <Accordion title="Historical Context">
+    <p>The concept of a virtual machine was invented by IBM as a time-sharing method for mainframes (VM/370), and was initially defined as: "A virtual machine is a completely protected and isolated copy of the underlying machine hardware."</p>
+    <p>Today, virtualization can be described as a set of techniques that allow creating one or more "virtual" computers within a real computer. Within the virtual computer, you can do the same, or almost the same, as in the real one, making it possible to install or test an OS, install or test programs, and more.</p>
+  </Accordion>
+  <Accordion title="Key Concepts">
+    <p>A virtual machine (VM) can also be defined as a software implementation of a physical machine—a software computer that behaves practically the same as a real system.</p>
+    <p>The use of VMs allows maximizing the hardware utilization of servers and workstations. Thus, the only limitation when creating multiple VMs and their performance is determined by the physical resources of the real machine.</p>
+  </Accordion>
+</Accordions>
+
+<div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 my-4">
+  <p className="font-semibold mb-2">In the relationship between the real machine and the virtual ones, we define:</p>
+  
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-4">
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Host OS</h4>
+      <p>The operating system of the real machine. The host executes the virtualization application that allows creating VMs.</p>
+    </div>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Guest OS</h4>
+      <p>The operating system of the virtual machine. This guest can run virtualization add-ons to improve integration with the host.</p>
+    </div>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Hypervisor</h4>
+      <p>The platform (software, firmware, or hardware) that enables virtualization techniques and allows using different VMs on the same real machine.</p>
+    </div>
+  </div>
+  
+  <p>The hypervisor adds an additional layer of complexity to the scheme and can also be seen as an intermediary between virtualized applications and real hardware. This causes performance degradation to varying degrees.</p>
+  
+  <div className="mt-4">
+    <p className="font-semibold">The most well-known hypervisors are:</p>
+    <ul className="list-disc pl-5 mt-2 grid grid-cols-2 md:grid-cols-5 gap-2">
+      <li>VMware</li>
+      <li>VirtualBox</li>
+      <li>Hyper-V</li>
+      <li>Parallels</li>
+      <li>QEMU</li>
+    </ul>
+  </div>
+</div>
+
+## 2. Benefits of Virtualization
+
+<Tabs items={["Regular Users", "Developers", "Servers"]}>
+  <Tab>
+    <h4 className="font-bold mb-2">Benefits for Regular Users</h4>
+    <ul className="list-disc pl-5">
+      <li>Allows testing software without having to install it on the real machine</li>
+      <li>Enables trying new operating systems without formatting/risking the real machine</li>
+      <li>Permits testing without risking infecting the real machine with viruses and other types of malware</li>
+      <li>Allows running programs that are no longer compatible with modern operating systems</li>
+      <li>Provides a "duplicable," "freezable," and recoverable state OS</li>
+      <li>Enables all types of tests and practices in the educational field</li>
+    </ul>
+  </Tab>
+  <Tab>
+    <h4 className="font-bold mb-2">Benefits for Developers</h4>
+    <ul className="list-disc pl-5">
+      <li>Allows testing developed software on other operating systems to evaluate compatibility, performance, etc.</li>
+      <li>Enables testing apps on different types of virtual mobile devices</li>
+      <li>Permits creating a network infrastructure to simulate how a complete web application would work, checking both server and client sides</li>
+      <li>Allows verifying how a web page renders on different operating systems</li>
+    </ul>
+  </Tab>
+  <Tab>
+    <h4 className="font-bold mb-2">Benefits for Servers</h4>
+    <ul className="list-disc pl-5">
+      <li>Allows creating different services on the same server (mail server, database server, file server, local cloud, etc.)</li>
+      <li>Enables creating servers in independent execution environments, so that an attack or corruption in one VM does not affect others</li>
+      <li>Maximizes server hardware utilization. Given the enormous amount of memory and processing cores, and the high cost, virtualization allows "selling" the use of this hardware to clients and generating greater economic benefits</li>
+    </ul>
+  </Tab>
+</Tabs>
+
+## 3. Practical Aspects of Virtualization and VMs
+
+<Steps>
+  <Step>
+    <h4 className="text-xl font-bold text-blue-600 dark:text-blue-400">Resource Perception</h4>
+    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-inner mt-2">
+      <p>Each guest OS believes it is the only OS on the computer and that all hardware resources are available to it. In reality, when creating the VM, we decide how many resources to grant (CPU cores, memory, hard drive, etc.).</p>
+    </div>
+  </Step>
+  
+  <Step>
+    <h4 className="text-xl font-bold text-green-600 dark:text-green-400">Resource Management</h4>
+    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-inner mt-2">
+      <p>The hypervisor, in any case, controls the processor and resources of the host OS, assigning (distributing) the necessary resources for each guest OS in turns and ensuring that each guest OS does not affect the operation of other OSes, whether guests or host.</p>
+    </div>
+  </Step>
+  
+  <Step>
+    <h4 className="text-xl font-bold text-purple-600 dark:text-purple-400">Resource Limitations</h4>
+    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-inner mt-2">
+      <p>A large number of OSes could be virtualized simultaneously, but we are limited by our physical resources. Typically, memory is our most limited resource, so we won't be able to virtualize more than 2-4 OSes simultaneously. The CPU must also be shared, and the more VMs running, the less performance each will have.</p>
+    </div>
+  </Step>
+  
+  <Step>
+    <h4 className="text-xl font-bold text-yellow-600 dark:text-yellow-400">Architecture Virtualization</h4>
+    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-inner mt-2">
+      <p>Under certain conditions, very different architectures can be virtualized simultaneously (x86, x86-64, ARM, PPC, SPARC, etc.).</p>
+    </div>
+  </Step>
+  
+  <Step>
+    <h4 className="text-xl font-bold text-red-600 dark:text-red-400">Hardware-Assisted Virtualization</h4>
+    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-inner mt-2">
+      <p>Virtualization is supported by hardware. Older processors could only virtualize in an emulated way (software virtualization), but those from the last 10 years have specific instructions for virtualization (hardware virtualization).</p>
+      <ul className="list-disc pl-5 mt-2">
+        <li>These instructions have different names depending on the processor manufacturer: in Intel, they are called VT-x, and in AMD, they are called AMD-V.</li>
+        <li>Typically, it is necessary to configure the motherboard to enable these instructions because they are disabled by default (and may appear with other names, such as "Intel Virtualization Technology," "AMD SVM," etc.).</li>
+        <li>In the motherboard configuration related to virtualization, the "VT-d" or "IOMMU" option may also appear, which does not serve for virtualization support but as an additional improvement.</li>
+        <li>Some OSes can be virtualized without having the options enabled on the motherboard; they will simply run slower (or much slower). Other OSes require these options to be enabled.</li>
+      </ul>
+    </div>
+  </Step>
+</Steps>
+
+## 4. Types of Hypervisors
+
+<Callout type="info">
+  There are two main types of hypervisors, each with its own advantages and disadvantages, suitable for different use cases.
+</Callout>
+
+<Tabs items={["Type 1 Hypervisors", "Type 2 Hypervisors", "Virtualization vs. Simulation vs. Emulation"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Type 1: Bare-Metal Hypervisors</h4>
+      <p>A hypervisor that runs directly on the hardware and functions as both an OS and a hypervisor simultaneously. Depending on where you look, it is also called a native hypervisor or unhosted hypervisor.</p>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+        <div className="p-3 border border-green-200 dark:border-green-900 rounded-lg">
+          <h5 className="font-bold text-center mb-2 text-green-600 dark:text-green-400">Advantage</h5>
+          <p>Faster execution by eliminating an intermediate layer.</p>
+        </div>
+        <div className="p-3 border border-red-200 dark:border-red-900 rounded-lg">
+          <h5 className="font-bold text-center mb-2 text-red-600 dark:text-red-400">Disadvantage</h5>
+          <p>The guest OS is presented with an architecture identical to the real machine's hardware, so "only" the OSes supported by the real hardware can be virtualized.</p>
+        </div>
+      </div>
+      
+      <div className="mt-4">
+        <p className="font-semibold">Examples include:</p>
+        <ul className="list-disc pl-5 mt-2">
+          <li>VMware ESXi</li>
+          <li>Citrix XenServer</li>
+          <li>Microsoft Hyper-V</li>
+          <li>Proxmox</li>
+        </ul>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Type 2: Hosted Hypervisors</h4>
+      <p>A hypervisor that acts as an intermediary between the host OS and the guest OS, running on the host OS as just another application. It is also called a non-native hypervisor or hosted hypervisor.</p>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+        <div className="p-3 border border-red-200 dark:border-red-900 rounded-lg">
+          <h5 className="font-bold text-center mb-2 text-red-600 dark:text-red-400">Disadvantage</h5>
+          <p>Virtualization is more costly in terms of performance, as there is an additional layer in the scheme.</p>
+        </div>
+        <div className="p-3 border border-green-200 dark:border-green-900 rounded-lg">
+          <h5 className="font-bold text-center mb-2 text-green-600 dark:text-green-400">Advantage</h5>
+          <p>The guest OS is presented with an architecture different from the real machine's hardware, so architectures different from the real hardware can be virtualized or emulated (x86-64, ARM, PowerPC, SPARC, etc.).</p>
+        </div>
+      </div>
+      
+      <div className="mt-4">
+        <p className="font-semibold">Examples include:</p>
+        <ul className="list-disc pl-5 mt-2">
+          <li>VMware Workstation/Player</li>
+          <li>Oracle VirtualBox</li>
+          <li>QEMU</li>
+        </ul>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <Accordions>
+      <Accordion title="Virtualization">
+        <p>As we have seen, virtualization is a software representation of a complex physical system (guest) that is contained within another system (host), which allows control of the guest system.</p>
+      </Accordion>
+      <Accordion title="Simulation">
+        <p>A simulation is based on the concept of a "black box." It does not attempt to represent a real physical system by knowing how each part of the system works, but simply simulates the behavior of a system.</p>
+        <p className="mt-2 italic">Example: If a chip can have 256 possible inputs and these generate 256 possible outputs, a simulation only mimics that behavior, without wanting to know what internal processing is done to generate the outputs.</p>
+      </Accordion>
+      <Accordion title="Emulation">
+        <p>Emulation aims to "adapt" the instructions of one system to those of another very different one at the physical level, like a dictionary between two languages.</p>
+        <p className="mt-2 italic">Example: If we have an x86 architecture system, an ARM emulator will translate each ARM instruction to an x86 instruction that can be executed on the system where the emulator is running. ARM instructions are very simple, and x86 instructions can be very complex.</p>
+        <ul className="list-disc pl-5 mt-2">
+          <li>BlueStacks, Genymotion, and MEmu are Android emulators for PC</li>
+        </ul>
+        <p className="mt-2 italic">Example: If a translation of the entire set of OPcodes of the Z80 chip to x86 instructions can be implemented, a video game that ran directly on a Z80 processor (without OS) can be emulated.</p>
+        <ul className="list-disc pl-5 mt-2">
+          <li>Examples: MAME, FB Neo, bsnes, mGBA, Dolphin, ePSXe, PCSX2, RPCS3, etc.</li>
+        </ul>
+      </Accordion>
+    </Accordions>
+  </Tab>
+</Tabs>
+
+<img src="/type1-type2-hypervisor.webp" alt="Type 1 and Type 2 Hypervisors" className="rounded-lg shadow-md max-w-2xl" />
+
+## 5. Paravirtualization
+
+<Callout type="info">
+  Paravirtualization is a virtualization technique that aims to increase the proportion of execution on the host, thereby reducing execution on the guest and thus increasing the performance of a virtualized OS.
+</Callout>
+
+<div className="p-4 border rounded-lg bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 my-6 shadow-md">
+  <h4 className="text-center text-lg font-semibold mb-4">Full Virtualization vs. Paravirtualization</h4>
+  
+  <Tabs items={["Full Virtualization Process", "Paravirtualization Benefits", "Hypercalls"]}>
+    <Tab>
+      <p className="mb-3">In a typical Type 2 virtualization scheme, when an application installed on a guest OS runs and needs a resource, a cascade call occurs:</p>
+      
+      <Steps>
+        <Step>
+          <h4>Application to Guest OS</h4>
+          <p>The application requests a resource from the guest operating system</p>
+        </Step>
+        <Step>
+          <h4>Guest OS to Virtualized Hardware</h4>
+          <p>This call is captured by the hypervisor, which acts as a link between the virtual and the real.</p>
+          <p>The guest OS uses generic drivers to allow access and communication with the virtualized hardware. Again, the hypervisor must capture each access attempt to channel it to the real hardware.</p>
+        </Step>
+        <Step>
+          <h4>Hypervisor to Host OS</h4>
+          <p>The hypervisor passes the request to the host operating system</p>
+        </Step>
+        <Step>
+          <h4>Host OS to Underlying Real Hardware</h4>
+          <p>Finally, the host OS communicates with the physical hardware</p>
+        </Step>
+      </Steps>
+      
+      <p className="mt-3">This typical scheme is called full virtualization because the VM is presented with complete virtual hardware. Since there is normally a high number of calls to the real hardware, much of this process is loaded onto the guest, and not the host, so the performance of the virtualized OS is worse.</p>
+    </Tab>
+    <Tab>
+      <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-inner mt-2">
+        <p>Paravirtualization is a virtualization technique that tries to increase the proportion of execution on the host, thus reducing execution on the guest, and therefore increasing the performance of a virtualized OS.</p>
+        
+        <p className="mt-3">To achieve this goal, an OS kernel must be modified to:</p>
+        <ul className="list-disc pl-5 mt-2">
+          <li>Be "aware" that it is being run as a guest, in a virtualization environment, and not on real hardware.</li>
+          <li>Be able to communicate directly with the hypervisor, so that hardware resource needs involve less processing on the virtualized part.</li>
+        </ul>
+        
+        <p className="mt-3">In paravirtualization, partial virtualization is performed, not complete, that is, a partial abstraction of the hardware is presented to the VM. This implies that the guest OS must have more specific drivers to communicate directly with the hypervisor, instead of doing so with the virtualized hardware.</p>
+      </div>
+    </Tab>
+    <Tab>
+      <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-inner mt-2">
+        <p>Paravirtualization also means that there will be two types of calls:</p>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
+          <div className="p-3 border border-yellow-200 dark:border-yellow-900 rounded-lg">
+            <h5 className="font-bold text-center mb-2">Normal Calls</h5>
+            <p>These will be channeled through the usual route, such that the hypervisor will have to capture these calls, reinterpret them to adapt them to the host OS, etc.</p>
+          </div>
+          <div className="p-3 border border-green-200 dark:border-green-900 rounded-lg">
+            <h5 className="font-bold text-center mb-2">Hypercalls</h5>
+            <p>These will be derived by the hypervisor directly to the host OS, which frees up the guest OS.</p>
+          </div>
+        </div>
+        
+        <p className="mt-3">Another advantage in the performance of this scheme is that the hypervisor is lighter, as it performs less processing, only being necessary for normal calls.</p>
+      </div>
+    </Tab>
+  </Tabs>
+</div>
+
+<div className="flex justify-center my-6">
+  <img src="/virtualization-types.png" alt="Virtualization Types" className="rounded-lg shadow-md max-w-2xl" />
+</div>
+
+## 6. VirtualBox Installation Guide
+
+<Callout type="info">
+  Oracle VirtualBox is one of the most popular type 2 hypervisors. This guide covers the installation process, virtualization requirements verification, and basic configuration settings to get started with virtualization.
+</Callout>
+
+### 6.1 Download
+
+<Steps>
+  <Step>
+    <h4 className="text-xl font-bold text-blue-600 dark:text-blue-400">Find the Official Website</h4>
+    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-inner mt-2">
+      <p>Open your preferred web browser and search for "VirtualBox." Make sure to access the official VirtualBox website (https://www.virtualbox.org), which may not always be the first result. Be cautious with advertisements and potential scams.</p>
+    </div>
+  </Step>
+  
+  <Step>
+    <h4 className="text-xl font-bold text-green-600 dark:text-green-400">Navigate to Downloads</h4>
+    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-inner mt-2">
+      <p>Click on the "Download" button, which will redirect you to the download section of the website where you can download the VirtualBox executable.</p>
+    </div>
+  </Step>
+  
+  <Step>
+    <h4 className="text-xl font-bold text-purple-600 dark:text-purple-400">Select the Correct Version</h4>
+    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-inner mt-2">
+      <p>In the download section, you need to identify your operating system and download the appropriate version for it. VirtualBox provides packages for Windows, macOS, Linux, and Solaris.</p>
+    </div>
+  </Step>
+</Steps>
+
+### 6.2 Installation
+
+<Tabs items={["Installation Process", "Extension Pack"]}>
+  <Tab>
+    <Steps>
+      <Step>
+        <h4 className="font-bold">Accept Terms and Conditions</h4>
+        <p>Read and accept the terms and conditions to continue with the installation process.</p>
+      </Step>
+      
+      <Step>
+        <h4 className="font-bold">Choose Components</h4>
+        <p>In this part of the installation, you can choose which additional components you want to install with VirtualBox. The only "necessary" component for VirtualBox to function properly is "USB Support," which allows VirtualBox to recognize and interact with USB devices. The others are for specific situations; installing them won't cause any problems, but they will consume more space.</p>
+      </Step>
+      
+      <Step>
+        <h4 className="font-bold">Customize Setup</h4>
+        <p>This section offers various options to customize the setup:</p>
+        <ul className="list-disc pl-5">
+          <li><strong>Create start menu entries</strong>: Adds the application to the start menu</li>
+          <li><strong>Create a shortcut on the desktop</strong>: Creates a VirtualBox shortcut on the desktop</li>
+          <li><strong>Create a shortcut in the Quick Launch Bar</strong>: Creates a VirtualBox shortcut in the Taskbar</li>
+          <li><strong>Register file associations</strong>: Associates and registers files used by VirtualBox (e.g., .ova) with their corresponding icon and association</li>
+        </ul>
+      </Step>
+      
+      <Step>
+        <h4 className="font-bold">Complete the Installation</h4>
+        <p>Click on the "Install" button to proceed with the installation of VirtualBox. Once completed, VirtualBox will be installed on your system and ready to use.</p>
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Extension Pack Purpose and Installation</h4>
+      
+      <p>The VirtualBox Extension Pack is installed from the same section of the website as VirtualBox, but on the right side.</p>
+      
+      <p className="mt-3">The VirtualBox Extension Pack is a series of tool packages that are installed in VirtualBox additionally and allow certain functionalities of the virtualization application to be enhanced.</p>
+      
+      <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 my-4">
+        <p className="font-semibold mb-2">In previous versions of VirtualBox, the Extension Pack was necessary for:</p>
+        <ul className="list-disc pl-5">
+          <li>USB 2.0 and 3.0 support (VirtualBox alone only supported USB 1.1)</li>
+          <li>VirtualBox Remote Desktop Protocol (VRDP)</li>
+          <li>Host webcam passthrough</li>
+          <li>Disk encryption</li>
+          <li>PCI passthrough</li>
+        </ul>
+        
+        <p className="mt-3 text-blue-600 dark:text-blue-400 font-semibold">Starting with version 7.0, VirtualBox supports all types of USB without requiring the Extension Pack, though it still provides additional features like NVMe, Disk Encryption, Host Webcam support, etc.</p>
+      </div>
+    </div>
+  </Tab>
+</Tabs>
+
+### 6.3 Verifying Virtualization Capabilities
+
+<Tabs items={["GUI Methods", "Command Line Methods", "External Applications"]}>
+  <Tab>
+    <Accordions>
+      <Accordion title="Task Manager">
+        <p>Open Task Manager with the keyboard shortcut Ctrl+Shift+Esc, click on "More details" if not already activated, and go to the Performance tab. In the CPU information, check if virtualization is "Enabled".</p>
+        <p className="mt-2 text-yellow-600 dark:text-yellow-400 font-semibold">⚠️ Note: Even if it shows "Enabled," it doesn't necessarily mean full virtualization is available. Sometimes additional steps are required, especially for Windows 11.</p>
+      </Accordion>
+      <Accordion title="System Information">
+        <p>Press Win+R, type "msinfo32" and press Enter to open System Information. At the bottom, you can find the Hyper-V section that shows if virtualization is activated.</p>
+      </Accordion>
+    </Accordions>
+  </Tab>
+  <Tab>
+    <Accordions>
+      <Accordion title="Windows Command Prompt">
+        <p>Press Win+R, type "cmd" and press Enter to open Command Prompt. Type the command "systeminfo" and press Enter. At the bottom of the output, you'll find the Hyper-V Requirements section showing if virtualization is activated.</p>
+      </Accordion>
+      <Accordion title="Windows PowerShell">
+        <p>Press Win+R, type "PowerShell" and press Enter to open PowerShell. Type the command "Get-ComputerInfo -Property Hyper*" and press Enter. In the output, you'll see the Hyper-V requirements showing if firmware virtualization is activated.</p>
+      </Accordion>
+      <Accordion title="Linux Terminal">
+        <p>In a Linux virtual machine, open the terminal and execute the command "cat /proc/cpuinfo". This will show the processor information including virtualization flags.</p>
+        <p className="mt-2 text-yellow-600 dark:text-yellow-400 font-semibold">⚠️ Note: These properties are from the virtual machine, not the real machine, so some things may differ from the real machine.</p>
+      </Accordion>
+    </Accordions>
+  </Tab>
+  <Tab>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-4">
+      <div className="p-4 border rounded-lg bg-white dark:bg-gray-800">
+        <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">CPU-Z</h4>
+        <p>CPU-Z allows you to see if your CPU supports virtualization, but not to see if it's enabled.</p>
+      </div>
+      <div className="p-4 border rounded-lg bg-white dark:bg-gray-800">
+        <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Securable</h4>
+        <p>Securable only allows you to see if your CPU supports virtualization.</p>
+      </div>
+      <div className="p-4 border rounded-lg bg-white dark:bg-gray-800">
+        <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Virtual Checker</h4>
+        <p>Perhaps the only valid test that virtualization is activated and working.</p>
+      </div>
+    </div>
+  </Tab>
+</Tabs>
+
+### 6.4 Activating Virtualization
+
+<Callout type="warning">
+  To activate hardware virtualization support in the BIOS, you need to look for settings with names such as Intel Virtualization Technology, Intel VT-x, Intel VM, Intel VMX, AMD-V, or SVM. Additionally, you could activate supporting technologies like Intel VT-d or IOMMU.
+</Callout>
+
+<Tabs items={["Approach Methods", "BIOS Settings", "Windows 11 Considerations"]}>
+  <Tab>
+    <Accordions>
+      <Accordion title="The Curious User Approach">
+        <p>Enter the BIOS and look for virtualization settings. This is not recommended without proper knowledge.</p>
+      </Accordion>
+      <Accordion title="The Serious Administrator Approach">
+        <p>Look for the motherboard or computer model manual on the manufacturer's website. Find the section about virtualization settings and follow the instructions.</p>
+      </Accordion>
+    </Accordions>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Common BIOS Virtualization Settings</h4>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+        <div className="p-3 border rounded-lg">
+          <h5 className="font-bold text-center mb-2">Intel Processors</h5>
+          <ul className="list-disc pl-5">
+            <li>Intel Virtualization Technology</li>
+            <li>Intel VT-x</li>
+            <li>Intel VM</li>
+            <li>Intel VMX</li>
+          </ul>
+        </div>
+        <div className="p-3 border rounded-lg">
+          <h5 className="font-bold text-center mb-2">AMD Processors</h5>
+          <ul className="list-disc pl-5">
+            <li>AMD-V</li>
+            <li>SVM (Secure Virtual Machine)</li>
+            <li>AMD Virtualization</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div className="mt-4">
+        <p className="font-semibold">Additional Supporting Technologies:</p>
+        <ul className="list-disc pl-5 mt-2">
+          <li>Intel VT-d (Virtualization Technology for Directed I/O)</li>
+          <li>IOMMU (Input/Output Memory Management Unit)</li>
+        </ul>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Windows 11 Hyper-V Considerations</h4>
+      
+      <p>Windows 11 forces its own hypervisor (Hyper-V, type 1) to be active by default to ensure it is the predominant hypervisor in the system. This limits or prevents the activity of other hypervisors, such as VirtualBox (type 2), which can only offer partial virtualization.</p>
+      
+      <p className="mt-3">Therefore, Hyper-V should be disabled so that it does not start up. For more information on how to get full virtualization in Windows 11, read here: <a href="https://forums.virtualbox.org/viewtopic.php?t=99390" className="text-blue-600 hover:underline">VirtualBox Forums Topic 99390</a></p>
+      
+      <p className="mt-3">In Windows 10, this could also happen, but it can be fixed just with the bcdedit command in CMD.</p>
+      
+    </div>
+  </Tab>
+</Tabs>
+
+### 6.5 Basic Configuration
+
+<Callout type="info">
+  These are the most basic and common options when creating and configuring a virtual machine in VirtualBox.
+</Callout>
+
+<Tabs items={["General", "System", "Storage", "Network and USB", "Display"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">General Settings</h4>
+      <p>In this section, you'll choose the name of your virtual machine, the type of operating system, and its version. This helps VirtualBox optimize the default settings for that particular OS.</p>
+      
+    </div>
+  </Tab>
+  <Tab>
+    <Accordions>
+      <Accordion title="System (1): Memory and Boot Order">
+        <p>Here you'll select the amount of RAM memory allocated to the virtual machine and the boot order of devices.</p>
+      </Accordion>
+      <Accordion title="System (2): Processor Cores and PAE">
+        <p>Select the number of processor cores allocated to the virtual machine and whether to enable PAE (Physical Address Extension).</p>
+        <p className="mt-2 text-yellow-600 dark:text-yellow-400 font-semibold">Note: If the VM crashes at startup, PAE settings may need to be reviewed.</p>
+      </Accordion>
+      <Accordion title="System (3): Paravirtualization and Nested Paging">
+        <p>Choose the paravirtualization interface and whether to enable nested paging.</p>
+        <p className="mt-2 text-yellow-600 dark:text-yellow-400 font-semibold">Note: Nested paging is the first source of potential crashes.</p>
+      </Accordion>
+    </Accordions>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Storage Settings</h4>
+      
+      <p>This section displays and allows interaction with the storage devices in the virtual machine. You can observe what internal storage devices the virtual machine has.</p>
+      
+      <p className="mt-3">You can add controllers or devices and add devices within the controller. They are associated with operating systems.</p>
+      
+    </div>
+  </Tab>
+  <Tab>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+      <div className="p-4 border rounded-lg bg-white dark:bg-gray-800">
+        <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">USB Settings</h4>
+        <p>Allows you to choose which USB version your machine will have. You must connect the USB to the established ports, otherwise they won't communicate with your machine.</p>
+      </div>
+      <div className="p-4 border rounded-lg bg-white dark:bg-gray-800">
+        <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Network Settings</h4>
+        <p>You can choose which network card you will configure for the virtual machine and the type of connection the virtual machine will have (NAT, Bridged, etc.).</p>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Display Settings</h4>
+      
+      <p>Allows you to simulate dual monitor/screen and configure the video memory of the graphics card (colors and resolution).</p>
+      
+    </div>
+  </Tab>
+</Tabs>

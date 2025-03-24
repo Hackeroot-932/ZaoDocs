@@ -1,0 +1,390 @@
+---
+title: Computer Architecture
+description: Comprehensive guide to information representation in computing
+icon: Computer
+---
+
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
+import { Callout } from 'fumadocs-ui/components/Callout';
+
+<Callout type="info">
+  Computer architecture is fundamental to understanding how modern computer systems work. It defines how hardware components interact to create functional computing systems.
+</Callout>
+
+## 1. Historical Introduction: The Prehistory
+
+<Accordions>
+  <Accordion title="Early Computing Devices">
+    The need to count and calculate has been a fundamental driver behind computing development. While basic calculations can be performed mentally and complex ones on paper, extensive and rapid calculations require machines that automate the process.
+
+    The earliest counting device was the abacus, dating back to around 2000 BCE in ancient Mesopotamia. This device used beads of different colors or positions to represent fixed quantities (units, tens, etc.). The quipu, a system based on strings and knots, may have predated the abacus.
+  </Accordion>
+</Accordions>
+
+<Steps>
+  <Step>
+    <h4>Mechanical Calculators</h4>
+    Since the 17th century, gear-based machines emerged that could perform arithmetic operations:
+    - Pascal's Calculator (Pascaline, 1642)
+    - Leibniz's Stepped Reckoner (1672)
+    - Thomas's Arithmometer (1820)
+    - Curta Calculator (1948)
+    - Minerva Calculator (1945, Spain)
+  </Step>
+  <Step>
+    <h4>Electromechanical Era</h4>
+    With the advent of electricity, these machines evolved to achieve greater speed and communication capabilities. Punched cards emerged as a way to input information based on binary code (the presence or absence of a hole representing 1 or 0). These electromechanical machines included:
+    - Electromechanical Arithmometer (1920)
+    - Turing's Logical Machine (1936)
+    - Enigma Machine (1923), used extensively for message encryption during World War II
+  </Step>
+</Steps>
+
+## 2. Computer Generations
+
+<div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 my-4">
+  <Steps>
+    <Step>
+      <h4>First Generation (1945-1955)</h4>
+      - **Technology**: Vacuum tubes
+      - **Characteristics**: Occupied entire floors, weighed several tons
+      - **Examples**: ENIAC (1946)
+      - **Contribution**: John von Neumann proposed in 1945 using binary system, loading programs into memory before execution, and storing instructions and data in a common memory space
+      - **Standard**: EDVAC (1949), built under von Neumann's criteria and supervision
+    </Step>
+    <Step>
+      <h4>Second Generation (1955-1965)</h4>
+      - **Technology**: Transistors
+      - **Characteristics**: Room-sized, approximately 1 ton in weight
+      - **Examples**: IBM 650 (1954), IBM 702 (1955)
+    </Step>
+    <Step>
+      <h4>Third Generation (1965-1975)</h4>
+      - **Technology**: Integrated circuits
+      - **Characteristics**: Cabinet-sized, less than 1 ton, terminal-based interaction
+      - **Examples**: IBM S/360 (1964), IBM S/370 (1970)
+      - **Advancement**: First storage media (tapes, early hard drives)
+      - **Adoption**: Primarily in banks and large enterprises
+    </Step>
+    <Step>
+      <h4>Fourth Generation (1975-1985)</h4>
+      - **Technology**: Microchips with thousands of transistors
+      - **Characteristics**: Microwave-sized, less than 100 kg
+      - **Examples**: Altair 8800, Commodore PET 2001, Apple I, Apple Lisa, Apple II
+      - **Impact**: First computers reaching households
+    </Step>
+    <Step>
+      <h4>Fifth Generation (1985-Present)</h4>
+      - **Technology**: Advanced microprocessors, x86 architecture, multi-core
+      - **Characteristics**: Extreme miniaturization, from standard cases to pocket-sized devices
+      - **Examples**: Intel NUC, mini PCs, stick computers
+      - **Advancements**: Parallel computing, artificial intelligence, supercomputers
+    </Step>
+  </Steps>
+</div>
+
+<Callout type="info">
+  **Evolutionary Conclusions**:
+  - Computers have evolved from room-sized to palm-sized devices
+  - Costs have dramatically decreased over time
+  - Computing power has grown exponentially (Moore's Law)
+</Callout>
+
+## 3. Von Neumann Architecture
+
+<div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 my-4">
+  <Steps>
+    <Step>
+      <h4>Functional Units</h4>
+      <p>The von Neumann architecture requires the following functional units:</p>
+      <ul className="list-disc pl-5">
+        <li><strong>CPU</strong>: Central element that fetches, interprets, and executes instructions</li>
+        <ul className="list-disc pl-10">
+          <li><strong>Control Unit (CU)</strong>: Directs the execution process</li>
+          <li><strong>Arithmetic Logic Unit (ALU)</strong>: Performs arithmetic and logical calculations</li>
+          <li><strong>Registers</strong>: Small memory cells for temporary data</li>
+        </ul>
+        <li><strong>Main Memory</strong>: Stores instructions and data</li>
+        <li><strong>I/O Unit</strong>: Interface between internal and external elements</li>
+        <li><strong>Buses</strong>: Communication lines between elements</li>
+      </ul>
+      <Callout type="warn">
+        The main drawback is the "von Neumann bottleneck," where instructions and data share the same bus, limiting performance.
+      </Callout>
+    </Step>
+    <Step>
+      <h4>Visual Representation</h4>
+      <div className="flex justify-center my-4">
+        <img src="/von-neumann-arch.webp" alt="Von Neumann Architecture" className="rounded-lg shadow-md" />
+      </div>
+    </Step>
+  </Steps>
+</div>
+
+## 4. Harvard Architecture
+
+<div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 my-4">
+  <Steps>
+    <Step>
+      <h4>Motivation</h4>
+      This architecture emerged to overcome the von Neumann bottleneck by separating instructions and data into different memories and using independent buses. The IBM Mark I was the first computer built with this architecture.
+    </Step>
+    <Step>
+      <h4>Block Diagram</h4>
+      - Division of main memory into two separate units
+      - Independent buses for instructions and data
+      - Allows simultaneous loading of instructions and data
+      - Possibility of buses with different widths
+    </Step>
+    <Step>
+      <h4>Current Applications</h4>
+      Used primarily in microcontrollers and DSP (Digital Signal Processor) chips for applications such as sound filters, voice recognition, and image processing.
+      <Callout type="warn">
+        The complexity of duplicate wiring made it difficult to build and maintain these systems.
+      </Callout>
+    </Step>
+    <Step>
+      <h4>Visual Representation</h4>
+      <div className="flex justify-center my-4">
+      <img src="/harvard-arch.webp" alt="Harvard Architecture" className="rounded-lg shadow-md" />     
+      </div>
+    </Step>
+  </Steps>
+</div>
+
+## 5. Block Analysis: The CPU
+
+<Tabs items={["Control Unit (CU)", "Arithmetic Logic Unit (ALU)", "CPU Registers"]}>
+  <Tab>
+    Locates, retrieves, interprets, and executes instructions through:
+    - **Program Counter (PC)**: Contains the address of the next instruction
+    - **Instruction Register (IR)**: Stores the current instruction
+    - **Decoder (DEC)**: Divides the instruction into operation code and operands
+    - **Sequencer (SEQ)**: Coordinates microinstruction execution
+    - **Clock (CLK)**: Generates electrical pulses for synchronization
+
+    **Related Concepts**
+    - **Overclocking**: Increasing clock frequency to improve performance
+    - **MIPS**: Millions of Instructions Per Second, a performance metric
+  </Tab>
+  <Tab>
+    Performs mathematical and logical operations through:
+    - **Operational Circuit**: Main component that executes operations
+    - **Input Registers**: Store operands
+    - **Output Register**: Holds the result
+    - **Accumulator (AC)**: Stores intermediate results
+    - **Status/Flag Registers**: Indicate conditions after operations (Zero, Negative, Carry, Overflow)
+    - **Floating Point Unit (FPU)**: Specialized in decimal operations
+  </Tab>
+  <Tab>
+    Small, high-speed memory cells:
+    - **Specific**: For data and instructions in transit (PC, IR, AC, MAR, MDR)
+    - **General Purpose**: Available to the programmer (AX, BX, EAX, EBX)
+    - **Status**: Indicate relevant events
+  </Tab>
+</Tabs>
+
+## 6. Block Analysis: Main Memory
+
+<div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-4">
+  <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+    <h4 className="font-bold mb-2">Description</h4>
+    <p>Stores all information entering and leaving the CPU (instructions and data). According to von Neumann, a program must be loaded into memory before execution.</p>
+  </div>
+  <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+    <h4 className="font-bold mb-2">Content</h4>
+    <p>Millions of cells storing information in bits, typically grouped in bytes. Each cell has a unique address.</p>
+  </div>
+  <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+    <h4 className="font-bold mb-2">Subcomponents</h4>
+    <ul className="list-disc pl-5">
+      <li><strong>Memory Address Register (MAR)</strong>: Contains the address to access</li>
+      <li><strong>Memory Data Register (MDR)</strong>: Contains the data to read or write</li>
+      <li><strong>Memory Selector</strong>: Connects the cell indicated in the MAR with the MDR</li>
+    </ul>
+  </div>
+</div>
+
+## 7. Block Analysis: Buses
+
+<Steps>
+  <Step>
+    <h4>Description</h4>
+    Electrical lines that connect the functional units.
+  </Step>
+  <Step>
+    <h4>Types of Buses</h4>
+    - **Data Bus**: Transports instructions and data
+    - **Address Bus**: Transmits memory addresses
+    - **Control Bus**: Transmits signals to coordinate operations
+  </Step>
+</Steps>
+
+## 8. Block Analysis: I/O Unit
+
+<div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 my-4">
+  <h4 className="font-bold mb-2">Description</h4>
+  <p>Manages communications with elements external to the architecture.</p>
+  
+  <h4 className="font-bold mt-4 mb-2">Functions</h4>
+  <ul className="list-disc pl-5">
+    <li>Control communication between CPU and peripherals</li>
+    <li>Time data transfers</li>
+    <li>Store data temporarily</li>
+    <li>Detect and correct transmission errors</li>
+  </ul>
+</div>
+
+## 9. Block Analysis: Peripherals
+
+<div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 my-4">
+  <Steps>
+    <Step>
+      <h4>Description</h4>
+      <p>Devices external to the von Neumann architecture that provide input/output capabilities and data storage.</p>
+    </Step>
+    <Step>
+      <h4>Classification</h4>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="p-4 border rounded-lg bg-white dark:bg-gray-800">
+          <h4 className="font-bold mb-2">Input Devices</h4>
+          <ul className="list-disc pl-5">
+            <li>Keyboard</li>
+            <li>Mouse</li>
+            <li>Microphone</li>
+            <li>Webcam</li>
+            <li>Scanner</li>
+          </ul>
+        </div>
+        <div className="p-4 border rounded-lg bg-white dark:bg-gray-800">
+          <h4 className="font-bold mb-2">Output Devices</h4>
+          <ul className="list-disc pl-5">
+            <li>Monitor</li>
+            <li>Speakers</li>
+            <li>Printer</li>
+            <li>Projector</li>
+            <li>Headphones</li>
+          </ul>
+        </div>
+      </div>
+    </Step>
+    <Step>
+      <h4>Input/Output Devices</h4>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="p-4 border rounded-lg bg-white dark:bg-gray-800">
+          <h4 className="font-bold mb-2">Storage Devices</h4>
+          <ul className="list-disc pl-5">
+            <li>Hard Disk Drive (HDD)</li>
+            <li>Solid State Drive (SSD)</li>
+            <li>USB Flash Drive</li>
+            <li>Memory Cards</li>
+            <li>Optical Drives (CD/DVD/Blu-ray)</li>
+          </ul>
+        </div>
+        <div className="p-4 border rounded-lg bg-white dark:bg-gray-800">
+          <h4 className="font-bold mb-2">Communication Devices</h4>
+          <ul className="list-disc pl-5">
+            <li>WiFi Adapter</li>
+            <li>Ethernet Card</li>
+            <li>Modem</li>
+            <li>Bluetooth Adapter</li>
+            <li>Network Interface Card (NIC)</li>
+          </ul>
+        </div>
+      </div>
+    </Step>
+  </Steps>
+</div>
+
+## 10. The Instruction Cycle
+
+<div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 my-4">
+  <Steps>
+    <Step>
+      <h4>Definition</h4>
+      Sequential steps performed by the CPU to execute a machine language instruction.
+    </Step>
+    <Step>
+      <h4>Phases</h4>
+      1. **Fetch**:
+         - **IF**: Bring the instruction to the CPU
+         - **DEC**: Decode the instruction
+      2. **Execution**:
+         - **EX**: Execute the instruction
+         - **MEM/WB**: Write results to memory
+
+      <Callout type="info">
+        Modern processors execute these steps in parallel (pipelining).
+      </Callout>
+    </Step>
+  </Steps>
+</div>
+
+## 11. Memory Hierarchy
+
+Memory is typically organized in 5 hierarchical levels:
+
+<div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 my-4">
+  <Steps>
+    <Step>
+      <h4>CPU Registers</h4>
+      - Access time: 1-2 ns
+      - Capacity: 1-32 bytes
+      - Maximum speed, minimum capacity
+    </Step>
+    <Step>
+      <h4>Cache Memory</h4>
+      - Access time: 5-50 ns
+      - Capacity: L1 (16-32 KB), L2 (128-256 KB), L3 (3-6 MB)
+      - High speed, low capacity
+    </Step>
+    <Step>
+      <h4>Main Memory</h4>
+      - Access time: 25-100 ns
+      - Capacity: GB
+      - Balance between speed and capacity
+    </Step>
+    <Step>
+      <h4>Secondary Memory</h4>
+      - Access time: 5-20 ms
+      - Capacity: TB
+      - Higher capacity, lower speed
+    </Step>
+    <Step>
+      <h4>Auxiliary Memory</h4>
+      - Access time: variable (5 ms - minutes)
+      - Capacity: up to 50 TB
+      - Massive external storage
+    </Step>
+  </Steps>
+</div>
+
+<div className="flex justify-center my-4">
+  <img src="/Memory-Hierarchy-Design.webp" alt="Memory Hierarchy" className="rounded-lg shadow-md" />
+</div>
+
+<Accordions>
+  <Accordion title="Other Memory Types">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+      <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+        <h4 className="font-bold mb-2">ROM</h4>
+        <p>Read-Only Memory for boot routines</p>
+      </div>
+      <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+        <h4 className="font-bold mb-2">CMOS</h4>
+        <p>Stores system configuration</p>
+      </div>
+      <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+        <h4 className="font-bold mb-2">ROM Variants</h4>
+        <p>PROM, EPROM, EEPROM</p>
+      </div>
+      <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+        <h4 className="font-bold mb-2">Flash Memory</h4>
+        <p>NAND-based memory (SD cards, USB drives, SSDs)</p>
+      </div>
+    </div>
+  </Accordion>
+</Accordions>
+

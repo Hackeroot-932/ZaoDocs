@@ -1,0 +1,14 @@
+{
+    "index": "Writeups",
+    "description": "Writeups of IT Tools",
+    "icon": "BookCheck",
+    "root": false,
+    "defaultOpen": false,
+    "pages": [
+      "---Hack The Box---",
+      "---VulnHub---",
+      "---TryHackMe---",
+      "---Bug Bounty---",
+      "---CTF---"
+    ]
+}

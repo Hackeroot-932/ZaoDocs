@@ -1,0 +1,31 @@
+{
+    "index": "Security",
+    "description": "Security [CCNA]",
+    "icon": "Network",
+    "root": false,
+    "defaultOpen": false,
+    "pages": [
+        "security-principles",
+        "security-in-the-network",
+        "firewalls",
+        "ngfw",
+        "ips",
+        "ngips",
+        "aaa",
+        "dhcp-snooping",
+        "ports-security",
+        "port-based-authentication",
+        "access-list",
+        "access-lists-types",
+        "acl-application",
+        "wildcard-mask",
+        "process-of-configuring-the-numbered-acls",
+        "ip-access-lists-with-name",
+        "acl-elimination",
+        "ipv6-access-lists",
+        "other-types-of-access-lists",
+        "most-used-ports-and-protocols-in-acls",
+        "acl-verification"
+
+    ]
+  }

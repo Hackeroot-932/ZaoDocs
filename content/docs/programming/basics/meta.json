@@ -1,0 +1,13 @@
+{
+    "index": "Programming Basics",
+    "description": "Just 0101",
+    "icon": "FileCode",
+    "root": false,
+    "defaultOpen": true,
+    "pages": [
+      "--- Introduction to Programming ---",
+      "--- Git && GitHub ---",
+      "--- Data Structures && Algorithms ---",
+      "--- Programming Concepts ---"
+    ]
+  }

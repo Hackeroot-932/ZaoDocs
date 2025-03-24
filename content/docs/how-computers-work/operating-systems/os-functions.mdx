@@ -1,0 +1,413 @@
+---
+title: OS Functions
+description: Comprehensive guide to OS Functions
+icon: Cog
+---
+
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
+import { Callout } from 'fumadocs-ui/components/Callout';
+
+<Callout type="info">
+  Operating system functions encompass process management, memory management, file system management, I/O management, and security management, all working together to optimize system resources and provide a stable environment for applications.
+</Callout>
+
+## 1. Process Management
+
+<div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 my-4">
+  <p className="mb-3">Process management is the allocation of hardware resources (CPU, RAM, GPU, disk, execution time, etc.) to processes to ensure efficient system operation.</p>
+  
+  <Accordions>
+    <Accordion title="Key Concepts">
+      <ul className="list-disc pl-5">
+        <li><strong>Program</strong>: A set of instructions with a specific objective (calculate, draw, write, etc.), or an algorithm written in a programming language.</li>
+        <li><strong>Process</strong>: When a program starts execution, it generates one or more processes. The OS must allocate resources to these processes and manage their concurrent execution.</li>
+        <li><strong>Resource</strong>: For a process, a resource could be defined as the right to use a particular device or service. A process needs the OS to assign system resources: CPU, memory, I/O (disk, network, etc.).</li>
+      </ul>
+    </Accordion>
+    
+    <Accordion title="Process States">
+      <ul className="list-disc pl-5">
+        <li><strong>Ready</strong>: When a process appears for execution and already has all the necessary resources assigned. The OS marks the process as "ready to execute," places it in a waiting queue, and when its turn comes, the OS allows it to execute.</li>
+        <li><strong>Running</strong>: When the OS decides to introduce the process to the CPU for execution. Once a certain number of turns have passed with the process in execution, the OS expels the process from the CPU and it returns to the queue.</li>
+        <li><strong>Blocked</strong>: When a process, whether in execution or not, needs some additional resource that is not assigned, the OS puts it in a "blocked" state. When the process gains access to the resource, it will return to the "ready" state.</li>
+      </ul>
+      
+      <div className="flex justify-center my-4">
+        <img src="/process-states.png" alt="Process States" className="rounded-lg shadow-md" />
+      </div>
+    </Accordion>
+    
+    <Accordion title="Process Control Block (PCB)">
+      <p>A running process has associated data (PID, priority, program counter, data in registers, status registers, data stack, etc.). When a process leaves the CPU, its PCB must be stored in memory, and when it enters the CPU, its PCB must be loaded. The action of evicting a process from the CPU, saving its PCB in memory, loading another process into the CPU, and loading its PCB from memory is called a context switch.</p>
+    </Accordion>
+  </Accordions>
+</div>
+
+### Process Scheduling 
+
+<Tabs items={["Operation Principles", "Concurrent Execution", "Scheduling Algorithms"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Basic Operation Principles</h4>
+      <ul className="list-disc pl-5">
+        <li>The OS must manage processes to be able to combine the simultaneous execution of many at once.</li>
+        <li>It must distribute available resources among them and manage concurrency, not allowing a process to take ownership of resources that others may need, nor letting another process "agonize" waiting for a resource that is monopolized by another.</li>
+        <li>Additionally, the OS must optimize hardware use to avoid abuse or "disuse," and to prevent "lost cycles" while waiting for a resource that doesn't arrive.</li>
+      </ul>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Concurrent Execution Benefits</h4>
+      
+      <p className="mb-3">Example: If an OS had to manage two processes independently with the following characteristics, the CPU would be practically unused, as it would be used in 5/20 cycles for process A and 6/20 cycles for process B, totaling 11/40 cycles. I/O would be used in 29/40 cycles.</p>
+      
+      <div className="flex justify-center my-4">
+        <img src="/sequential-processes.png" alt="Sequential Processes" className="rounded-lg shadow-md" />
+      </div>
+      
+      <p className="mb-3">Concurrent execution: If the OS manages to combine the two processes to execute "simultaneously," CPU and I/O utilization is greater. In the example, the CPU is used in 11/21 cycles and I/O in 20/21 cycles.</p>
+      
+      <div className="flex justify-center my-4">
+        <img src="/concurrent-processes.png" alt="Concurrent Processes" className="rounded-lg shadow-md" />
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Common Scheduling Algorithms</h4>
+      
+      <p>Operating systems have a scheduler to determine which process enters the CPU for execution at each moment. For this, a series of algorithms are used, of which we can mention the simplest:</p>
+      
+      <Accordions>
+        <Accordion title="FCFS (or FIFO)">
+          <p><strong>First Come, First Served</strong>: Processes are attended to in the same order they arrived at the scheduler. A new process is not executed until the previous one has finished.</p>
+        </Accordion>
+        <Accordion title="SJF">
+          <p><strong>Shortest Job First</strong>: The scheduler receives processes, and when one finishes executing, it decides to give the turn to the shortest one in the queue. A new process is not executed until the previous one has finished.</p>
+        </Accordion>
+        <Accordion title="SRTF">
+          <p><strong>Shortest Remaining Time First</strong>: It's a variation of SJF, but at each moment, it determines which process has the fewest cycles left to finish, and grants the CPU to that process, expelling the previous process from the CPU. Therefore, this algorithm is preemptive.</p>
+        </Accordion>
+        <Accordion title="RR">
+          <p><strong>Round Robin</strong>: The scheduler receives processes in a queue and assigns execution rounds to the processes. If a process finishes, it disappears from the queue, and if not, it returns to the queue in the corresponding position. The scheduler must have previously established the number of cycles or rounds it allows each process to execute before being expelled from the CPU (this number is called quantum). Therefore, it is also a preemptive algorithm.</p>
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+</Tabs>
+
+## 2. Memory Management
+
+<Callout type="info">
+  The OS must manage available memory, as it is considered an essential resource, like the CPU, and handle its allocation and deallocation.
+</Callout>
+
+<Tabs items={["Basic Concepts", "Memory Challenges", "Virtual Memory", "Memory Allocation"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Operating System Memory Types</h4>
+      <ul className="list-disc pl-5">
+        <li><strong>Single-programmed OS</strong>: In an OS like MS-DOS, which only supports one process at a time, memory management is very simple, as memory only needs to be allocated to the single running program.</li>
+        <li><strong>Multi-programmed OS</strong>: Many processes are loaded simultaneously, making memory management much more complex.</li>
+      </ul>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Memory Management Challenges</h4>
+      
+      <Accordions>
+        <Accordion title="Relocation">
+          <p>A program can be evicted and relocated multiple times from memory. If references to a program's instructions and data were fixed, it would be a problem to load a program in a memory area different from where it was before. To avoid this, there are two possible relocation strategies:</p>
+          <ul className="list-disc pl-5 mt-2">
+            <li><strong>Reference Update</strong>: Each time the program is loaded into memory, all references to instructions and data are modified to reflect the program's new location in memory and adapt to it.</li>
+            <li><strong>Base Register + Displacement</strong>: A base register is kept with the initial address of the program, and references are based on a displacement from this initial address. Thus, when the program needs to be loaded at a different address, only the base register address needs to be modified.</li>
+          </ul>
+        </Accordion>
+        <Accordion title="Protection">
+          <p>A program could try to access memory addresses outside its space. This poses a huge danger to other programs, whose instructions could be altered or whose data could be observed, extracted, or even sent to a potential hacker. To prevent this, a strategy that the OS can impose to maintain the protection of programs loaded in memory is:</p>
+          <ul className="list-disc pl-5 mt-2">
+            <li><strong>Base Register + Limit</strong>: Following the previous idea, if a program is imposed with a limit of access to its memory region, it will be able to request reading or writing in a specific range of memory. And again, when the program needs to be loaded at a different address, only the base register address needs to be modified.</li>
+          </ul>
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Virtual Memory</h4>
+      
+      <p>Physical memory is limited, so an OS will have the possibility of loading a limited number of programs in memory.</p>
+      
+      <ul className="list-disc pl-5 mt-2">
+        <li>In a single-programmed OS, it's (almost) not necessary to do anything to manage memory, as only one program is executed and it releases the assigned memory when finished, leaving a large part of memory free for the next program.</li>
+        <li>In a multi-programmed OS, it is convenient/necessary/useful to have access to additional memory, even if it's not physical. The technique to cover this need is the creation of virtual memory in the secondary memory space.</li>
+      </ul>
+      
+      <p className="mt-3">The advantage of this is that there is more memory available for the OS, and it can use more memory to load more programs. The disadvantage is that secondary memory is slower than primary memory (in fact, much slower).</p>
+      
+      <p className="mt-3">If an OS uses virtual memory, memory management becomes more complicated, as the OS has to decide which programs stay in physical memory and which move to virtual memory. On the other hand, the OS must structure both types of memory to make these movements between physical and virtual memory.</p>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Memory Allocation Techniques</h4>
+      
+      <Accordions>
+        <Accordion title="Virtual Memory Management Techniques">
+          <p>Three techniques are used for virtual memory management:</p>
+          <ul className="list-disc pl-5 mt-2">
+            <li><strong>Paging</strong>: Consists of dividing memory into fixed-size regions called frames. When a program needs to be moved between physical and virtual memory, it's done by pages, i.e., fixed-size blocks of the same size as the frames.</li>
+            <li><strong>Segmentation</strong>: Consists of dividing memory into variable-size regions. Thus, when a program needs to be moved between physical and virtual memory, it's done by segments, i.e., variable-size blocks.</li>
+            <li><strong>Swapping</strong>: This is what the movement of data between physical and virtual memory is called. When a process is blocked waiting for a resource, or it's necessary to free the resources it has to give them to other processes, it can be sent to virtual memory. When a process is ready again and will be executed again, it needs to be moved to physical memory.</li>
+          </ul>
+        </Accordion>
+        <Accordion title="Fragmentation Issues">
+          <p>In virtual memory management over time, two types of problems arise (they arise with both pages and segments, so we'll summarize with "pages"):</p>
+          <ul className="list-disc pl-5 mt-2">
+            <li><strong>Fragmentation</strong>: Memory gets filled with gaps after loading and freeing different memory regions. These gaps could prevent another program from being loaded if it doesn't fit inside. There are two types of fragmentation:</li>
+              <ul className="list-disc pl-5 mt-1">
+                <li><strong>External Fragmentation</strong>: When gaps occur between different memory pages.</li>
+                <li><strong>Internal Fragmentation</strong>: When gaps occur within the same page. This fragmentation is inevitable and has no solution, beyond using smaller pages.</li>
+              </ul>
+            <li><strong>Underutilization</strong>: All gaps that don't allow programs to be loaded ultimately represent a loss of available memory.</li>
+          </ul>
+        </Accordion>
+        <Accordion title="Memory Allocation Algorithms">
+          <p>When there is free space in physical memory, algorithms are used such as:</p>
+          <ul className="list-disc pl-5 mt-2">
+            <li><strong>First Fit</strong>: The first available space is assigned, regardless of whether it is adequate.</li>
+            <li><strong>Best Fit</strong>: The most suitable gap possible is assigned. This requires searching for this gap and having an indexed list of gaps to speed up the search.</li>
+            <li><strong>Worst Fit</strong>: The least suitable gap is assigned. (Used mainly for comparative purposes and exercises)</li>
+          </ul>
+          
+          <p className="mt-3">When there is no free space in physical memory, it's necessary to decide which pages of physical memory are swapped to virtual memory. In this case, page replacement algorithms are used such as:</p>
+          <ul className="list-disc pl-5 mt-2">
+            <li><strong>FIFO</strong>: First In, First Out. Pages from the process that has been loaded in memory the longest are moved to virtual memory.</li>
+            <li><strong>LRU</strong>: Least Recently Used. Pages from the process that have gone the longest without being used are moved to virtual memory.</li>
+            <li><strong>LFU</strong>: Least Frequently Used. Pages from the process that have been used with the least frequency are moved to virtual memory.</li>
+            <li><strong>Optimal Algorithm</strong>: Pages from the process that will take the longest to be loaded into memory again are moved to virtual memory. (Used for comparative purposes)</li>
+          </ul>
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+</Tabs>
+
+## 3. File System Management
+
+<div className="p-4 border rounded-lg bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 my-6 shadow-md">
+  <p className="text-center text-lg font-semibold mb-4">File system management is responsible for organizing, storing, and accessing data on storage devices</p>
+  
+  <Accordions>
+    <Accordion title="Basic Concepts">
+      <ul className="list-disc pl-5">
+        <li><strong>File</strong>: An abstraction that refers to a logical storage unit. A file contains a more or less homogeneous set of data that are related to each other. These data will be physically stored on some medium (floppy disk, hard drive, USB drive, CD, etc.).</li>
+          <ul className="list-disc pl-5 mt-1">
+            <li><strong>File Properties</strong>: Name, size, location, creation, modification and access dates, read and hidden attributes, and extension (1-5 letters that come after the name separated by a period and that allow determining the file type without knowing/reading its content).</li>
+          </ul>
+        <li><strong>Directory (or folder)</strong>: An abstraction that refers to a container logical unit. In reality, a directory is a special type of file that serves to contain other files or directories, thus defining a tree-like structure, in which the so-called root directory stands out, which is the directory that contains all other directories.</li>
+      </ul>
+    </Accordion>
+    
+    <Accordion title="File System Objectives">
+      <p>To manage the immense number of files and folders on a storage medium, the OS implements the so-called file system, which has objectives such as:</p>
+      <ul className="list-disc pl-5 mt-2">
+        <li>Managing files and folders: create, delete, copy, move, rename, change attributes (read-only, hidden, etc.), change permissions (read, write, and execute), etc.</li>
+        <li>Allowing controlled access to information</li>
+        <li>Being independent of the storage medium</li>
+        <li>Optimizing performance</li>
+        <li>Minimizing information loss</li>
+      </ul>
+      <p className="mt-3">To be able to do all this, it is essential that the file system has a way of relating the logical part (files and folders) with the physical part (sectors) and, therefore, knowing the exact position of the files on the disk.</p>
+    </Accordion>
+  </Accordions>
+</div>
+
+### Directory Structure
+
+<Tabs items={["Tree Structure", "Path Types", "Directory Entries", "File Allocation Methods"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Tree Structure</h4>
+      
+      <p>In a "normal" file system, a tree structure, or directory tree, is established, in which the relationship between folders draws a structure with which the system - on one hand - and the user - on the other - define the criteria by which information stored on a disk is organized.</p>
+      
+      <div className="flex justify-center my-4">
+        <img src="/directory-tree.png" alt="Directory Tree" className="rounded-lg shadow-md" />
+      </div>
+      
+      <p>These trees have a single root. This guarantees that:</p>
+      <ul className="list-disc pl-5 mt-2">
+        <li>There is a single way to enter to reach a specific file.</li>
+        <li>There is a unique absolute path for each file and folder in the system. The path to access a file is the concatenation of the directories through which one must pass from the root folder to reach that file. For example, in Windows: D:\IES María Moliner\Department\Schedule cycles\Definitive schedule ASIR1.pdf</li>
+      </ul>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Path Types</h4>
+      
+      <p>These structures establish parent-child relationships:</p>
+      <ul className="list-disc pl-5 mt-2">
+        <li><strong>Current or active folder</strong>: It's the folder in which one is currently working. In the command line, the current folder is represented with a period (.). When a file is indicated by command without a path, it's always searched for in the current folder.</li>
+        <li><strong>Parent folder</strong>: It's the folder that contains the folder in which one is currently working. In the command line, the parent folder is represented with two periods (..).</li>
+        <li><strong>Child folder</strong>: It's any of the folders that are inside the folder in which one is currently working.</li>
+      </ul>
+      
+      <p className="mt-3">This abbreviated way of representing folders allows using an abbreviated way of specifying file and folder paths: the relative path, which is one in which the period or double period is used. For example, in Windows, if our active folder is currently D:\IES María Moliner\Department: ..\Evaluations\Notes_Ev1.pdf</p>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Directory Entries and File Table</h4>
+      
+      <p>Each time a new file or a new folder is created, its data is recorded in a new directory entry of the file system. If we compare a file system to a book, each directory entry would be a line in the book's index. Through the directory entries in the index, that file/folder can be found.</p>
+      
+      <p className="mt-3">In a directory entry, the data mentioned as file properties are stored: name, extension, size, dates, owner, etc.</p>
+      
+      <p className="mt-3">Depending on the complexity and robustness of a file system, an entry can occupy a few dozen bytes, or hundreds, or thousands, but, in any case, it's necessary to have some criteria to organize these entries.</p>
+      
+      <p className="mt-3">The simplest way would be a "linear" list (one entry after another). However, when searching for an entry, the search speed will also be linear, and when an entry needs to be deleted, there will be the dilemma of leaving it blank, or moving subsequent entries to an earlier position, etc.</p>
+      
+      <p className="mt-3">There might be the possibility of keeping this list ordered, but each new entry, or each deleted entry means reordering the list and generates a computational cost.</p>
+      
+      <p className="mt-3">A good option, however, is to use binary search trees, as they simplify the operations of addition, deletion, and even reordering of entries.</p>
+      
+      <p className="mt-3">Finally, the file table is a table (obviously 🙄) where the set of directory entries and their physical position on a disk are related. Since the disk is divided into sectors, and the disk format regroups these sectors into clusters, the file system ultimately stores files in clusters. Therefore, if we refine the previous definition, the file table is a table (obviously 🙄) in which for each file/folder, it indicates in which clusters of the disk it is physically stored.</p>
+      
+      <p className="mt-3">The way this is managed depends on the OS and also on the file system. In older systems, this table was known as FAT (File Allocation Table), hence the names of file systems like FAT16, FAT32, or exFAT. In Windows and with the widespread use of the NTFS file system, it's called MFT (Master File Table).</p>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">File Allocation Methods</h4>
+      
+      <p>On a computer, files are created and deleted very frequently. It's usually necessary to reuse the space freed by deleted files to introduce new files.</p>
+      
+      <p className="mt-3">Therefore, the file system of an OS must maintain two lists or indexes:</p>
+      <ul className="list-disc pl-5 mt-2">
+        <li>The list of files and the position in which they are physically located, that is, the file table.</li>
+        <li>The list of free clusters (≠ empty), that is, those that are not assigned to any file.</li>
+      </ul>
+      
+      <p className="mt-3">When saving a new file, the OS updates both tables, in the first to indicate the position, and in the second to indicate that those clusters are no longer free. Something similar happens, but in the opposite direction, when deleting a file.</p>
+      
+      <Accordions>
+        <Accordion title="Contiguous Allocation">
+          <p>It consists of keeping files in contiguous clusters of the disk, making reading and writing require the minimum number of movements in the needle of a hypothetical mechanical hard drive, which would improve its speed, at least in reading.</p>
+          
+          <p className="mt-3">Apparently, it's the simplest allocation method, as while there is available space, files can always be added at the end of the occupied part of the disk. Furthermore, the file table can be simplified to the maximum, as only the position of a file (or the position and length of the file) can be stored.</p>
+          
+          <p className="mt-3">However, when the disk starts to fill up, it's necessary to find valid gaps for new files (algorithms like First Fit, Best Fit would be used).</p>
+          
+          <div className="flex justify-center my-4">
+            <img src="/contiguous-allocation.png" alt="Contiguous Allocation" className="rounded-lg shadow-md" />
+          </div>
+          
+          <p className="mt-3">But the biggest problem with this method, due to its own operation, is the high number of gaps generated and the difficult management of these gaps.</p>
+        </Accordion>
+        <Accordion title="Linked Allocation">
+          <p>It consists of maintaining a file table in which only the cluster where the first block of a file is found is noted, and in parallel, each file is dispersed in blocks such that each block contains the information itself corresponding to that cluster, and, in addition, a pointer to the next block. In this way, a linked list of blocks is generated in which, if we want to obtain the complete file, we have to read the entire ordered sequence of blocks until the end. The last block in the sequence will have a null pointer.</p>
+          
+          <p className="mt-3">The obvious advantage is that not as much external fragmentation is generated, but there are also some disadvantages:</p>
+          <ul className="list-disc pl-5 mt-2">
+            <li>The blocks are spread throughout the disk (in principle, without any criteria). On a magnetic disk, the needle will have to jump more.</li>
+            <li>If a block is lost, whether due to data corruption, lack of magnetization, etc., all subsequent information becomes unlocatable.</li>
+            <li>Since it's necessary to reserve 32 or 48 bits for the pointer, in the block there are only 4092, or 4090 bytes available for data → There is a loss of capacity.</li>
+          </ul>
+          
+          <div className="flex justify-center my-4">
+            <img src="/linked-allocation.png" alt="Linked Allocation" className="rounded-lg shadow-md" />
+          </div>
+          
+          <p className="mt-3">One way to avoid the 2nd problem with the list is to use a doubly linked list, in which there is a pointer to the next block and another to the previous one, such that, if a block becomes corrupted, the rest of the content could be recovered by going backwards from the last block. The obvious disadvantage is that another 4/6 bytes of capacity are lost.</p>
+        </Accordion>
+        <Accordion title="Indexed Allocation">
+          <p>It consists of maintaining a file table in which, for each file on the disk, only the address of the file's index block is noted. In the index block of a file, there will be another table with the list of the file's blocks and the positions of each block on the disk.</p>
+          
+          <div className="flex justify-center my-4">
+            <img src="/indexed-allocation.png" alt="Indexed Allocation" className="rounded-lg shadow-md" />
+          </div>
+          
+          <p className="mt-3">The advantages over the previous method are:</p>
+          <ul className="list-disc pl-5 mt-2">
+            <li>If the loss or corruption occurs in any block of a file, all other blocks will be accessible.</li>
+            <li>All block addresses can be known without having to read all blocks sequentially.</li>
+          </ul>
+          
+          <p className="mt-3">The disadvantages of this method could be:</p>
+          <ul className="list-disc pl-5 mt-2">
+            <li>If the loss or corruption occurs in the index block of a file, all the content of the file is lost.</li>
+            <li>As an additional block is used for each file, there is a capacity loss of 4096 bytes (at minimum) for each file (and if a certain file size is exceeded, another additional index block will be necessary).</li>
+          </ul>
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+</Tabs>
+
+## 4. Input/Output Management
+
+<Callout type="info">
+  The OS must manage I/O devices, such as secondary storage, auxiliary memories, and peripherals, in a way that facilitates their use to the user.
+</Callout>
+
+<div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+  <p>To communicate and move data to/from the essential parts of hardware (CPU and memory), devices launch IRQ (Interrupt Request) requests, which the OS must prioritize and attend to. When it's decided to attend to a specific interrupt and data needs to be moved between two points, there are basically 2 ways to attend to it:</p>
+  
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+    <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Programmed Input/Output (PIO)</h4>
+      <p>It consists of tasking the CPU with transferring data between origin and destination. This makes the CPU lose many cycles in sending orders, monitoring the process, and verifying the transfer, as I/O devices are generally slow.</p>
+    </div>
+    <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Direct Memory Access (DMA)</h4>
+      <p>It consists of delegating data transfers to another component, usually a controller chip. The CPU would receive the interrupt request, then assign the task to the controller, and subsequently receive another "informative" interrupt when the operation is completed. Thus, the CPU is freed from communicating with a slow device, and only intervenes to initiate the transfer and to know when it has finished.</p>
+    </div>
+  </div>
+  
+  <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Drivers</h4>
+  <p>Drivers are software elements that are used so that the OS can communicate with hardware. Therefore, we could say that they are files where the communication protocols with devices (which in general, are I/O) are specified.</p>
+  <p className="mt-3">In a way, they represent a link between software and hardware, as there will be a driver for each hardware element of our computer: chipset, network card, video card, sound card, printer, USB controller, keyboard, mouse, etc.</p>
+</div>
+
+## 5. Security Management
+
+<Callout type="warning">
+  The OS must control the access of processes or users to system resources. To do this, it must take security measures that prevent problems in case of an error, incorrect use of the OS, or uncontrolled access physically or through the network, or malicious software, such as viruses, keyloggers, trojans, worms, ransomware, etc.
+</Callout>
+
+<Tabs items={["Entry Points", "Security Techniques"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Entry Points for Security Threats</h4>
+      <ul className="list-disc pl-5">
+        <li><strong>Email</strong>: phishing, trojans, worms</li>
+        <li><strong>USB drives</strong>: autorun viruses</li>
+        <li><strong>Banners, popups in Internet</strong>: rogueware, spyware</li>
+        <li><strong>Downloads</strong>: trojans, keyloggers, ransomware</li>
+        <li><strong>Leaving your computer open to other people</strong>: various infections, password extraction, identity theft, etc.</li>
+      </ul>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Security Techniques</h4>
+      <p>To maintain security in a computer system, various techniques can be used, such as:</p>
+      <ul className="list-disc pl-5 mt-2">
+        <li>Use of passwords</li>
+        <li>Information encryption</li>
+        <li>Use of antivirus programs</li>
+        <li>Firewalls</li>
+        <li>HIPS (Host Intrusion Prevention System)</li>
+        <li>Sandboxes</li>
+        <li>Backups</li>
+        <li>Virtualization</li>
+      </ul>
+    </div>
+  </Tab>
+</Tabs>

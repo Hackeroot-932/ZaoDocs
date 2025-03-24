@@ -1,0 +1,211 @@
+{
+  "main": {
+    "id": "1153705b200647b7",
+    "type": "split",
+    "children": [
+      {
+        "id": "e49d6aadc1332974",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "618710ef7e165991",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "content/docs/programming/databases/MySQL.mdx",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "MySQL"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "f3b1dda744516553",
+    "type": "split",
+    "children": [
+      {
+        "id": "51908ef1662ebff7",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0834e97b1fdfb2ac",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "e3ee2359398f2641",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "ad47c07a6c331378",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 459.5
+  },
+  "right": {
+    "id": "07461fcb2ed68b69",
+    "type": "split",
+    "children": [
+      {
+        "id": "810476a9ba824dbf",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "19730d1c877ac2d2",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "01256680b04ee2bb",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "f960c417384d9c5f",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "bdf0478bf07c4230",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {},
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "edit-mdx:New .mdx file": false
+    }
+  },
+  "active": "618710ef7e165991",
+  "lastOpenFiles": [
+    "content/docs/programming/databases/MySQL.mdx.md",
+    "content/docs/programming/databases/MySQL.mdx",
+    "content/docs/programming/databases/insert-into-example.png",
+    "content/docs/programming/databases/relational-vs-non_relational.png",
+    "content/docs/home/index.mdx",
+    "content/docs/programming/databases",
+    "content/docs/programming/basics",
+    "content/docs/programming/general-purpose",
+    "content/docs/programming/web-dev",
+    "content/docs/programming",
+    "ZaoDocs.md",
+    "Whatever ++.md",
+    "4. Hacking Blue Team/Malware Analysis/7.1. Safety Always! Building Your Malware Analysis Lab & Malware Safety/5. Course Lab Repo Link.md",
+    "4. Hacking Blue Team/Malware Analysis/7.1. Safety Always! Building Your Malware Analysis Lab & Malware Safety/4. Rapid-deployable Cloud Malware Analysis Lab Setup.md",
+    "4. Hacking Blue Team/Malware Analysis/7.1. Safety Always! Building Your Malware Analysis Lab & Malware Safety/3. Lab VM Repo Link.md",
+    "4. Hacking Blue Team/Malware Analysis/7.1. Safety Always! Building Your Malware Analysis Lab & Malware Safety/2. Host-only Safety & Internal Networks.md",
+    "4. Hacking Blue Team/Malware Analysis/7.1. Safety Always! Building Your Malware Analysis Lab & Malware Safety/1. Lab Network Options - Local VMs vs. AWS Cloud Lab.md",
+    "4. Hacking Blue Team/Malware Analysis/7.14 Go Time - Analyzing Go Malware/7.14.1 Programming Language Recognition & Analyzing a Go Service Backdoor.md",
+    "4. Hacking Blue Team/Malware Analysis/7.16 The Bossfight! Analyzing Real-World Malware Samples/7.16.2 WannaCry.exe Walkthrough.md",
+    "4. Hacking Blue Team/Malware Analysis/7.16 The Bossfight! Analyzing Real-World Malware Samples/7.16.1 WannaCry.exe Introduction.md",
+    "4. Hacking Blue Team/Malware Analysis/7.17 Automation - Sandboxes & Pipelines/7.17.3 Advanced Script Analysis with ChatGPT.md",
+    "4. Hacking Blue Team/Malware Analysis/7.17 Automation - Sandboxes & Pipelines/7.17.2 Any.Run ; Malware Sandboxing.md",
+    "4. Hacking Blue Team/Malware Analysis/7.17 Automation - Sandboxes & Pipelines/7.17.1 BlueJupyter ; Automating Triage with Jupyter Notebooks.md",
+    "4. Hacking Blue Team/Malware Analysis/7.18 Tell the World - Rule Writing & Report Publishing/7.18.3 Writing & Publishing a Malware Analysis Report.md",
+    "4. Hacking Blue Team/Malware Analysis/7.18 Tell the World - Rule Writing & Report Publishing/7.18.2 Detecting Malware with YARA.md",
+    "4. Hacking Blue Team/Malware Analysis/7.18 Tell the World - Rule Writing & Report Publishing/7.18.1 Writing YARA Rules.md",
+    "tmp/Bases de Datos/a. SQL ( General ) - SoyDalto/15. Insertar registros con INSERT.md",
+    "tmp/Bases de Datos/a. SQL ( General ) - SoyDalto/13. Creación de tablas.md",
+    "tmp/Bases de Datos/a. SQL ( General ) - SoyDalto/11. Crear base de datos.md",
+    "tmp/Bases de Datos/a. SQL ( General ) - SoyDalto/9. Proceso de instalación en Linux ( opcional ).md",
+    "tmp/Bases de Datos/a. SQL ( General ) - SoyDalto/7. Instalación del Gestor ( DBMS ) en Windows.md",
+    "tmp/Bases de Datos/a. SQL ( General ) - SoyDalto/5. Modelo ER ( Con Notación de Chen ).md",
+    "tmp/Bases de Datos/a. SQL ( General ) - SoyDalto/4. Para que sirve SQL.md",
+    "tmp/Bases de Datos/a. SQL ( General ) - SoyDalto/2. Que es SQL.md",
+    "tmp/Getting Started Becoming a Master Hacker.pdf",
+    "tmp/Network Basics for Hacker v102.pdf",
+    "5. Web Dev/1. Frontend Web/1. JavaScript Moderno (Código con Juan)/imgs/const-variables.png",
+    "5. Web Dev/1. Frontend Web/1. JavaScript Moderno (Código con Juan)/imgs/let-variables.png",
+    "5. Web Dev/1. Frontend Web/1. JavaScript Moderno (Código con Juan)/imgs/mejores-practicas-variables.png",
+    "5. Web Dev/1. Frontend Web/1. JavaScript Moderno (Código con Juan)/imgs/multiples-variables.png",
+    "5. Web Dev/1. Frontend Web/1. JavaScript Moderno (Código con Juan)/imgs/variables-js.png",
+    "5. Web Dev/1. Frontend Web/1. JavaScript Moderno (Código con Juan)/imgs",
+    "0. IT Fundamentals/1.  Computer Fundamentals/Computer Organization && Architecture (Neso Academy)/imgs/c_architecture.png",
+    "0. IT Fundamentals/1.  Computer Fundamentals/Computer Organization && Architecture (Neso Academy)/imgs/functional_units.png",
+    "0. IT Fundamentals/1.  Computer Fundamentals/Computer Organization && Architecture (Neso Academy)/imgs/TwoBit Circuit.png"
+  ]
+}

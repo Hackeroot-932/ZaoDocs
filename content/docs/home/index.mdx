@@ -1,0 +1,115 @@
+---
+title: Welcome
+description: Welcome page of ZaoDocs
+---
+
+# Welcome to ZaoDocs
+
+ZaoDocs is an independently developed Personal GitBook dedicated to collecting and organizing all the IT knowledge I'm gathering.
+
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
+import { CodeBlock } from 'fumadocs-ui/components/codeblock';
+import { Files } from 'fumadocs-ui/components/files';
+
+## Content Index
+
+<Tabs items={['Learning Paths', 'Tools & References', 'Practice']}>
+  <Tab>
+    <h3>Main Sections</h3>
+    - [Home](/docs/home/Welcome) 🏠
+    - [How Computers Work](/docs/how-computers-work) 💻
+    - [Networking](/docs/networking) 🌐
+    - [IT Security](/docs/it-security) 🔒
+    - [Windows](/docs/windows) 🪟
+    - [Linux](/docs/linux) 🐧
+    - [Programming](/docs/programming) 👨‍💻
+  </Tab>
+  <Tab>
+    <h3>CheatSheets</h3>
+    - [Git](/docs/home/cheatsheets/git)
+    - [Docker](/docs/home/cheatsheets/docker)
+    - [SSH](/docs/home/cheatsheets/ssh)
+    - [BruteForce](/docs/home/cheatsheets/bruteforce)
+    - [Reverse Shells](/docs/home/cheatsheets/reverse-shells)
+    - [Search Exploits](/docs/home/cheatsheets/search-exploits)
+  </Tab>
+  <Tab>
+    <h3>Writeups</h3>
+    - [BugBounty](/docs/home/writeups/bugbounty)
+    - [HackTheBox](/docs/home/writeups/hackthebox)
+    - [VulnHub](/docs/home/writeups/vulnhub)
+    - [TryHackMe](/docs/home/writeups/tryhackme)
+  </Tab>
+</Tabs>
+
+## Detailed Content
+
+<Accordions>
+  <Accordion title="How Computers Work">
+    - Basic Mathematics for Computing
+    - Computer Architecture
+    - Data Centers and Servers
+    - Computer Boot Process
+    - Operating System Deployment
+    - Introduction to Operating Systems
+    - Introduction to Virtualization
+    - Operating System Functions
+    - Operating System Boot Process
+  </Accordion>
+  
+  <Accordion title="Networking">
+    - Introduction to Networks
+    - IP Addressing
+    - Switching
+    - Switch Configuration
+    - Routing Concepts
+    - Router Configuration
+    - Wireless Networks
+    - Security
+    - Routing Configuration
+    - Quality of Service
+    - Wide Area Networks
+    - Administration and Management
+    - Network Automation
+  </Accordion>
+  
+  <Accordion title="Programming">
+    <Accordions>
+      <Accordion title="Web Development">
+        - HTML
+        - CSS
+        - JavaScript (NodeJS + Express)
+        - PHP
+      </Accordion>
+      <Accordion title="General Purpose">
+        - C
+        - Python
+      </Accordion>
+    </Accordions>
+  </Accordion>
+  
+  <Accordion title="Pentesting">
+    - Pentesting Methodology
+    - Information Gathering and Reconnaissance
+    - Resources
+    - Reports
+    - Network Pentesting
+    - Web Hacking
+  </Accordion>
+</Accordions>
+
+## Latest Updates
+
+<Steps>
+  <Step>
+    Added SSH cheatsheet
+  </Step>
+  <Step>
+    Updated Networking section
+  </Step>
+  <Step>
+    New documentation on Operating Systems
+  </Step>
+</Steps>

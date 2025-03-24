@@ -1,0 +1,16 @@
+{
+    "index": "Admin & Management",
+    "description": "Admin & Management [CCNA]",
+    "icon": "Network",
+    "root": false,
+    "defaultOpen": false,
+    "pages": [
+        "snmp",
+        "syslog",
+        "cisco-ios-name",
+        "ip-sla",
+        "span",
+        "cloud-services",
+        "virtualization"
+    ]
+  }

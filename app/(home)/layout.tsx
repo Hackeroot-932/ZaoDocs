@@ -8,7 +8,7 @@ export default function Layout({
   children: ReactNode;
 }): React.ReactElement {
   return (
-    <HomeLayout className="bg-background text-foreground" {...baseOptions}>
+    <HomeLayout className="bg-background text-foreground min-h-screen" {...baseOptions}>
       {children}
     </HomeLayout>
   );

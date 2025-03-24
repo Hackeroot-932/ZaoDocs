@@ -13,7 +13,7 @@ export default {
   presets: [
     createPreset({
       cssPrefix: "fuma-",
-      preset: "vitepress",
+      preset: "catppuccin",
     }),
   ],
   plugins: [require("tailwindcss-animate")],

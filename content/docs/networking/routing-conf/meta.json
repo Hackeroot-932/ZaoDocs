@@ -1,0 +1,21 @@
+{
+    "index": "Routing Conf",
+    "description": "Routing Conf [CCNA]",
+    "icon": "Network",
+    "root": false,
+    "pages": [
+      "static-routing",
+      "dynamic-routing",
+      "rip",
+      "ripng",
+      "eigrp",
+      "eigrp-conf",
+      "eigrpv6",
+      "ospf",
+      "ospf-topologies",
+      "ospf-conf-in-a-single-area",
+      "ospf-in-multiples-areas",
+      "ospfv3",
+      "bgp"
+    ]
+  }

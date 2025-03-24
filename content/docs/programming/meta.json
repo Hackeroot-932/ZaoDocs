@@ -1,0 +1,13 @@
+{
+    "index": "Programming",
+    "description": "Programming Languages",
+    "icon": "FileCode",
+    "root": true,
+    "pages": [
+      "basics",
+      "markup-languages",
+      "general-purpose",
+      "databases",
+      "web-dev"      
+    ]
+  }

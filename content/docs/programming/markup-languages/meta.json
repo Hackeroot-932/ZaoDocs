@@ -1,0 +1,13 @@
+{
+    "index": "Markup Languages",
+    "description": "Markup Languages",
+    "icon": "FileCode",
+    "root": false,
+    "defaultOpen": false,
+    "pages": [
+      "--- HTML ---",
+      "--- CSS ---",
+      "--- XML ---",
+      "--- Markdown ---"
+    ]
+  }

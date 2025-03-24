@@ -1,0 +1,22 @@
+{
+    "index": "Networking",
+    "description": "CCNA Networking explained",
+    "icon": "Network",
+    "root": true,
+    "pages": [
+      "intro-to-networks",
+      "ip-addressing",
+      "switching",
+      "switch-conf",
+      "routing-concepts",
+      "router-conf",
+      "wireless-networks",
+      "security",
+      "routing-conf",
+      "quality-of-service",
+      "wan",
+      "administration-management",
+      "network-automation"
+
+    ]
+  }

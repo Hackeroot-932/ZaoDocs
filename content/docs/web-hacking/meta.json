@@ -1,0 +1,9 @@
+{
+    "index": "Web Hacking",
+    "description": "Vulnerabilities, Exploitation, etc.",
+    "icon": "LayoutTemplate",
+    "root": true,
+    "pages": [
+      "test"
+    ]
+  }

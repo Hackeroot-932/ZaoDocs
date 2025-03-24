@@ -1,0 +1,369 @@
+---
+title: Computer Boot
+description: Comprehensive guide of how computers boot
+icon: Power
+---
+
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
+import { Callout } from 'fumadocs-ui/components/Callout';
+
+<Callout type="info">
+  The computer boot process is a complex sequence of events that transforms a powered-off system into an operational environment ready for user interaction.
+</Callout>
+
+## 1. First Phase (BIOS Phase)
+
+<Steps>
+  <Step>
+    <h4>Power Supply Activation</h4>
+    <p>When we press the POWER button on the computer, current flows from external wiring to internal components through the power supply. The power supply is the computer component that transforms external current (alternating and 230V) into the type of current that computer components need (direct and low voltage: 12V, 5V, 3.3V, etc.).</p>
+  </Step>
+  <Step>
+    <h4>BIOS Initialization</h4>
+    <p>When current reaches the motherboard, the first component to activate is the BIOS (Basic Input/Output System), which is a ROM chip containing the system's boot routines (allowing CPU, memory, expansion cards, I/O devices to start), as well as the ability to perform hardware checks. The process of checking each hardware component is called POST (Power-On Self Test).</p>
+  </Step>
+  <Step>
+    <h4>BIOS Types and Updates</h4>
+    <p>BIOS are updatable, as manufacturers sometimes need to fix errors or add support for additional or more modern components. The process of changing the BIOS is commonly called flashing. New BIOS versions are sometimes also called firmware, as they are software programs that reside within a hardware chip.</p>
+    <p>The types of memory for BIOS chips are: EEPROM (early century computers) or Flash (in the last 10 years).</p>
+    <p>On the other hand, the type of BIOS has also changed in recent years. Previously, all BIOS had ASCII character-based interfaces, such as typical Award or Phoenix BIOS. Current BIOS are called UEFI and have a much more modern and functional interface.</p>
+  </Step>
+</Steps>
+
+### BIOS Configuration
+
+<Accordions>
+  <Accordion title="CMOS Storage">
+    <p>All configuration made in the BIOS must be stored in a memory space called CMOS. This memory is sometimes called CMOS RAM because it is volatile and is maintained thanks to the energy provided by a button battery. As long as the battery has sufficient voltage, the CMOS stores settings such as:</p>
+    <ul className="list-disc pl-5">
+      <li>Boot order of storage devices</li>
+      <li>Frequencies, voltages, etc. for CPU and RAM</li>
+      <li>Secure boot/CSM</li>
+      <li>Hardware virtualization (VT-x, SVM, etc.)</li>
+      <li>SATA controller type (IDE/AHCI/RAID)</li>
+      <li>Security</li>
+      <li>Temperature curve</li>
+      <li>Minor adjustments</li>
+    </ul>
+    <p className="mt-2">Minor adjustments include:</p>
+    <ul className="list-disc pl-5">
+      <li>Fast boot</li>
+      <li>Date and time</li>
+      <li>Full screen logo</li>
+      <li>Num lock</li>
+    </ul>
+  </Accordion>
+</Accordions>
+
+### Boot Sequence
+
+<Steps>
+  <Step>
+    <h4>POST Process</h4>
+    <p>The first part that occurs during boot is the POST, checking CPU, RAM, GPU and motherboard communications. During this check phase, it is possible to press the BIOS configuration access keys (SUP, F2, etc.), boot menu access keys (F12, F11, etc.), QFlash or RAID access keys, etc.</p>
+  </Step>
+  <Step>
+    <h4>POST Results</h4>
+    <p>When POST finishes, it generates a result, either graphical (showing the result of hardware detections/checks) or sound (OK beep, error beeps, etc.) or electronic (showing an error code on a numeric LED on the motherboard).</p>
+  </Step>
+  <Step>
+    <h4>Boot Device Search</h4>
+    <p>Once POST ends, the BIOS boot routines start all devices and look for a boot sector in storage devices following the sequence set in the BIOS configuration. If a boot medium is found among available devices, boot starts from there and if not, an error will occur.</p>
+  </Step>
+</Steps>
+
+## 2. Second Phase (MBR and PBR Phase)
+
+<Tabs items={["Boot Media", "Logical Organization", "MBR Structure", "Partitioning Schemes"]}>
+  <Tab>
+    <h4>Boot Media</h4>
+    <p>The first boot phase ends when the BIOS transfers control to a boot medium, but it is necessary to know what storage media are and how they are structured in a computer.</p>
+    <p>A boot medium is one that contains the information necessary to bring the computer to a state where the user can interact. This information must be located at a specific point in the boot medium (at the beginning).</p>
+  </Tab>
+  <Tab>
+    <h4>Logical Organization</h4>
+    <p>This is how the OS presents the storage medium to the end user. Around this, the following concepts are defined:</p>
+    <ul className="list-disc pl-5">
+      <li>Boot sector or MBR (Master Boot Record): First sector of a disk</li>
+      <li>Partitions: Disk divisions made for practical reasons</li>
+      <li>Unpartitioned space: Part of the hard disk that remains unassigned to any partition</li>
+    </ul>
+  </Tab>
+  <Tab>
+    <h4>MBR Structure</h4>
+    <p>Since the MBR resides in the first sector, the MBR content is limited by the 512 bytes of a sector.</p>
+    <p>The MBR typically contains:</p>
+    <ul className="list-disc pl-5">
+      <li>A 446-byte area used to host a small "program" called bootstrap</li>
+      <li>A 64-byte zone for the partition table</li>
+      <li>A final 2-byte space for a signature that identifies the MBR</li>
+    </ul>
+  </Tab>
+  <Tab>
+    <h4>Partitioning Schemes</h4>
+    <Accordions>
+      <Accordion title="MBR Scheme">
+        <p>Developed in parallel with the MBR sector specification, it has a maximum limit of 4 (primary) partitions. Additionally, being linked to 32-bit LBA, there is a partitionable disk limit of 2 TiB.</p>
+        <p>Types of partitions:</p>
+        <ul className="list-disc pl-5">
+          <li>Primary partition: Has a boot sector for the partition</li>
+          <li>Extended partition: A single primary partition type within which other pseudo-partitions can be defined</li>
+            <ul className="list-disc pl-5">
+              <li>Logical unit: A division that can be made within an extended partition</li>
+            </ul>
+        </ul>
+        <img src="/mbr-scheme.png" alt="MBR Scheme" className="rounded-lg shadow-md my-4" />
+      </Accordion>
+      <Accordion title="GPT Scheme">
+        <p>A partitioning scheme linked to the development of UEFI-type BIOS that extends the partition limitation, setting a maximum of 128, all considered primary. The maximum partitionable size is 8 ZiB = 9.4 zettabytes</p>
+        <p>The GPT scheme was developed to address the limitations of MBR and to provide a more robust and flexible partitioning system. Here's a detailed breakdown of its structure:</p>
+        <ul className="list-disc pl-5">
+          <li><strong>Protective MBR</strong>: Located in the first sector (LBA 0), it contains a single partition entry that spans the entire disk.</li>
+          <li><strong>GPT Header</strong>: Located in the second sector (LBA 1), contains disk GUID, partition table location, and other metadata.</li>
+          <li><strong>Partition Table</strong>: Located in sectors 2-33 (LBA 2-33), contains 128 partition entries.</li>
+          <li><strong>Backup GPT Header</strong>: Located at the end of the disk, it's a copy of the primary GPT header.</li>
+          <li><strong>Backup Partition Table</strong>: Located before the backup header, it's a copy of the primary partition table.</li>
+        </ul>
+        <img src="/gpt-scheme.png" alt="GPT Scheme" className="rounded-lg shadow-md my-4" />
+      </Accordion>
+    </Accordions>
+  </Tab>
+</Tabs>
+
+### Active Partition and PBR/VBR
+
+<Steps>
+  <Step>
+    <h4>Active Partition</h4>
+    <p>In both MBR and GPT partitioning schemes, only one partition will be marked as active. After reading the boot sectors, whether in MBR or GPT, the bootstrap transfers control to that partition and boot continues from there.</p>
+    <img src="/Mbr-Boot-Sequence.webp" alt="MBR Boot Sequence" className="rounded-lg shadow-md my-4" />
+  </Step>
+  <Step>
+    <h4>PBR and VBR</h4>
+    <p>The first sector of each primary partition is called PBR (Partition Boot Record). It can also be called partition boot sector (but NOT disk boot sector). In this sector, among other things, there is also a space reserved for another bootstrap.</p>
+    <img src="/pbr.png" alt="PBR" className="rounded-lg shadow-md my-4" />
+  </Step>
+</Steps>
+
+## The HDD
+
+<img src="/hdd.jpg" alt="HDD" className="rounded-lg shadow-md my-4" />
+
+<Tabs items={["Physical Structure", "Logical Structure", "Access Schemes"]}>
+  <Tab>
+    <h4>Physical Structure of a Boot Medium: The HDD</h4>
+    <p>Parts of an HDD:</p>
+    <ul className="list-disc pl-5">
+      <li>Platters: Metal sheets with magnetic properties that rotate around an axis and have read heads on each face of the platter</li>
+      <li>Motor: Responsible for making the disk spin, probably the part that degrades most over time</li>
+      <li>Arm: A mobile part that moves the read head towards the inner or outer part of the disk</li>
+      <li>Read head: Located at the end of the arm floating over the disk surface and capable of inducing magnetic fields (to write) or detecting them (to read)</li>
+    </ul>
+  </Tab>
+  <Tab>
+    <h4>Logical Structure of a Storage Medium: The HDD</h4>
+    <p>This is also called disk geometry. Concepts:</p>
+    <ul className="list-disc pl-5">
+      <li>Track: Concentric circles around the disk axis</li>
+      <li>Cylinder: Set of tracks that can be accessed without moving the disk arm, only with the motor's rotational movement</li>
+      <li>Head: Each of the read heads</li>
+      <li>Sector: Represents each of the blocks into which each track is divided</li>
+      <li>Cluster: A grouping of sectors established when formatting the disk</li>
+    </ul>
+    <img src="/parts-hdd.jpg" alt="HDD Parts" className="rounded-lg shadow-md my-4" />
+  </Tab>
+  <Tab>
+    <h4>Access Schemes to an HDD</h4>
+    <p>These are the ways in which disk information can be accessed. Also known as "addressing":</p>
+    <Accordions>
+      <Accordion title="CHS (Cylinder-Head-Sector)">
+        <p>Consists of providing 3 data to locate information:</p>
+        <ul className="list-disc pl-5">
+          <li>C (Cylinder): Cylinder number</li>
+          <li>H (Head): Head number</li>
+          <li>S (Sector): Sector number</li>
+        </ul>
+      </Accordion>
+      <Accordion title="LBA (Logical Block Addressing)">
+        <p>With the increase in disk capacity, the CHS scheme became obsolete, besides being very inefficient. Nowadays the LBA scheme is used, where the disk is divided into blocks or sectors of fixed size (usually assumed to be 512 bytes) where there is no "radial" scheme, but blocks are arranged contiguously</p>
+      </Accordion>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <img src="/hdd-addressing.png" alt="HDD Addressing" className="rounded-lg shadow-md my-4" />
+      </div>
+    </Accordions>
+  </Tab>
+</Tabs>
+
+## The SSD
+
+<img src="/ssd-hdd.jpg" alt="SSD vs HDD" className="rounded-lg shadow-md my-4" />
+
+<Tabs items={["Physical Structure", "Logical Structure", "Access Schemes"]}>
+  <Tab>
+    <h4>Physical Structure of a Boot Medium: The SSD</h4>
+    <p>Parts of an SSD:</p>
+    <ul className="list-disc pl-5">
+      <li>Controller: The brain of the SSD that manages data flow and memory operations</li>
+      <li>NAND Flash Memory: The storage medium composed of memory cells organized in pages and blocks</li>
+      <li>DRAM Cache: Optional high-speed memory used for mapping tables and temporary data storage</li>
+      <li>PCB (Printed Circuit Board): The board that connects all components</li>
+      <li>Interface Connector: SATA or NVMe interface for connecting to the motherboard</li>
+    </ul>
+    <img src="/parts-ssd.jpg" alt="SSD Parts" className="rounded-lg shadow-md my-4" />
+  </Tab>
+  <Tab>
+    <h4>Logical Structure of a Storage Medium: The SSD</h4>
+    <p>SSD storage organization concepts:</p>
+    <ul className="list-disc pl-5">
+      <li>Page: The smallest unit that can be written (typically 4KB or 8KB)</li>
+      <li>Block: A group of pages (typically 128 or 256 pages)</li>
+      <li>Plane: A collection of blocks that can be accessed simultaneously</li>
+      <li>Die: A collection of planes that share the same control logic</li>
+      <li>Package: Contains one or more dies in a single chip</li>
+    </ul>
+  </Tab>
+  <Tab>
+    <h4>Access Schemes to an SSD</h4>
+    <p>SSD access methods:</p>
+    <ul className="list-disc pl-5">
+      <li>Page-based addressing: Direct access to specific pages within blocks</li>
+      <li>Block-based operations: Reading and writing entire blocks</li>
+      <li>Wear leveling: Distribution of writes across all blocks to extend lifespan</li>
+      <li>Garbage collection: Reclaiming space from blocks with invalid data</li>
+      <li>TRIM: Command to inform the SSD about unused data blocks</li>
+    </ul>
+  </Tab>
+</Tabs>
+
+## The NVMe
+
+<img src="/nvme.jpg" alt="NVMe" className="rounded-lg shadow-md my-4" />
+
+<Tabs items={["Physical Structure", "Logical Structure", "Access Schemes"]}>
+  <Tab>
+    <h4>Physical Structure of a Boot Medium: The NVMe</h4>
+    <p>Parts of an NVMe SSD:</p>
+    <ul className="list-disc pl-5">
+      <li>NVMe Controller: Specialized controller optimized for PCIe interface</li>
+      <li>NAND Flash Memory: Similar to SATA SSD but often with more parallel channels</li>
+      <li>DRAM Cache: Larger cache for better performance</li>
+      <li>PCIe Interface: Direct connection to the CPU through PCIe lanes</li>
+      <li>Heat Spreader: Thermal management solution due to higher speeds</li>
+    </ul>
+    <img src="/parts-nvme.png" alt="NVMe Parts" className="rounded-lg shadow-md my-4" />
+  </Tab>
+  <Tab>
+    <h4>Logical Structure of a Storage Medium: The NVMe</h4>
+    <p>NVMe storage organization concepts:</p>
+    <ul className="list-disc pl-5">
+      <li>Namespace: Logical division of the storage space</li>
+      <li>Queue: Command submission and completion mechanism</li>
+      <li>Submission Queue: Commands waiting to be processed</li>
+      <li>Completion Queue: Results of processed commands</li>
+      <li>Controller Memory Buffer: Memory space for command and data transfer</li>
+    </ul>
+  </Tab>
+  <Tab>
+    <h4>Access Schemes to an NVMe</h4>
+    <p>NVMe access methods:</p>
+    <ul className="list-disc pl-5">
+      <li>Queue-based access: Multiple command queues for parallel processing</li>
+      <li>Command submission: Direct memory access for command submission</li>
+      <li>Interrupt handling: Efficient interrupt management for command completion</li>
+      <li>Namespace management: Multiple logical storage spaces</li>
+      <li>Power management: Advanced power states for efficiency</li>
+    </ul>
+    <img src="/nvme-types.webp" alt="NVMe Types" className="rounded-lg shadow-md my-4" />
+  </Tab>
+</Tabs>
+
+---
+
+## 3. Third, Fourth and Fifth Phases (Bootloader, Kernel and User Phases)
+
+<Callout type="info">
+  The bootloader or boot manager is a program stored mainly in files of the active partition.
+</Callout>
+
+<Steps>
+  <Step>
+    <h4>Bootloader Phase</h4>
+    <p>In the bootloader phase, the boot manager is responsible for allowing the selection of an OS and locating the files that allow it to start and load its kernel.</p>
+  </Step>
+  <Step>
+    <h4>Kernel Phase</h4>
+    <p>In the kernel phase, the files that make up the OS kernel are loaded, that is, the most essential parts that support everything else. Also in this phase, the essential drivers are loaded so that the OS has basic functionality.</p>
+  </Step>
+  <Step>
+    <h4>User Phase</h4>
+    <p>After loading the OS kernel, the user phase begins, in which certain programs considered "non-essential" are finished loading and present the system to the user, ready to be used.</p>
+  </Step>
+</Steps>
+
+<img src="/bootloader.png" alt="Bootloader" className="rounded-lg shadow-md my-4" />
+
+## 4. Computer Boot Repair
+
+<Callout type="warning">
+  Computer boot can fail for various reasons. Hard drives, USB drives or SSDs are susceptible to information loss, so a single bit changed at a specific point on the disk could completely ruin the boot.
+</Callout>
+
+<Tabs items={["MBR Issues", "PBR/VBR Issues", "OS File Issues"]}>
+  <Tab>
+    <h4>MBR Loss or Corruption</h4>
+    <p>As seen, the partition table and master boot record are stored in the sector called MBR, or in the GPT header and its first LBA sectors. Therefore, a disk failure in this area can lead to:</p>
+    <ul className="list-disc pl-5">
+      <li>The disk being totally inaccessible</li>
+      <li>Loss of access to one partition</li>
+      <li>Loss of the MBR part containing the bootstrap</li>
+    </ul>
+  </Tab>
+  <Tab>
+    <h4>PBR/VBR Loss or Corruption</h4>
+    <p>If the information loss is focused on the partition boot sector, this sector can also be regenerated with the OS installation medium.</p>
+  </Tab>
+  <Tab>
+    <h4>OS File Loss or Corruption</h4>
+    <p>In the ISO module, certain key files for booting some OS are mentioned (ntldr, bootmgr, ntoskrnl.exe, winload.exe, grub, etc.).</p>
+  </Tab>
+</Tabs>
+
+## 5. Boot Media Creation
+
+<Callout type="info">
+  To boot a computer without OS, or to make repairs, or even to install certain software, drivers, or firmware, external boot disks have historically been used. Initially they were floppy disks, later optical disks, and nowadays USB memories are most common.
+</Callout>
+
+<Accordions>
+  <Accordion title="Boot Media Requirements">
+    <p>These boot media work similarly to a hard drive with OS, as they can boot the hardware, put it into operation and use it for some purpose. Therefore, like an HDD with OS, these boot media must have:</p>
+    <ul className="list-disc pl-5">
+      <li>A boot sector (like MBR) containing a small bootstrap</li>
+      <li>A bootstrap that allows jumping to some boot manager</li>
+      <li>A boot manager that will be responsible for loading into memory the software necessary to carry out that purpose</li>
+    </ul>
+  </Accordion>
+  <Accordion title="Boot Media Creation Programs">
+    <p>Some examples of these programs are:</p>
+    <ul className="list-disc pl-5">
+      <li>Rufus: The most known and used</li>
+      <li>Media Creation Tool: Microsoft's tool</li>
+      <li>RMPrepUSB: The most complex program</li>
+      <li>UNetbootin: A program specialized in making Linux bootable USB drives</li>
+      <li>UltraISO and PowerISO: ISO image managers</li>
+    </ul>
+  </Accordion>
+  <Accordion title="Multiboot Media Creation">
+    <p>Programs seen above are specialized in creating bootable USB drives containing an OS or bootable utility, but there are also programs that allow booting several of these systems from the same USB drive.</p>
+    <p>Some examples of these programs are:</p>
+    <ul className="list-disc pl-5">
+      <li>YUMI: The most known</li>
+      <li>Xboot: Similar to the previous one</li>
+      <li>Ventoy: One of the latest programs</li>
+      <li>WinSetupFromUSB: Specialized in Microsoft OS boot</li>
+    </ul>
+  </Accordion>
+</Accordions>
+

@@ -1,0 +1,274 @@
+---
+title: Introduction to OS
+description: Comprehensive guide to Operating Systems fundamentals
+icon: MonitorCog
+---
+
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
+import { Callout } from 'fumadocs-ui/components/Callout';
+
+<Callout type="info">
+  Operating systems are the fundamental software that manages computer hardware and provides services for computer programs. They serve as an interface between users and computer hardware.
+</Callout>
+
+## 1. Introduction and Definitions
+
+<Accordions>
+  <Accordion title="Basic Concepts">
+    <ul className="list-disc pl-5">
+      <li><strong>Computer Science</strong>: Set of scientific knowledge and techniques that enable automatic information processing through computers.</li>
+      <li><strong>Computer</strong>: Electronic machine that, through specific programs, allows storing and processing information, and solving various problems.</li>
+      <li><strong>Computer Function</strong>: A computer is a programmable machine whose objective is to receive inputs (instructions and data), process them, and generate outputs (results).</li>
+    </ul>
+  </Accordion>
+  <Accordion title="Computer System Components">
+    <p>A computer system is a set of interrelated parts that, through a computer, allow capturing, storing, and processing data. Three elements are necessary:</p>
+    <ul className="list-disc pl-5">
+      <li>A physical component (hardware)</li>
+      <li>A logical component (software)</li>
+      <li>A human component</li>
+    </ul>
+  </Accordion>
+</Accordions>
+
+<Tabs items={["Hardware", "Software", "Operating System"]}>
+  <Tab>
+    <h4>Hardware (HW)</h4>
+    <p>It's the physical/tangible part of a computer (the electronic pieces or components).</p>
+    <div className="flex justify-center my-4">
+      <img src="/computer-hardware.webp" alt="Computer Hardware" className="rounded-lg shadow-md" />
+    </div>
+  </Tab>
+  <Tab>
+    <h4>Software (SW)</h4>
+    <p>It's the logical/intangible part of a computer (the programs).</p>
+    <ul className="list-disc pl-5">
+      <li><strong>Base SW</strong>: Essential programs for HW to function, i.e., those that make up the operating system.</li>
+      <li><strong>User SW</strong>: Programs with different functionalities that allow solving any other needs of system users.</li>
+    </ul>
+  </Tab>
+  <Tab>
+    <h4>Operating System (OS)</h4>
+    <p>It's a set of programs that are related to each other and that allow managing access to HW resources and offering those resources to the user and user SW, with the aim of correctly performing the assigned work.</p>
+  </Tab>
+</Tabs>
+
+## 2. Objectives of Operating Systems
+
+<div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 my-4">
+  <p>The general objectives of operating systems are two:</p>
+  
+  <Steps>
+    <Step>
+      <h4>Abstraction</h4>
+      <p>The OS hides the complexity of the hardware so that administrators, programmers, or users can interact with the computer without having specific knowledge of electronics or the underlying physical, magnetic, optical laws, etc.</p>
+    </Step>
+    <Step>
+      <h4>Security</h4>
+      <p>The OS must protect both the integrity of the system itself and that of the stored data, whether from malicious or accidental errors. For this, it has at least two access/execution modes:</p>
+      <ul className="list-disc pl-5">
+        <li><strong>Protected Mode</strong>: An access mode with a higher degree of privileges used by some of the programs that make up the OS.</li>
+        <li><strong>User/Non-Protected Mode</strong>: A more restricted access mode used for the rest of the programs, including those opened by users.</li>
+      </ul>
+    </Step>
+  </Steps>
+</div>
+
+## 3. Functions of Operating Systems
+
+<div className="p-4 border rounded-lg bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 my-6 shadow-md">
+  <p className="text-center text-lg font-semibold mb-4">Operating systems perform several critical functions that manage hardware resources and provide services to users and applications</p>
+  
+  <Steps>
+    <Step>
+      <h4 className="text-xl font-bold text-blue-600 dark:text-blue-400">Process Management</h4>
+      <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-inner mt-2">
+        <p>It's the allocation of HW resources (CPU, RAM, GPU, disk, execution time, etc.) to processes. There are two related concepts:</p>
+        <ul className="list-disc pl-5 mt-2 space-y-1">
+          <li><strong>Program</strong>: It's a set of instructions with a specific objective (calculate, draw, write, etc.), but seen in another way, it's also an algorithm written in a programming language.</li>
+          <li><strong>Process</strong>: When a program starts execution, it generates one or more processes. The OS must allocate resources to these processes and manage the concurrency of all of them "simultaneously".</li>
+        </ul>
+        <div className="flex justify-center my-4">
+          <img src="/process-management.jpg" alt="Process Management" className="rounded-lg shadow-md max-w-md" />
+        </div>
+      </div>
+    </Step>
+    
+    <Step>
+      <h4 className="text-xl font-bold text-green-600 dark:text-green-400">Memory Management</h4>
+      <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-inner mt-2">
+        <p>It's a management partially associated with process management and consists of assigning memory addresses to processes that are in execution or that request to expand the assigned memory, restricting access to other memory areas, etc., and when a process ends, managing the free memory.</p>
+        <p className="italic mt-2 text-gray-600 dark:text-gray-400 border-l-4 border-green-500 pl-3">Volatile memory</p>
+      </div>
+    </Step>
+    
+    <Step>
+      <h4 className="text-xl font-bold text-purple-600 dark:text-purple-400">File System Management</h4>
+      <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-inner mt-2">
+        <p>It's the way files and folders are actually stored on the disk, how they are indexed, how space allocation and release are managed, etc., and how they are structured (folder tree).</p>
+        <p className="italic mt-2 text-gray-600 dark:text-gray-400 border-l-4 border-purple-500 pl-3">Persistent/non-volatile memory</p>
+      </div>
+    </Step>
+    
+    <Step>
+      <h4 className="text-xl font-bold text-yellow-600 dark:text-yellow-400">Input/Output Management</h4>
+      <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-inner mt-2">
+        <p>It's the way to obtain/send data from/to external elements and the communication mechanisms between the OS and I/O devices.</p>
+        <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-700 my-4">
+          <h5 className="font-bold mb-2 text-yellow-700 dark:text-yellow-300">Drivers</h5>
+          <p>I/O management is done through drivers, which are a SW component (files) that defines the rules or protocol of communication with I/O devices, whether they are international standards or specific to that device.</p>
+          <p className="mt-2 font-mono text-sm bg-gray-200 dark:bg-gray-900 p-1 rounded inline-block">Win+R → devmgmt.msc</p>
+        </div>
+      </div>
+    </Step>
+    
+    <Step>
+      <h4 className="text-xl font-bold text-red-600 dark:text-red-400">Security Management</h4>
+      <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-inner mt-2">
+        <p>It's a set of techniques that allow establishing access hierarchies that grant more access privileges to some users and restrict them to others to prevent unauthorized accesses. Two access profiles can be highlighted:</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
+          <div className="p-3 border border-red-200 dark:border-red-900 rounded-lg">
+            <h5 className="font-bold text-center mb-2">Administrator Role</h5>
+            <p>Can access any resource (folders, files, peripheral devices, drivers, etc.), install programs, manage accounts, establish what permissions other users will have, etc.</p>
+          </div>
+          <div className="p-3 border border-red-200 dark:border-red-900 rounded-lg">
+            <h5 className="font-bold text-center mb-2">Basic User Role</h5>
+            <p>Has limited access privileges, so can only do what the administrator has determined for their profile.</p>
+          </div>
+        </div>
+      </div>
+    </Step>
+  </Steps>
+</div>
+
+## 4. Historical Evolution of Operating Systems
+
+<Callout type="info">
+  The evolution of hardware has marked the evolution of operating systems. As hardware improved in processing capacity, operating systems grew in size and functionality, becoming essential.
+</Callout>
+
+<div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 my-4">
+  <Steps>
+    <Step>
+      <h4>First Generation (1945-1955)</h4>
+      <p>The first computers emerged in the academic field. These computers did not have an OS, so it was necessary for operators to directly manipulate the hardware.</p>
+    </Step>
+    <Step>
+      <h4>Second Generation (1955-1965)</h4>
+      <p>The possibility of using computers in the military or banking field began to be seen. It cannot be said that they had an OS as such, but there was a program load manager (or execution time) called a resident monitor. This manager loaded a program and its data from a punched card reader, gave full control to the program, and when it finished, the results of the execution were written and it continued loading the next program. The language used in punched cards was assembly language.</p>
+    </Step>
+    <Step>
+      <h4>Third Generation (1965-1975)</h4>
+      <p>The first digital storage media appeared and computers were consolidated in the field of large companies, where massive amounts of data needed to be stored. The first OSs also appeared (UNIX, Multics, etc.), but the hardware management capacity was minimal, and the way of working with those computers was similar to a cash register. These first OSs allow the arrival of high-level languages and compilers that transform that code into executable binaries.</p>
+    </Step>
+    <Step>
+      <h4>Fourth Generation (1975-1985)</h4>
+      <p>The use of computers spread and began to reach the home environment. OSs began to move from having command line interfaces (CLI) to having graphical interfaces (GUI) and to be more "usable" by the general public, even allowing computers to be interconnected through networks that were no longer local, but more extensive.</p>
+    </Step>
+    <Step>
+      <h4>Fifth Generation (1985-Present)</h4>
+      <p>Computers grow in processing capacity at a constant rate, allowing the incorporation of all kinds of features and technologies that bring them closer to all strata of society (multimedia, 3D, high-resolution graphics, parallelism, AI, VR, AR, etc.). OSs use these features to present the user with high-level graphical interfaces, multiple windows, execution of dozens of processes, use of 3D, etc., and allow advanced management of many more categories: hardware, I/O subsystems, network, etc., as well as offering all kinds of help and suggestions to the user to facilitate/accelerate their work.</p>
+    </Step>
+  </Steps>
+</div>
+
+## 5. Types of Operating Systems
+
+<Tabs items={["According to Structure", "According to Capabilities", "According to Function", "According to License and Cost"]}>
+  <Tab>
+    <h4>According to Structure (Internal Vision)</h4>
+    <Accordions>
+      <Accordion title="Monolithic">
+        <p>They are OSs that are organized in a single level. In them, the kernel of the OS is written in a single program and all of it runs with the highest level of privilege.</p>
+        <ul className="list-disc pl-5">
+          <li><strong>Advantages</strong>: They are easier to design, as they don't have a defined structure, and have good performance.</li>
+          <li><strong>Disadvantages</strong>: When the size of the OS grows, maintenance becomes increasingly complicated, and possible extensions increase the complexity of the system. But the most serious aspect of this type of OS is that if an error or unwanted access occurs, it affects the entire system completely.</li>
+        </ul>
+      </Accordion>
+      <Accordion title="Hierarchical">
+        <p>They are OSs that are organized by levels or layers, in such a way that each level has a set of access privileges to the hardware and this level increases as they approach the kernel.</p>
+        <ul className="list-disc pl-5">
+          <li><strong>Advantages</strong>: When there is an error or unauthorized access in a layer, the consequences do not have to propagate to other layers. It is easier to detect and correct errors, and also to make extensions to the functions of that layer.</li>
+          <li><strong>Disadvantages</strong>: When it is desired to execute some action, a "chain of calls" to the inner layers occurs, then another "chain of responses" to the outer ones, and all this makes performance lower.</li>
+        </ul>
+      </Accordion>
+      <Accordion title="Hybrid">
+        <p>They are OSs that have one part based on a monolithic structure and another part on a hierarchical structure. E.g., the Linux kernel is monolithic, but that kernel offers the basic functionality of the OS, and all the added functionality is structured in layers in a hierarchical manner.</p>
+      </Accordion>
+    </Accordions>
+  </Tab>
+  <Tab>
+    <h4>According to Capabilities (External Vision)</h4>
+    <p>There are three classifications based on:</p>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-4">
+      <div className="p-4 border rounded-lg bg-white dark:bg-gray-800">
+        <h5 className="font-bold mb-2">Number of Users</h5>
+        <ul className="list-disc pl-5">
+          <li><strong>Single-user OS</strong>: Has no user accounts, but even if it did, it can only serve one user at a time.</li>
+          <li><strong>Multi-user OS</strong>: Can serve several users at once.</li>
+        </ul>
+      </div>
+      <div className="p-4 border rounded-lg bg-white dark:bg-gray-800">
+        <h5 className="font-bold mb-2">Number of Tasks</h5>
+        <ul className="list-disc pl-5">
+          <li><strong>Single-task OS</strong>: Can only run one program at a time.</li>
+          <li><strong>Multi-task OS</strong>: Can run several programs simultaneously.</li>
+        </ul>
+      </div>
+      <div className="p-4 border rounded-lg bg-white dark:bg-gray-800">
+        <h5 className="font-bold mb-2">Number of Processors</h5>
+        <ul className="list-disc pl-5">
+          <li><strong>Single-process OS</strong>: Can only use a single processor/core, even if more are available in the system.</li>
+          <li><strong>Multi-process OS</strong>: Can use several processors/cores, for which it is essential to manage load balancing between the available processors (distribute processes among cores).</li>
+        </ul>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <h4>According to Function</h4>
+    <Accordions>
+      <Accordion title="Desktop OS">
+        <p>They are OSs designed to be used by conventional users, whether beginners or advanced. Their goal is to facilitate the use of the OS and installed applications.</p>
+      </Accordion>
+      <Accordion title="Network OS">
+        <p>They are designed to be used in a communications infrastructure (a network). They facilitate communication between the different devices in the network, sometimes establishing a hierarchy between the server, where resources, files, etc. can be hosted, and the clients. Today, most OSs are desktop and network simultaneously.</p>
+      </Accordion>
+      <Accordion title="Distributed OS">
+        <p>These are OSs that also run on a network, but probably with hundreds or thousands of computers separated by large distances. The goal of these OSs is that the resources on individual computers are shown as a single set of resources that comes from a single place, as if it were a "supercomputer". These OSs allow for better scalability in the organization: when computers are added to the network, the capacity to accumulate more resources and distribute them to clients increases. Examples: Google, Amazon, YouTube, etc.</p>
+      </Accordion>
+      <Accordion title="Real-time OS">
+        <p>These are OSs whose purpose is to give an immediate response to a particular need, without allowing other processes to monopolize hardware resources or slow down that immediate response capability. Examples: an OS for flight control, an OS that handles life support for a patient, etc., but also internal banking transactions, in summary, extremely essential tasks.</p>
+      </Accordion>
+    </Accordions>
+  </Tab>
+  <Tab>
+    <h4>According to License and Cost</h4>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+      <div className="p-4 border rounded-lg bg-white dark:bg-gray-800">
+        <h5 className="font-bold mb-2">According to License Type</h5>
+        <ul className="list-disc pl-5">
+          <li>
+            <strong>Proprietary</strong>: The developer reserves the right to perform the actions that seem appropriate with their OS (e.g., they can release the code or keep it closed, they can charge or distribute their OS for free, etc.). Microsoft uses these types of licenses:
+            <ul className="list-disc pl-10 mt-2">
+              <li><strong>OEM</strong>: License that only allows installation by a brand on new equipment, and that does not allow redistribution.</li>
+              <li><strong>Retail</strong>: License that is sold at a retail scale for normal users in stores.</li>
+              <li><strong>VL or VLK</strong>: Volume license, which allows reducing costs in the purchase of more than 50-100-1000 licenses.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Free</strong>: The software is developed (normally) through work teams and there is no owner as such. In this form of development, the source code of the OS is available for whoever wants to see it, and depending on the license, it may also be available to modify it, redistribute it, relicense it, etc.
+          </li>
+        </ul>
+      </div>
+      <div className="p-4 border rounded-lg bg-white dark:bg-gray-800">
+        <h5 className="font-bold mb-2">According to Cost</h5>
+        <ul className="list-disc pl-5">
+          <li><strong>Free</strong>: It's software that has no cost, but as we've seen, this is not necessarily associated with a free license type.</li>
+          <li><strong>Commercial</strong>: It's software that has a cost, but as we've seen, this is not necessarily associated with a proprietary license type.</li>
+        </ul>
+      </div>
+    </div>
+  </Tab>
+</Tabs>

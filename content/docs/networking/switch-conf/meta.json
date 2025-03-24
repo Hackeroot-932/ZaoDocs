@@ -1,0 +1,17 @@
+{
+    "index": "Switch Configuration",
+    "description": "Switch Configuration [CCNA]",
+    "icon": "ArrowLeftRight",
+    "root": false,
+    "pages": [
+      "switch-operability",
+      "initial-installation",
+      "initial-conf",
+      "advanced-conf",
+      "password-recovery",
+      "vlan-conf",
+      "trunk-link-conf",
+      "stp-conf",
+      "vtp-conf"
+    ]
+  }

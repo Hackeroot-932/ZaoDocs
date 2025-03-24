@@ -1,0 +1,13 @@
+{
+    "index": "Wireless Networks",
+    "description": "Wireless Networks [CCNA]",
+    "icon": "Network",
+    "root": false,
+    "defaultOpen": false,
+    "pages": [
+        "redes-wlan",
+        "wlan-arch",
+        "wlan-design",
+        "wlan-security"
+    ]
+  }

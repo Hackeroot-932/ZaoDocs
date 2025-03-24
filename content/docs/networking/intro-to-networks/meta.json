@@ -1,0 +1,18 @@
+{
+    "index": "Intro to Networks",
+    "description": "Introduction to Networks [CCNA]",
+    "icon": "Signal",
+    "root": false,
+    "defaultOpen": true,
+    "pages": [
+      "introduction",
+      "osi-model",
+      "physical-layer-functions",
+      "data-link-layer-functions",
+      "network-layer-functions",
+      "transport-layer-functions",
+      "tcp-ip-model",
+      "hierarchical-model",
+      "ethernet"
+    ]
+  }

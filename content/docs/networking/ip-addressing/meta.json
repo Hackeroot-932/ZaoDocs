@@ -1,0 +1,16 @@
+{
+    "index": "IP Addressing",
+    "description": "IP Addressing [CCNA]",
+    "icon": "MapPinHouse",
+    "root": false,
+    "defaultOpen": false,
+    "pages": [
+        "bin-numbers",
+        "hex-numbers",
+        "ipv4-addressing",
+        "ipv4-addressing-scalability",
+        "ipv6-addressing",
+        "ipv6-addressing-types",
+        "ipv4-to-ipv6-transition"
+    ]
+  }

@@ -1,0 +1,16 @@
+{
+    "index": "Web Development",
+    "description": "Web Development",
+    "icon": "CodeXml",
+    "root": false,
+    "defaultOpen": false,
+    "pages": [
+      "--- JavaScript ---",
+      "--- TypeScript ---",
+      "--- React ---",
+      "--- Next.js ---",
+      "--- Astro ---",
+      "--- Node.js ---",
+      "--- Express ---"
+    ]
+  }

@@ -1,0 +1,10 @@
+{
+    "index": "How Computers Work",
+    "description": "Just 0101",
+    "icon": "ServerCog",
+    "root": true,
+    "pages": [
+      "computer-systems",
+      "operating-systems"
+    ]
+  }

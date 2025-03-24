@@ -1,0 +1,19 @@
+{
+    "index": "Router Configuration",
+    "description": "Router Configuration [CCNA]",
+    "icon": "ArrowLeftRight",
+    "root": false,
+    "pages": [
+      "router-operability",
+      "initial-installation",
+      "initial-conf",
+      "advanced-conf",
+      "ipv6-conf",
+      "password-recovery",
+      "discovery-protocols",
+      "dhcp",
+      "icmp",
+      "ntp",
+      "fhrp"     
+    ]
+  }

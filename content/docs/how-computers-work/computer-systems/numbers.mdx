@@ -1,0 +1,449 @@
+---
+title: Data Systems (Numbers)
+description: Comprehensive guide to Information Representation Systems in Computing
+icon: FileCode
+---
+
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
+import { Files } from 'fumadocs-ui/components/files';
+import { Callout } from 'fumadocs-ui/components/Callout';
+
+## Introduction
+
+<Callout type="info">
+  Understanding how computers represent and manipulate information is fundamental to computer science and engineering. In this document, we'll explore the different numerical representation systems and digital information units used in modern computing.
+</Callout>
+
+## Number Systems
+
+Computers use different number systems to represent and process information. Each system has its own characteristics and specific applications.
+
+<Tabs items={["Decimal", "Binary", "Octal", "Hexadecimal"]}>
+  <Tab>
+    <h3>Decimal (Base-10)</h3>
+    <p>The standard number system we use in everyday life, using digits from 0 to 9.</p>
+    <p>Each position represents a power of 10: ..., 10<sup>2</sup>, 10<sup>1</sup>, 10<sup>0</sup></p>
+    <p>Example: 254<sub>10</sub> = 2×10<sup>2</sup> + 5×10<sup>1</sup> + 4×10<sup>0</sup> = 200 + 50 + 4 = 254<sub>10</sub></p>
+  </Tab>
+  <Tab>
+    <h3>Binary (Base-2)</h3>
+    <p>The fundamental number system in computing, using only two digits: 0 and 1.</p>
+    <p>Each position represents a power of 2: ..., 2<sup>3</sup>, 2<sup>2</sup>, 2<sup>1</sup>, 2<sup>0</sup></p>
+    <p>Example: 1011<sub>2</sub> = 1×2<sup>3</sup> + 0×2<sup>2</sup> + 1×2<sup>1</sup> + 1×2<sup>0</sup> = 8 + 0 + 2 + 1 = 11<sub>10</sub></p>
+  </Tab>
+  <Tab>
+    <h3>Octal (Base-8)</h3>
+    <p>The octal system uses digits from 0 to 7, with each position representing a power of 8.</p>
+    <p>Each position represents a power of 8: ..., 8<sup>2</sup>, 8<sup>1</sup>, 8<sup>0</sup></p>
+    <p>Example: 37<sub>8</sub> = 3×8<sup>1</sup> + 7×8<sup>0</sup> = 24 + 7 = 31<sub>10</sub></p>
+  </Tab>
+  <Tab>
+    <h3>Hexadecimal (Base-16)</h3>
+    <p>The hexadecimal system uses digits from 0 to 9 and letters A to F (representing values from 10 to 15).</p>
+    <p>Each position represents a power of 16: ..., 16<sup>2</sup>, 16<sup>1</sup>, 16<sup>0</sup></p>
+    <p>Example: 1A<sub>16</sub> = 1×16<sup>1</sup> + 10×16<sup>0</sup> = 16 + 10 = 26<sub>10</sub></p>
+  </Tab>
+</Tabs>
+
+### Comparative Table
+
+<div className="overflow-x-auto">
+  <table className="min-w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700">
+    <thead>
+      <tr className="bg-gray-100 dark:bg-gray-700">
+        <th className="py-2 px-4 border-b border-gray-300 dark:border-gray-600 text-left">Decimal (Base-10)</th>
+        <th className="py-2 px-4 border-b border-gray-300 dark:border-gray-600 text-left">Binary (Base-2)</th>
+        <th className="py-2 px-4 border-b border-gray-300 dark:border-gray-600 text-left">Octal (Base-8)</th>
+        <th className="py-2 px-4 border-b border-gray-300 dark:border-gray-600 text-left">Hexadecimal (Base-16)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">0</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">0000</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">0</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">0</td>
+      </tr>
+      <tr>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">1</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">0001</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">1</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">1</td>
+      </tr>
+      <tr>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">2</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">0010</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">2</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">2</td>
+      </tr>
+      <tr>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">7</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">0111</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">7</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">7</td>
+      </tr>
+      <tr>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">8</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">1000</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">10</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">8</td>
+      </tr>
+      <tr>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">10</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">1010</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">12</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">A</td>
+      </tr>
+      <tr>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">15</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">1111</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">17</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">F</td>
+      </tr>
+      <tr>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">16</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">10000</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">20</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">10</td>
+      </tr>
+      <tr>
+        <td className="py-2 px-4 border-gray-300 dark:border-gray-600">255</td>
+        <td className="py-2 px-4 border-gray-300 dark:border-gray-600">11111111</td>
+        <td className="py-2 px-4 border-gray-300 dark:border-gray-600">377</td>
+        <td className="py-2 px-4 border-gray-300 dark:border-gray-600">FF</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## Number System Conversion Guide
+
+Converting between different number systems is a fundamental skill in computer science. Here's how to perform these conversions:
+
+<Accordions>
+  <Accordion title="Decimal to Other Bases">
+    <h4>Decimal to Binary, Octal, or Hexadecimal</h4>
+    <p>Use the division method: Divide the decimal number by the target base repeatedly until the quotient becomes 0, then read the remainders from bottom to top.</p>
+    
+    ```bash
+    Example: Convert 42₁₀ to binary
+      
+    42 ÷ 2 = 21 remainder 0
+    21 ÷ 2 = 10 remainder 1
+    10 ÷ 2 = 5  remainder 0
+    5  ÷ 2 = 2  remainder 1
+    2  ÷ 2 = 1  remainder 0
+    1  ÷ 2 = 0  remainder 1
+
+    Reading from bottom to top: 42₁₀ = 101010₂
+    ```
+  </Accordion>
+  
+  <Accordion title="Binary to Other Bases">
+    <h4>Binary to Decimal</h4>
+    <p>Multiply each digit by its corresponding power of 2 and sum the results.</p>
+    
+    ```bash
+    Example: Convert 101010₂ to decimal
+      
+    1×2⁵ + 0×2⁴ + 1×2³ + 0×2² + 1×2¹ + 0×2⁰
+    = 32 + 0 + 8 + 0 + 2 + 0
+
+    = 42₁₀
+    ```
+    
+    <h4>Binary to Octal</h4>
+    <p>Group binary digits in sets of 3 from right to left, then convert each group to its octal equivalent.</p>
+    
+    ```bash
+    Example: Convert 101010₂ to octal
+      
+    Group: 101 010
+    Octal: 5   2
+
+    Result: 52₈
+    ```
+    
+    <h4>Binary to Hexadecimal</h4>
+    <p>Group binary digits in sets of 4 from right to left, then convert each group to its hexadecimal equivalent.</p>
+    
+    ```bash
+    Example: Convert 101010₂ to hexadecimal
+      
+    Group: 10 1010
+    Hex:   2  A
+
+    Result: 2A₁₆
+    ```
+  </Accordion>
+  
+  <Accordion title="Octal and Hexadecimal to Other Bases">
+    <h4>Octal to Decimal</h4>
+    <p>Multiply each digit by its corresponding power of 8 and sum the results.</p>
+    
+    ```bash
+    Example: Convert 52₈ to decimal
+      
+    5×8¹ + 2×8⁰
+    = 40 + 2
+
+    = 42₁₀
+    ```
+    
+    <h4>Hexadecimal to Decimal</h4>
+    <p>Multiply each digit by its corresponding power of 16 and sum the results.</p>
+    
+    ```bash
+    Example: Convert 2A₁₆ to decimal
+      
+    2×16¹ + 10×16⁰
+    = 32 + 10
+
+    = 42₁₀
+    ```
+    
+    <h4>Octal/Hexadecimal to Binary</h4>
+    <p>Convert each digit to its binary equivalent (3 bits for octal, 4 bits for hexadecimal).</p>
+    
+    ```bash
+    Example: Convert 2A₁₆ to binary
+      
+    2 = 0010
+    A = 1010
+
+    Result: 00101010₂ (or 101010₂ after removing leading zeros)
+    ```
+  </Accordion>
+</Accordions>
+
+## Advanced Number Systems
+
+Signed number representation systems allow working with both positive and negative values in digital computing.
+
+<Tabs items={["Sign-Magnitude", "One's Complement", "Two's Complement", "Offset Binary"]}>
+  <Tab>
+    <h3>Sign-Magnitude</h3>
+    <p>In sign-magnitude representation, the leftmost bit indicates the sign (0 for positive, 1 for negative), and the remaining bits represent the magnitude.</p>
+    
+    ```bash
+    Examples (using 8 bits):
+      
+    +43 = 00101011
+    -43 = 10101011
+
+    Range for 8 bits: -127 to +127 (Note: both +0 and -0 exist)
+    ```
+    
+    <h4>Advantages and Disadvantages</h4>
+    <ul>
+      <li><strong>Advantage:</strong> Conceptually easy to understand</li>
+      <li><strong>Disadvantage:</strong> Dual representation for zero (positive and negative)</li>
+      <li><strong>Disadvantage:</strong> Arithmetic operations are complex to implement in hardware</li>
+    </ul>
+  </Tab>
+  
+  <Tab>
+    <h3>One's Complement</h3>
+    <p>In one's complement, positive numbers are represented normally, while negative numbers are represented by inverting all bits (changing 0s to 1s and vice versa).</p>
+    
+    ```bash
+    Examples (using 8 bits):
+      
+    +43 = 00101011
+    -43 = 11010100 (invert all bits of +43)
+
+    Range for 8 bits: -127 to +127 (Note: both +0 and -0 exist)
+    ```
+    
+    <h4>Advantages and Disadvantages</h4>
+    <ul>
+      <li><strong>Advantage:</strong> Simplifies some arithmetic operations</li>
+      <li><strong>Disadvantage:</strong> Still has dual representation for zero</li>
+      <li><strong>Disadvantage:</strong> Requires special handling of carry in operations</li>
+    </ul>
+  </Tab>
+  
+  <Tab>
+    <h3>Two's Complement</h3>
+    <p>Two's complement is the most common representation for signed integers in computers. Positive numbers are represented normally, while negative numbers are represented by inverting all bits and adding 1.</p>
+    
+    ```bash
+    Examples (using 8 bits):
+      
+    +43 = 00101011
+    -43 = 11010101 (invert all bits of +43, then add 1)
+
+    Range for 8 bits: -128 to +127 (Note: only one representation of zero)
+    ```
+    
+    <h4>Advantages and Disadvantages</h4>
+    <ul>
+      <li><strong>Advantage:</strong> Unique representation for zero</li>
+      <li><strong>Advantage:</strong> Arithmetic operations (addition, subtraction) are more efficient</li>
+      <li><strong>Advantage:</strong> Widely used in modern computing systems</li>
+      <li><strong>Disadvantage:</strong> Asymmetric range (one additional negative value)</li>
+    </ul>
+  </Tab>
+  
+  <Tab>
+    <h3>Offset Binary</h3>
+    <p>Offset binary (also known as biased representation) adds a constant value (bias) to the number before representing it in standard binary.</p>
+    
+    ```bash
+    Examples (using 8 bits with bias of 127):
+      
+    +43 = 43 + 127 = 170 = 10101010
+    -43 = -43 + 127 = 84 = 01010100
+
+    Range for 8 bits with bias of 127: -127 to +128
+    ```
+    
+    <h4>Advantages and Disadvantages</h4>
+    <ul>
+      <li><strong>Advantage:</strong> Maintains the order of numbers when compared as unsigned integers</li>
+      <li><strong>Advantage:</strong> Commonly used in floating-point number exponent representation</li>
+      <li><strong>Disadvantage:</strong> Requires additional operations for conversion</li>
+    </ul>
+  </Tab>
+</Tabs>
+
+### Comparative Table
+
+<div className="overflow-x-auto">
+  <table className="min-w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700">
+    <thead>
+      <tr className="bg-gray-100 dark:bg-gray-700">
+        <th className="py-2 px-4 border-b border-gray-300 dark:border-gray-600 text-left">Decimal</th>
+        <th className="py-2 px-4 border-b border-gray-300 dark:border-gray-600 text-left">Sign-Magnitude</th>
+        <th className="py-2 px-4 border-b border-gray-300 dark:border-gray-600 text-left">One's Complement</th>
+        <th className="py-2 px-4 border-b border-gray-300 dark:border-gray-600 text-left">Two's Complement</th>
+        <th className="py-2 px-4 border-b border-gray-300 dark:border-gray-600 text-left">Offset Binary (Bias 127)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">+7</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">00000111</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">00000111</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">00000111</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">10000110</td>
+      </tr>
+      <tr>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">+1</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">00000001</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">00000001</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">00000001</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">10000000</td>
+      </tr>
+      <tr>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">0</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">00000000</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">00000000</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">00000000</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">01111111</td>
+      </tr>
+      <tr>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">-0</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">10000000</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">11111111</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">N/A</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">N/A</td>
+      </tr>
+      <tr>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">-1</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">10000001</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">11111110</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">11111111</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">01111110</td>
+      </tr>
+      <tr>
+        <td className="py-2 px-4 border-gray-300 dark:border-gray-600">-7</td>
+        <td className="py-2 px-4 border-gray-300 dark:border-gray-600">10000111</td>
+        <td className="py-2 px-4 border-gray-300 dark:border-gray-600">11111000</td>
+        <td className="py-2 px-4 border-gray-300 dark:border-gray-600">11111001</td>
+        <td className="py-2 px-4 border-gray-300 dark:border-gray-600">01111000</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## Digital Information Units
+
+### Introduction
+
+Digital information is measured in units based on bits. A bit (binary digit) is the most basic unit of information in computing, representing one of two values: 0 or 1. From this basic unit, larger units are constructed to measure greater amounts of information.
+
+<Callout type="warning">
+  Be careful when interpreting storage capacities! Hard drive manufacturers typically use the International System (powers of 10), while operating systems use the Binary System (powers of 2).
+</Callout>
+
+### Comparative Table of Units
+
+<div className="overflow-x-auto">
+  <table className="min-w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700">
+    <thead>
+      <tr className="bg-gray-100 dark:bg-gray-700">
+        <th className="py-2 px-4 border-b border-gray-300 dark:border-gray-600 text-left">Binary System</th>
+        <th className="py-2 px-4 border-b border-gray-300 dark:border-gray-600 text-left">Value (powers of 2)</th>
+        <th className="py-2 px-4 border-b border-gray-300 dark:border-gray-600 text-left">International System</th>
+        <th className="py-2 px-4 border-b border-gray-300 dark:border-gray-600 text-left">Value (powers of 10)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">Bit</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">Basic unit (0 or 1)</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">-</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">-</td>
+      </tr>
+      <tr>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">Byte (B)</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">8 bits</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">-</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">-</td>
+      </tr>
+      <tr>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">Kibibyte (KiB)</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">2<sup>10</sup> bytes = 1,024 bytes</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">Kilobyte (KB)</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">10<sup>3</sup> bytes = 1,000 bytes</td>
+      </tr>
+      <tr>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">Mebibyte (MiB)</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">2<sup>20</sup> bytes = 1,048,576 bytes</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">Megabyte (MB)</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">10<sup>6</sup> bytes = 1,000,000 bytes</td>
+      </tr>
+      <tr>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">Gibibyte (GiB)</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">2<sup>30</sup> bytes ≈ 1.07 billion bytes</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">Gigabyte (GB)</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">10<sup>9</sup> bytes = 1 billion bytes</td>
+      </tr>
+      <tr>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">Tebibyte (TiB)</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">2<sup>40</sup> bytes ≈ 1.1 trillion bytes</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">Terabyte (TB)</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">10<sup>12</sup> bytes = 1 trillion bytes</td>
+      </tr>
+      <tr>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">Pebibyte (PiB)</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">2<sup>50</sup> bytes</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">Petabyte (PB)</td>
+        <td className="py-2 px-4 border-b border-gray-300 dark:border-gray-600">10<sup>15</sup> bytes</td>
+      </tr>
+      <tr>
+        <td className="py-2 px-4 border-gray-300 dark:border-gray-600">Exbibyte (EiB)</td>
+        <td className="py-2 px-4 border-gray-300 dark:border-gray-600">2<sup>60</sup> bytes</td>
+        <td className="py-2 px-4 border-gray-300 dark:border-gray-600">Exabyte (EB)</td>
+        <td className="py-2 px-4 border-gray-300 dark:border-gray-600">10<sup>18</sup> bytes</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<Callout type="info">
+  These units are fundamental in the design and analysis of computer systems, from storage capacity to network bandwidth and device memory.
+</Callout>

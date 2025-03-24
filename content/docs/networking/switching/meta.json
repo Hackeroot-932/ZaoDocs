@@ -1,0 +1,16 @@
+{
+    "index": "Switching",
+    "description": "Switching [CCNA]",
+    "icon": "ArrowLeftRight",
+    "root": false,
+    "pages": [
+      "layer-2-switching",
+      "switching-with-switch",
+      "stp",
+      "rapid-stp",
+      "per-vlan-spanning-tree",
+      "vlans",
+      "vlan-trunking-protocol",
+      "access-ports-and-truncks"  
+    ]
+  }

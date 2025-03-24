@@ -1,0 +1,13 @@
+{
+    "index": "Home",
+    "description": "Welcome to ZaoDocs",
+    "icon": "House",
+    "root": true,
+    "defaultOpen": false,
+    "pages": [
+      "index",
+      "about-the-author",
+      "cheatsheets", 
+      "writeups"
+    ]
+  }

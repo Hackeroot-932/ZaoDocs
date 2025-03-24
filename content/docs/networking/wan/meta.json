@@ -1,0 +1,16 @@
+{
+    "index": "WAN",
+    "description": "WAN [CCNA]",
+    "icon": "Network",
+    "root": false,
+    "defaultOpen": false,
+    "pages": [
+        "wan",
+        "ppp",
+        "pppoe",
+        "multilink-ppp",
+        "nat",
+        "vpn",
+        "other-tech-of-wan-access"
+    ]
+  }

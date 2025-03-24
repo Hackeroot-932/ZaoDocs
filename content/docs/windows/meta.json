@@ -1,0 +1,14 @@
+{
+    "index": "Windows",
+    "description": "Just the Semi-Goat",
+    "icon": "Grid2x2",
+    "root": true,
+    "pages": [
+      "--- System ---", 
+      "--- Windows Server ---",
+      "--- Windows Internals ---",
+      "--- Scripting ---",
+        "--- Powershell ---",
+        "--- Batch ---"
+    ]
+  }

@@ -1,0 +1,14 @@
+{
+    "index": "Routing Concepts",
+    "description": "Routing Concepts [CCNA]",
+    "icon": "ArrowLeftRight",
+    "root": false,
+    "pages": [
+        "ip-route-determination",
+        "static-routing",
+        "dinamic-routing",
+        "vector-distance-routing",
+        "routing-loops",
+        "routing-link-status"
+    ]
+  }

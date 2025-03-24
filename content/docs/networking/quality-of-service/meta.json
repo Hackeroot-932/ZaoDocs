@@ -1,0 +1,18 @@
+{
+    "index": "Quality of Service",
+    "description": "Quality of Service [CCNA]",
+    "icon": "Network",
+    "root": false,
+    "defaultOpen": false,
+    "pages": [
+        "network-convergence",
+        "congestion-management",
+        "qos",
+        "qos-models",
+        "traffic-classification-and-marking",
+        "boundaries-of-confidence",
+        "wred",
+        "service-level-agreements",
+        "traffic-manipulation-and-control"
+    ]
+  }

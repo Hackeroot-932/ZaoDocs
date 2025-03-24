@@ -1,0 +1,13 @@
+{
+    "index": "Operating Systems",
+    "description": "Just 0101",
+    "icon": "ServerCog",
+    "root": false,
+    "defaultOpen": true,
+    "pages": [
+      "intro-to-os", 
+      "intro-virtualization",
+      "os-functions",
+      "os-boot"
+    ]
+  }
