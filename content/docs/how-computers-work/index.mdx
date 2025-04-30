@@ -2,3 +2,117 @@
 title: How Computers Work
 description: Just 0101
 ---
+
+import { Card } from 'fumadocs-ui/components/card';
+
+# Introduction
+
+Computer systems are complex machines that perform a wide array of functions by processing instructions and data. At their core, computers operate through binary logic - a system of 1s and 0s that forms the foundation of all computing operations. This section explores the fundamental concepts and components that enable computers to function.
+
+## What You Will Learn
+
+- Basic computer architecture and components
+- How data is represented and processed
+- Memory systems and storage technologies
+- Input/output operations and peripherals
+- Networking fundamentals
+- Operating systems and their role
+
+Understanding how computers work is essential for anyone working in system administration, software development, or any IT-related field. This knowledge provides a foundation for troubleshooting, optimization, and security implementation.
+
+## Index
+
+<div className="grid grid-cols-1 gap-4">
+  <Card className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg">
+    <h3 className="text-2xl font-medium mb-4 text-center">Computer Systems</h3>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <div>
+        <h4 className="font-medium mb-2">Number Systems</h4>
+        <ul className="space-y-1 text-sm">
+          <li><a href="/docs/how-computers-work/computer-systems/numbers#number-systems">Number Representation</a></li>
+          <li><a href="/docs/how-computers-work/computer-systems/numbers#number-system-conversion-guide">Number System Conversion</a></li>
+          <li><a href="/docs/how-computers-work/computer-systems/numbers#data-encoding">Data Encoding</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 className="font-medium mb-2">Computer Architecture</h4>
+        <ul className="space-y-1 text-sm">
+          <li><a href="/docs/how-computers-work/computer-systems/computer-arch#3-von-neumann-architecture">Von Neumann Architecture</a></li>
+          <li><a href="/docs/how-computers-work/computer-systems/computer-arch#4-harvard-architecture">Harvard Architecture</a></li>
+          <li><a href="/docs/how-computers-work/computer-systems/computer-arch#5-block-analysis-the-cpu">CPU Components</a></li>
+          <li><a href="/docs/how-computers-work/computer-systems/computer-arch#6-block-analysis-main-memory">Memory Systems</a></li>
+        </ul>
+      </div>
+    </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4">
+      <div>
+        <h4 className="font-medium mb-2">Computer Boot</h4>
+        <ul className="space-y-1 text-sm">
+          <li><a href="/docs/how-computers-work/computer-systems/computer-boot#bios-and-uefi">BIOS and UEFI</a></li>
+          <li><a href="/docs/how-computers-work/computer-systems/computer-boot#boot-sequence">Boot Sequence</a></li>
+          <li><a href="/docs/how-computers-work/computer-systems/computer-boot#bootloaders">Bootloaders</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 className="font-medium mb-2">OS Deployment</h4>
+        <ul className="space-y-1 text-sm">
+          <li><a href="/docs/how-computers-work/computer-systems/os-deployment#installation-methods">Installation Methods</a></li>
+          <li><a href="/docs/how-computers-work/computer-systems/os-deployment#imaging-and-cloning">Imaging and Cloning</a></li>
+          <li><a href="/docs/how-computers-work/computer-systems/os-deployment#network-deployment">Network Deployment</a></li>
+        </ul>
+      </div>
+    </div>
+  </Card>
+
+  <Card className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg">
+    <h3 className="text-2xl font-medium mb-4 text-center">Operating Systems</h3>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <div>
+        <h4 className="font-medium mb-2">Introduction to OS</h4>
+        <ul className="space-y-1 text-sm">
+          <li><a href="/docs/how-computers-work/operating-systems/intro-to-os#1-introduction-and-definitions">Basic Concepts</a></li>
+          <li><a href="/docs/how-computers-work/operating-systems/intro-to-os#2-objectives-of-operating-systems">OS Objectives</a></li>
+          <li><a href="/docs/how-computers-work/operating-systems/intro-to-os#3-functions-of-operating-systems">OS Functions</a></li>
+          <li><a href="/docs/how-computers-work/operating-systems/intro-to-os#5-types-of-operating-systems">OS Types</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 className="font-medium mb-2">Virtualization</h4>
+        <ul className="space-y-1 text-sm">
+          <li><a href="/docs/how-computers-work/operating-systems/intro-virtualization#virtualization-concepts">Virtualization Concepts</a></li>
+          <li><a href="/docs/how-computers-work/operating-systems/intro-virtualization#hypervisors">Hypervisors</a></li>
+          <li><a href="/docs/how-computers-work/operating-systems/intro-virtualization#container-technologies">Container Technologies</a></li>
+        </ul>
+      </div>
+    </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4">
+      <div>
+        <h4 className="font-medium mb-2">OS Functions</h4>
+        <ul className="space-y-1 text-sm">
+          <li><a href="/docs/how-computers-work/operating-systems/os-functions#process-management">Process Management</a></li>
+          <li><a href="/docs/how-computers-work/operating-systems/os-functions#memory-management">Memory Management</a></li>
+          <li><a href="/docs/how-computers-work/operating-systems/os-functions#filesystem-management">File Systems</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 className="font-medium mb-2">OS Boot</h4>
+        <ul className="space-y-1 text-sm">
+          <li><a href="/docs/how-computers-work/operating-systems/os-boot#system-initialization">System Initialization</a></li>
+          <li><a href="/docs/how-computers-work/operating-systems/os-boot#service-management">Service Management</a></li>
+          <li><a href="/docs/how-computers-work/operating-systems/os-boot#user-sessions">User Sessions</a></li>
+        </ul>
+      </div>
+    </div>
+  </Card>
+</div>
+
+---
+
+## Credits to the Original Authors
+
+### Contributors
+- Jose (ASIR) - Primary content author
+
+### References
+- [Awesome Sysadmin Repository](https://github.com/awesome-foss/awesome-sysadmin) - A curated list of amazingly awesome open source sysadmin resources
+

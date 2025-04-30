@@ -62,16 +62,8 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
       <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Concurrent Execution Benefits</h4>
       
       <p className="mb-3">Example: If an OS had to manage two processes independently with the following characteristics, the CPU would be practically unused, as it would be used in 5/20 cycles for process A and 6/20 cycles for process B, totaling 11/40 cycles. I/O would be used in 29/40 cycles.</p>
-      
-      <div className="flex justify-center my-4">
-        <img src="/sequential-processes.png" alt="Sequential Processes" className="rounded-lg shadow-md" />
-      </div>
-      
+    
       <p className="mb-3">Concurrent execution: If the OS manages to combine the two processes to execute "simultaneously," CPU and I/O utilization is greater. In the example, the CPU is used in 11/21 cycles and I/O in 20/21 cycles.</p>
-      
-      <div className="flex justify-center my-4">
-        <img src="/concurrent-processes.png" alt="Concurrent Processes" className="rounded-lg shadow-md" />
-      </div>
     </div>
   </Tab>
   <Tab>
@@ -376,7 +368,7 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 
 ## 5. Security Management
 
-<Callout title="Gestión de seguridad" type="warning">
+<Callout title="Gestión de seguridad" type="warn">
   The OS must control the access of processes or users to system resources. To do this, it must take security measures that prevent problems in case of an error, incorrect use of the OS, or uncontrolled access physically or through the network, or malicious software, such as viruses, keyloggers, trojans, worms, ransomware, etc.
 </Callout>
 

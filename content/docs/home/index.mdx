@@ -1,115 +1,105 @@
 ---
-title: Welcome
-description: Welcome page of ZaoDocs
+title: Welcome to ZaoDocs
+description: My personal repository of IT knowledge
 ---
 
-# Welcome to ZaoDocs
+import { Card } from 'fumadocs-ui/components/card';
 
-ZaoDocs is an independently developed Personal GitBook dedicated to collecting and organizing all the IT knowledge I'm gathering.
+**ZaoDocs** is an independently developed Personal GitBook dedicated to compiling and organizing IT knowledge. This wiki serves as a curated repository of SysAdmin, CyberSecurity, Networking, and other IT fields.
 
-import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
-import { Step, Steps } from 'fumadocs-ui/components/steps';
-import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
-import { CodeBlock } from 'fumadocs-ui/components/codeblock';
-import { Files } from 'fumadocs-ui/components/files';
+<Card className="border-2 border-blue-100 dark:border-blue-900 rounded-lg p-4 shadow-md my-6">
+  <h3 className="text-xl font-bold mb-3 text-blue-600 dark:text-blue-400">Our Mission</h3>
+  <p>To provide free and open source knowledge that empowers professionals and enthusiasts alike, prioritizing clarity, accuracy, and practical utility.</p>
+</Card>
 
-## Content Index
+## What You'll Find Here
 
-<Tabs items={['Learning Paths', 'Tools & References', 'Practice']}>
-  <Tab>
-    <h3>Main Sections</h3>
-    - [Home](/docs/home/Welcome) 🏠
-    - [How Computers Work](/docs/how-computers-work) 💻
-    - [Networking](/docs/networking) 🌐
-    - [IT Security](/docs/it-security) 🔒
-    - [Windows](/docs/windows) 🪟
-    - [Linux](/docs/linux) 🐧
-    - [Programming](/docs/programming) 👨‍💻
-  </Tab>
-  <Tab>
-    <h3>CheatSheets</h3>
-    - [Git](/docs/home/cheatsheets/git)
-    - [Docker](/docs/home/cheatsheets/docker)
-    - [SSH](/docs/home/cheatsheets/ssh)
-    - [BruteForce](/docs/home/cheatsheets/bruteforce)
-    - [Reverse Shells](/docs/home/cheatsheets/reverse-shells)
-    - [Search Exploits](/docs/home/cheatsheets/search-exploits)
-  </Tab>
-  <Tab>
-    <h3>Writeups</h3>
-    - [BugBounty](/docs/home/writeups/bugbounty)
-    - [HackTheBox](/docs/home/writeups/hackthebox)
-    - [VulnHub](/docs/home/writeups/vulnhub)
-    - [TryHackMe](/docs/home/writeups/tryhackme)
-  </Tab>
-</Tabs>
+ZaoDocs covers a wide range of IT topics, from fundamental concepts to advanced techniques. Our documentation is structured to provide:
 
-## Detailed Content
+- **Clear explanations** of complex technical concepts
+- **Practical guides** for common tasks and tools
+- **Comprehensive cheatsheets** for quick reference
+- **In-depth tutorials** on specialized topics
 
-<Accordions>
-  <Accordion title="How Computers Work">
-    - Basic Mathematics for Computing
-    - Computer Architecture
-    - Data Centers and Servers
-    - Computer Boot Process
-    - Operating System Deployment
-    - Introduction to Operating Systems
-    - Introduction to Virtualization
-    - Operating System Functions
-    - Operating System Boot Process
-  </Accordion>
-  
-  <Accordion title="Networking">
-    - Introduction to Networks
-    - IP Addressing
-    - Switching
-    - Switch Configuration
-    - Routing Concepts
-    - Router Configuration
-    - Wireless Networks
-    - Security
-    - Routing Configuration
-    - Quality of Service
-    - Wide Area Networks
-    - Administration and Management
-    - Network Automation
-  </Accordion>
-  
-  <Accordion title="Programming">
-    <Accordions>
-      <Accordion title="Web Development">
-        - HTML
-        - CSS
-        - JavaScript (NodeJS + Express)
-        - PHP
-      </Accordion>
-      <Accordion title="General Purpose">
-        - C
-        - Python
-      </Accordion>
-    </Accordions>
-  </Accordion>
-  
-  <Accordion title="Pentesting">
-    - Pentesting Methodology
-    - Information Gathering and Reconnaissance
-    - Resources
-    - Reports
-    - Network Pentesting
-    - Web Hacking
-  </Accordion>
-</Accordions>
+## About This Project
 
-## Latest Updates
+First and foremost, it's important to emphasize that all techniques, research, and methodologies referenced across **ZaoDocs** are credited to their original authors and researchers (proper citations are included on respective pages). A heartfelt acknowledgment to the IT Community for sharing knowledge that contributes to a better understanding of the digital world!
 
-<Steps>
-  <Step>
-    Added SSH cheatsheet
-  </Step>
-  <Step>
-    Updated Networking section
-  </Step>
-  <Step>
-    New documentation on Operating Systems
-  </Step>
-</Steps>
+While this project is maintained by a single individual, contributions and improvements are always welcome! If you notice gaps, outdated information, or have valuable insights to add, feel free to submit a Pull Request to the [ZaoDocs GitHub Repository](https://github.com/Hackeroot-932/ZaoDocs).
+
+## ZaoDocs Index
+
+<div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6">
+  <Card className="border-2 border-green-100 dark:border-green-900 p-5 hover:shadow-lg transition-shadow">
+    <h3 className="text-xl font-bold mb-3 text-green-600 dark:text-green-400">
+      🖥️ Computer Fundamentals
+    </h3>
+    <p className="mb-4">Explore the core concepts of computing, from hardware to software.</p>
+    <a href="/docs/how-computers-work" className="text-blue-500 hover:underline">Learn More →</a>
+  </Card>
+
+  <Card className="border-2 border-purple-100 dark:border-purple-900 p-5 hover:shadow-lg transition-shadow">
+    <h3 className="text-xl font-bold mb-3 text-purple-600 dark:text-purple-400">
+      🔒 IT Security
+    </h3>
+    <p className="mb-4">Master essential security tools and techniques.</p>
+    <a href="/docs/security" className="text-blue-500 hover:underline">Learn More →</a>
+  </Card>
+
+  <Card className="border-2 border-orange-100 dark:border-orange-900 p-5 hover:shadow-lg transition-shadow">
+    <h3 className="text-xl font-bold mb-3 text-orange-600 dark:text-orange-400">
+      🌐 Networking
+    </h3>
+    <p className="mb-4">Understand network protocols and infrastructure.</p>
+    <a href="/docs/networking" className="text-blue-500 hover:underline">Learn More →</a>
+  </Card>
+
+  <Card className="border-2 border-blue-100 dark:border-blue-900 p-5 hover:shadow-lg transition-shadow">
+    <h3 className="text-xl font-bold mb-3 text-blue-600 dark:text-blue-400">
+      💻 Programming
+    </h3>
+    <p className="mb-4">Dive into coding and software development basics.</p>
+    <a href="/docs/programming" className="text-blue-500 hover:underline">Learn More →</a>
+  </Card>
+
+  <Card className="border-2 border-gray-100 dark:border-gray-900 p-5 hover:shadow-lg transition-shadow">
+    <h3 className="text-xl font-bold mb-3 text-gray-600 dark:text-gray-400">
+      🪟 Windows
+    </h3>
+    <p className="mb-4">Guides for Windows administration and troubleshooting.</p>
+    <a href="/docs/windows" className="text-blue-500 hover:underline">Learn More →</a>
+  </Card>
+
+  <Card className="border-2 border-yellow-100 dark:border-yellow-900 p-5 hover:shadow-lg transition-shadow">
+    <h3 className="text-xl font-bold mb-3 text-yellow-600 dark:text-yellow-400">
+      🐧 Linux
+    </h3>
+    <p className="mb-4">Master Linux commands, configs, and administration.</p>
+    <a href="/docs/linux" className="text-blue-500 hover:underline">Learn More →</a>
+  </Card>
+
+  <Card className="border-2 border-pink-100 dark:border-pink-900 p-5 hover:shadow-lg transition-shadow">
+    <h3 className="text-xl font-bold mb-3 text-pink-600 dark:text-pink-400">
+      🎯 The Art of Pentesting
+    </h3>
+    <p className="mb-4">Learn methodologies, tools, and tactics for penetration testing.</p>
+    <a href="/docs/pentesting" className="text-blue-500 hover:underline">Learn More →</a>
+  </Card>
+
+  <Card className="border-2 border-indigo-100 dark:border-indigo-900 p-5 hover:shadow-lg transition-shadow">
+    <h3 className="text-xl font-bold mb-3 text-indigo-600 dark:text-indigo-400">
+      🌐 Pentesting Networks
+    </h3>
+    <p className="mb-4">Techniques for testing and securing network infrastructure.</p>
+    <a href="/docs/network-pentesting" className="text-blue-500 hover:underline">Learn More →</a>
+  </Card>
+
+  <Card className="border-2 border-green-100 dark:border-green-900 p-5 hover:shadow-lg transition-shadow">
+    <h3 className="text-xl font-bold mb-3 text-green-600 dark:text-green-400">
+      🌍 Web Hacking
+    </h3>
+    <p className="mb-4">Discover vulnerabilities and security practices for web applications.</p>
+    <a href="/docs/web-hacking" className="text-blue-500 hover:underline">Learn More →</a>
+  </Card>
+</div>
+

@@ -3,7 +3,7 @@
     "description": "Introduction to Networks [CCNA]",
     "icon": "Signal",
     "root": false,
-    "defaultOpen": true,
+    "defaultOpen": false,
     "pages": [
       "introduction",
       "osi-model",
