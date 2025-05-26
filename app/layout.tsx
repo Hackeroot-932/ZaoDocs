@@ -12,7 +12,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: {
     default: "ZaoDocs",
-    template: "%s | ZaoDocs"
+    template: "%s"
   },
   description: "It Knowledge Docs",
   icons: {

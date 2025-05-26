@@ -1,0 +1,9 @@
+{
+    "index": "Common Web Vulns",
+    "description": "Common Web Vulns",
+    "icon": "LayoutTemplate",
+    "root": false,
+    "defaultOpen": false,
+    "pages": [
+    ]
+  }

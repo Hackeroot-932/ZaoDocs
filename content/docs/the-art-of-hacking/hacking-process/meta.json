@@ -1,0 +1,15 @@
+{
+    "index": "Hacking Process",
+    "description": "The Hacking Process",
+    "icon": "Bug",
+    "root": false,
+    "pages": [
+      "passive-rec",
+      "active-rec",
+      "vuln-scan",
+      "passwd-crack",
+      "exploitation",
+      "post-exploitation",
+      "cover-tracks"
+    ]
+  }

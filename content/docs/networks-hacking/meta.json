@@ -1,0 +1,10 @@
+{
+    "index": "Networks Hacking",
+    "description": "Networks Recon && Exploitation",
+    "icon": "Globe",
+    "root": true,
+    "pages": [
+      "service-pentesting",
+      "wifi-hacking"
+    ]
+  }

@@ -1,0 +1,9 @@
+{
+    "index": "Bug Bounty Notes",
+    "description": "Bug Bounty Notes",
+    "icon": "LayoutTemplate",
+    "root": false,
+    "defaultOpen": false,
+    "pages": [
+    ]
+  }

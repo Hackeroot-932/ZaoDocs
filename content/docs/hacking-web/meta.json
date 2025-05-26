@@ -1,0 +1,11 @@
+{
+    "index": "Hacking Web",
+    "description": "Vulnerabilities, Exploitation, etc.",
+    "icon": "LayoutTemplate",
+    "root": true,
+    "pages": [
+      "common-web-vulns",
+      "api-hacking",
+      "bug-bounty-notes"
+    ]
+  }

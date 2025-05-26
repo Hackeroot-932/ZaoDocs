@@ -5,30 +5,7 @@
     "root": false,
     "defaultOpen": true,
     "pages": [
-      "---DevOps---",
-        "docker",
-        "kubernetes",
-        "ssh",
-        "git" ,
-        "vscode",
-        "---Pentesting---",
-        "nmap",
-        "metasploit",
-        "sqlmap",
-        "burp suite",
-        "caido",
-        "wireshark",
-        "---Web Development---",
-        "html",
-        "css",
-        "javascript",
-        "react",
-        "nodejs",
-        "express",
-        "---Database---",
-        "MySQL",
-        "PostgreSQL",
-        "sqlite",
-        "MongoDB"
+      "DevOps",
+      "cybersecurity"
     ]
 }

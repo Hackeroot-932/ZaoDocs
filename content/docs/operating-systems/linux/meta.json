@@ -1,0 +1,15 @@
+{
+    "index": "🐧 Linux",
+    "description": "The Goat Explained",
+    "root": false,
+    "defaultOpen": true,
+    "pages": [
+      "basic-commands",
+      "permissions-capabilities",
+      "search-filters",
+      "users-groups",
+      "system-dirs",
+      "networking",
+      "task-automation"
+    ]
+  }

@@ -5,9 +5,8 @@
     "root": false,
     "defaultOpen": true,
     "pages": [
-      "--- Introduction to Programming ---",
-      "--- Git && GitHub ---",
-      "--- Data Structures && Algorithms ---",
-      "--- Programming Concepts ---"
+      "introduction",
+      "dsa",
+      "git-vcs"
     ]
   }

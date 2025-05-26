@@ -1,0 +1,11 @@
+{
+    "index": "XML",
+    "description": "XML",
+    "icon": "FileCode",
+    "root": false,
+    "defaultOpen": false,
+    "pages": [
+      "xpath",
+      "xquery"
+    ]
+  }

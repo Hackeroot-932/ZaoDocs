@@ -1,9 +1,21 @@
 ---
-title: Welcome to ZaoDocs
+title: Home
 description: My personal repository of IT knowledge
 ---
-
 import { Card } from 'fumadocs-ui/components/card';
+import Image from "next/image";
+
+        <div className="flex-1 mt-8 md:mt-0">
+          <div className="relative w-full aspect-square max-w-lg mx-auto rounded-lg overflow-hidden shadow-xl">
+            <Image 
+              src="/main-image.jpg" 
+              alt="ZaoDocs Illustration" 
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+        </div>
 
 **ZaoDocs** is an independently developed Personal GitBook dedicated to compiling and organizing IT knowledge. This wiki serves as a curated repository of SysAdmin, CyberSecurity, Networking, and other IT fields.
 

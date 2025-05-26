@@ -1,0 +1,10 @@
+{
+    "index": "Windows",
+    "description": "Just the Semi-Goat",
+    "icon": "Grid2x2",
+    "root": false,
+    "defaultOpen": true,
+    "pages": [
+      "basic-commands"
+    ]
+  }

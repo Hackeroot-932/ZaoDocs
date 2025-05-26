@@ -1,0 +1,10 @@
+{
+    "index": "Operating Systems",
+    "description": "Linux, Windows, ...",
+    "icon": "BrainCog",
+    "root": true,
+    "pages": [
+      "linux",
+      "windows"
+    ]
+  }

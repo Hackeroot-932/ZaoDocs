@@ -5,10 +5,6 @@
     "root": false,
     "defaultOpen": false,
     "pages": [
-      "---Hack The Box---",
-      "---VulnHub---",
-      "---TryHackMe---",
-      "---Bug Bounty---",
-      "---CTF---"
+
     ]
 }

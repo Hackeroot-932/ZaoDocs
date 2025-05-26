@@ -1,5 +1,5 @@
 import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
-import { BookIcon, NetworkIcon, HouseIcon, ServerCogIcon, ShieldHalfIcon, BrainCogIcon, GlobeIcon, LayoutTemplateIcon, BugIcon, Grid2x2Icon } from 'lucide-react';
+import { BookIcon, NetworkIcon, HouseIcon, ServerCogIcon, ShieldHalfIcon, BrainCogIcon, GlobeIcon, LayoutTemplateIcon, BugIcon, CodeIcon } from 'lucide-react';
 
 /**
  * Shared layout configurations
@@ -38,7 +38,7 @@ export const baseOptions: BaseLayoutProps = {
         },
         {
           text: 'How Computers Work',
-          description: 'Guide of the functioning of computers',
+          description: 'Computers Fundamentals',
           url: '/docs/how-computers-work',
           icon: <ServerCogIcon />,
         },
@@ -50,38 +50,38 @@ export const baseOptions: BaseLayoutProps = {
         },
         {
           text: 'IT Security',
-          description: 'Knowledge about Computer Security (CompTIA S+)',
+          description: 'Knowledge about Computer Security (CISSP)',
           url: '/docs/it-sec',
           icon: <ShieldHalfIcon />,
         },
         {
-          text: 'Windows',
-          description: 'The Windows Bible',
-          url: '/docs/windows',
-          icon: <Grid2x2Icon />,
+          text: 'Programming',
+          description: 'Programming Languages',
+          url: '/docs/programming',
+          icon: <CodeIcon />,
         },
         {
-          text: 'Linux',
-          description: 'The Goat Explained',
-          url: '/docs/linux',
+          text: 'Operating Systems',
+          description: 'Linux, Windows, ...',
+          url: '/docs/operating-systems',
           icon: <BrainCogIcon />,
         },
         {
-          text: 'The Art of Pentesting',
+          text: 'The Art of Hacking',
           description: 'The Pentesting Basics Explained',
-          url: '/docs/the-art-of-pentesting',
+          url: '/docs/the-art-of-hacking',
           icon: <BugIcon />,
         },
         {
-          text: 'Pentesting Networks',
-          description: 'Pentesting Networks',
-          url: '/docs/pentesting-networks',
+          text: 'Networks Hacking',
+          description: 'Networks Hacking',
+          url: '/docs/networks-hacking',
           icon: <GlobeIcon />,
         },
         {
           text: 'Web Hacking',
           description: 'OWASP Top 10, Web Vulns, ...',
-          url: '/docs/web-hacking',
+          url: '/docs/hacking-web',
           icon: <LayoutTemplateIcon />,
         },
       ],

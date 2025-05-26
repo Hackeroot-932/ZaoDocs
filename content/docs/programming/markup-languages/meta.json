@@ -5,9 +5,9 @@
     "root": false,
     "defaultOpen": false,
     "pages": [
-      "--- HTML ---",
-      "--- CSS ---",
-      "--- XML ---",
-      "--- Markdown ---"
+      "xml",
+      "markdown",
+      "html",
+      "css"
     ]
   }

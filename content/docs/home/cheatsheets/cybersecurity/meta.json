@@ -1,0 +1,16 @@
+{
+    "index": "Cybersecurity",
+    "description": "Brief Guides of Cybersecurity Tools",
+    "icon": "FileSpreadsheet",
+    "root": false,
+    "defaultOpen": false,
+    "pages": [
+      "metasploit",
+      "nmap",
+      "sqlmap",
+      "netcat",
+      "shodan-qf",
+      "tshark-qf",
+      "reverse-shells"
+    ]
+}

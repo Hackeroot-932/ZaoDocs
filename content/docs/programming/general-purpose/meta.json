@@ -5,9 +5,9 @@
     "root": false,
     "defaultOpen": false,
     "pages": [
-      "--- Python ---",
-      "--- C ---",
-      "--- PHP ---",
-      "--- Go ---"
+      "C",
+      "python",
+      "java",
+      "php"
     ]
   }

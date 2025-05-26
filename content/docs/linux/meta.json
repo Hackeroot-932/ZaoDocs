@@ -1,9 +1,0 @@
-{
-    "index": "Linux",
-    "description": "Just the Goat",
-    "icon": "BrainCog",
-    "root": true,
-    "pages": [
-      "test"
-    ]
-  }

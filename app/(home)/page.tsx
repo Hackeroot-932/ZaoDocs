@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
+import { Github } from "lucide-react";
 
 export default function HomePage() {
   return (
@@ -11,12 +12,24 @@ export default function HomePage() {
           <p className="text-xl text-gray-600 mb-6">
             An independent, curated repository of IT knowledge dedicated to free and open source information.
           </p>
-          <div className="flex flex-wrap gap-3">
-            <Button size="lg">
-              Get Started
+          <div className="flex flex-wrap gap-4">
+            <Button 
+              asChild 
+              size="lg" 
+              className="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 font-semibold px-8"
+            >
+              <Link href="/docs/home">Get Started</Link>
             </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link href="/docs/home">Explore Docs</Link>
+            <Button 
+              asChild 
+              variant="outline" 
+              size="lg"
+              className="border-2 hover:border-white-900 hover:text-white-900 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 font-semibold px-8"
+            >
+              <Link href="https://github.com/Hackeroot-932/ZaoDocs" target="_blank" rel="noopener noreferrer">
+                <Github className="mr-1 h-6 w-6" />
+                GitHub
+              </Link>
             </Button>
           </div>
         </div>

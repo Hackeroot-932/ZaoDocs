@@ -1,0 +1,12 @@
+{
+    "index": "The Art of Hacking",
+    "description": "Get into Hacking World",
+    "icon": "Bug",
+    "root": true,
+    "pages": [
+      "getting-started",
+      "essentials",
+      "hacking-process",
+      "social-eng"
+    ]
+}
