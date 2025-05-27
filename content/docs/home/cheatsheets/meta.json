@@ -1,7 +1,7 @@
 {
     "index": "CheatSheets",
     "description": "Brief Guides of IT Tools",
-    "icon": "FileSpreadsheet",
+    "icon": "BookKey",
     "root": false,
     "defaultOpen": true,
     "pages": [

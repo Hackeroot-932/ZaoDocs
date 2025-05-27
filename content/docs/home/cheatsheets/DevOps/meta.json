@@ -1,12 +1,12 @@
 {
     "index": "DevOps",
     "description": "Brief Guides of DevOps Tools",
-    "icon": "FileSpreadsheet",
+    "icon": "RefreshCcw",
     "root": false,
     "defaultOpen": false,
     "pages": [
-      "docker",
       "git",
+      "docker",
       "regex"
     ]
 }

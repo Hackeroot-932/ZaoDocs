@@ -1,10 +1,1551 @@
 ---
 title: Git
-description: Git is a distributed version control system that allows you to track changes to your code.
+description: A comprehensive guide to Git version control system
+icon: "GitFork"
 ---
 
-# Git
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 
-Git is a distributed version control system that allows you to track changes to your code.
+![git-image](./git.webp)
 
-## What is Git?
+<Callout title="Git Version Control System" type="info">
+  Git is a distributed version control system that enables tracking changes in source code during software development. It's designed for coordinating work among programmers, but it can be used to track changes in any set of files.
+</Callout>
+
+# Git Cheatsheet
+
+## 1. Getting Started
+
+<Tabs items={["About Version Control", "Git History", "What is Git?", "Installation & Setup"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">About Version Control</h4>
+      <p>Version control is a system that records changes to a file or set of files over time, allowing you to recall specific versions later.</p>
+      <ul className="list-disc pl-5 mt-2">
+        <li>Track code changes</li>
+        <li>Track who made changes</li>
+        <li>Collaborate with others</li>
+        <li>Revert to previous versions</li>
+      </ul>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">A Short History of Git</h4>
+      <p>Git was created by Linus Torvalds in 2005 for Linux kernel development. Key characteristics:</p>
+      <ul className="list-disc pl-5 mt-2">
+        <li>Distributed system</li>
+        <li>Strong support for non-linear development</li>
+        <li>Fully distributed</li>
+        <li>Able to handle large projects efficiently</li>
+      </ul>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">What is Git?</h4>
+      <p>Git is a distributed version control system that focuses on:</p>
+      <ul className="list-disc pl-5 mt-2">
+        <li>Speed</li>
+        <li>Data integrity</li>
+        <li>Support for distributed, non-linear workflows</li>
+        <li>Branching and merging capabilities</li>
+      </ul>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Installation & Setup</h4>
+      <Accordions>
+        <Accordion title="Installing Git">
+          <Steps>
+            <Step>
+              <strong>Windows:</strong> Download from https://git-scm.com
+            </Step>
+            <Step>
+              <strong>macOS:</strong> Use Homebrew: `brew install git`
+            </Step>
+            <Step>
+              <strong>Linux:</strong> Use package manager:
+              ```bash
+              sudo apt-get install git # Ubuntu
+              sudo dnf install git # Fedora
+              ```
+            </Step>
+          </Steps>
+        </Accordion>
+        <Accordion title="First-Time Setup">
+          ```bash
+          git config --global user.name "Your Name"
+          git config --global user.email "your.email@example.com"
+          git config --global color.ui auto
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+</Tabs>
+
+## 2. Git Basics
+
+<Tabs items={["Repository Operations", "Making Changes", "History & Undoing", "Remote Operations"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Repository Operations</h4>
+      
+      <Accordions>
+        <Accordion title="Creating Repositories">
+          ```bash
+          # Initialize a new repository
+          git init [project-name]
+
+          # Clone existing repository
+          git clone [url]
+          ```
+        </Accordion>
+        <Accordion title="Basic Commands">
+          ```bash
+          # Check repository status
+          git status
+
+          # Add files to staging
+          git add [file]
+          git add .  # Add all files
+
+          # Commit changes
+          git commit -m "commit message"
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Making Changes</h4>
+      
+      <Accordions>
+        <Accordion title="Staging Changes">
+          ```bash
+          # View changes
+          git diff
+          git diff --staged
+
+          # Stage files
+          git add [file]
+          git add -p  # Interactive staging
+
+          # Remove files
+          git rm [file]
+          git rm --cached [file]  # Untrack file
+          ```
+        </Accordion>
+        <Accordion title="Committing Changes">
+          ```bash
+          # Basic commit
+          git commit -m "message"
+
+          # Amend last commit
+          git commit --amend
+
+          # Interactive rebase
+          git rebase -i HEAD~[number]
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">History & Undoing</h4>
+      
+      <Accordions>
+        <Accordion title="Viewing History">
+          ```bash
+          # View commit history
+          git log
+          git log --oneline
+          git log --graph
+          git log -p  # Show patches
+          ```
+        </Accordion>
+        <Accordion title="Undoing Changes">
+          ```bash
+          # Discard changes in working directory
+          git checkout -- [file]
+
+          # Reset staging area
+          git reset HEAD [file]
+
+          # Revert a commit
+          git revert [commit]
+
+          # Reset to specific commit
+          git reset --hard [commit]
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Remote Operations</h4>
+      
+      <Accordions>
+        <Accordion title="Managing Remotes">
+          ```bash
+          # Add remote
+          git remote add [name] [url]
+
+          # View remotes
+          git remote -v
+
+          # Remove remote
+          git remote remove [name]
+          ```
+        </Accordion>
+        <Accordion title="Syncing Changes">
+          ```bash
+          # Fetch changes
+          git fetch [remote]
+
+          # Pull changes
+          git pull [remote] [branch]
+
+          # Push changes
+          git push [remote] [branch]
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+</Tabs>
+
+## 3. Git Branching
+
+<Tabs items={["Branch Basics", "Merging", "Remote Branches", "Workflows"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Branch Operations</h4>
+      
+      ```bash
+      # List branches
+      git branch
+
+      # Create branch
+      git branch [branch-name]
+
+      # Switch branch
+      git checkout [branch-name]
+      git switch [branch-name]  # New command
+
+      # Create and switch
+      git checkout -b [branch-name]
+      git switch -c [branch-name]  # New command
+      ```
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Merging</h4>
+      
+      ```bash
+      # Merge branch
+      git merge [branch]
+
+      # Abort merge
+      git merge --abort
+
+      # Rebase
+      git rebase [branch]
+      git rebase -i HEAD~[number]  # Interactive
+      ```
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Remote Branches</h4>
+      
+      ```bash
+      # Track remote branch
+      git checkout -b [branch] [remote]/[branch]
+
+      # Push branch to remote
+      git push -u [remote] [branch]
+
+      # Delete remote branch
+      git push [remote] --delete [branch]
+      ```
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Workflows</h4>
+      
+      <Accordions>
+        <Accordion title="Feature Branch Workflow">
+          <Steps>
+            <Step>Create feature branch</Step>
+            <Step>Make changes and commit</Step>
+            <Step>Push to remote</Step>
+            <Step>Create pull request</Step>
+            <Step>Review and merge</Step>
+          </Steps>
+        </Accordion>
+        <Accordion title="Gitflow Workflow">
+          <ul className="list-disc pl-5">
+            <li>main/master branch for releases</li>
+            <li>develop branch for development</li>
+            <li>feature branches for features</li>
+            <li>release branches for releases</li>
+            <li>hotfix branches for urgent fixes</li>
+          </ul>
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+</Tabs>
+
+## 4. Git on the Server
+
+<Tabs items={["Server Setup", "SSH Keys", "Protocols", "Hosting Options"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Setting Up Git Server</h4>
+      
+      <Accordions>
+        <Accordion title="Basic Server Setup">
+          ```bash
+          # Create bare repository
+          git init --bare [repo-name].git
+
+          # Configure server
+          git config --system core.sharedRepository group
+          ```
+        </Accordion>
+        <Accordion title="Server Requirements">
+          <ul className="list-disc pl-5">
+            <li>SSH access</li>
+            <li>Git installation</li>
+            <li>Storage space</li>
+            <li>User accounts and permissions</li>
+          </ul>
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">SSH Key Management</h4>
+      
+      ```bash
+      # Generate SSH key
+      ssh-keygen -t ed25519 -C "your_email@example.com"
+
+      # Add key to ssh-agent
+      eval "$(ssh-agent -s)"
+      ssh-add ~/.ssh/id_ed25519
+
+      # Copy public key
+      cat ~/.ssh/id_ed25519.pub
+      ```
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Git Protocols</h4>
+      
+      <Accordions>
+        <Accordion title="Available Protocols">
+          <ul className="list-disc pl-5">
+            <li><strong>Local Protocol</strong>: file:///path/to/repo.git</li>
+            <li><strong>HTTP/HTTPS</strong>: https://github.com/user/repo.git</li>
+            <li><strong>SSH</strong>: git@github.com:user/repo.git</li>
+            <li><strong>Git Protocol</strong>: git://server/repo.git</li>
+          </ul>
+        </Accordion>
+        <Accordion title="Protocol Selection">
+          <p>Choose based on:</p>
+          <ul className="list-disc pl-5">
+            <li>Security requirements</li>
+            <li>Network access</li>
+            <li>Speed requirements</li>
+            <li>User authentication needs</li>
+          </ul>
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Hosting Options</h4>
+      
+      <Accordions>
+        <Accordion title="Self-Hosted Solutions">
+          <ul className="list-disc pl-5">
+            <li><strong>GitLab CE</strong>: Full featured, self-hosted solution</li>
+            <li><strong>Gitea</strong>: Lightweight, self-hosted option</li>
+            <li><strong>Gogs</strong>: Simple, self-hosted Git service</li>
+          </ul>
+        </Accordion>
+        <Accordion title="Cloud Hosting">
+          <ul className="list-disc pl-5">
+            <li><strong>GitHub</strong>: Most popular, excellent for open source</li>
+            <li><strong>GitLab.com</strong>: Feature-rich, CI/CD included</li>
+            <li><strong>Bitbucket</strong>: Good Atlassian integration</li>
+          </ul>
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+</Tabs>
+
+## 5. Distributed Git
+
+<Tabs items={["Distributed Workflows", "Contributing", "Maintaining", "Best Practices"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Distributed Workflows</h4>
+      
+      <Accordions>
+        <Accordion title="Centralized Workflow">
+          <p>Single central repository that accepts code:</p>
+          <ul className="list-disc pl-5">
+            <li>Similar to SVN workflow</li>
+            <li>All changes flow through central repo</li>
+            <li>Suitable for small teams</li>
+          </ul>
+        </Accordion>
+        <Accordion title="Integration-Manager Workflow">
+          <p>Multiple remote repositories:</p>
+          <ul className="list-disc pl-5">
+            <li>Project maintainer manages public repository</li>
+            <li>Contributors fork and push changes</li>
+            <li>Maintainer pulls and merges changes</li>
+          </ul>
+        </Accordion>
+        <Accordion title="Dictator and Lieutenants">
+          <p>Hierarchical workflow:</p>
+          <ul className="list-disc pl-5">
+            <li>Project dictator manages blessed repository</li>
+            <li>Lieutenants manage feature integration</li>
+            <li>Contributors work with lieutenants</li>
+          </ul>
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Contributing to Projects</h4>
+      
+      <Accordions>
+        <Accordion title="Contribution Guidelines">
+          <Steps>
+            <Step>Fork the repository</Step>
+            <Step>Create feature branch</Step>
+            <Step>Make changes</Step>
+            <Step>Write good commit messages</Step>
+            <Step>Submit pull request</Step>
+          </Steps>
+        </Accordion>
+        <Accordion title="Commit Message Format">
+          ```
+          Short (50 chars or less) summary
+
+          More detailed explanatory text. Wrap it to 72
+          characters. The blank line separating the summary
+          from the body is critical.
+
+          - Bullet points are okay
+          - Use a hyphen or asterisk
+
+          Fixes: #123
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Maintaining Projects</h4>
+      
+      <Accordions>
+        <Accordion title="Working with Pull Requests">
+          ```bash
+          # Check out PR locally
+          git fetch origin pull/123/head:pr-123
+          git checkout pr-123
+
+          # Merge PR
+          git checkout main
+          git merge pr-123
+          git push origin main
+          ```
+        </Accordion>
+        <Accordion title="Project Maintenance">
+          <ul className="list-disc pl-5">
+            <li>Review contributions</li>
+            <li>Maintain documentation</li>
+            <li>Tag releases</li>
+            <li>Manage issues</li>
+            <li>Communicate with contributors</li>
+          </ul>
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Best Practices</h4>
+      
+      <Accordions>
+        <Accordion title="Code Review Guidelines">
+          <ul className="list-disc pl-5">
+            <li>Review code in small chunks</li>
+            <li>Use automated tools</li>
+            <li>Provide constructive feedback</li>
+            <li>Check for security issues</li>
+            <li>Verify tests pass</li>
+          </ul>
+        </Accordion>
+        <Accordion title="Repository Management">
+          <ul className="list-disc pl-5">
+            <li>Use meaningful branch names</li>
+            <li>Keep main/master branch stable</li>
+            <li>Delete merged branches</li>
+            <li>Use tags for releases</li>
+            <li>Maintain clean history</li>
+          </ul>
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+</Tabs>
+
+## 6. GitHub
+
+<Tabs items={["Account Setup", "Project Management", "Organization Management", "GitHub Features"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Account Setup & Configuration</h4>
+      
+      <Accordions>
+        <Accordion title="Account Setup">
+          <Steps>
+            <Step>Create GitHub account</Step>
+            <Step>Set up 2FA security</Step>
+            <Step>Configure SSH keys</Step>
+            <Step>Set up Git credentials</Step>
+          </Steps>
+        </Accordion>
+        <Accordion title="Profile Configuration">
+          ```bash
+          # Configure GitHub CLI
+          gh auth login
+
+          # Create new repository
+          gh repo create
+
+          # Clone repository
+          gh repo clone username/repository
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Project Management</h4>
+      
+      <Accordions>
+        <Accordion title="Repository Settings">
+          <ul className="list-disc pl-5">
+            <li>Branch protection rules</li>
+            <li>Collaborator management</li>
+            <li>Webhook configuration</li>
+            <li>GitHub Actions setup</li>
+            <li>Security policies</li>
+          </ul>
+        </Accordion>
+        <Accordion title="Issue Management">
+          ```bash
+          # Create issue
+          gh issue create
+
+          # List issues
+          gh issue list
+
+          # Close issue
+          gh issue close [number]
+
+          # Reopen issue
+          gh issue reopen [number]
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Organization Management</h4>
+      
+      <Accordions>
+        <Accordion title="Organization Setup">
+          <ul className="list-disc pl-5">
+            <li>Create organization</li>
+            <li>Configure teams</li>
+            <li>Set up permissions</li>
+            <li>Manage billing</li>
+            <li>Configure SSO</li>
+          </ul>
+        </Accordion>
+        <Accordion title="Team Management">
+          ```bash
+          # List teams
+          gh api orgs/{org}/teams
+
+          # Create team
+          gh api orgs/{org}/teams -F name='team-name'
+
+          # Add member
+          gh api teams/{team-id}/memberships/{username}
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">GitHub Features</h4>
+      
+      <Accordions>
+        <Accordion title="GitHub Actions">
+          ```yaml
+          # Basic workflow example
+          name: CI
+          on: [push]
+          jobs:
+            build:
+              runs-on: ubuntu-latest
+              steps:
+                - uses: actions/checkout@v2
+                - name: Run tests
+                  run: |
+                    npm install
+                    npm test
+          ```
+        </Accordion>
+        <Accordion title="GitHub Pages">
+          ```bash
+          # Enable GitHub Pages
+          gh repo edit --enable-pages
+
+          # Configure custom domain
+          gh api repos/{owner}/{repo}/pages -F cname='example.com'
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+</Tabs>
+
+## 7. Git Tools
+
+<Tabs items={["Advanced Features", "Debugging", "History Management", "Submodules"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Advanced Features</h4>
+      
+      <Accordions>
+        <Accordion title="Revision Selection">
+          ```bash
+          # By commit SHA
+          git show a1b2c3d4
+
+          # By branch
+          git show branch-name
+
+          # By date
+          git show master@{yesterday}
+
+          # By reference
+          git show HEAD^  # Parent of HEAD
+          git show HEAD~3  # Great-grandparent of HEAD
+          ```
+        </Accordion>
+        <Accordion title="Interactive Staging">
+          ```bash
+          # Interactive add
+          git add -i
+
+          # Interactive patch
+          git add -p
+
+          # Interactive rebase
+          git rebase -i HEAD~3
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Debugging with Git</h4>
+      
+      <Accordions>
+        <Accordion title="Binary Search">
+          ```bash
+          # Start bisect
+          git bisect start
+
+          # Mark current version as bad
+          git bisect bad
+
+          # Mark last known good version
+          git bisect good v1.0
+
+          # Finish bisect
+          git bisect reset
+          ```
+        </Accordion>
+        <Accordion title="Blame">
+          ```bash
+          # View file blame
+          git blame [file]
+
+          # Ignore whitespace
+          git blame -w [file]
+
+          # Show specific revision
+          git blame v1.0 [file]
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">History Management</h4>
+      
+      <Accordions>
+        <Accordion title="Rewriting History">
+          ```bash
+          # Change last commit
+          git commit --amend
+
+          # Rebase interactively
+          git rebase -i HEAD~3
+
+          # Force push changes
+          git push --force-with-lease
+          ```
+        </Accordion>
+        <Accordion title="Reset & Clean">
+          ```bash
+          # Reset staging area
+          git reset HEAD
+
+          # Reset working directory
+          git checkout -- .
+
+          # Clean untracked files
+          git clean -fd
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Submodules</h4>
+      
+      <Accordions>
+        <Accordion title="Submodule Management">
+          ```bash
+          # Add submodule
+          git submodule add [url] [path]
+
+          # Initialize submodules
+          git submodule init
+
+          # Update submodules
+          git submodule update
+
+          # Update all submodules
+          git submodule update --init --recursive
+          ```
+        </Accordion>
+        <Accordion title="Working with Submodules">
+          ```bash
+          # Clone with submodules
+          git clone --recursive [url]
+
+          # Pull all submodules
+          git pull --recurse-submodules
+
+          # Execute command in each submodule
+          git submodule foreach 'git pull origin master'
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+</Tabs>
+
+## 8. Customizing Git
+
+<Tabs items={["Configuration", "Attributes", "Hooks", "Policy"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Git Configuration</h4>
+      
+      <Accordions>
+        <Accordion title="Configuration Levels">
+          ```bash
+          # System-wide config
+          git config --system
+
+          # User-specific config
+          git config --global
+
+          # Repository-specific config
+          git config --local
+          ```
+        </Accordion>
+        <Accordion title="Common Configurations">
+          ```bash
+          # Set editor
+          git config --global core.editor "code --wait"
+
+          # Set merge tool
+          git config --global merge.tool vimdiff
+
+          # Set default branch
+          git config --global init.defaultBranch main
+
+          # Set credentials cache
+          git config --global credential.helper cache
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Git Attributes</h4>
+      
+      <Accordions>
+        <Accordion title=".gitattributes File">
+          ```gitattributes
+          # Auto detect text files
+          * text=auto
+
+          # Specific file types
+          *.txt text
+          *.jpg binary
+          *.pdf binary
+
+          # Line ending conversions
+          *.sh text eol=lf
+          *.bat text eol=crlf
+          ```
+        </Accordion>
+        <Accordion title="Common Attributes">
+          <ul className="list-disc pl-5">
+            <li><strong>text</strong>: Handle line endings</li>
+            <li><strong>diff</strong>: Custom diff strategy</li>
+            <li><strong>merge</strong>: Custom merge strategy</li>
+            <li><strong>binary</strong>: Treat as binary file</li>
+            <li><strong>export-ignore</strong>: Exclude from archives</li>
+          </ul>
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Git Hooks</h4>
+      
+      <Accordions>
+        <Accordion title="Client-Side Hooks">
+          ```bash
+          # Common client hooks
+          pre-commit
+          prepare-commit-msg
+          commit-msg
+          post-commit
+          pre-rebase
+          post-checkout
+          post-merge
+          ```
+        </Accordion>
+        <Accordion title="Server-Side Hooks">
+          ```bash
+          # Common server hooks
+          pre-receive
+          update
+          post-receive
+
+          # Example pre-commit hook
+          #!/bin/sh
+          npm test
+          if [ $? -ne 0 ]; then
+              echo "Tests failed"
+              exit 1
+          fi
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Policy Enforcement</h4>
+      
+      <Accordions>
+        <Accordion title="Example Policies">
+          <ul className="list-disc pl-5">
+            <li>Commit message format</li>
+            <li>Code style checks</li>
+            <li>Test coverage requirements</li>
+            <li>Branch naming conventions</li>
+            <li>Security checks</li>
+          </ul>
+        </Accordion>
+        <Accordion title="Implementation">
+          ```bash
+          # Example commit-msg hook
+          #!/bin/sh
+          commit_msg=$(cat "$1")
+          if ! echo "$commit_msg" | grep -qE "^(feat|fix|docs|style|refactor|test|chore):"; then
+              echo "Invalid commit message format"
+              exit 1
+          fi
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+</Tabs>
+
+## 9. Git and Other Systems
+
+<Tabs items={["Git as Client", "Migration to Git", "Integration"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Git as a Client</h4>
+      
+      <Accordions>
+        <Accordion title="Git-SVN">
+          ```bash
+          # Clone SVN repository
+          git svn clone [url]
+
+          # Fetch updates
+          git svn fetch
+
+          # Commit changes
+          git svn dcommit
+
+          # Create branch
+          git svn branch [branch-name]
+          ```
+        </Accordion>
+        <Accordion title="Git-P4">
+          ```bash
+          # Clone Perforce depot
+          git p4 clone //depot/path/project
+
+          # Submit changes
+          git p4 submit
+
+          # Sync with Perforce
+          git p4 sync
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Migrating to Git</h4>
+      
+      <Accordions>
+        <Accordion title="From SVN">
+          <Steps>
+            <Step>Get authors list</Step>
+            <Step>Clone repository with history</Step>
+            <Step>Clean up metadata</Step>
+            <Step>Push to Git remote</Step>
+          </Steps>
+          ```bash
+          # Get SVN authors
+          svn log --xml | grep author | sort -u | \
+            perl -pe 's/.*>(.*?)<.*/$1 = $1 <$1@example.com>/' > authors.txt
+
+          # Clone with authors
+          git svn clone [url] --authors-file=authors.txt
+          ```
+        </Accordion>
+        <Accordion title="From Mercurial">
+          ```bash
+          # Install fast-export
+          git clone https://github.com/frej/fast-export.git
+
+          # Convert repository
+          mkdir git-repo
+          cd git-repo
+          git init
+          ../fast-export/hg-fast-export.sh -r /path/to/hg/repo
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Integration with Other Tools</h4>
+      
+      <Accordions>
+        <Accordion title="CI/CD Systems">
+          <ul className="list-disc pl-5">
+            <li>Jenkins</li>
+            <li>Travis CI</li>
+            <li>CircleCI</li>
+            <li>GitLab CI</li>
+            <li>GitHub Actions</li>
+          </ul>
+        </Accordion>
+        <Accordion title="Issue Tracking">
+          <ul className="list-disc pl-5">
+            <li>Jira</li>
+            <li>Trello</li>
+            <li>GitHub Issues</li>
+            <li>GitLab Issues</li>
+            <li>Azure Boards</li>
+          </ul>
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+</Tabs>
+
+## 10. Git Internals
+
+<Tabs items={["Plumbing Commands", "Git Objects", "References", "Packfiles"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Plumbing Commands</h4>
+      
+      <Accordions>
+        <Accordion title="Basic Plumbing">
+          ```bash
+          # Hash object
+          git hash-object -w [file]
+
+          # Read object
+          git cat-file -p [hash]
+
+          # Write tree
+          git write-tree
+
+          # Read tree
+          git read-tree [hash]
+          ```
+        </Accordion>
+        <Accordion title="Advanced Plumbing">
+          ```bash
+          # Create commit
+          git commit-tree [tree-hash] -p [parent-hash] -m "message"
+
+          # Update reference
+          git update-ref refs/heads/master [commit-hash]
+
+          # List references
+          git show-ref
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Git Objects</h4>
+      
+      <Accordions>
+        <Accordion title="Object Types">
+          <ul className="list-disc pl-5">
+            <li><strong>Blob</strong>: File content</li>
+            <li><strong>Tree</strong>: Directory listing</li>
+            <li><strong>Commit</strong>: Commit information</li>
+            <li><strong>Tag</strong>: Annotated tag</li>
+          </ul>
+        </Accordion>
+        <Accordion title="Object Operations">
+          ```bash
+          # View object type
+          git cat-file -t [hash]
+
+          # View object size
+          git cat-file -s [hash]
+
+          # List objects
+          git count-objects -v
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Git References</h4>
+      
+      <Accordions>
+        <Accordion title="Reference Types">
+          <ul className="list-disc pl-5">
+            <li><strong>HEAD</strong>: Current commit</li>
+            <li><strong>Branches</strong>: refs/heads/</li>
+            <li><strong>Tags</strong>: refs/tags/</li>
+            <li><strong>Remotes</strong>: refs/remotes/</li>
+          </ul>
+        </Accordion>
+        <Accordion title="Reference Management">
+          ```bash
+          # Create reference
+          git update-ref refs/heads/test [commit-hash]
+
+          # Delete reference
+          git update-ref -d refs/heads/test
+
+          # List references
+          git for-each-ref
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Packfiles</h4>
+      
+      <Accordions>
+        <Accordion title="Pack Operations">
+          ```bash
+          # Create pack
+          git gc
+
+          # List pack contents
+          git verify-pack -v .git/objects/pack/pack-*.idx
+
+          # Force pack creation
+          git repack -ad
+
+          # Remove unreachable objects
+          git prune
+          ```
+        </Accordion>
+        <Accordion title="Pack Information">
+          <ul className="list-disc pl-5">
+            <li>Delta compression</li>
+            <li>Network transfer optimization</li>
+            <li>Storage efficiency</li>
+            <li>Object reachability</li>
+          </ul>
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+</Tabs>
+
+## Appendix A: Git in Other Environments
+
+<Tabs items={["IDEs", "Shell Integration", "GUI Clients"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">IDE Integration</h4>
+      
+      <Accordions>
+        <Accordion title="Visual Studio Code">
+          <ul className="list-disc pl-5">
+            <li>Built-in Git support</li>
+            <li>Source Control panel</li>
+            <li>Git Lens extension</li>
+            <li>Branch visualization</li>
+            <li>Inline blame annotations</li>
+          </ul>
+        </Accordion>
+        <Accordion title="JetBrains IDEs">
+          <ul className="list-disc pl-5">
+            <li>Version Control tool window</li>
+            <li>Git Flow integration</li>
+            <li>Interactive rebase</li>
+            <li>Conflict resolution</li>
+            <li>Local history</li>
+          </ul>
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Shell Integration</h4>
+      
+      <Accordions>
+        <Accordion title="Bash Integration">
+          ```bash
+          # Add to .bashrc
+          source /usr/share/git/completion/git-completion.bash
+          source /usr/share/git/completion/git-prompt.sh
+          
+          # Configure prompt
+          PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
+          ```
+        </Accordion>
+        <Accordion title="Zsh Integration">
+          ```bash
+          # Oh My Zsh
+          plugins=(git)
+
+          # Custom aliases
+          alias g='git'
+          alias gst='git status'
+          alias gco='git checkout'
+          alias gcb='git checkout -b'
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">GUI Clients</h4>
+      
+      <Accordions>
+        <Accordion title="Popular Clients">
+          <ul className="list-disc pl-5">
+            <li>GitKraken - Cross-platform, visual Git client</li>
+            <li>Sourcetree - Free Git GUI for Windows and Mac</li>
+            <li>GitHub Desktop - Simplified Git workflow</li>
+            <li>Fork - Fast and friendly Git client</li>
+            <li>SmartGit - Handles large repositories</li>
+          </ul>
+        </Accordion>
+        <Accordion title="Features to Look For">
+          <ul className="list-disc pl-5">
+            <li>Visual commit history</li>
+            <li>Branch management</li>
+            <li>Merge conflict resolution</li>
+            <li>Submodule support</li>
+            <li>Interactive rebase</li>
+          </ul>
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+</Tabs>
+
+## Appendix B: Embedding Git in Applications
+
+<Tabs items={["Command-line Git", "Libraries", "API Usage"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Command-line Git</h4>
+      
+      <Accordions>
+        <Accordion title="Shell Commands">
+          ```bash
+          # Execute Git command
+          git status
+
+          # Get command output
+          output=$(git log --oneline)
+
+          # Check command status
+          if git diff --quiet; then
+              echo "No changes"
+          fi
+          ```
+        </Accordion>
+        <Accordion title="Process Management">
+          ```bash
+          # Run Git in background
+          git fetch origin &
+
+          # Capture output streams
+          git log 2>&1 | tee output.log
+
+          # Set environment variables
+          GIT_DIR=.git git status
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Git Libraries</h4>
+      
+      <Accordions>
+        <Accordion title="Libgit2">
+          ```cpp
+          // Initialize repository
+          git_repository *repo = NULL;
+          git_repository_open(&repo, "path/to/repo");
+
+          // Create commit
+          git_oid commit_id;
+          git_commit_create(
+              &commit_id, repo, "HEAD",
+              author, committer,
+              NULL, message, tree, parent_count, parents
+          );
+          ```
+        </Accordion>
+        <Accordion title="JGit (Java)">
+          ```java
+          // Open repository
+          Repository repo = new FileRepository("/path/to/repo/.git");
+          Git git = new Git(repo);
+
+          // Add file
+          git.add()
+             .addFilepattern("file.txt")
+             .call();
+
+          // Commit changes
+          git.commit()
+             .setMessage("commit message")
+             .call();
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">API Usage Examples</h4>
+      
+      <Accordions>
+        <Accordion title="Python (GitPython)">
+          ```python
+          from git import Repo
+
+          # Clone repository
+          repo = Repo.clone_from("url", "path")
+
+          # Get status
+          for item in repo.index.diff(None):
+              print(item.a_path)
+
+          # Create commit
+          repo.index.add(["file.txt"])
+          repo.index.commit("commit message")
+          ```
+        </Accordion>
+        <Accordion title="JavaScript (nodegit)">
+          ```javascript
+          const Git = require("nodegit");
+
+          // Open repository
+          Git.Repository.open("path")
+            .then(function(repo) {
+              return repo.getStatus();
+            })
+            .then(function(statuses) {
+              statuses.forEach(function(file) {
+                console.log(file.path());
+              });
+            });
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+</Tabs>
+
+## Appendix C: Git Commands
+
+<Tabs items={["Setup", "Basic Operations", "Advanced Operations", "Administration"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Setup and Configuration</h4>
+      
+      <Accordions>
+        <Accordion title="Initial Setup">
+          ```bash
+          # Configure user
+          git config --global user.name "name"
+          git config --global user.email "email"
+
+          # Configure editor
+          git config --global core.editor "editor"
+
+          # Configure merge tool
+          git config --global merge.tool "tool"
+          ```
+        </Accordion>
+        <Accordion title="Repository Setup">
+          ```bash
+          # Initialize repository
+          git init [directory]
+
+          # Clone repository
+          git clone [url] [directory]
+
+          # Add remote
+          git remote add [name] [url]
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Basic Operations</h4>
+      
+      <Accordions>
+        <Accordion title="Daily Commands">
+          ```bash
+          # Check status
+          git status
+
+          # Stage changes
+          git add [file]
+
+          # Commit changes
+          git commit -m "message"
+
+          # Pull changes
+          git pull
+
+          # Push changes
+          git push
+          ```
+        </Accordion>
+        <Accordion title="Branch Operations">
+          ```bash
+          # Create branch
+          git branch [name]
+
+          # Switch branch
+          git checkout [name]
+
+          # Create and switch
+          git checkout -b [name]
+
+          # Delete branch
+          git branch -d [name]
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Advanced Operations</h4>
+      
+      <Accordions>
+        <Accordion title="History Manipulation">
+          ```bash
+          # Rebase
+          git rebase [branch]
+
+          # Cherry-pick
+          git cherry-pick [commit]
+
+          # Reset
+          git reset --hard [commit]
+
+          # Revert
+          git revert [commit]
+          ```
+        </Accordion>
+        <Accordion title="Stash Operations">
+          ```bash
+          # Save changes
+          git stash
+
+          # List stashes
+          git stash list
+
+          # Apply stash
+          git stash apply
+
+          # Drop stash
+          git stash drop
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Administration</h4>
+      
+      <Accordions>
+        <Accordion title="Maintenance">
+          ```bash
+          # Clean repository
+          git clean -fd
+
+          # Garbage collection
+          git gc
+
+          # Optimize repository
+          git repack
+
+          # Check integrity
+          git fsck
+          ```
+        </Accordion>
+        <Accordion title="Remote Management">
+          ```bash
+          # Update remote
+          git remote set-url [name] [url]
+
+          # Remove remote
+          git remote remove [name]
+
+          # Prune remote branches
+          git remote prune [name]
+
+          # Show remote info
+          git remote show [name]
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+</Tabs>
+
+## Sources
+
+<div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+  <h4 className="font-bold mb-4">References</h4>
+  <ul className="list-disc pl-5 space-y-2">
+    <a href="https://git-scm.com/book/en/v2" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+        Pro Git Book (2nd Edition)
+      </a>
+      - The official and comprehensive Git reference book by Scott Chacon and Ben Straub
+    
+      <a href="https://git-scm.com/docs" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+        Git Documentation
+      </a>
+      - Official Git reference documentation
+
+    
+      <a href="https://training.github.com/downloads/es_ES/github-git-cheat-sheet.pdf" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+        GitHub Git Cheat Sheet
+      </a>
+      - Quick reference guide by GitHub Training
+
+    
+      <a href="https://git-scm.com/docs/git#_git_commands" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+        Git Commands Reference
+      </a>
+      - Complete list of Git commands and their documentation
+
+  </ul>
+</div>

@@ -1,10 +1,890 @@
 ---
 title: Docker
 description: Docker is a containerization platform that allows you to package applications with their dependencies into a container.
+icon: "Container"
 ---
 
-# Docker
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 
-Docker is a containerization platform that allows you to package applications with their dependencies into a container.
+![docker-image](./docker.png)
 
-## What is Docker?
+<Callout title="Docker Containerization Platform" type="info">
+  Docker is a platform designed to make it easier to create, deploy, and run applications by using containers. Containers allow a developer to package up an application with all of the parts it needs, such as libraries and other dependencies, and ship it all out as one package.
+</Callout>
+
+# Docker Cheatsheet
+
+## 1. Getting Started
+
+<Tabs items={["About Containers", "Docker Architecture", "What is Docker?", "Installation & Setup"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">About Containers</h4>
+      <p>Containers are lightweight, standalone, executable packages that include everything needed to run an application:</p>
+      <ul className="list-disc pl-5 mt-2">
+        <li>Code</li>
+        <li>Runtime</li>
+        <li>System tools</li>
+        <li>System libraries</li>
+        <li>Settings</li>
+      </ul>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Docker Architecture</h4>
+      <p>Docker uses a client-server architecture:</p>
+      <ul className="list-disc pl-5 mt-2">
+        <li>Docker Client (CLI)</li>
+        <li>Docker Daemon (Server)</li>
+        <li>Docker Registry (Hub)</li>
+        <li>Docker Objects (Images, Containers)</li>
+      </ul>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">What is Docker?</h4>
+      <p>Docker is a platform that focuses on:</p>
+      <ul className="list-disc pl-5 mt-2">
+        <li>Containerization</li>
+        <li>Isolation</li>
+        <li>Portability</li>
+        <li>Scalability</li>
+        <li>Version Control</li>
+      </ul>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Installation & Setup</h4>
+      <Accordions>
+        <Accordion title="Installing Docker">
+          <Steps>
+            <Step>
+              <strong>Windows:</strong> Download Docker Desktop from https://www.docker.com
+            </Step>
+            <Step>
+              <strong>macOS:</strong> Use Homebrew: `brew install --cask docker`
+            </Step>
+            <Step>
+              <strong>Linux:</strong> Use package manager:
+              ```bash
+              # Ubuntu
+              sudo apt-get update
+              sudo apt-get install docker-ce
+
+              # Fedora
+              sudo dnf install docker-ce
+              ```
+            </Step>
+          </Steps>
+        </Accordion>
+        <Accordion title="Post-Installation Steps">
+          ```bash
+          # Start Docker service
+          sudo systemctl start docker
+
+          # Enable Docker on boot
+          sudo systemctl enable docker
+
+          # Add user to docker group
+          sudo usermod -aG docker $USER
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+</Tabs>
+
+## 2. Docker Basics
+
+<Tabs items={["Images", "Containers", "Basic Commands", "Docker Hub"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Working with Images</h4>
+      
+      <Accordions>
+        <Accordion title="Image Commands">
+          ```bash
+          # List images
+          docker images
+          docker image ls
+
+          # Pull an image
+          docker pull <image_name>:<tag>
+
+          # Remove image
+          docker rmi <image_name>
+          docker image rm <image_name>
+
+          # Build image from Dockerfile
+          docker build -t <image_name> .
+          docker build -t <image_name> . --no-cache
+          ```
+        </Accordion>
+        <Accordion title="Image Management">
+          ```bash
+          # Search for images
+          docker search <term>
+
+          # Show image history
+          docker history <image_name>
+
+          # Tag an image
+          docker tag <source_image> <target_image>
+
+          # Save image to tar file
+          docker save <image_name> > image.tar
+
+          # Load image from tar file
+          docker load < image.tar
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Container Operations</h4>
+      
+      <Accordions>
+        <Accordion title="Container Lifecycle">
+          ```bash
+          # Run a container
+          docker run <image_name>
+          docker run -d <image_name>  # Detached mode
+          docker run -it <image_name> # Interactive mode
+
+          # Start/Stop containers
+          docker start <container_name>
+          docker stop <container_name>
+          docker restart <container_name>
+
+          # Remove container
+          docker rm <container_name>
+          docker rm -f <container_name>  # Force remove
+          ```
+        </Accordion>
+        <Accordion title="Container Management">
+          ```bash
+          # List containers
+          docker ps        # Running containers
+          docker ps -a     # All containers
+
+          # Container logs
+          docker logs <container_name>
+          docker logs -f <container_name>  # Follow logs
+
+          # Execute command in container
+          docker exec -it <container_name> <command>
+          docker exec -it <container_name> bash
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Basic Commands</h4>
+      
+      <Accordions>
+        <Accordion title="System Commands">
+          ```bash
+          # Show Docker info
+          docker info
+
+          # Show Docker version
+          docker version
+
+          # Show Docker disk usage
+          docker system df
+
+          # Clean up resources
+          docker system prune
+          docker system prune -a  # Remove all unused resources
+          ```
+        </Accordion>
+        <Accordion title="Common Operations">
+          ```bash
+          # Port mapping
+          docker run -p <host_port>:<container_port> <image_name>
+
+          # Volume mounting
+          docker run -v <host_path>:<container_path> <image_name>
+
+          # Environment variables
+          docker run -e KEY=VALUE <image_name>
+
+          # Container name
+          docker run --name <container_name> <image_name>
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Docker Hub</h4>
+      
+      <Accordions>
+        <Accordion title="Registry Operations">
+          ```bash
+          # Login to Docker Hub
+          docker login
+          docker login -u <username>
+
+          # Push image to registry
+          docker push <username>/<image_name>
+
+          # Pull image from registry
+          docker pull <image_name>
+
+          # Logout from registry
+          docker logout
+          ```
+        </Accordion>
+        <Accordion title="Image Tags">
+          ```bash
+          # Tag image for registry
+          docker tag <image_name> <username>/<image_name>
+
+          # Push tagged image
+          docker push <username>/<image_name>:<tag>
+
+          # Pull specific version
+          docker pull <image_name>:<tag>
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+</Tabs>
+
+## 3. Docker Networking
+
+<Tabs items={["Network Basics", "Network Types", "Network Commands", "Network Management"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Network Basics</h4>
+      
+      <Accordions>
+        <Accordion title="Network Commands">
+          ```bash
+          # List networks
+          docker network ls
+
+          # Create network
+          docker network create <network_name>
+
+          # Remove network
+          docker network rm <network_name>
+
+          # Connect container to network
+          docker network connect <network_name> <container_name>
+          ```
+        </Accordion>
+        <Accordion title="Network Inspection">
+          ```bash
+          # Inspect network
+          docker network inspect <network_name>
+
+          # Show container networks
+          docker container inspect <container_name> -f '{{json .NetworkSettings.Networks}}'
+
+          # Disconnect from network
+          docker network disconnect <network_name> <container_name>
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Network Types</h4>
+      
+      <Accordions>
+        <Accordion title="Default Networks">
+          <ul className="list-disc pl-5">
+            <li><strong>bridge</strong>: Default network driver</li>
+            <li><strong>host</strong>: Remove network isolation</li>
+            <li><strong>none</strong>: Disable networking</li>
+            <li><strong>overlay</strong>: Connect multiple Docker daemons</li>
+            <li><strong>macvlan</strong>: Assign MAC address to container</li>
+          </ul>
+        </Accordion>
+        <Accordion title="Network Creation">
+          ```bash
+          # Create bridge network
+          docker network create --driver bridge <network_name>
+
+          # Create overlay network
+          docker network create --driver overlay <network_name>
+
+          # Create network with subnet
+          docker network create --subnet=172.18.0.0/16 <network_name>
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Network Commands</h4>
+      
+      <Accordions>
+        <Accordion title="Container Networking">
+          ```bash
+          # Run container with network
+          docker run --network=<network_name> <image_name>
+
+          # Connect running container
+          docker network connect <network_name> <container_name>
+
+          # Disconnect container
+          docker network disconnect <network_name> <container_name>
+
+          # Expose ports
+          docker run -p 8080:80 <image_name>
+          ```
+        </Accordion>
+        <Accordion title="Network Troubleshooting">
+          ```bash
+          # Check container IP
+          docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <container_name>
+
+          # Check network connectivity
+          docker exec <container_name> ping <target_container>
+
+          # View network details
+          docker network inspect <network_name>
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Network Management</h4>
+      
+      <Accordions>
+        <Accordion title="Network Cleanup">
+          ```bash
+          # Remove unused networks
+          docker network prune
+
+          # Remove all networks
+          docker network rm $(docker network ls -q)
+
+          # Force remove network
+          docker network rm -f <network_name>
+          ```
+        </Accordion>
+        <Accordion title="Advanced Networking">
+          ```bash
+          # Create network with custom driver
+          docker network create \
+            --driver=bridge \
+            --subnet=172.28.0.0/16 \
+            --ip-range=172.28.5.0/24 \
+            --gateway=172.28.5.254 \
+            <network_name>
+
+          # Inspect network details
+          docker network inspect <network_name> | grep -i <search_term>
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+</Tabs>
+
+## 4. Docker Volumes
+
+<Tabs items={["Volume Basics", "Volume Types", "Volume Commands", "Data Management"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Volume Basics</h4>
+      
+      <Accordions>
+        <Accordion title="Volume Commands">
+          ```bash
+          # List volumes
+          docker volume ls
+
+          # Create volume
+          docker volume create <volume_name>
+
+          # Remove volume
+          docker volume rm <volume_name>
+
+          # Inspect volume
+          docker volume inspect <volume_name>
+          ```
+        </Accordion>
+        <Accordion title="Volume Usage">
+          ```bash
+          # Run container with volume
+          docker run -v <volume_name>:/path/in/container <image_name>
+
+          # Mount host directory
+          docker run -v /host/path:/container/path <image_name>
+
+          # Use read-only volume
+          docker run -v <volume_name>:/path/in/container:ro <image_name>
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Volume Types</h4>
+      
+      <Accordions>
+        <Accordion title="Volume Types">
+          <ul className="list-disc pl-5">
+            <li><strong>Named Volumes</strong>: Managed by Docker</li>
+            <li><strong>Bind Mounts</strong>: Direct host path mounting</li>
+            <li><strong>tmpfs Mounts</strong>: Temporary filesystem in memory</li>
+          </ul>
+        </Accordion>
+        <Accordion title="Volume Creation">
+          ```bash
+          # Create named volume
+          docker volume create <volume_name>
+
+          # Create volume with driver
+          docker volume create --driver local \
+            --opt type=none \
+            --opt device=/path/on/host \
+            --opt o=bind \
+            <volume_name>
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Volume Commands</h4>
+      
+      <Accordions>
+        <Accordion title="Volume Management">
+          ```bash
+          # Copy data to volume
+          docker cp ./data/. <container_name>:/path/in/container
+
+          # Backup volume
+          docker run --rm -v <volume_name>:/data \
+            -v $(pwd):/backup alpine tar cvf /backup/backup.tar /data
+
+          # Restore volume
+          docker run --rm -v <volume_name>:/data \
+            -v $(pwd):/backup alpine tar xvf /backup/backup.tar
+          ```
+        </Accordion>
+        <Accordion title="Volume Cleanup">
+          ```bash
+          # Remove unused volumes
+          docker volume prune
+
+          # Remove all volumes
+          docker volume rm $(docker volume ls -q)
+
+          # Force remove volume
+          docker volume rm -f <volume_name>
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Data Management</h4>
+      
+      <Accordions>
+        <Accordion title="Data Persistence">
+          ```bash
+          # Create data container
+          docker create -v /data --name datacontainer alpine
+
+          # Use volumes from another container
+          docker run --volumes-from datacontainer <image_name>
+
+          # Share data between containers
+          docker run --volumes-from <source_container> <target_container>
+          ```
+        </Accordion>
+        <Accordion title="Data Backup">
+          ```bash
+          # Backup named volume
+          docker run --rm \
+            -v <volume_name>:/source:ro \
+            -v $(pwd):/backup \
+            alpine tar czf /backup/volume-backup.tar.gz /source
+
+          # Restore from backup
+          docker run --rm \
+            -v <volume_name>:/target \
+            -v $(pwd):/backup \
+            alpine tar xzf /backup/volume-backup.tar.gz -C /target
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+</Tabs>
+
+## 5. Docker Compose
+
+<Tabs items={["Compose Basics", "Compose File", "Compose Commands", "Multi-Container Apps"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Compose Basics</h4>
+      
+      <Accordions>
+        <Accordion title="Basic Commands">
+          ```bash
+          # Start services
+          docker-compose up
+          docker-compose up -d  # Detached mode
+
+          # Stop services
+          docker-compose down
+          docker-compose down -v  # Remove volumes
+
+          # View logs
+          docker-compose logs
+          docker-compose logs -f  # Follow logs
+          ```
+        </Accordion>
+        <Accordion title="Service Management">
+          ```bash
+          # List services
+          docker-compose ps
+
+          # Start specific service
+          docker-compose start <service_name>
+
+          # Stop specific service
+          docker-compose stop <service_name>
+
+          # Restart services
+          docker-compose restart
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Compose File</h4>
+      
+      <Accordions>
+        <Accordion title="Basic Structure">
+          ```yaml
+          version: '3'
+          services:
+            web:
+              image: nginx
+              ports:
+                - "80:80"
+            db:
+              image: mysql
+              environment:
+                - MYSQL_ROOT_PASSWORD=secret
+          ```
+        </Accordion>
+        <Accordion title="Common Elements">
+          ```yaml
+          version: '3'
+          services:
+            app:
+              build: .
+              ports:
+                - "3000:3000"
+              volumes:
+                - .:/app
+              environment:
+                - NODE_ENV=development
+              depends_on:
+                - db
+          networks:
+            backend:
+              driver: bridge
+          volumes:
+            data:
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Compose Commands</h4>
+      
+      <Accordions>
+        <Accordion title="Build Commands">
+          ```bash
+          # Build services
+          docker-compose build
+          docker-compose build --no-cache
+
+          # Pull images
+          docker-compose pull
+
+          # Push images
+          docker-compose push
+
+          # Create services
+          docker-compose create
+          ```
+        </Accordion>
+        <Accordion title="Runtime Commands">
+          ```bash
+          # Execute command
+          docker-compose exec <service_name> <command>
+
+          # View processes
+          docker-compose top
+
+          # Scale service
+          docker-compose up -d --scale web=3
+
+          # Run one-off command
+          docker-compose run --rm <service_name> <command>
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Multi-Container Apps</h4>
+      
+      <Accordions>
+        <Accordion title="Example Configuration">
+          ```yaml
+          version: '3'
+          services:
+            web:
+              build: ./web
+              ports:
+                - "80:80"
+              depends_on:
+                - api
+            api:
+              build: ./api
+              ports:
+                - "3000:3000"
+              depends_on:
+                - db
+            db:
+              image: postgres
+              environment:
+                - POSTGRES_PASSWORD=secret
+          ```
+        </Accordion>
+        <Accordion title="Advanced Features">
+          ```yaml
+          version: '3'
+          services:
+            web:
+              build:
+                context: ./web
+                dockerfile: Dockerfile.prod
+              deploy:
+                replicas: 3
+                resources:
+                  limits:
+                    cpus: '0.5'
+                    memory: 512M
+              healthcheck:
+                test: ["CMD", "curl", "-f", "http://localhost"]
+                interval: 30s
+                timeout: 10s
+                retries: 3
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+</Tabs>
+
+## 6. Docker Swarm
+
+<Tabs items={["Swarm Basics", "Node Management", "Service Management", "Stack Deployment"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Swarm Basics</h4>
+      
+      <Accordions>
+        <Accordion title="Initialize Swarm">
+          ```bash
+          # Initialize swarm
+          docker swarm init
+
+          # Get join token
+          docker swarm join-token worker
+          docker swarm join-token manager
+
+          # Leave swarm
+          docker swarm leave
+          docker swarm leave --force  # For managers
+          ```
+        </Accordion>
+        <Accordion title="Swarm Information">
+          ```bash
+          # View swarm status
+          docker info
+
+          # List nodes
+          docker node ls
+
+          # Inspect swarm
+          docker node inspect self
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Node Management</h4>
+      
+      <Accordions>
+        <Accordion title="Node Commands">
+          ```bash
+          # Promote node to manager
+          docker node promote <node_name>
+
+          # Demote node to worker
+          docker node demote <node_name>
+
+          # Remove node
+          docker node rm <node_name>
+
+          # Update node
+          docker node update --availability drain <node_name>
+          ```
+        </Accordion>
+        <Accordion title="Node Labels">
+          ```bash
+          # Add label to node
+          docker node update --label-add key=value <node_name>
+
+          # Remove label from node
+          docker node update --label-rm key <node_name>
+
+          # List node labels
+          docker node inspect <node_name> | grep Labels -A 5
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Service Management</h4>
+      
+      <Accordions>
+        <Accordion title="Service Commands">
+          ```bash
+          # Create service
+          docker service create --name <service_name> <image>
+
+          # List services
+          docker service ls
+
+          # Scale service
+          docker service scale <service_name>=<replicas>
+
+          # Remove service
+          docker service rm <service_name>
+          ```
+        </Accordion>
+        <Accordion title="Service Updates">
+          ```bash
+          # Update service
+          docker service update \
+            --image <new_image> \
+            --update-parallelism 2 \
+            --update-delay 10s \
+            <service_name>
+
+          # Rollback update
+          docker service rollback <service_name>
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Stack Deployment</h4>
+      
+      <Accordions>
+        <Accordion title="Stack Commands">
+          ```bash
+          # Deploy stack
+          docker stack deploy -c docker-compose.yml <stack_name>
+
+          # List stacks
+          docker stack ls
+
+          # List stack services
+          docker stack services <stack_name>
+
+          # Remove stack
+          docker stack rm <stack_name>
+          ```
+        </Accordion>
+        <Accordion title="Stack Management">
+          ```bash
+          # View stack tasks
+          docker stack ps <stack_name>
+
+          # Update stack
+          docker stack deploy -c docker-compose.yml <stack_name>
+
+          # Scale stack service
+          docker service scale <stack_name>_<service_name>=<replicas>
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+</Tabs>
+
+## Sources
+
+<div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+  <h4 className="font-bold mb-4">References</h4>
+  <ul className="list-disc pl-5 space-y-2">
+    <a href="https://docs.docker.com/" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+        Docker Documentation
+      </a>
+      - Official Docker documentation and guides
+    
+      <a href="https://docs.docker.com/engine/reference/commandline/cli/" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+        Docker CLI Reference
+      </a>
+      - Complete Docker command line reference
+
+    
+      <a href="https://docs.docker.com/compose/reference/" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+        Docker Compose Reference
+      </a>
+      - Docker Compose command line reference
+
+    
+      <a href="https://docs.docker.com/engine/swarm/" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+        Docker Swarm Documentation
+      </a>
+      - Docker Swarm mode documentation
+
+  </ul>
+</div>

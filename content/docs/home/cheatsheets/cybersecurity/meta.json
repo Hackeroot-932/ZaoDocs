@@ -1,7 +1,7 @@
 {
     "index": "Cybersecurity",
     "description": "Brief Guides of Cybersecurity Tools",
-    "icon": "FileSpreadsheet",
+    "icon": "BookLock",
     "root": false,
     "defaultOpen": false,
     "pages": [

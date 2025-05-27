@@ -1,10 +1,639 @@
 ---
 title: Regex
-description: Regex is a sequence of characters that defines a search pattern.
+description: A comprehensive guide to Regular Expressions (Regex)
+icon: "Regex"
 ---
 
-# Regex
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 
-Regex is a sequence of characters that defines a search pattern.
+![regex-image](./regex.jpg)
 
-## What is Regex?
+# Regular Expressions (Regex) Cheatsheet
+
+<Callout title="Regular Expressions" type="info">
+  Regular expressions (regex) are powerful patterns used to match character combinations in strings. They provide a way to search, match, and manipulate text based on specific patterns.
+</Callout>
+
+## 1. Basic Patterns
+
+<Tabs items={["Characters", "Character Classes", "Anchors", "Quantifiers"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Basic Characters</h4>
+      
+      <Accordions>
+        <Accordion title="Literal Characters">
+          ```regex
+          # Match exact characters
+          hello       # Matches "hello"
+          John Doe    # Matches "John Doe"
+          123         # Matches "123"
+          ```
+        </Accordion>
+        <Accordion title="Special Characters">
+          ```regex
+          .           # Matches any character except newline
+          \           # Escapes special characters
+          |           # Alternation (OR)
+          ()          # Grouping
+          []          # Character class
+          {}          # Quantifier
+          ^           # Start of line/string
+          $           # End of line/string
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Character Classes</h4>
+      
+      <Accordions>
+        <Accordion title="Basic Classes">
+          ```regex
+          \d          # Any digit [0-9]
+          \D          # Any non-digit [^0-9]
+          \w          # Word character [a-zA-Z0-9_]
+          \W          # Non-word character
+          \s          # Whitespace [ \t\n\r\f]
+          \S          # Non-whitespace
+          ```
+        </Accordion>
+        <Accordion title="Custom Classes">
+          ```regex
+          [aeiou]     # Any vowel
+          [^aeiou]    # Any non-vowel
+          [a-z]       # Any lowercase letter
+          [A-Z]       # Any uppercase letter
+          [0-9]       # Any digit
+          [a-zA-Z]    # Any letter
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Anchors</h4>
+      
+      <Accordions>
+        <Accordion title="Position Anchors">
+          ```regex
+          ^           # Start of line
+          $           # End of line
+          \A          # Start of string
+          \Z          # End of string
+          \b          # Word boundary
+          \B          # Non-word boundary
+          ```
+        </Accordion>
+        <Accordion title="Examples">
+          ```regex
+          ^Hello      # Matches "Hello" at start of line
+          world$      # Matches "world" at end of line
+          \bword\b    # Matches whole word "word"
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Quantifiers</h4>
+      
+      <Accordions>
+        <Accordion title="Basic Quantifiers">
+          ```regex
+          *           # Zero or more (greedy)
+          +           # One or more (greedy)
+          ?           # Zero or one (greedy)
+          {n}         # Exactly n times
+          {n,}        # n or more times
+          {n,m}       # Between n and m times
+          ```
+        </Accordion>
+        <Accordion title="Lazy Quantifiers">
+          ```regex
+          *?          # Zero or more (lazy)
+          +?          # One or more (lazy)
+          ??          # Zero or one (lazy)
+          {n}?        # Exactly n times (lazy)
+          {n,}?       # n or more times (lazy)
+          {n,m}?      # Between n and m times (lazy)
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+</Tabs>
+
+## 2. Advanced Patterns
+
+<Tabs items={["Groups", "Assertions", "Modifiers", "Special Constructs"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Groups and References</h4>
+      
+      <Accordions>
+        <Accordion title="Capturing Groups">
+          ```regex
+          (...)       # Capturing group
+          (?:...)     # Non-capturing group
+          (?<name>...)# Named capturing group
+          \1          # Backreference to group 1
+          \k<name>    # Backreference to named group
+          ```
+        </Accordion>
+        <Accordion title="Examples">
+          ```regex
+          (abc)+      # Matches repeated "abc"
+          (?:abc)+    # Same, but doesn't capture
+          (\w+)\s+\1  # Matches repeated word
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Lookaround Assertions</h4>
+      
+      <Accordions>
+        <Accordion title="Lookahead">
+          ```regex
+          (?=...)     # Positive lookahead
+          (?!...)     # Negative lookahead
+          ```
+        </Accordion>
+        <Accordion title="Lookbehind">
+          ```regex
+          (?<=...)    # Positive lookbehind
+          (?<!...)    # Negative lookbehind
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Pattern Modifiers</h4>
+      
+      <Accordions>
+        <Accordion title="Common Modifiers">
+          ```regex
+          (?i)        # Case-insensitive
+          (?m)        # Multiline mode
+          (?s)        # Dot matches newline
+          (?x)        # Extended (verbose)
+          ```
+        </Accordion>
+        <Accordion title="Combined Modifiers">
+          ```regex
+          (?im)       # Case-insensitive and multiline
+          (?ix)       # Case-insensitive and verbose
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Special Constructs</h4>
+      
+      <Accordions>
+        <Accordion title="Unicode Properties">
+          ```regex
+          \p{L}       # Any kind of letter
+          \p{N}       # Any kind of numeric character
+          \p{P}       # Any kind of punctuation
+          \p{Z}       # Any kind of whitespace
+          ```
+        </Accordion>
+        <Accordion title="POSIX Classes">
+          ```regex
+          [:alpha:]   # Alphabetic characters
+          [:digit:]   # Numeric characters
+          [:alnum:]   # Alphanumeric characters
+          [:space:]   # Whitespace characters
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+</Tabs>
+
+## 3. Common Patterns
+
+<Tabs items={["Validation", "Extraction", "Replacement", "Common Use Cases"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Validation Patterns</h4>
+      
+      <Accordions>
+        <Accordion title="Email">
+          ```regex
+          # Basic email validation
+          ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$
+
+          # More comprehensive email
+          ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,63}$
+          ```
+        </Accordion>
+        <Accordion title="URLs">
+          ```regex
+          # Basic URL
+          ^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$
+
+          # More comprehensive URL
+          ^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,63})([\/\w \.-]*)*\/?$
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Extraction Patterns</h4>
+      
+      <Accordions>
+        <Accordion title="Numbers">
+          ```regex
+          # Integer numbers
+          -?\d+
+
+          # Decimal numbers
+          -?\d*\.?\d+
+
+          # Scientific notation
+          -?\d*\.?\d+(?:[eE][+-]?\d+)?
+          ```
+        </Accordion>
+        <Accordion title="Dates">
+          ```regex
+          # DD/MM/YYYY
+          \d{2}\/\d{2}\/\d{4}
+
+          # YYYY-MM-DD
+          \d{4}-\d{2}-\d{2}
+
+          # Flexible date
+          (?:\d{4}|\d{2})[/-]\d{2}[/-]\d{2}
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Replacement Patterns</h4>
+      
+      <Accordions>
+        <Accordion title="Text Formatting">
+          ```regex
+          # Convert camelCase to snake_case
+          ([a-z0-9])([A-Z]) -> $1_$2
+
+          # Convert snake_case to camelCase
+          _([a-z]) -> \U$1
+          ```
+        </Accordion>
+        <Accordion title="String Cleanup">
+          ```regex
+          # Remove multiple spaces
+          \s+ -> ' '
+
+          # Remove HTML tags
+          <[^>]+> -> ''
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Common Use Cases</h4>
+      
+      <Accordions>
+        <Accordion title="Phone Numbers">
+          ```regex
+          # US Phone
+          ^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$
+
+          # International
+          ^\+?(\d{1,3})?[-. ]?\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$
+          ```
+        </Accordion>
+        <Accordion title="Passwords">
+          ```regex
+          # Basic password (8+ chars, 1 upper, 1 lower, 1 number)
+          ^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{8,}$
+
+          # Strong password (8+ chars, 1 upper, 1 lower, 1 number, 1 special)
+          ^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+</Tabs>
+
+## 4. Programming Language Examples
+
+<Tabs items={["JavaScript", "Python", "Java", "PHP"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">JavaScript Regex</h4>
+      
+      <Accordions>
+        <Accordion title="Basic Usage">
+          ```javascript
+          // Creating regex
+          let pattern = /pattern/flags;
+          let pattern = new RegExp('pattern', 'flags');
+
+          // Methods
+          string.match(pattern);
+          string.replace(pattern, replacement);
+          string.search(pattern);
+          string.split(pattern);
+          pattern.test(string);
+          pattern.exec(string);
+          ```
+        </Accordion>
+        <Accordion title="Examples">
+          ```javascript
+          // Email validation
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          emailRegex.test('user@example.com');
+
+          // Replace all occurrences
+          const text = 'hello world';
+          text.replace(/o/g, '0');  // 'hell0 w0rld'
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Python Regex</h4>
+      
+      <Accordions>
+        <Accordion title="Basic Usage">
+          ```python
+          import re
+
+          # Methods
+          re.match(pattern, string)    # Match at beginning
+          re.search(pattern, string)   # Search anywhere
+          re.findall(pattern, string)  # Find all occurrences
+          re.sub(pattern, repl, string)# Replace all matches
+          ```
+        </Accordion>
+        <Accordion title="Examples">
+          ```python
+          # Email validation
+          import re
+          email_pattern = r'^[^\s@]+@[^\s@]+\.[^\s@]+$'
+          if re.match(email_pattern, 'user@example.com'):
+              print('Valid email')
+
+          # Replace all occurrences
+          text = 'hello world'
+          new_text = re.sub(r'o', '0', text)  # 'hell0 w0rld'
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Java Regex</h4>
+      
+      <Accordions>
+        <Accordion title="Basic Usage">
+          ```java
+          import java.util.regex.*;
+
+          // Creating patterns
+          Pattern pattern = Pattern.compile("regex");
+          Matcher matcher = pattern.matcher(text);
+
+          // Methods
+          matcher.matches()     // Full string match
+          matcher.find()        // Find next match
+          matcher.group()       // Get matched text
+          matcher.replaceAll()  // Replace all matches
+          ```
+        </Accordion>
+        <Accordion title="Examples">
+          ```java
+          // Email validation
+          String email = "user@example.com";
+          boolean isValid = email.matches("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$");
+
+          // Replace all occurrences
+          String text = "hello world";
+          String newText = text.replaceAll("o", "0");  // "hell0 w0rld"
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">PHP Regex</h4>
+      
+      <Accordions>
+        <Accordion title="Basic Usage">
+          ```php
+          // PCRE functions
+          preg_match($pattern, $subject)
+          preg_match_all($pattern, $subject)
+          preg_replace($pattern, $replacement, $subject)
+          preg_split($pattern, $subject)
+          ```
+        </Accordion>
+        <Accordion title="Examples">
+          ```php
+          // Email validation
+          $email = "user@example.com";
+          if (preg_match("/^[^\s@]+@[^\s@]+\.[^\s@]+$/", $email)) {
+              echo "Valid email";
+          }
+
+          // Replace all occurrences
+          $text = "hello world";
+          $newText = preg_replace("/o/", "0", $text);  // "hell0 w0rld"
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+</Tabs>
+
+## 5. Best Practices
+
+<Tabs items={["Performance", "Maintainability", "Common Pitfalls", "Testing"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Performance Tips</h4>
+      
+      <Accordions>
+        <Accordion title="Optimization Techniques">
+          <ul className="list-disc pl-5">
+            <li>Avoid excessive backtracking</li>
+            <li>Use non-capturing groups (?:) when capture isn't needed</li>
+            <li>Be specific with character classes</li>
+            <li>Use appropriate quantifiers</li>
+            <li>Anchor patterns when possible</li>
+          </ul>
+        </Accordion>
+        <Accordion title="Examples">
+          ```regex
+          # Bad (excessive backtracking)
+          .*foo
+
+          # Good (minimal backtracking)
+          [^f]*foo
+
+          # Bad (capturing unnecessary groups)
+          (a|b)(c|d)
+
+          # Good (non-capturing when not needed)
+          (?:a|b)(?:c|d)
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Maintainability</h4>
+      
+      <Accordions>
+        <Accordion title="Documentation">
+          ```regex
+          # Use comments in verbose mode
+          (?x)
+          ^                    # Start of string
+          (?=.*[A-Z])         # At least one uppercase
+          (?=.*[a-z])         # At least one lowercase
+          (?=.*\d)            # At least one digit
+          [A-Za-z\d]{8,}      # At least 8 characters
+          $                    # End of string
+          ```
+        </Accordion>
+        <Accordion title="Modular Patterns">
+          ```regex
+          # Break down complex patterns
+          (?x)
+          (?<username>[a-z]+)  # Username part
+          @                    # @ symbol
+          (?<domain>[a-z]+)    # Domain part
+          \.                   # Dot
+          (?<tld>[a-z]{2,})   # Top-level domain
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Common Pitfalls</h4>
+      
+      <Accordions>
+        <Accordion title="Common Mistakes">
+          <ul className="list-disc pl-5">
+            <li>Greedy vs. Lazy quantifiers</li>
+            <li>Character class misuse</li>
+            <li>Incorrect anchoring</li>
+            <li>Catastrophic backtracking</li>
+            <li>Unicode handling</li>
+          </ul>
+        </Accordion>
+        <Accordion title="Solutions">
+          ```regex
+          # Greedy (matches too much)
+          .*"
+
+          # Lazy (matches minimally)
+          .*?"
+
+          # Bad anchoring
+          [A-Z]+
+
+          # Good anchoring
+          ^[A-Z]+$
+          ```
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Testing Strategies</h4>
+      
+      <Accordions>
+        <Accordion title="Test Cases">
+          <ul className="list-disc pl-5">
+            <li>Valid matches</li>
+            <li>Invalid matches</li>
+            <li>Edge cases</li>
+            <li>Performance tests</li>
+            <li>Unicode handling</li>
+          </ul>
+        </Accordion>
+        <Accordion title="Testing Tools">
+          <ul className="list-disc pl-5">
+            <li>regex101.com</li>
+            <li>regexr.com</li>
+            <li>debuggex.com</li>
+            <li>regexper.com</li>
+            <li>Unit testing frameworks</li>
+          </ul>
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+</Tabs>
+
+## Sources
+
+<div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+  <h4 className="font-bold mb-4">References</h4>
+  <ul className="list-disc pl-5 space-y-2">
+      <a href="https://www.rexegg.com/regex-quickstart.php" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+        RexEgg Quick-Start: Regex Cheat Sheet
+      </a>
+      - Comprehensive regex reference with detailed examples and explanations
+      
+      <a href="https://cheatography.com/davechild/cheat-sheets/regular-expressions/" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+        Regular Expressions Cheat Sheet by DaveChild
+      </a>
+      - Quick reference guide for regex symbols, ranges, and grouping
+
+      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions/Cheatsheet" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+        MDN Web Docs - Regular Expressions Cheatsheet
+      </a>
+      - Mozilla's official guide to regex syntax and capabilities
+
+      <a href="https://remram44.github.io/regex-cheatsheet/regex.html" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+        Regular Expression Syntax Cheat Sheet
+      </a>
+      - Detailed breakdown of regex syntax across different implementations
+
+      <a href="https://www.dataquest.io/cheat-sheet/regular-expressions-cheat-sheet/" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+        Dataquest Regular Expressions Cheat Sheet
+      </a>
+      - Practical guide for data science and text processing applications
+
+      <a href="https://regex101.com" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+        Regex101
+      </a>
+      - Interactive regex testing and debugging tool
+  </ul>
+</div>
