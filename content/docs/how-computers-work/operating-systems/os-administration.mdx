@@ -1,0 +1,488 @@
+---
+title: "OS Administration"
+description: "A comprehensive guide to Operating System Administration"
+icon: Shield
+---
+
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
+
+<Callout title="System Administration" type="info">
+  Operating System Administration involves managing and maintaining computer systems to ensure their efficient, secure, and reliable operation. This includes user management, storage administration, security controls, and system maintenance tasks.
+</Callout>
+
+## 1. Introduction to OS Administration
+
+<div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 my-4">
+  <p>Operating System Administration extends beyond the basic OS functions (process, memory, file system, I/O, security management) to include system-wide management tasks that require human intervention.</p>
+
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Basic User Scenario</h4>
+      <ul className="list-disc pl-5">
+        <li>Minimal administration needs</li>
+        <li>Pre-configured system</li>
+        <li>Limited administrative functions</li>
+        <li>Single-user environment</li>
+      </ul>
+    </div>
+    
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Enterprise Scenario</h4>
+      <ul className="list-disc pl-5">
+        <li>Complex administration requirements</li>
+        <li>Multiple user management</li>
+        <li>Security policies</li>
+        <li>Resource organization</li>
+      </ul>
+    </div>
+  </div>
+
+  <p className="mt-4">In professional environments, OS administration is considered essential and typically involves:</p>
+  <ul className="list-disc pl-5">
+    <li>Administrative planning by organization leaders</li>
+    <li>Execution of administrative tasks by system administrators</li>
+    <li>Implementation of security policies</li>
+    <li>Resource management and optimization</li>
+  </ul>
+</div>
+
+## 2. Storage Device Administration
+
+<Tabs items={["Overview", "Windows Tools", "Linux Tools", "Advanced Features"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Storage Management Tasks</h4>
+      <ul className="list-disc pl-5">
+        <li>Partitioning scheme selection</li>
+        <li>Partition structure modification</li>
+        <li>File system selection</li>
+        <li>Basic and dynamic disk management</li>
+        <li>Virtual hard disk administration</li>
+      </ul>
+
+      <div className="mt-4">
+        <h5 className="font-bold">Third-Party Tools</h5>
+        <ul className="list-disc pl-5">
+          <li>Acronis Disk Director</li>
+          <li>Paragon Hard Disk Manager</li>
+          <li>AOMEI Partition Assistant</li>
+          <li>EaseUS Partition Master</li>
+          <li>MiniTool Partition Wizard</li>
+        </ul>
+      </div>
+    </div>
+  </Tab>
+
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Windows Storage Management</h4>
+      
+      <Accordions>
+        <Accordion title="Command Line Interface (CLI)">
+          <p>The <code>diskpart</code> utility requires administrator privileges and provides comprehensive disk management capabilities.</p>
+          <pre className="bg-gray-100 dark:bg-gray-900 p-4 rounded-lg overflow-x-auto text-sm my-2">
+{`# Launch diskpart
+diskpart
+
+# List available disks
+list disk
+
+# Select a disk
+select disk 0
+
+# List partitions
+list partition`}
+          </pre>
+        </Accordion>
+
+        <Accordion title="Graphical Interface (GUI)">
+          <p>The Disk Management console (<code>diskmgmt.msc</code>) provides a visual interface for:</p>
+          <ul className="list-disc pl-5">
+            <li>Viewing disk layout</li>
+            <li>Creating and deleting partitions</li>
+            <li>Formatting volumes</li>
+            <li>Assigning drive letters</li>
+            <li>Converting disk types</li>
+          </ul>
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Linux Storage Management</h4>
+      
+      <p>Linux provides several command-line tools for disk management:</p>
+      
+      <pre className="bg-gray-100 dark:bg-gray-900 p-4 rounded-lg overflow-x-auto text-sm my-2">
+{`# fdisk - traditional partitioning tool
+sudo fdisk -l
+
+# parted - modern partitioning tool
+sudo parted -l
+
+# mkfs - create filesystems
+sudo mkfs.ext4 /dev/sda1`}
+      </pre>
+
+      <p className="mt-4">GUI tools vary by distribution but commonly include:</p>
+      <ul className="list-disc pl-5">
+        <li>GNOME Disks</li>
+        <li>GParted</li>
+        <li>KDE Partition Manager</li>
+      </ul>
+    </div>
+  </Tab>
+
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Advanced Storage Features</h4>
+      
+      <Accordions>
+        <Accordion title="Basic vs Dynamic Disks">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <h5 className="font-bold">Basic Disks</h5>
+              <ul className="list-disc pl-5">
+                <li>Traditional partition structure</li>
+                <li>Simple management</li>
+                <li>Compatible with all Windows versions</li>
+                <li>Suitable for most users</li>
+              </ul>
+            </div>
+            <div>
+              <h5 className="font-bold">Dynamic Disks</h5>
+              <ul className="list-disc pl-5">
+                <li>Advanced features</li>
+                <li>Volume spanning</li>
+                <li>RAID configurations</li>
+                <li>Better for servers</li>
+              </ul>
+            </div>
+          </div>
+        </Accordion>
+
+        <Accordion title="Virtual Hard Disks (VHD)">
+          <p>Virtual Hard Disks facilitate:</p>
+          <ul className="list-disc pl-5">
+            <li>Direct data exchange between physical and virtual machines</li>
+            <li>Cross-platform compatibility between different hypervisors</li>
+            <li>Backup and recovery operations</li>
+            <li>Testing and development environments</li>
+          </ul>
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+</Tabs>
+
+## 3. Security Administration
+
+<Callout title="Security Management" type="warn">
+  Security administration in modern operating systems relies on two fundamental pillars: user account management and file system permissions. Both must be properly configured to ensure system security.
+</Callout>
+
+<div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 my-4">
+  <h4 className="font-bold mb-2">Security Components</h4>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800">
+      <h5 className="font-bold text-blue-600 dark:text-blue-400">User Account Management</h5>
+      <ul className="list-disc pl-5">
+        <li>User creation and deletion</li>
+        <li>Password policies</li>
+        <li>Group management</li>
+        <li>Access level control</li>
+      </ul>
+    </div>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800">
+      <h5 className="font-bold text-green-600 dark:text-green-400">File System Security</h5>
+      <ul className="list-disc pl-5">
+        <li>Permission assignment</li>
+        <li>Access control lists (ACLs)</li>
+        <li>File ownership</li>
+        <li>Inheritance rules</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+### 3.1 User Account Administration
+
+<Tabs items={["Access Levels", "Management Tools", "Special Accounts", "UAC"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">User Access Levels</h4>
+      
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+          <h5 className="font-bold">Administrator</h5>
+          <ul className="list-disc pl-5">
+            <li>Full system control</li>
+            <li>Configuration management</li>
+            <li>User management</li>
+            <li>Software installation</li>
+          </ul>
+        </div>
+        
+        <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+          <h5 className="font-bold">Standard User</h5>
+          <ul className="list-disc pl-5">
+            <li>Limited permissions</li>
+            <li>Personal file access</li>
+            <li>Application usage</li>
+            <li>Profile customization</li>
+          </ul>
+        </div>
+        
+        <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+          <h5 className="font-bold">Guest</h5>
+          <ul className="list-disc pl-5">
+            <li>Minimal access</li>
+            <li>Temporary usage</li>
+            <li>No system changes</li>
+            <li>Limited file access</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </Tab>
+
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">User Management Tools</h4>
+      
+      <Accordions>
+        <Accordion title="Windows Tools">
+          <ul className="list-disc pl-5">
+            <li><code>net user</code> and <code>net localgroup</code> commands</li>
+            <li>Settings → Accounts (Basic)</li>
+            <li><code>control userpasswords</code> (Level 1)</li>
+            <li><code>netplwiz</code> (Level 2)</li>
+            <li><code>lusrmgr.msc</code> (Advanced)</li>
+          </ul>
+        </Accordion>
+        
+        <Accordion title="Linux Tools">
+          <ul className="list-disc pl-5">
+            <li>GUI: Users and Groups settings</li>
+            <li>Commands: <code>useradd</code>, <code>usermod</code>, <code>userdel</code></li>
+            <li>Group management: <code>groupadd</code>, <code>groupmod</code>, <code>groupdel</code></li>
+            <li>Configuration files: <code>/etc/passwd</code>, <code>/etc/group</code></li>
+          </ul>
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Special System Accounts</h4>
+      
+      <Accordions>
+        <Accordion title="Administrator Account">
+          <ul className="list-disc pl-5">
+            <li>Highest privilege level (except SYSTEM)</li>
+            <li>Disabled by default in modern Windows</li>
+            <li>No password when enabled</li>
+            <li>Cannot be deleted</li>
+            <li>Used in Safe Mode</li>
+          </ul>
+        </Accordion>
+        
+        <Accordion title="Guest Account">
+          <ul className="list-disc pl-5">
+            <li>Lowest privilege level</li>
+            <li>Disabled by default</li>
+            <li>No password required</li>
+            <li>Temporary access only</li>
+            <li>Limited system access</li>
+          </ul>
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">User Account Control (UAC)</h4>
+      
+      <p>UAC is a security feature introduced in Windows Vista that helps prevent unauthorized changes to the system.</p>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+        <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+          <h5 className="font-bold">UAC Levels</h5>
+          <ul className="list-disc pl-5">
+            <li>Never notify (minimum)</li>
+            <li>Notify without dimming (medium)</li>
+            <li>Notify with dimming (default)</li>
+            <li>Always notify (maximum)</li>
+          </ul>
+        </div>
+        
+        <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+          <h5 className="font-bold">Key Features</h5>
+          <ul className="list-disc pl-5">
+            <li>Elevation prompts</li>
+            <li>Admin approval mode</li>
+            <li>Application manifests</li>
+            <li>Protected resources</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </Tab>
+</Tabs>
+
+### 3.2 File System Permissions
+
+<Tabs items={["ACL Basics", "Permission Types", "Inheritance", "Ownership"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Access Control Lists (ACLs)</h4>
+      
+      <p>ACLs define who can access resources and what they can do with them. The process follows these steps:</p>
+      
+      <Steps>
+        <Step>
+          <h5>Access Request</h5>
+          <p>User requests access to a resource</p>
+        </Step>
+        <Step>
+          <h5>SID Check</h5>
+          <p>System checks user's Security Identifier in ACL</p>
+        </Step>
+        <Step>
+          <h5>Group Check</h5>
+          <p>If no user SID, system checks group memberships</p>
+        </Step>
+        <Step>
+          <h5>Permission Evaluation</h5>
+          <p>System evaluates allowed actions for matching SIDs</p>
+        </Step>
+        <Step>
+          <h5>Access Decision</h5>
+          <p>System grants or denies access based on ACL entries</p>
+        </Step>
+      </Steps>
+    </div>
+  </Tab>
+
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Permission Types</h4>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+          <h5 className="font-bold">Explicit Permissions</h5>
+          <ul className="list-disc pl-5">
+            <li>Directly assigned to resource</li>
+            <li>Override inherited permissions</li>
+            <li>Highest priority in conflicts</li>
+            <li>Manually configured</li>
+          </ul>
+        </div>
+        
+        <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+          <h5 className="font-bold">Inherited Permissions</h5>
+          <ul className="list-disc pl-5">
+            <li>Received from parent object</li>
+            <li>Lower priority than explicit</li>
+            <li>Automatically propagated</li>
+            <li>Shown in gray in Windows</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div className="mt-4">
+        <h5 className="font-bold">Permission Priority (Highest to Lowest)</h5>
+        <ol className="list-decimal pl-5">
+          <li>Explicit Deny</li>
+          <li>Explicit Allow</li>
+          <li>Inherited Deny</li>
+          <li>Inherited Allow</li>
+        </ol>
+      </div>
+    </div>
+  </Tab>
+
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Permission Inheritance</h4>
+      
+      <Accordions>
+        <Accordion title="Inheritance Basics">
+          <ul className="list-disc pl-5">
+            <li>New objects inherit parent permissions</li>
+            <li>Ensures consistent access control</li>
+            <li>Simplifies permission management</li>
+            <li>Applies to subfolders and files</li>
+          </ul>
+        </Accordion>
+        
+        <Accordion title="Breaking Inheritance">
+          <p>Two options when breaking inheritance:</p>
+          <ul className="list-disc pl-5">
+            <li>Copy permissions (convert to explicit)</li>
+            <li>Remove inherited permissions</li>
+          </ul>
+          <p className="mt-2 text-yellow-600 dark:text-yellow-400">Warning: Maintain system SIDs (SYSTEM, CREATOR OWNER) for proper operation</p>
+        </Accordion>
+        
+        <Accordion title="Replacing Child Permissions">
+          <p>The "Replace all child object permissions" option:</p>
+          <ul className="list-disc pl-5">
+            <li>Forces inheritance on all children</li>
+            <li>Overwrites existing permissions</li>
+            <li>Affects all subfolders and files</li>
+            <li>Cannot be easily undone</li>
+          </ul>
+        </Accordion>
+      </Accordions>
+    </div>
+  </Tab>
+
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Resource Ownership</h4>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+          <h5 className="font-bold">Owner Rights</h5>
+          <ul className="list-disc pl-5">
+            <li>Full control over resource</li>
+            <li>Can modify permissions</li>
+            <li>Can transfer ownership</li>
+            <li>Cannot be locked out</li>
+          </ul>
+        </div>
+        
+        <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+          <h5 className="font-bold">CREATOR OWNER</h5>
+          <ul className="list-disc pl-5">
+            <li>Special security principal</li>
+            <li>Represents resource creator</li>
+            <li>Automatic assignment</li>
+            <li>Inheritable permissions</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </Tab>
+</Tabs>
+
+## Sources
+
+<div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 my-4">
+  <ul className="list-disc pl-5">
+    <li><a href="https://tldp.org/LDP/sag/html/index.html" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-200">Linux Documentation Project: System Administration Guide</a></li>
+    <li><a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-200">Red Hat Enterprise Linux Documentation</a></li>
+    <li><a href="https://ubuntu.com/server/docs" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-200">Ubuntu Server Guide</a></li>
+    <li><a href="https://www.comptia.org/training/books/security-sy0-601-study-guide" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-200">CompTIA Security+ Study Guide</a></li>
+    <li><a href="https://www.isc2.org/Training/Self-Study-Resources" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-200">CISSP Official Study Guide</a></li>
+    <li><a href="https://docs.kernel.org/admin-guide/index.html" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-200">Linux Kernel Documentation: Admin Guide</a></li>
+    <li><a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-200">Windows Server Administration Commands</a></li>
+  </ul>
+</div> 

@@ -8,6 +8,7 @@
       "numbers", 
       "computer-arch",
       "computer-boot",
-      "os-deployment"  
+      "os-deployment",
+      "hardware"
     ]
   }

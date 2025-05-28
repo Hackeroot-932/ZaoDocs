@@ -8,6 +8,8 @@
       "intro-to-os", 
       "intro-virtualization",
       "os-functions",
-      "os-boot"
+      "os-boot",
+      "os-administration",
+      "raids"
     ]
   }

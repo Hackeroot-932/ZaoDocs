@@ -1,11 +1,320 @@
 ---
 title: Shodan Query Filters
-description: Shodan Query Filters
+description: A comprehensive guide to Shodan search queries and filters
 icon: "Radar"
 ---
 
-# Shodan Query Filters
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 
-Shodan Query Filters
+<div style={{ width: '60%', height: 'auto', margin: '0 auto' }}>
+  ![shodan-qf](./shodan.svg)
+</div>
 
-## What is Shodan Query Filters?
+
+# Shodan Query Filters Cheatsheet
+
+<Callout title="What is Shodan?" type="info">
+  Shodan is a search engine for Internet-connected devices (IoT, servers, industrial equipment, etc.). Unlike traditional search engines that index web content, Shodan scans the Internet for devices, collecting information about their configuration, services, and potential vulnerabilities.
+</Callout>
+
+## 1. Basic Search Filters
+
+<Tabs items={["Network", "Location", "Services", "Device Info"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Network Filters</h4>
+      
+      <h5 className="font-semibold mt-4 mb-2">IP and Network</h5>
+      ```shodan
+      ip:1.2.3.4           # Specific IP address
+      net:1.2.3.0/24       # CIDR range
+      port:80              # Specific port number
+      ```
+
+      <h5 className="font-semibold mt-4 mb-2">Organization</h5>
+      ```shodan
+      org:"Microsoft"      # Organization name
+      asn:AS15169         # Autonomous System Number
+      isp:"Comcast"       # Internet Service Provider
+      ```
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Location Filters</h4>
+      
+      <h5 className="font-semibold mt-4 mb-2">Geographic Location</h5>
+      ```shodan
+      country:"US"         # Two-letter country code
+      city:"New York"      # City name
+      region:"California"  # State/Region name
+      ```
+
+      <h5 className="font-semibold mt-4 mb-2">Coordinates</h5>
+      ```shodan
+      geo:"40.7128,-74.0060"  # Latitude,Longitude
+      ```
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Service Filters</h4>
+      
+      <h5 className="font-semibold mt-4 mb-2">Web Services</h5>
+      ```shodan
+      http.title:"Admin"   # Page title
+      http.status:200      # HTTP status code
+      http.component:"PHP" # Web technology
+      ```
+
+      <h5 className="font-semibold mt-4 mb-2">SSL/TLS</h5>
+      ```shodan
+      ssl:true             # Has SSL/TLS
+      ssl.cert.expired:true # Expired certificates
+      ssl.version:"TLSv1"  # SSL/TLS version
+      ```
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Device Information</h4>
+      
+      <h5 className="font-semibold mt-4 mb-2">Operating System</h5>
+      ```shodan
+      os:"Windows"         # Operating system
+      product:"Apache"     # Software product
+      version:"2.4.41"    # Software version
+      ```
+
+      <h5 className="font-semibold mt-4 mb-2">Device Type</h5>
+      ```shodan
+      device:"router"      # Device type
+      hostname:"example.com" # Device hostname
+      ```
+    </div>
+  </Tab>
+</Tabs>
+
+## 2. Advanced Search Techniques
+
+<Tabs items={["Vulnerabilities", "Authentication", "IoT Devices", "Industrial Systems"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Vulnerability Search</h4>
+      
+      <h5 className="font-semibold mt-4 mb-2">CVE Search</h5>
+      ```shodan
+      vuln:CVE-2014-0160   # Specific CVE (Heartbleed)
+      has_vuln:true        # Any vulnerability
+      ```
+
+      <h5 className="font-semibold mt-4 mb-2">Common Vulnerabilities</h5>
+      ```shodan
+      "default password"    # Default credentials
+      ssl.cert.expired:true # Expired SSL certificates
+      ```
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Authentication Search</h4>
+      
+      <h5 className="font-semibold mt-4 mb-2">Open Services</h5>
+      ```shodan
+      "authentication disabled" # No auth required
+      "Anonymous FTP"      # Anonymous FTP access
+      ```
+
+      <h5 className="font-semibold mt-4 mb-2">Login Pages</h5>
+      ```shodan
+      http.title:"Login"   # Login pages
+      http.title:"Admin"   # Admin panels
+      ```
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">IoT Device Search</h4>
+      
+      <h5 className="font-semibold mt-4 mb-2">Cameras</h5>
+      ```shodan
+      product:"Hikvision"  # Hikvision cameras
+      "webcam"             # Generic webcams
+      port:"554" has_screenshot:true # RTSP streams
+      ```
+
+      <h5 className="font-semibold mt-4 mb-2">Smart Devices</h5>
+      ```shodan
+      "Raspberry Pi"       # Raspberry Pi devices
+      "Arduino"            # Arduino devices
+      ```
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Industrial Systems</h4>
+      
+      <h5 className="font-semibold mt-4 mb-2">SCADA/ICS</h5>
+      ```shodan
+      "Schneider Electric" # Schneider devices
+      "Siemens"           # Siemens devices
+      port:502            # Modbus port
+      ```
+
+      <h5 className="font-semibold mt-4 mb-2">Building Systems</h5>
+      ```shodan
+      "BACnet"            # Building Automation
+      "Niagara"           # Niagara Framework
+      ```
+    </div>
+  </Tab>
+</Tabs>
+
+## 3. Common Use Cases
+
+<Tabs items={["Web Servers", "Databases", "Network Services", "Security Devices"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Web Server Search</h4>
+      
+      ```shodan
+      # Apache servers in the US
+      apache country:"US"
+
+      # Nginx with specific version
+      product:"nginx" version:"1.18.0"
+
+      # WordPress sites
+      http.component:"WordPress"
+      ```
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Database Search</h4>
+      
+      ```shodan
+      # MongoDB instances
+      product:"MongoDB" port:27017
+
+      # MySQL servers
+      product:"MySQL" port:3306
+
+      # Elasticsearch clusters
+      product:"Elasticsearch" port:9200
+      ```
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Network Service Search</h4>
+      
+      ```shodan
+      # SSH servers
+      port:22 "SSH"
+
+      # RDP servers
+      port:3389 "Remote Desktop"
+
+      # VPN endpoints
+      "vpn" port:1194
+      ```
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Security Device Search</h4>
+      
+      ```shodan
+      # Firewalls
+      product:"pfsense"
+      product:"fortinet"
+
+      # Security cameras
+      product:"Axis" port:80
+      product:"Hikvision" port:80
+      ```
+    </div>
+  </Tab>
+</Tabs>
+
+## 4. CLI Commands
+
+<Tabs items={["Basic Commands", "Search Commands", "Analysis Commands", "Download Commands"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Basic CLI Commands</h4>
+      
+      ```bash
+      # Show host information
+      shodan host 8.8.8.8
+
+      # Show your API info
+      shodan info
+
+      # Count results
+      shodan count apache
+      ```
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Search Commands</h4>
+      
+      ```bash
+      # Basic search
+      shodan search apache
+
+      # Search with filters
+      shodan search "product:nginx country:DE"
+
+      # Search with specific fields
+      shodan search --fields ip_str,port,org apache
+      ```
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Analysis Commands</h4>
+      
+      ```bash
+      # Get statistics
+      shodan stats --facets country apache
+
+      # Check if IP is a honeypot
+      shodan honeyscore 1.2.3.4
+
+      # Scan your network
+      shodan scan submit 1.2.3.0/24
+      ```
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Download Commands</h4>
+      
+      ```bash
+      # Download search results
+      shodan download results.json.gz apache
+
+      # Parse downloaded data
+      shodan parse results.json.gz
+
+      # Convert data to different format
+      shodan convert results.json.gz csv
+      ```
+    </div>
+  </Tab>
+</Tabs>
+
+## Sources
+
+1. [Official Shodan Documentation](https://help.shodan.io/)
+2. [Shodan CLI Documentation](https://cli.shodan.io/)
+3. [Shodan API Documentation](https://developer.shodan.io/api)
+4. [Shodan Blog](https://blog.shodan.io/)
+5. [Shodan Cheat Sheet by Sir Slammington](https://cheatography.com/sir-slammington/cheat-sheets/shodan/)
+6. [Shodan Dork Cheat Sheet by DenizHalil](https://denizhalil.com/2023/12/19/shodan-dork-cheat-sheet/)
+7. [Shodan Cheat Sheet by 00xNetrunner](https://github.com/00xNetrunner/Shodan_Cheet-Sheet/blob/main/Shodan_Cheat-Sheet.md)

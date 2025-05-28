@@ -1,12 +1,170 @@
 ---
 title: Programming Basics
 description: Guide of the basics of programming
+icon: Code
 ---
 
-# Introduction
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 
-This is the introduction to the programming basics.
+## Introduction to Programming
 
-## What is Programming?
+<div className="p-4 border rounded-lg bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 my-6 shadow-md">
+  <p className="text-center text-lg font-semibold mb-4">Understanding the Building Blocks of Programming</p>
+  
+  <Accordions>
+    <Accordion title="What is Programming?">
+      <p>Programming is the process of creating a set of instructions (called a program) that tells a computer how to perform a task. It involves:</p>
+      <ul className="list-disc pl-5">
+        <li>Problem solving and logical thinking</li>
+        <li>Understanding computer systems and their capabilities</li>
+        <li>Writing clear and efficient instructions</li>
+        <li>Testing and debugging code</li>
+        <li>Continuous learning and adaptation</li>
+      </ul>
+    </Accordion>
+    
+    <Accordion title="Core Programming Concepts">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+        <div className="p-4 border rounded-lg bg-white dark:bg-gray-800">
+          <h5 className="font-bold">Basic Elements</h5>
+          <ul className="list-disc pl-5">
+            <li>Variables and Data Types</li>
+            <li>Operators and Expressions</li>
+            <li>Control Structures</li>
+            <li>Functions and Methods</li>
+            <li>Arrays and Collections</li>
+          </ul>
+        </div>
+        
+        <div className="p-4 border rounded-lg bg-white dark:bg-gray-800">
+          <h5 className="font-bold">Advanced Concepts</h5>
+          <ul className="list-disc pl-5">
+            <li>Object-Oriented Programming</li>
+            <li>Data Structures</li>
+            <li>Algorithms</li>
+            <li>Error Handling</li>
+            <li>Code Organization</li>
+          </ul>
+        </div>
+      </div>
+    </Accordion>
+  </Accordions>
+</div>
 
-Programming is the process of creating a set of instructions that tell a computer what to do.
+## Programming Paradigms
+
+<Tabs items={["Procedural", "Object-Oriented", "Functional", "Event-Driven"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Procedural Programming</h4>
+      <p>A programming paradigm based on the concept of procedure calls, where programs are structured as sequences of instructions grouped into procedures.</p>
+      
+      <ul className="list-disc pl-5 mt-2">
+        <li>Emphasizes breaking down programs into procedures (functions)</li>
+        <li>Uses a top-down approach to problem solving</li>
+        <li>Focuses on data and operations separately</li>
+        <li>Examples: C, Pascal, BASIC</li>
+      </ul>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Object-Oriented Programming</h4>
+      <p>A programming paradigm based on the concept of "objects" that contain data and code.</p>
+      
+      <ul className="list-disc pl-5 mt-2">
+        <li>Organizes code into objects that contain both data and behavior</li>
+        <li>Supports inheritance, encapsulation, and polymorphism</li>
+        <li>Promotes code reusability and modularity</li>
+        <li>Examples: Java, C++, Python</li>
+      </ul>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Functional Programming</h4>
+      <p>A programming paradigm that treats computation as the evaluation of mathematical functions.</p>
+      
+      <ul className="list-disc pl-5 mt-2">
+        <li>Emphasizes immutable data and pure functions</li>
+        <li>Avoids changing state and mutable data</li>
+        <li>Supports higher-order functions and recursion</li>
+        <li>Examples: Haskell, Lisp, Erlang</li>
+      </ul>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Event-Driven Programming</h4>
+      <p>A programming paradigm where the flow of the program is determined by events.</p>
+      
+      <ul className="list-disc pl-5 mt-2">
+        <li>Program flow is determined by user actions or system events</li>
+        <li>Widely used in graphical user interfaces</li>
+        <li>Supports asynchronous programming</li>
+        <li>Examples: JavaScript, Visual Basic</li>
+      </ul>
+    </div>
+  </Tab>
+</Tabs>
+
+## Contents
+
+<div className="p-4 border rounded-lg bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 my-6 shadow-md">
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 hover:shadow-lg transition-shadow">
+      <h3 className="font-bold text-xl mb-2 text-blue-600 dark:text-blue-400">
+        <a href="/docs/programming/basics/introduction" className="hover:underline">Introduction</a>
+      </h3>
+      <p className="text-gray-600 dark:text-gray-300">
+        Get started with the fundamentals of programming. Learn about basic concepts, syntax, and how to write your first programs.
+      </p>
+    </div>
+
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 hover:shadow-lg transition-shadow">
+      <h3 className="font-bold text-xl mb-2 text-green-600 dark:text-green-400">
+        <a href="/docs/programming/basics/dsa" className="hover:underline">DSA</a>
+      </h3>
+      <p className="text-gray-600 dark:text-gray-300">
+        Explore essential data structures and algorithms. Learn how to organize data efficiently and solve complex programming problems.
+      </p>
+    </div>
+
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 hover:shadow-lg transition-shadow">
+      <h3 className="font-bold text-xl mb-2 text-purple-600 dark:text-purple-400">
+        <a href="/docs/programming/basics/git-vcs" className="hover:underline">Version Control Systems</a>
+      </h3>
+      <p className="text-gray-600 dark:text-gray-300">
+        Master Git and version control. Learn how to track changes, collaborate with others, and manage your code effectively.
+      </p>
+    </div>
+  </div>
+</div>
+
+## Best Practices in Programming
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+  <div className="p-4 border rounded-lg bg-white dark:bg-gray-800">
+    <h5 className="font-bold text-blue-600 dark:text-blue-400">Code Quality</h5>
+    <ul className="list-disc pl-5">
+      <li>Write clean, readable code</li>
+      <li>Use meaningful variable names</li>
+      <li>Comment your code appropriately</li>
+      <li>Follow consistent formatting</li>
+      <li>Keep functions small and focused</li>
+    </ul>
+  </div>
+  
+  <div className="p-4 border rounded-lg bg-white dark:bg-gray-800">
+    <h5 className="font-bold text-green-600 dark:text-green-400">Development Process</h5>
+    <ul className="list-disc pl-5">
+      <li>Plan before coding</li>
+      <li>Test your code thoroughly</li>
+      <li>Use version control (e.g., Git)</li>
+      <li>Document your code</li>
+      <li>Review and refactor regularly</li>
+    </ul>
+  </div>
+</div>

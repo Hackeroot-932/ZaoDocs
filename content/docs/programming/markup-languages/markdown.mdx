@@ -1,10 +1,403 @@
 ---
 title: Markdown
-description: Markdown
+description: A comprehensive guide to Markdown syntax and usage
+icon: FileText
 ---
 
-# Markdown
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 
-Markdown
+<Callout title="What is Markdown?" type="info">
+  Markdown is a lightweight markup language created by John Gruber in 2004 for creating formatted text using a plain-text editor. It's designed to be easy to read, write, and convert to HTML.
+</Callout>
 
-## What is Markdown?
+## Introduction to Markdown
+
+<div className="p-4 border rounded-lg bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 my-6 shadow-md">
+  <p>Markdown was created in 2004 by John Gruber in collaboration with Aaron Swartz. Their goal was to create a simple text formatting syntax that would be easy to read and write, while still being convertible to HTML.</p>
+
+  <div className="mt-4">
+    <h4 className="font-semibold mb-2">How It Works</h4>
+    <p>Markdown works by using simple and intuitive symbols to format text:</p>
+    <ul className="list-disc pl-5 mt-2">
+      <li>Special characters like asterisks and underscores for text styling</li>
+      <li>Simple punctuation marks for creating headers and lists</li>
+      <li>Basic symbols for adding links and images</li>
+    </ul>
+  </div>
+
+  <div className="mt-4">
+    <h4 className="font-semibold mb-2">Processing</h4>
+    <p>When you write in Markdown, the text goes through a conversion process:</p>
+    <ol className="list-decimal pl-5 mt-2">
+      <li>The Markdown text is parsed by a Markdown processor (or parser)</li>
+      <li>The processor identifies the special syntax and formatting markers</li>
+      <li>These markers are converted into corresponding HTML elements</li>
+      <li>The resulting HTML can be displayed by any web browser</li>
+    </ol>
+  </div>
+
+  <div className="mt-4">
+    <h4 className="font-semibold mb-2">Evolution</h4>
+    <p>Since its creation, Markdown has evolved significantly:</p>
+    <ul className="list-disc pl-5 mt-2">
+      <li>Multiple flavors and extensions have been developed</li>
+      <li>GitHub created its own version called GitHub Flavored Markdown</li>
+      <li>CommonMark was established in 2014 to standardize the syntax</li>
+      <li>Modern implementations include features like tables and task lists</li>
+    </ul>
+  </div>
+</div>
+
+## Markdown Syntax Cheatsheet
+
+<Tabs items={["Basic Syntax", "Extended Syntax", "Formatting", "Advanced Features", "HTML & Special"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Headers</h4>
+      ```markdown
+      # H1 Heading
+      ## H2 Heading
+      ### H3 Heading
+      #### H4 Heading
+      ##### H5 Heading
+      ###### H6 Heading
+
+      Alternative H1
+      =============
+      
+      Alternative H2
+      -------------
+      ```
+
+      <h4 className="font-bold mb-2 mt-4 text-blue-600 dark:text-blue-400">Paragraphs and Line Breaks</h4>
+      ```markdown
+      This is a paragraph.
+
+      This is another paragraph.
+
+      This line has a line break  
+      (two spaces at the end).
+
+      This line has a hard break.\
+      (backslash at the end)
+      ```
+
+      <h4 className="font-bold mb-2 mt-4 text-blue-600 dark:text-blue-400">Emphasis</h4>
+      ```markdown
+      *Italic text* or _italic text_
+      **Bold text** or __bold text__
+      ***Bold and italic*** or ___bold and italic___
+      ~~Strikethrough text~~
+      ==Highlighted text== (some flavors)
+      ```
+
+      <h4 className="font-bold mb-2 mt-4 text-blue-600 dark:text-blue-400">Basic Lists</h4>
+      ```markdown
+      1. First ordered item
+      2. Second ordered item
+         * Unordered sub-item
+         * Another sub-item
+      3. Third ordered item
+      
+      - Unordered item
+      * Another unordered item
+      + Yet another item
+        - Sub-item 1
+        - Sub-item 2
+      ```
+
+      <h4 className="font-bold mb-2 mt-4 text-blue-600 dark:text-blue-400">Basic Links</h4>
+      ```markdown
+      [Basic link](https://www.example.com)
+      [Link with title](https://www.example.com "Link title")
+      <https://www.example.com> (Auto-linked URL)
+      <email@example.com> (Auto-linked email)
+      ```
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Tables</h4>
+      ````markdown
+      | Header 1 | Header 2 | Header 3 |
+      |----------|:--------:|---------:|
+      | Left     | Center   | Right    |
+      | aligned  | aligned  | aligned  |
+
+      | Simple | Table |
+      |--------|-------|
+      | Cell 1 | Cell 2|
+      ````
+
+      <h4 className="font-bold mb-2 mt-4 text-green-600 dark:text-green-400">Code Blocks</h4>
+      ````markdown
+      ```javascript
+      function example() {
+        console.log('Syntax highlighted code block');
+      }
+      ```
+
+      ~~~python
+      def example():
+          print("Alternative code fence")
+      ~~~
+
+      `inline code`
+      ``code with `backticks` inside``
+      ````
+
+      <h4 className="font-bold mb-2 mt-4 text-green-600 dark:text-green-400">Task Lists</h4>
+      ````markdown
+      - [x] Completed task
+      - [ ] Incomplete task
+      - [x] @mentions, #refs, [links](),
+      **formatting**, and <del>tags</del>
+      supported
+      - [ ] Sub-tasks
+        - [x] Sub-task 1
+        - [ ] Sub-task 2
+      ````
+
+      <h4 className="font-bold mb-2 mt-4 text-green-600 dark:text-green-400">Footnotes</h4>
+      ````markdown
+      Here's a sentence with a footnote[^1].
+      Here's another footnote[^note].
+      
+      [^1]: This is the first footnote.
+      [^note]: This is a named footnote.
+        With multiple paragraphs.
+      ````
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Blockquotes</h4>
+      ```markdown
+      > Single blockquote
+      > Multiple lines
+      > in the same quote
+      
+      > Nested quotes
+      >> Second level
+      >>> Third level
+      
+      > Quote with **formatting**
+      > - Lists
+      > - Inside
+      > - Quotes
+      ```
+
+      <h4 className="font-bold mb-2 mt-4 text-purple-600 dark:text-purple-400">Definition Lists</h4>
+      ```markdown
+      Term 1
+      : Definition 1
+      : Another definition
+
+      Term 2
+        : Definition with indentation
+          and multiple lines
+      ```
+
+      <h4 className="font-bold mb-2 mt-4 text-purple-600 dark:text-purple-400">Horizontal Rules</h4>
+      ```markdown
+      ---
+      ***
+      ___
+
+      * * *
+      - - -
+      _ _ _
+      ```
+
+      <h4 className="font-bold mb-2 mt-4 text-purple-600 dark:text-purple-400">Images</h4>
+      ```markdown
+      ![Alt text](image.jpg)
+      ![Alt text](image.jpg "Image title")
+      
+      [![Linked image](image.jpg)](https://example.com)
+      
+      [<img src="image.jpg" width="100">](link)
+      ```
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Advanced Links</h4>
+      ```markdown
+      [Reference link][ref]
+      [Relative link](../path/to/file.md)
+      [Link to heading](#heading-id)
+      [Link with numbers][1]
+      
+      [ref]: https://example.com
+      [1]: https://example.com/1
+
+      [Empty link][]
+      [Empty link]: https://example.com
+      ```
+
+      <h4 className="font-bold mb-2 mt-4 text-red-600 dark:text-red-400">Advanced Lists</h4>
+      ```markdown
+      1. First item
+         > Blockquote in list
+         ```
+         Code block in list
+         ```
+      
+      - [ ] Task list in regular list
+        1. Ordered sublist
+        2. With multiple items
+      
+      9. Any number works
+      1. Markdown auto-numbers
+      1. The rest for you
+      ```
+
+      <h4 className="font-bold mb-2 mt-4 text-red-600 dark:text-red-400">Escaping Characters</h4>
+      ```markdown
+      \* Escaped asterisk
+      \# Escaped heading
+      \[ Escaped bracket
+      \\ Escaped backslash
+      
+      Escapable characters:
+      \ ` * _ { } [ ] ( ) # + - . ! |
+      ```
+
+      <h4 className="font-bold mb-2 mt-4 text-red-600 dark:text-red-400">Table Alignment</h4>
+      ```markdown
+      | Default | Left | Center | Right |
+      |---------|:-----|:------:|------:|
+      | Text    |Text  | Text   | Text  |
+      
+      Simple | No Lines
+      -------|----------
+      Still  | Works
+      ```
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-yellow-600 dark:text-yellow-400">HTML in Markdown</h4>
+      ```markdown
+      <div align="center">
+        Centered content
+      </div>
+
+      <details>
+        <summary>Expandable section</summary>
+        Hidden content here
+      </details>
+
+      Text with <sub>subscript</sub>
+      Text with <sup>superscript</sup>
+
+      <kbd>Ctrl</kbd> + <kbd>C</kbd>
+      ```
+
+      <h4 className="font-bold mb-2 mt-4 text-yellow-600 dark:text-yellow-400">Special Features</h4>
+      ```markdown
+      <!-- Comment in Markdown -->
+
+      [comment]: # (This is a comment)
+      [//]: # (This is also a comment)
+
+      *[HTML]: Hyper Text Markup Language
+      *[W3C]: World Wide Web Consortium
+      
+      Term
+      : Definition
+      :: Extended definition
+      ```
+
+      <h4 className="font-bold mb-2 mt-4 text-yellow-600 dark:text-yellow-400">Extended Attributes</h4>
+      ```markdown
+      {: .class-name #id-name }
+      Paragraph with attributes
+
+      ![Image](image.jpg){: width="100" height="100"}
+
+      [Link](url){: target="_blank"}
+      ```
+
+      <h4 className="font-bold mb-2 mt-4 text-yellow-600 dark:text-yellow-400">Math (if supported)</h4>
+      ```markdown
+      Inline math: $E = mc^2$
+
+      Block math:
+      $$
+      \frac{n!}{k!(n-k)!} = \binom{n}{k}
+      $$
+      ```
+    </div>
+  </Tab>
+</Tabs>
+
+## Common Use Cases
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+  <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+    <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Documentation</h4>
+    <ul className="list-disc pl-5">
+      <li>README files</li>
+      <li>Technical documentation</li>
+      <li>API documentation</li>
+      <li>Wiki pages</li>
+    </ul>
+  </div>
+  <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900">
+    <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Content Creation</h4>
+    <ul className="list-disc pl-5">
+      <li>Blog posts</li>
+      <li>Articles</li>
+      <li>Books</li>
+      <li>Presentations</li>
+    </ul>
+  </div>
+</div>
+
+## Popular Markdown Flavors
+
+<Accordions>
+  <Accordion title="GitHub Flavored Markdown (GFM)">
+    <p>The most widely used Markdown flavor, adding features like:</p>
+    <ul className="list-disc pl-5 mt-2">
+      <li>Tables</li>
+      <li>Task lists</li>
+      <li>Strikethrough text</li>
+      <li>Automatic URL linking</li>
+      <li>Syntax highlighting</li>
+    </ul>
+  </Accordion>
+  
+  <Accordion title="CommonMark">
+    <p>A standardized Markdown specification that aims to provide:</p>
+    <ul className="list-disc pl-5 mt-2">
+      <li>Unambiguous implementation guidelines</li>
+      <li>Standard test suite</li>
+      <li>Reference implementations</li>
+      <li>Consistent rendering across platforms</li>
+    </ul>
+  </Accordion>
+  
+  <Accordion title="Markdown Extra">
+    <p>Extends standard Markdown with additional features:</p>
+    <ul className="list-disc pl-5 mt-2">
+      <li>Definition lists</li>
+      <li>Footnotes</li>
+      <li>Tables</li>
+      <li>Special attributes</li>
+      <li>Fenced code blocks</li>
+    </ul>
+  </Accordion>
+</Accordions>
+
+## Sources
+
+- [Markdown Guide](https://www.markdownguide.org)
+- [GitHub Flavored Markdown Spec](https://github.github.com/gfm/)
+- [CommonMark Spec](https://commonmark.org)
+- [Original Markdown Specification](https://daringfireball.net/projects/markdown/)
+- [John Gruber's Markdown Documentation](https://daringfireball.net/projects/markdown/syntax)

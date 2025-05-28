@@ -60,41 +60,39 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
   <Tab>
     <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
       <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Installation & Setup</h4>
-      <Accordions>
-        <Accordion title="Installing Docker">
-          <Steps>
-            <Step>
-              <strong>Windows:</strong> Download Docker Desktop from https://www.docker.com
-            </Step>
-            <Step>
-              <strong>macOS:</strong> Use Homebrew: `brew install --cask docker`
-            </Step>
-            <Step>
-              <strong>Linux:</strong> Use package manager:
-              ```bash
-              # Ubuntu
-              sudo apt-get update
-              sudo apt-get install docker-ce
-
-              # Fedora
-              sudo dnf install docker-ce
-              ```
-            </Step>
-          </Steps>
-        </Accordion>
-        <Accordion title="Post-Installation Steps">
+      <Steps>
+        <Step>
+          <strong>Windows:</strong> Download Docker Desktop from https://www.docker.com
+        </Step>
+        <Step>
+          <strong>macOS:</strong> Use Homebrew: `brew install --cask docker`
+        </Step>
+        <Step>
+          <strong>Linux:</strong> Use package manager:
           ```bash
-          # Start Docker service
-          sudo systemctl start docker
+          # Ubuntu
+          sudo apt-get update
+          sudo apt-get install docker-ce
 
-          # Enable Docker on boot
-          sudo systemctl enable docker
-
-          # Add user to docker group
-          sudo usermod -aG docker $USER
+          # Fedora
+          sudo dnf install docker-ce
           ```
-        </Accordion>
-      </Accordions>
+        </Step>
+      </Steps>
+
+      <div className="mt-4">
+        <h5 className="font-bold mb-2">Post-Installation Steps</h5>
+        ```bash
+        # Start Docker service
+        sudo systemctl start docker
+
+        # Enable Docker on boot
+        sudo systemctl enable docker
+
+        # Add user to docker group
+        sudo usermod -aG docker $USER
+        ```
+      </div>
     </div>
   </Tab>
 </Tabs>
@@ -106,8 +104,9 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
     <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
       <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Working with Images</h4>
       
-      <Accordions>
-        <Accordion title="Image Commands">
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Image Commands</h5>
           ```bash
           # List images
           docker images
@@ -124,8 +123,10 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
           docker build -t <image_name> .
           docker build -t <image_name> . --no-cache
           ```
-        </Accordion>
-        <Accordion title="Image Management">
+        </div>
+
+        <div>
+          <h5 className="font-bold mb-2">Image Management</h5>
           ```bash
           # Search for images
           docker search <term>
@@ -142,16 +143,17 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
           # Load image from tar file
           docker load < image.tar
           ```
-        </Accordion>
-      </Accordions>
+        </div>
+      </div>
     </div>
   </Tab>
   <Tab>
     <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
       <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Container Operations</h4>
       
-      <Accordions>
-        <Accordion title="Container Lifecycle">
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Container Lifecycle</h5>
           ```bash
           # Run a container
           docker run <image_name>
@@ -167,8 +169,10 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
           docker rm <container_name>
           docker rm -f <container_name>  # Force remove
           ```
-        </Accordion>
-        <Accordion title="Container Management">
+        </div>
+
+        <div>
+          <h5 className="font-bold mb-2">Container Management</h5>
           ```bash
           # List containers
           docker ps        # Running containers
@@ -182,16 +186,17 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
           docker exec -it <container_name> <command>
           docker exec -it <container_name> bash
           ```
-        </Accordion>
-      </Accordions>
+        </div>
+      </div>
     </div>
   </Tab>
   <Tab>
     <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
       <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Basic Commands</h4>
       
-      <Accordions>
-        <Accordion title="System Commands">
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">System Commands</h5>
           ```bash
           # Show Docker info
           docker info
@@ -206,8 +211,10 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
           docker system prune
           docker system prune -a  # Remove all unused resources
           ```
-        </Accordion>
-        <Accordion title="Common Operations">
+        </div>
+
+        <div>
+          <h5 className="font-bold mb-2">Common Operations</h5>
           ```bash
           # Port mapping
           docker run -p <host_port>:<container_port> <image_name>
@@ -221,16 +228,17 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
           # Container name
           docker run --name <container_name> <image_name>
           ```
-        </Accordion>
-      </Accordions>
+        </div>
+      </div>
     </div>
   </Tab>
   <Tab>
     <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
       <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Docker Hub</h4>
       
-      <Accordions>
-        <Accordion title="Registry Operations">
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Registry Operations</h5>
           ```bash
           # Login to Docker Hub
           docker login
@@ -245,8 +253,10 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
           # Logout from registry
           docker logout
           ```
-        </Accordion>
-        <Accordion title="Image Tags">
+        </div>
+
+        <div>
+          <h5 className="font-bold mb-2">Image Tags</h5>
           ```bash
           # Tag image for registry
           docker tag <image_name> <username>/<image_name>
@@ -257,8 +267,8 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
           # Pull specific version
           docker pull <image_name>:<tag>
           ```
-        </Accordion>
-      </Accordions>
+        </div>
+      </div>
     </div>
   </Tab>
 </Tabs>
@@ -270,8 +280,9 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
     <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
       <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Network Basics</h4>
       
-      <Accordions>
-        <Accordion title="Network Commands">
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Network Commands</h5>
           ```bash
           # List networks
           docker network ls
@@ -285,8 +296,10 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
           # Connect container to network
           docker network connect <network_name> <container_name>
           ```
-        </Accordion>
-        <Accordion title="Network Inspection">
+        </div>
+
+        <div>
+          <h5 className="font-bold mb-2">Network Inspection</h5>
           ```bash
           # Inspect network
           docker network inspect <network_name>
@@ -297,16 +310,17 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
           # Disconnect from network
           docker network disconnect <network_name> <container_name>
           ```
-        </Accordion>
-      </Accordions>
+        </div>
+      </div>
     </div>
   </Tab>
   <Tab>
     <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
       <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Network Types</h4>
       
-      <Accordions>
-        <Accordion title="Default Networks">
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Default Networks</h5>
           <ul className="list-disc pl-5">
             <li><strong>bridge</strong>: Default network driver</li>
             <li><strong>host</strong>: Remove network isolation</li>
@@ -314,8 +328,10 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
             <li><strong>overlay</strong>: Connect multiple Docker daemons</li>
             <li><strong>macvlan</strong>: Assign MAC address to container</li>
           </ul>
-        </Accordion>
-        <Accordion title="Network Creation">
+        </div>
+
+        <div>
+          <h5 className="font-bold mb-2">Network Creation</h5>
           ```bash
           # Create bridge network
           docker network create --driver bridge <network_name>
@@ -326,16 +342,17 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
           # Create network with subnet
           docker network create --subnet=172.18.0.0/16 <network_name>
           ```
-        </Accordion>
-      </Accordions>
+        </div>
+      </div>
     </div>
   </Tab>
   <Tab>
     <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
       <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Network Commands</h4>
       
-      <Accordions>
-        <Accordion title="Container Networking">
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Container Networking</h5>
           ```bash
           # Run container with network
           docker run --network=<network_name> <image_name>
@@ -349,8 +366,10 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
           # Expose ports
           docker run -p 8080:80 <image_name>
           ```
-        </Accordion>
-        <Accordion title="Network Troubleshooting">
+        </div>
+
+        <div>
+          <h5 className="font-bold mb-2">Network Troubleshooting</h5>
           ```bash
           # Check container IP
           docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <container_name>
@@ -361,16 +380,17 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
           # View network details
           docker network inspect <network_name>
           ```
-        </Accordion>
-      </Accordions>
+        </div>
+      </div>
     </div>
   </Tab>
   <Tab>
     <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
       <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Network Management</h4>
       
-      <Accordions>
-        <Accordion title="Network Cleanup">
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Network Cleanup</h5>
           ```bash
           # Remove unused networks
           docker network prune
@@ -381,8 +401,10 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
           # Force remove network
           docker network rm -f <network_name>
           ```
-        </Accordion>
-        <Accordion title="Advanced Networking">
+        </div>
+
+        <div>
+          <h5 className="font-bold mb-2">Advanced Networking</h5>
           ```bash
           # Create network with custom driver
           docker network create \
@@ -395,8 +417,8 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
           # Inspect network details
           docker network inspect <network_name> | grep -i <search_term>
           ```
-        </Accordion>
-      </Accordions>
+        </div>
+      </div>
     </div>
   </Tab>
 </Tabs>
@@ -408,8 +430,9 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
     <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
       <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Volume Basics</h4>
       
-      <Accordions>
-        <Accordion title="Volume Commands">
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Volume Commands</h5>
           ```bash
           # List volumes
           docker volume ls
@@ -423,8 +446,10 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
           # Inspect volume
           docker volume inspect <volume_name>
           ```
-        </Accordion>
-        <Accordion title="Volume Usage">
+        </div>
+
+        <div>
+          <h5 className="font-bold mb-2">Volume Usage</h5>
           ```bash
           # Run container with volume
           docker run -v <volume_name>:/path/in/container <image_name>
@@ -435,23 +460,26 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
           # Use read-only volume
           docker run -v <volume_name>:/path/in/container:ro <image_name>
           ```
-        </Accordion>
-      </Accordions>
+        </div>
+      </div>
     </div>
   </Tab>
   <Tab>
     <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
       <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Volume Types</h4>
       
-      <Accordions>
-        <Accordion title="Volume Types">
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Volume Types</h5>
           <ul className="list-disc pl-5">
             <li><strong>Named Volumes</strong>: Managed by Docker</li>
             <li><strong>Bind Mounts</strong>: Direct host path mounting</li>
             <li><strong>tmpfs Mounts</strong>: Temporary filesystem in memory</li>
           </ul>
-        </Accordion>
-        <Accordion title="Volume Creation">
+        </div>
+
+        <div>
+          <h5 className="font-bold mb-2">Volume Creation</h5>
           ```bash
           # Create named volume
           docker volume create <volume_name>
@@ -463,16 +491,17 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
             --opt o=bind \
             <volume_name>
           ```
-        </Accordion>
-      </Accordions>
+        </div>
+      </div>
     </div>
   </Tab>
   <Tab>
     <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
       <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Volume Commands</h4>
       
-      <Accordions>
-        <Accordion title="Volume Management">
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Volume Management</h5>
           ```bash
           # Copy data to volume
           docker cp ./data/. <container_name>:/path/in/container
@@ -485,8 +514,10 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
           docker run --rm -v <volume_name>:/data \
             -v $(pwd):/backup alpine tar xvf /backup/backup.tar
           ```
-        </Accordion>
-        <Accordion title="Volume Cleanup">
+        </div>
+
+        <div>
+          <h5 className="font-bold mb-2">Volume Cleanup</h5>
           ```bash
           # Remove unused volumes
           docker volume prune
@@ -497,16 +528,17 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
           # Force remove volume
           docker volume rm -f <volume_name>
           ```
-        </Accordion>
-      </Accordions>
+        </div>
+      </div>
     </div>
   </Tab>
   <Tab>
     <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
       <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Data Management</h4>
       
-      <Accordions>
-        <Accordion title="Data Persistence">
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Data Persistence</h5>
           ```bash
           # Create data container
           docker create -v /data --name datacontainer alpine
@@ -517,8 +549,10 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
           # Share data between containers
           docker run --volumes-from <source_container> <target_container>
           ```
-        </Accordion>
-        <Accordion title="Data Backup">
+        </div>
+
+        <div>
+          <h5 className="font-bold mb-2">Data Backup</h5>
           ```bash
           # Backup named volume
           docker run --rm \
@@ -532,8 +566,8 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
             -v $(pwd):/backup \
             alpine tar xzf /backup/volume-backup.tar.gz -C /target
           ```
-        </Accordion>
-      </Accordions>
+        </div>
+      </div>
     </div>
   </Tab>
 </Tabs>
@@ -545,8 +579,9 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
     <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
       <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Compose Basics</h4>
       
-      <Accordions>
-        <Accordion title="Basic Commands">
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Basic Commands</h5>
           ```bash
           # Start services
           docker-compose up
@@ -560,8 +595,10 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
           docker-compose logs
           docker-compose logs -f  # Follow logs
           ```
-        </Accordion>
-        <Accordion title="Service Management">
+        </div>
+
+        <div>
+          <h5 className="font-bold mb-2">Service Management</h5>
           ```bash
           # List services
           docker-compose ps
@@ -575,16 +612,17 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
           # Restart services
           docker-compose restart
           ```
-        </Accordion>
-      </Accordions>
+        </div>
+      </div>
     </div>
   </Tab>
   <Tab>
     <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
       <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Compose File</h4>
       
-      <Accordions>
-        <Accordion title="Basic Structure">
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Basic Structure</h5>
           ```yaml
           version: '3'
           services:
@@ -597,8 +635,10 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
               environment:
                 - MYSQL_ROOT_PASSWORD=secret
           ```
-        </Accordion>
-        <Accordion title="Common Elements">
+        </div>
+
+        <div>
+          <h5 className="font-bold mb-2">Common Elements</h5>
           ```yaml
           version: '3'
           services:
@@ -618,16 +658,17 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
           volumes:
             data:
           ```
-        </Accordion>
-      </Accordions>
+        </div>
+      </div>
     </div>
   </Tab>
   <Tab>
     <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
       <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Compose Commands</h4>
       
-      <Accordions>
-        <Accordion title="Build Commands">
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Build Commands</h5>
           ```bash
           # Build services
           docker-compose build
@@ -642,8 +683,10 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
           # Create services
           docker-compose create
           ```
-        </Accordion>
-        <Accordion title="Runtime Commands">
+        </div>
+
+        <div>
+          <h5 className="font-bold mb-2">Runtime Commands</h5>
           ```bash
           # Execute command
           docker-compose exec <service_name> <command>
@@ -657,16 +700,17 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
           # Run one-off command
           docker-compose run --rm <service_name> <command>
           ```
-        </Accordion>
-      </Accordions>
+        </div>
+      </div>
     </div>
   </Tab>
   <Tab>
     <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
       <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Multi-Container Apps</h4>
       
-      <Accordions>
-        <Accordion title="Example Configuration">
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Example Configuration</h5>
           ```yaml
           version: '3'
           services:
@@ -687,8 +731,10 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
               environment:
                 - POSTGRES_PASSWORD=secret
           ```
-        </Accordion>
-        <Accordion title="Advanced Features">
+        </div>
+
+        <div>
+          <h5 className="font-bold mb-2">Advanced Features</h5>
           ```yaml
           version: '3'
           services:
@@ -708,8 +754,8 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
                 timeout: 10s
                 retries: 3
           ```
-        </Accordion>
-      </Accordions>
+        </div>
+      </div>
     </div>
   </Tab>
 </Tabs>
@@ -721,8 +767,9 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
     <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
       <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Swarm Basics</h4>
       
-      <Accordions>
-        <Accordion title="Initialize Swarm">
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Initialize Swarm</h5>
           ```bash
           # Initialize swarm
           docker swarm init
@@ -735,8 +782,10 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
           docker swarm leave
           docker swarm leave --force  # For managers
           ```
-        </Accordion>
-        <Accordion title="Swarm Information">
+        </div>
+
+        <div>
+          <h5 className="font-bold mb-2">Swarm Information</h5>
           ```bash
           # View swarm status
           docker info
@@ -747,16 +796,17 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
           # Inspect swarm
           docker node inspect self
           ```
-        </Accordion>
-      </Accordions>
+        </div>
+      </div>
     </div>
   </Tab>
   <Tab>
     <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
       <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Node Management</h4>
       
-      <Accordions>
-        <Accordion title="Node Commands">
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Node Commands</h5>
           ```bash
           # Promote node to manager
           docker node promote <node_name>
@@ -770,8 +820,10 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
           # Update node
           docker node update --availability drain <node_name>
           ```
-        </Accordion>
-        <Accordion title="Node Labels">
+        </div>
+
+        <div>
+          <h5 className="font-bold mb-2">Node Labels</h5>
           ```bash
           # Add label to node
           docker node update --label-add key=value <node_name>
@@ -782,16 +834,17 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
           # List node labels
           docker node inspect <node_name> | grep Labels -A 5
           ```
-        </Accordion>
-      </Accordions>
+        </div>
+      </div>
     </div>
   </Tab>
   <Tab>
     <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
       <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Service Management</h4>
       
-      <Accordions>
-        <Accordion title="Service Commands">
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Service Commands</h5>
           ```bash
           # Create service
           docker service create --name <service_name> <image>
@@ -805,8 +858,10 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
           # Remove service
           docker service rm <service_name>
           ```
-        </Accordion>
-        <Accordion title="Service Updates">
+        </div>
+
+        <div>
+          <h5 className="font-bold mb-2">Service Updates</h5>
           ```bash
           # Update service
           docker service update \
@@ -818,16 +873,17 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
           # Rollback update
           docker service rollback <service_name>
           ```
-        </Accordion>
-      </Accordions>
+        </div>
+      </div>
     </div>
   </Tab>
   <Tab>
     <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
       <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Stack Deployment</h4>
       
-      <Accordions>
-        <Accordion title="Stack Commands">
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-bold mb-2">Stack Commands</h5>
           ```bash
           # Deploy stack
           docker stack deploy -c docker-compose.yml <stack_name>
@@ -841,8 +897,10 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
           # Remove stack
           docker stack rm <stack_name>
           ```
-        </Accordion>
-        <Accordion title="Stack Management">
+        </div>
+
+        <div>
+          <h5 className="font-bold mb-2">Stack Management</h5>
           ```bash
           # View stack tasks
           docker stack ps <stack_name>
@@ -853,8 +911,8 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
           # Scale stack service
           docker service scale <stack_name>_<service_name>=<replicas>
           ```
-        </Accordion>
-      </Accordions>
+        </div>
+      </div>
     </div>
   </Tab>
 </Tabs>

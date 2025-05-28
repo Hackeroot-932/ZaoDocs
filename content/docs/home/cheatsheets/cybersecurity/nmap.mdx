@@ -4,8 +4,500 @@ description: Nmap is a network scanning tool that allows you to scan the network
 icon: "SearchCode"
 ---
 
-# Nmap
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 
-Nmap is a network scanning tool that allows you to scan the network for open ports and services.
+![nmap-image](./nmap.jpg)
 
-## What is Nmap?
+<Callout title="Network Mapper (Nmap)" type="info">
+  Nmap is a powerful open-source network scanner used for network discovery and security auditing. It is designed to rapidly scan large networks but can also be used to scan single hosts. Nmap uses raw IP packets in novel ways to determine what hosts are available, what services they are offering, what operating systems they are running, and dozens of other characteristics.
+</Callout>
+
+# Nmap Cheatsheet
+
+## 1. Basic Scanning Techniques
+
+<Tabs items={["Target Specification", "Host Discovery", "Port Scanning", "Service Detection"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Target Specification</h4>
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-semibold mb-2">Basic Target Scanning</h5>
+          ```bash
+          # Scan single IP
+          nmap 192.168.1.1
+
+          # Scan multiple IPs
+          nmap 192.168.1.1 192.168.1.2
+
+          # Scan IP range
+          nmap 192.168.1.1-254
+
+          # Scan subnet
+          nmap 192.168.1.0/24
+
+          # Scan from file
+          nmap -iL targets.txt
+
+          # Scan random hosts
+          nmap -iR 100
+          ```
+        </div>
+        <div>
+          <h5 className="font-semibold mb-2">Target Exclusion</h5>
+          ```bash
+          # Exclude single host
+          nmap 192.168.1.0/24 --exclude 192.168.1.1
+
+          # Exclude from file
+          nmap 192.168.1.0/24 --excludefile exclude.txt
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Host Discovery</h4>
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-semibold mb-2">Discovery Methods</h5>
+          ```bash
+          # Ping scan (disable port scan)
+          nmap -sn 192.168.1.0/24
+
+          # No ping (skip host discovery)
+          nmap -Pn 192.168.1.1
+
+          # TCP SYN ping
+          nmap -PS22,80,443 192.168.1.1
+
+          # TCP ACK ping
+          nmap -PA22,80,443 192.168.1.1
+
+          # UDP ping
+          nmap -PU53,161,162 192.168.1.1
+
+          # ICMP echo ping
+          nmap -PE 192.168.1.1
+          ```
+        </div>
+        <div>
+          <h5 className="font-semibold mb-2">DNS Resolution</h5>
+          ```bash
+          # Disable DNS resolution
+          nmap -n 192.168.1.1
+
+          # Force DNS resolution
+          nmap -R 192.168.1.1
+
+          # Specify DNS server
+          nmap --dns-servers 8.8.8.8 192.168.1.1
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Port Scanning</h4>
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-semibold mb-2">Scan Types</h5>
+          ```bash
+          # TCP SYN scan (default)
+          nmap -sS 192.168.1.1
+
+          # TCP connect scan
+          nmap -sT 192.168.1.1
+
+          # UDP scan
+          nmap -sU 192.168.1.1
+
+          # TCP NULL scan
+          nmap -sN 192.168.1.1
+
+          # TCP FIN scan
+          nmap -sF 192.168.1.1
+
+          # TCP XMAS scan
+          nmap -sX 192.168.1.1
+          ```
+        </div>
+        <div>
+          <h5 className="font-semibold mb-2">Port Selection</h5>
+          ```bash
+          # Specific ports
+          nmap -p 22,80,443 192.168.1.1
+
+          # Port ranges
+          nmap -p 1-1000 192.168.1.1
+
+          # All ports
+          nmap -p- 192.168.1.1
+
+          # Fast port scan
+          nmap -F 192.168.1.1
+
+          # Top ports
+          nmap --top-ports 100 192.168.1.1
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Service Detection</h4>
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-semibold mb-2">Version Detection</h5>
+          ```bash
+          # Basic version detection
+          nmap -sV 192.168.1.1
+
+          # Aggressive version detection
+          nmap -sV --version-intensity 9 192.168.1.1
+
+          # Light version detection
+          nmap -sV --version-light 192.168.1.1
+
+          # OS detection
+          nmap -O 192.168.1.1
+
+          # OS and version detection
+          nmap -A 192.168.1.1
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+</Tabs>
+
+## 2. Advanced Scanning Options
+
+<Tabs items={["Timing & Performance", "Firewall Evasion", "Output Options", "NSE Scripts"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Timing and Performance</h4>
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-semibold mb-2">Timing Templates</h5>
+          ```bash
+          # Paranoid IDS evasion
+          nmap -T0 192.168.1.1
+
+          # Sneaky scan
+          nmap -T1 192.168.1.1
+
+          # Polite scan
+          nmap -T2 192.168.1.1
+
+          # Normal scan (default)
+          nmap -T3 192.168.1.1
+
+          # Aggressive scan
+          nmap -T4 192.168.1.1
+
+          # Insane scan
+          nmap -T5 192.168.1.1
+          ```
+        </div>
+        <div>
+          <h5 className="font-semibold mb-2">Custom Timing</h5>
+          ```bash
+          # Min rate
+          nmap --min-rate 100 192.168.1.1
+
+          # Max rate
+          nmap --max-rate 100 192.168.1.1
+
+          # Host timeout
+          nmap --host-timeout 30s 192.168.1.1
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Firewall Evasion</h4>
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-semibold mb-2">Evasion Techniques</h5>
+          ```bash
+          # Fragment packets
+          nmap -f 192.168.1.1
+
+          # Specify MTU
+          nmap --mtu 24 192.168.1.1
+
+          # Decoy scan
+          nmap -D RND:10 192.168.1.1
+
+          # Idle zombie scan
+          nmap -sI zombie_host 192.168.1.1
+
+          # Spoof MAC address
+          nmap --spoof-mac MAC 192.168.1.1
+
+          # Send bad checksums
+          nmap --badsum 192.168.1.1
+          ```
+        </div>
+        <div>
+          <h5 className="font-semibold mb-2">Advanced Evasion</h5>
+          ```bash
+          # Data length
+          nmap --data-length 200 192.168.1.1
+
+          # Random data
+          nmap --randomize-hosts 192.168.1.1
+
+          # Source port manipulation
+          nmap --source-port 53 192.168.1.1
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Output Options</h4>
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-semibold mb-2">Output Formats</h5>
+          ```bash
+          # Normal output
+          nmap -oN scan.txt 192.168.1.1
+
+          # XML output
+          nmap -oX scan.xml 192.168.1.1
+
+          # Grepable output
+          nmap -oG scan.grep 192.168.1.1
+
+          # All formats
+          nmap -oA scan 192.168.1.1
+          ```
+        </div>
+        <div>
+          <h5 className="font-semibold mb-2">Verbosity</h5>
+          ```bash
+          # Increase verbosity
+          nmap -v 192.168.1.1
+
+          # More verbose
+          nmap -vv 192.168.1.1
+
+          # Debug mode
+          nmap -d 192.168.1.1
+
+          # Packet trace
+          nmap --packet-trace 192.168.1.1
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">NSE Scripts</h4>
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-semibold mb-2">Script Categories</h5>
+          ```bash
+          # Default scripts
+          nmap -sC 192.168.1.1
+
+          # Vuln category
+          nmap --script vuln 192.168.1.1
+
+          # Auth category
+          nmap --script auth 192.168.1.1
+
+          # Multiple categories
+          nmap --script "auth,vuln" 192.168.1.1
+          ```
+        </div>
+        <div>
+          <h5 className="font-semibold mb-2">Specific Scripts</h5>
+          ```bash
+          # HTTP enumeration
+          nmap --script http-enum 192.168.1.1
+
+          # SMB enumeration
+          nmap --script smb-enum-* 192.168.1.1
+
+          # SSL testing
+          nmap --script ssl-* 192.168.1.1
+
+          # DNS brute force
+          nmap --script dns-brute domain.com
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+</Tabs>
+
+## 3. Common Use Cases
+
+<Tabs items={["Web Scanning", "Network Assessment", "Vulnerability Detection", "Service Enumeration"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Web Server Scanning</h4>
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-semibold mb-2">Basic Web Scan</h5>
+          ```bash
+          # Quick web scan
+          nmap -p 80,443 -sV 192.168.1.1
+
+          # HTTP enumeration
+          nmap -p 80,443 --script http-enum 192.168.1.1
+
+          # Web vulnerabilities
+          nmap -p 80,443 --script "http-*" 192.168.1.1
+
+          # SSL/TLS testing
+          nmap -p 443 --script ssl-enum-ciphers 192.168.1.1
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Network Assessment</h4>
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-semibold mb-2">Network Discovery</h5>
+          ```bash
+          # Quick network sweep
+          nmap -sn 192.168.1.0/24
+
+          # Service detection
+          nmap -sV -F 192.168.1.0/24
+
+          # OS fingerprinting
+          nmap -O 192.168.1.0/24
+
+          # Complete network audit
+          nmap -A -T4 192.168.1.0/24
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Vulnerability Detection</h4>
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-semibold mb-2">Vulnerability Scanning</h5>
+          ```bash
+          # Basic vuln scan
+          nmap --script vuln 192.168.1.1
+
+          # SQL injection test
+          nmap --script http-sql-injection 192.168.1.1
+
+          # XSS detection
+          nmap --script http-unsafe-output-escaping 192.168.1.1
+
+          # Default credentials
+          nmap --script auth 192.168.1.1
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-red-600 dark:text-red-400">Service Enumeration</h4>
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-semibold mb-2">Common Services</h5>
+          ```bash
+          # SMB enumeration
+          nmap --script smb-enum-shares 192.168.1.1
+
+          # SMTP enumeration
+          nmap -p 25 --script smtp-enum-users 192.168.1.1
+
+          # DNS enumeration
+          nmap --script dns-brute domain.com
+
+          # SSH testing
+          nmap --script ssh-auth-methods 192.168.1.1
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+</Tabs>
+
+## Sources
+
+<div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+  <h4 className="font-bold mb-4">References</h4>
+  <ul className="list-disc pl-5 space-y-2">
+    <a href="https://nmap.org/book/man.html" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+      Official Nmap Reference Guide
+    </a>
+    - Comprehensive documentation and manual for Nmap
+
+    <a href="https://nmap.org/nsedoc/" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+      Nmap Scripting Engine (NSE) Documentation
+    </a>
+    - Documentation for NSE scripts and APIs
+
+    <a href="https://hackertarget.com/nmap-cheatsheet-a-quick-reference-guide/" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+      HackerTarget Nmap Cheat Sheet
+    </a>
+    - Quick reference guide for common Nmap commands
+
+    <a href="https://www.stationx.net/nmap-cheat-sheet/" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+      StationX Nmap Cheat Sheet
+    </a>
+    - Comprehensive guide with detailed explanations and use cases
+
+    <a href="https://www.geeksforgeeks.org/nmap-cheat-sheet/" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+      GeeksForGeeks Nmap Cheat Sheet
+    </a>
+    - Technical deep dive into Nmap commands and functionality
+
+    <a href="https://github.com/jasonniebauer/Nmap-Cheatsheet/" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+      Jason Niebauer's Nmap Cheatsheet
+    </a>
+    - GitHub repository with practical examples and use cases
+
+    <a href="https://www.hackthebox.com/blog/nmap-cheatsheet-every-command-you-need" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+      Hack The Box Nmap Cheatsheet
+    </a>
+    - Essential commands and techniques from HTB experts
+
+    <a href="https://www.offensive-security.com/metasploit-unleashed/nmap-scanning/" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+      Offensive Security's Nmap Guide
+    </a>
+    - Advanced scanning techniques and integration with Metasploit
+
+    <a href="https://www.cyberciti.biz/networking/nmap-command-examples-tutorials/" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+      Cyberciti Nmap Tutorials
+    </a>
+    - Practical examples and tutorials for network administrators
+
+    <a href="https://github.com/nmap/nmap" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+      Nmap GitHub Repository
+    </a>
+    - Source code and development resources
+
+    <a href="https://www.hackingtutorials.org/networking/hacking-with-nmap-ultimate-guide/" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+      Hacking Tutorials Nmap Guide
+    </a>
+    - Comprehensive guide for ethical hacking with Nmap
+  </ul>
+</div>
