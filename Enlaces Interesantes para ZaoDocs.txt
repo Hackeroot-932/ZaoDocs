@@ -1,7 +1,0 @@
-https://www.nikhilajain.com/post/how-to-write-user-focused-documentation
-
-https://www.nikhilajain.com/post/how-to-set-up-multiple-sidebars-in-docusaurus
-
-https://www.nikhilajain.com/post/create-your-first-docusaurus-documentation-website
-
-https://stackoverflow.com/questions/68412480/how-to-add-icon-to-docusaurus-sidebar-group-or-item

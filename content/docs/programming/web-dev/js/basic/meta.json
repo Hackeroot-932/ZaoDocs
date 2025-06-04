@@ -1,0 +1,22 @@
+{
+    "index": "JavaScript",
+    "description": "JavaScript",
+    "icon": "LandPlot",
+    "root": false,
+    "defaultOpen": false,
+    "pages": [
+      "intro",
+      "variables",
+      "strings",
+      "numbers",
+      "booleans",
+      "objects",
+      "arrays",
+      "functions",
+      "control-estructures",
+      "iterators",
+      "array-methods",
+      "js-dom",
+      "events"
+    ]
+  }

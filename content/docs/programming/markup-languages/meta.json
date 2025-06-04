@@ -5,8 +5,8 @@
     "root": false,
     "defaultOpen": false,
     "pages": [
-      "xml",
       "markdown",
+      "xml",
       "html",
       "css"
     ]

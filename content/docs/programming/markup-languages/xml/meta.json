@@ -5,7 +5,9 @@
     "root": false,
     "defaultOpen": false,
     "pages": [
+      "dtd-validations",
       "xpath",
       "xquery"
+      
     ]
   }

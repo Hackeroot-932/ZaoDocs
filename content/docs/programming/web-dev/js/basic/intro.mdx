@@ -1,0 +1,356 @@
+---
+title: Introduction
+description: A comprehensive guide to JavaScript fundamentals
+icon: Code
+---
+
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
+
+<Callout title="JavaScript: The Language of the Web" type="info">
+  JavaScript is a versatile, high-level programming language that powers the modern web, enabling dynamic content, interactive user interfaces, and complex web applications.
+</Callout>
+
+## 1. History and Formation
+
+<div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 my-4">
+  <p>JavaScript was created by Brendan Eich in 1995 while working at Netscape Communications. Originally named "Mocha", then "LiveScript", it was finally renamed to "JavaScript" when Netscape released JavaScript to Sun Microsystems.</p>
+  
+  <p className="mt-3">The language was developed with the following goals:</p>
+  <ul className="list-disc pl-5">
+    <li>Make web pages dynamic and interactive</li>
+    <li>Provide a beginner-friendly programming language</li>
+    <li>Complement Java (which was popular for web applets at the time)</li>
+    <li>Run directly in the web browser (client-side)</li>
+  </ul>
+</div>
+
+## 2. Key Characteristics
+
+<Tabs items={["Language Features", "Runtime Environment", "Development Ecosystem"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Core Language Features</h4>
+      <ul className="list-disc pl-5">
+        <li><strong>Dynamic Typing</strong>: Variables can hold different types of values</li>
+        <li><strong>First-class Functions</strong>: Functions can be assigned to variables and passed as arguments</li>
+        <li><strong>Object-Oriented</strong>: Supports object-oriented, imperative, and functional programming styles</li>
+        <li><strong>Event-Driven</strong>: Responds to user actions and browser events</li>
+        <li><strong>Single-Threaded</strong>: Executes one operation at a time with an event loop</li>
+      </ul>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Runtime Environments</h4>
+      <ul className="list-disc pl-5">
+        <li><strong>Browsers</strong>: Chrome (V8), Firefox (SpiderMonkey), Safari (JavaScriptCore)</li>
+        <li><strong>Node.js</strong>: Server-side JavaScript runtime built on Chrome's V8 engine</li>
+        <li><strong>Deno</strong>: Modern runtime for JavaScript and TypeScript</li>
+        <li><strong>Embedded Systems</strong>: IoT devices and microcontrollers</li>
+      </ul>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Development Tools</h4>
+      <ul className="list-disc pl-5">
+        <li><strong>Package Managers</strong>: npm, yarn, pnpm</li>
+        <li><strong>Build Tools</strong>: webpack, vite, rollup</li>
+        <li><strong>Frameworks</strong>: React, Vue, Angular, Svelte</li>
+        <li><strong>Testing</strong>: Jest, Mocha, Cypress</li>
+      </ul>
+    </div>
+  </Tab>
+</Tabs>
+
+## 3. ECMAScript Evolution
+
+<div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+  <Accordions>
+    <Accordion title="Early Versions (1997-2009)">
+      <ul className="list-disc pl-5">
+        <li><strong>ES1 (1997)</strong>: First standardization</li>
+        <li><strong>ES2 (1998)</strong>: Editorial changes</li>
+        <li><strong>ES3 (1999)</strong>: Regular expressions, try/catch</li>
+        <li><strong>ES4</strong>: Abandoned</li>
+        <li><strong>ES5 (2009)</strong>: Strict mode, JSON support, new array methods</li>
+      </ul>
+    </Accordion>
+    <Accordion title="Modern Era (2015-2020)">
+      <ul className="list-disc pl-5">
+        <li><strong>ES2015 (ES6)</strong>: Classes, modules, arrow functions, promises</li>
+        <li><strong>ES2016</strong>: Array.includes(), exponentiation operator</li>
+        <li><strong>ES2017</strong>: async/await, Object.values/entries</li>
+        <li><strong>ES2018</strong>: Rest/spread properties, async iteration</li>
+        <li><strong>ES2019</strong>: Array.flat(), Object.fromEntries()</li>
+        <li><strong>ES2020</strong>: Optional chaining, nullish coalescing</li>
+      </ul>
+    </Accordion>
+    <Accordion title="Recent Updates (2021-Present)">
+      <ul className="list-disc pl-5">
+        <li><strong>ES2021</strong>: String.replaceAll(), Promise.any()</li>
+        <li><strong>ES2022</strong>: Top-level await, class fields</li>
+        <li><strong>ES2023</strong>: Array copying methods, findLast()</li>
+      </ul>
+    </Accordion>
+  </Accordions>
+</div>
+
+## 4. Getting Started
+
+<Steps>
+  <Step>
+    <h4>Implementing JavaScript</h4>
+    <p>There are three ways to include JavaScript in your web pages:</p>
+    <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 my-4">
+      ```html
+      <!-- 1. Inline JavaScript -->
+      <button onclick="alert('Hello!')">Click me</button>
+
+      <!-- 2. Internal JavaScript -->
+      <script>
+        console.log('Hello from internal script!');
+      </script>
+
+      <!-- 3. External JavaScript -->
+      <script src="app.js"></script>
+      ```
+    </div>
+  </Step>
+  <Step>
+    <h4>Hello World</h4>
+    <p>Create your first JavaScript program:</p>
+    <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 my-4">
+      ```javascript
+      // app.js
+      console.log('Hello, World!');
+      
+      // Or with DOM manipulation
+      document.getElementById('greeting').textContent = 'Hello, World!';
+      ```
+    </div>
+  </Step>
+  <Step>
+    <h4>JavaScript Comments</h4>
+    <p>Comments help document your code:</p>
+    <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 my-4">
+      ```javascript
+      // Single-line comment
+      
+      /* Multi-line comment
+         Explains complex logic
+         or documentation */
+      ```
+    </div>
+  </Step>
+  <Step>
+    <h4>Console Usage</h4>
+    <p>The console is essential for debugging:</p>
+    <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 my-4">
+      ```javascript
+      console.log('Basic logging');
+      console.error('Error messages');
+      console.warn('Warning messages');
+      console.table(['Data', 'in', 'table', 'format']);
+      ```
+    </div>
+  </Step>
+  <Step>
+    <h4>ESLint Setup</h4>
+    <p>Install ESLint for code quality:</p>
+    <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 my-4">
+      ```bash
+      npm init @eslint/config
+      # Follow the prompts to set up ESLint
+      ```
+    </div>
+  </Step>
+</Steps>
+
+## 5. ESLint
+
+<div className="p-4 mb-8 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/30 dark:to-emerald-900/30 rounded-xl shadow-sm">
+  <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">ESLint</h1>
+  <p className="text-gray-600 dark:text-gray-300">
+    ESLint is a static code analysis tool that helps you find and fix problems in your JavaScript code. It enforces coding standards, catches common errors, and helps maintain consistent code style across your projects.
+  </p>
+</div>
+
+<Tabs items={["Core Features", "Configuration", "Rules and Standards", "Integration"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">Key Features</h4>
+      <ul className="list-disc pl-5">
+        <li><strong>Static Analysis</strong>: Identifies problematic patterns in code</li>
+        <li><strong>Automatic Fixing</strong>: Can automatically fix many issues</li>
+        <li><strong>Customizable Rules</strong>: Configurable to match your coding standards</li>
+        <li><strong>Plugin System</strong>: Extensible with custom rules and plugins</li>
+        <li><strong>Modern JavaScript Support</strong>: Full support for latest ECMAScript features</li>
+      </ul>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Setting Up ESLint</h4>
+      ```bash
+      # Install ESLint
+      npm install eslint --save-dev
+
+      # Initialize ESLint configuration
+      npx eslint --init
+
+      # Run ESLint
+      npx eslint yourfile.js
+      
+      # Auto-fix issues
+      npx eslint yourfile.js --fix
+      ```
+      <div className="mt-4 p-4 bg-yellow-50 dark:bg-yellow-900/30 rounded-lg">
+        <p className="text-yellow-800 dark:text-yellow-200">
+          ⚠️ Tip: Create a .eslintignore file to exclude certain files/directories from linting.
+        </p>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Common Rules</h4>
+      ```javascript
+      // .eslintrc.js
+      module.exports = {
+        "env": {
+          "browser": true,
+          "es2021": true
+        },
+        "extends": "eslint:recommended",
+        "rules": {
+          "indent": ["error", 2],
+          "quotes": ["error", "single"],
+          "semi": ["error", "always"],
+          "no-unused-vars": "warn",
+          "no-console": "warn"
+        }
+      }
+      ```
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-orange-600 dark:text-orange-400">IDE Integration</h4>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+          <h5 className="font-semibold mb-2">VS Code</h5>
+          <ul className="list-disc pl-5">
+            <li>Install ESLint extension</li>
+            <li>Enable auto-fix on save</li>
+            <li>Real-time error highlighting</li>
+          </ul>
+        </div>
+        <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+          <h5 className="font-semibold mb-2">Other Editors</h5>
+          <ul className="list-disc pl-5">
+            <li>WebStorm: Built-in support</li>
+            <li>Sublime Text: ESLint plugin</li>
+            <li>Atom: linter-eslint package</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </Tab>
+</Tabs>
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <Accordions>
+    <Accordion title="Best Practices">
+      <ul className="list-disc pl-5">
+        <li><strong>Use Consistent Configuration</strong>: Share .eslintrc across team</li>
+        <li><strong>Git Integration</strong>: Run ESLint in pre-commit hooks</li>
+        <li><strong>CI/CD Pipeline</strong>: Include linting in automated checks</li>
+        <li><strong>Documentation</strong>: Document custom rules and configurations</li>
+      </ul>
+    </Accordion>
+    <Accordion title="Popular Plugins">
+      <ul className="list-disc pl-5">
+        <li><strong>eslint-config-airbnb</strong>: Airbnb's style guide</li>
+        <li><strong>@typescript-eslint/eslint-plugin</strong>: TypeScript support</li>
+        <li><strong>eslint-plugin-react</strong>: React specific rules</li>
+        <li><strong>eslint-plugin-import</strong>: Import/export syntax</li>
+      </ul>
+    </Accordion>
+    <Accordion title="Common Issues and Solutions">
+      <ul className="list-disc pl-5">
+        <li><strong>Performance</strong>: Use .eslintignore for large codebases</li>
+        <li><strong>Conflicts</strong>: Resolve conflicts with Prettier or other formatters</li>
+        <li><strong>Custom Rules</strong>: Create shareable configurations</li>
+        <li><strong>Version Control</strong>: Lock ESLint version in package.json</li>
+      </ul>
+    </Accordion>
+  </Accordions>
+</div>
+
+<Steps>
+  <Step>
+    <h4>Initial Setup</h4>
+    <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 my-4">
+      ```bash
+      mkdir my-project && cd my-project
+      npm init -y
+      npm install eslint --save-dev
+      ```
+    </div>
+  </Step>
+  <Step>
+    <h4>Configuration</h4>
+    <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 my-4">
+      ```bash
+      npx eslint --init
+      # Follow the prompts to create .eslintrc
+      ```
+    </div>
+  </Step>
+  <Step>
+    <h4>Add Scripts</h4>
+    <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 my-4">
+      ```json
+      {
+        "scripts": {
+          "lint": "eslint .",
+          "lint:fix": "eslint . --fix"
+        }
+      }
+      ```
+    </div>
+  </Step>
+  <Step>
+    <h4>VS Code Integration</h4>
+    <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 my-4">
+      ```json
+      {
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": true
+        },
+        "eslint.validate": [
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact"
+        ]
+      }
+      ```
+    </div>
+  </Step>
+</Steps>
+
+## Sources
+
+<div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 my-4">
+  <ul className="list-disc pl-5">
+    <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide" target="_blank">MDN Web Docs - JavaScript Guide</a></li>
+    <li><a href="https://tc39.es/ecma262/" target="_blank">ECMAScript Language Specification</a></li>
+    <li><a href="https://nodejs.org/en/docs" target="_blank">Node.js Documentation</a></li>
+    <li><a href="https://eslint.org/docs/latest/" target="_blank">ESLint Documentation</a></li>
+    <li><a href="https://www.ecma-international.org/publications-and-standards/standards/ecma-262/" target="_blank">ECMA International - ECMAScript</a></li>
+  </ul>
+</div>

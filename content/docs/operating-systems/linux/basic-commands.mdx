@@ -1,7 +1,337 @@
 ---
 title: Basic Commands
-description: Basic Commands
+description: A comprehensive guide to Linux commands and system administration across distributions
+icon: Terminal
 ---
 
-Welcome to the Linux docs!
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+
+<div className="p-4 mb-8 bg-gradient-to-r from-slate-50 to-gray-50 dark:from-slate-900/30 dark:to-gray-900/30 rounded-xl shadow-sm">
+  <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">Linux Command Reference</h1>
+  <p className="text-gray-600 dark:text-gray-300">
+    A comprehensive reference guide for Linux system administrators and power users. This documentation covers essential commands across major Linux distributions including Debian, Red Hat, and Arch Linux.
+  </p>
+</div>
+
+## 1. File Listing & Directory Navigation
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <div className="space-y-6">
+    <div className="p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+      <h4 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">Directory Navigation</h4>
+      ````bash
+      pwd                     # Print working directory
+      cd directory-name      # Change to specified directory
+      cd                     # Change to home directory ($HOME)
+      cd ..                  # Move up one directory level
+      cd -                   # Return to previous directory
+      cd /path/to/dir       # Change to absolute path
+      ````
+      <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
+        Special directory references:
+        - `.` — Current directory
+        - `..` — Parent directory
+        - `~` — Home directory
+      </p>
+    </div>
+
+    <div className="p-4 bg-indigo-50 dark:bg-indigo-900/30 rounded-lg">
+      <h4 className="font-semibold text-indigo-700 dark:text-indigo-300 mb-2">File Listing Options</h4>
+      ````bash
+      ls                     # List files and directories
+      ls -l                  # Long format listing with details
+      ls -a                  # Show hidden files (starting with .)
+      ls -h                  # Human-readable sizes
+      ls -R                  # Recursive listing
+      ls -lah               # Combine options (long, all, human-readable)
+      ls -lt                # Sort by modification time
+      ls -lS                # Sort by file size
+      ls -lr                # Reverse sort order
+      ls pattern*           # List files matching pattern
+      ````
+    </div>
+  </div>
+</div>
+
+## 2. File Operations
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <div className="space-y-6">
+    <div className="p-4 bg-green-50 dark:bg-green-900/30 rounded-lg">
+      <h4 className="font-semibold text-green-700 dark:text-green-300 mb-2">Basic File Operations</h4>
+      ````bash
+      touch file.txt         # Create empty file or update timestamp
+      mkdir directory       # Create new directory
+      mkdir -p path/dir    # Create directory with parent directories
+      cp source dest       # Copy file or directory
+      cp -r source dest    # Copy directory recursively
+      mv source dest       # Move/rename file or directory
+      rm file              # Remove file
+      rm -r directory      # Remove directory recursively
+      rm -f file           # Force remove without confirmation
+      rm -rf directory     # Force remove directory recursively
+      rmdir directory      # Remove empty directory
+      ````
+    </div>
+
+    <div className="p-4 bg-yellow-50 dark:bg-yellow-900/30 rounded-lg">
+      <h4 className="font-semibold text-yellow-700 dark:text-yellow-300 mb-2">File Permissions</h4>
+      ````bash
+      chmod permissions file    # Change file permissions
+      chmod u+x file           # Add execute permission for user
+      chmod g-w file           # Remove write permission for group
+      chmod o=r file           # Set read-only for others
+      chmod 755 file           # Set rwx for user, rx for group/others
+      chown user:group file    # Change file owner and group
+      chgrp group file         # Change file group
+      ````
+      <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
+        Permission numbers:
+        - 4 (read)
+        - 2 (write)
+        - 1 (execute)
+        - 0 (no permission)
+      </p>
+      <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded border border-blue-100 dark:border-blue-800">
+        <p className="text-sm text-blue-700 dark:text-blue-300">
+          For a more detailed explanation of Linux permissions and capabilities, see <a href="/docs/operating-systems/linux/permissions-capabilities" className="underline hover:text-blue-500">Permissions && Capabilities</a>.
+        </p>
+      </div>
+    </div>
+
+    <div className="p-4 bg-rose-50 dark:bg-rose-900/30 rounded-lg">
+      <h4 className="font-semibold text-rose-700 dark:text-rose-300 mb-2">File Comparison and Links</h4>
+      ````bash
+      cmp file1 file2         # Compare two files byte by byte
+      diff file1 file2        # Show differences between files
+      diff -u file1 file2     # Unified diff format
+      ln -s target link       # Create symbolic link
+      ln target link          # Create hard link
+      readlink link           # Display symbolic link target
+      ````
+    </div>
+  </div>
+</div>
+
+## 3. File Viewing and Editing
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <div className="space-y-6">
+    <div className="p-4 bg-purple-50 dark:bg-purple-900/30 rounded-lg">
+      <h4 className="font-semibold text-purple-700 dark:text-purple-300 mb-2">File Content Display</h4>
+      ````bash
+      cat file               # Display file content
+      cat -n file            # Display with line numbers
+      less file              # View file with pagination
+      more file              # View file page by page
+      head file              # Show first 10 lines
+      head -n 20 file        # Show first 20 lines
+      tail file              # Show last 10 lines
+      tail -f file           # Follow file updates
+      tail -n 50 file        # Show last 50 lines
+      wc file                # Count lines, words, characters
+      ````
+    </div>
+
+    <div className="p-4 bg-emerald-50 dark:bg-emerald-900/30 rounded-lg">
+      <h4 className="font-semibold text-emerald-700 dark:text-emerald-300 mb-2">Text Editors</h4>
+      ````bash
+      nano file              # Simple text editor
+      vim file               # Advanced text editor
+      gedit file             # GNOME text editor
+      emacs file             # Emacs text editor
+      ````
+    </div>
+  </div>
+</div>
+
+## 4. Input/Output Redirection
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <div className="space-y-6">
+    <div className="p-4 bg-cyan-50 dark:bg-cyan-900/30 rounded-lg">
+      <h4 className="font-semibold text-cyan-700 dark:text-cyan-300 mb-2">Redirection Operators</h4>
+      ````bash
+      command > file         # Redirect output to file (overwrite)
+      command >> file        # Append output to file
+      command < file         # Read input from file
+      command 2> file        # Redirect errors to file
+      command &> file        # Redirect output and errors
+      command1 | command2    # Pipe output to another command
+      command > /dev/null    # Discard output
+      ````
+    </div>
+
+    <div className="p-4 bg-amber-50 dark:bg-amber-900/30 rounded-lg">
+      <h4 className="font-semibold text-amber-700 dark:text-amber-300 mb-2">Advanced Redirection</h4>
+      ````bash
+      command 2>&1           # Redirect stderr to stdout
+      command >&2            # Redirect stdout to stderr
+      command <<EOF          # Here document
+      text
+      EOF
+      command <<< "string"   # Here string
+      ````
+    </div>
+  </div>
+</div>
+
+## 5. Search and Filter
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <div className="space-y-6">
+    <div className="p-4 bg-violet-50 dark:bg-violet-900/30 rounded-lg">
+      <h4 className="font-semibold text-violet-700 dark:text-violet-300 mb-2">File Search</h4>
+      ````bash
+      find /path -name pattern    # Find files by name
+      find /path -type f          # Find regular files
+      find /path -type d          # Find directories
+      find /path -mtime +30       # Find files older than 30 days
+      find /path -size +100M      # Find files larger than 100MB
+      locate filename             # Quick file search using database
+      which command               # Show command location
+      whereis command            # Show command binary and manual
+      ````
+    </div>
+
+    <div className="p-4 bg-fuchsia-50 dark:bg-fuchsia-900/30 rounded-lg">
+      <h4 className="font-semibold text-fuchsia-700 dark:text-fuchsia-300 mb-2">Content Search</h4>
+      ````bash
+      grep pattern file           # Search for pattern in file
+      grep -r pattern dir        # Recursive search
+      grep -i pattern file       # Case-insensitive search
+      grep -v pattern file       # Invert match
+      grep -l pattern files      # List matching files
+      grep -n pattern file       # Show line numbers
+      grep -w pattern file       # Match whole words
+      egrep pattern file         # Extended regex search
+      ````
+    </div>
+  </div>
+</div>
+
+## 6. System Information
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <div className="space-y-6">
+    <div className="p-4 bg-teal-50 dark:bg-teal-900/30 rounded-lg">
+      <h4 className="font-semibold text-teal-700 dark:text-teal-300 mb-2">System Details</h4>
+      ````bash
+      uname -a                   # All system information
+      uname -r                   # Kernel release
+      cat /etc/*-release        # Distribution information
+      lsb_release -a            # Distribution details
+      hostname                  # System hostname
+      hostname -I               # System IP addresses
+      uptime                    # System uptime
+      date                      # Current date/time
+      cal                       # Calendar
+      ````
+    </div>
+
+    <div className="p-4 bg-orange-50 dark:bg-orange-900/30 rounded-lg">
+      <h4 className="font-semibold text-orange-700 dark:text-orange-300 mb-2">Resource Usage</h4>
+      ````bash
+      free -h                   # Memory usage
+      df -h                     # Disk space usage
+      du -sh directory         # Directory size
+      iostat                   # IO statistics
+      vmstat                   # Virtual memory stats
+      mpstat                   # CPU statistics
+      netstat                  # Network statistics
+      lsof                     # List open files
+      ````
+    </div>
+  </div>
+</div>
+
+## 7. Process Management
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <div className="space-y-6">
+    <div className="p-4 bg-red-50 dark:bg-red-900/30 rounded-lg">
+      <h4 className="font-semibold text-red-700 dark:text-red-300 mb-2">Process Control</h4>
+      ````bash
+      ps                        # Show processes
+      ps aux                    # Detailed process list
+      ps -ef                    # Full process information
+      top                       # Dynamic process viewer
+      htop                      # Enhanced process viewer
+      kill PID                  # Terminate process by ID
+      killall process          # Kill process by name
+      pkill pattern            # Kill matching processes
+      nice -n value command    # Run with modified priority
+      renice value -p PID      # Change process priority
+      ````
+    </div>
+
+    <div className="p-4 bg-lime-50 dark:bg-lime-900/30 rounded-lg">
+      <h4 className="font-semibold text-lime-700 dark:text-lime-300 mb-2">Background Jobs</h4>
+      ````bash
+      command &                 # Run in background
+      jobs                      # List background jobs
+      fg %n                     # Bring job to foreground
+      bg %n                     # Resume job in background
+      nohup command &          # Run immune to hangups
+      screen                   # Terminal multiplexer
+      tmux                     # Terminal multiplexer
+      ````
+    </div>
+  </div>
+</div>
+
+## 8. Network Operations
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <div className="space-y-6">
+    <div className="p-4 bg-sky-50 dark:bg-sky-900/30 rounded-lg">
+      <h4 className="font-semibold text-sky-700 dark:text-sky-300 mb-2">Network Configuration</h4>
+      ````bash
+      ifconfig                  # Network interfaces
+      ip addr                   # IP addresses
+      ip route                  # Routing table
+      netstat -tuln            # Active connections
+      ss -tuln                 # Socket statistics
+      ping host                # Test connectivity
+      traceroute host          # Trace packet route
+      dig domain               # DNS lookup
+      nslookup domain          # Name server lookup
+      ````
+    </div>
+
+    <div className="p-4 bg-pink-50 dark:bg-pink-900/30 rounded-lg">
+      <h4 className="font-semibold text-pink-700 dark:text-pink-300 mb-2">Remote Operations</h4>
+      ````bash
+      ssh user@host            # Secure shell
+      scp source dest          # Secure copy
+      rsync source dest        # Remote sync
+      wget url                 # Download file
+      curl url                 # Transfer data
+      sftp user@host          # Secure FTP
+      ````
+    </div>
+  </div>
+</div>
+
+## Sources
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm">
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <a href="https://www.redhat.com/sysadmin/basic-linux-commands" 
+       className="p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg hover:shadow-md transition-shadow">
+      <h4 className="font-semibold text-blue-700 dark:text-blue-300">Red Hat System Administration</h4>
+      <p className="text-sm text-gray-600 dark:text-gray-300">Official system administration guide</p>
+    </a>
+    <a href="https://wiki.archlinux.org/title/Core_utilities" 
+       className="p-4 bg-green-50 dark:bg-green-900/30 rounded-lg hover:shadow-md transition-shadow">
+      <h4 className="font-semibold text-green-700 dark:text-green-300">Arch Linux Documentation</h4>
+      <p className="text-sm text-gray-600 dark:text-gray-300">Core utilities reference</p>
+    </a>
+    <a href="https://www.debian.org/doc/manuals/debian-reference/ch01.en.html" 
+       className="p-4 bg-purple-50 dark:bg-purple-900/30 rounded-lg hover:shadow-md transition-shadow">
+      <h4 className="font-semibold text-purple-700 dark:text-purple-300">Debian Reference Manual</h4>
+      <p className="text-sm text-gray-600 dark:text-gray-300">Comprehensive command guide</p>
+    </a>
+  </div>
+</div>
 

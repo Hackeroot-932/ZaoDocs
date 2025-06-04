@@ -1,0 +1,14 @@
+{
+    "index": "Advanced",
+    "description": "Advanced JavaScript",
+    "icon": "CodeXml",
+    "root": false,
+    "defaultOpen": false,
+    "pages": [
+      "functional-js",
+      "master-js",
+      "service-workers-and-pwa",
+      "design-patterns",
+      "debug-performance-security"
+    ]
+  }

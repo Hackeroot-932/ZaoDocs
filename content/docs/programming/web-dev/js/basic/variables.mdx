@@ -1,0 +1,319 @@
+---
+title: Variables
+description: A comprehensive guide to JavaScript variables (var, let, const)
+icon: Braces
+---
+
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+<Callout type="info">
+  Variables are fundamental building blocks in JavaScript that allow us to store and manage data in our applications. Understanding the differences between `var`, `let`, and `const` is crucial for writing modern JavaScript code.
+</Callout>
+
+## Introduction to Variables
+
+Variables in JavaScript act as named containers for storing data values. They are essential for:
+- Storing and managing application data
+- Referencing values throughout your code
+- Maintaining state in your applications
+- Making your code more readable and maintainable
+
+## 1. Variable Declaration Keywords
+
+<Tabs items={["let", "const", "var"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h3 className="font-bold mb-2 text-blue-600 dark:text-blue-400">let - Modern Variable Declaration</h3>
+      
+      ```javascript
+      let age = 25;
+      let name = 'John';
+      let isStudent; // Declared without initialization
+      ```
+
+      <h3 className="font-bold mb-2">Key Characteristics</h3>
+      - Block-scoped
+      - Can be reassigned
+      - Cannot be redeclared in the same scope
+      - Can be declared without initialization
+      - Hoisting behavior (temporal dead zone)
+
+      <h3 className="font-bold mb-2">Best Use Cases</h3>
+      - When you need to reassign values
+      - Loop counters
+      - Variables that will change over time
+      - Temporary values in block scopes
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h3 className="font-bold mb-2 text-green-600 dark:text-green-400">const - Constant Declaration</h3>
+      
+      ```javascript
+      const PI = 3.14159;
+      const API_KEY = 'abc123';
+      const CONFIG = { theme: 'dark' };
+      ```
+
+      <h3 className="font-bold mb-2">Key Characteristics</h3>
+      - Block-scoped
+      - Cannot be reassigned
+      - Must be initialized at declaration
+      - Values are not immutable (for objects and arrays)
+      - Hoisting behavior (temporal dead zone)
+
+      <h3 className="font-bold mb-2">Best Use Cases</h3>
+      - Configuration values
+      - API endpoints
+      - Mathematical constants
+      - Import statements
+      - Function declarations
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h3 className="font-bold mb-2 text-red-600 dark:text-red-400">var - Legacy Variable Declaration</h3>
+      
+      ```javascript
+      var message = 'Hello';
+      var count = 0;
+      var isActive; // Declared without initialization
+      ```
+
+      <h3 className="font-bold mb-2">Key Characteristics</h3>
+      - Function-scoped (or global if declared outside functions)
+      - Can be reassigned
+      - Can be redeclared
+      - Hoisted to the top of its scope
+      - No block scope
+      - Creates properties on the global object (when declared globally)
+
+      <h3 className="font-bold mb-2">Best Use Cases</h3>
+      - Legacy code maintenance
+      - Compatibility with older browsers
+      - Not recommended for modern JavaScript development
+    </div>
+  </Tab>
+</Tabs>
+
+## 2. Scope and Hoisting
+
+<div className="p-4 border rounded-lg bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 my-6 shadow-md">
+  <h3 className="font-bold mb-4">1. Understanding Variable Scope</h3>
+
+  <p className="mb-4">Scope determines the accessibility and visibility of variables in different parts of your code. JavaScript has three main types of scope:</p>
+
+  <Tabs items={["1. Block Scope", "2. Function Scope", "3. Global Scope"]}>
+    <Tab>
+      <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+        <h4 className="font-bold mb-2">Block Scope</h4>
+        <p className="mb-3">Variables declared with `let` and `const` are block-scoped, meaning they are only accessible within the block they are defined (between curly braces).</p>
+        
+        ```javascript
+        {
+          let blockScoped = 'Only available in this block';
+          const alsoBlockScoped = 'Same here';
+          // These variables are only accessible within these curly braces
+        }
+        console.log(blockScoped); // ReferenceError
+        ```
+
+        <p className="mt-3">Common block scope scenarios:</p>
+        <ul className="list-disc pl-5">
+          <li>if statements</li>
+          <li>for loops</li>
+          <li>while loops</li>
+          <li>function blocks</li>
+        </ul>
+      </div>
+    </Tab>
+    <Tab>
+      <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+        <h4 className="font-bold mb-2">Function Scope</h4>
+        <p className="mb-3">Variables declared with `var` are function-scoped, meaning they are accessible anywhere within the function where they are declared.</p>
+
+        ```javascript
+        function example() {
+          var functionScoped = 'Available throughout the function';
+          
+          if (true) {
+            var alsoFunctionScoped = 'Still available!';
+          }
+          
+          console.log(functionScoped);      // Works
+          console.log(alsoFunctionScoped);  // Also works
+        }
+        console.log(functionScoped); // ReferenceError
+        ```
+
+        <p className="mt-3">Key characteristics:</p>
+        <ul className="list-disc pl-5">
+          <li>Accessible anywhere within the function</li>
+          <li>Not affected by block boundaries</li>
+          <li>Creates issues with variable hoisting</li>
+        </ul>
+      </div>
+    </Tab>
+    <Tab>
+      <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+        <h4 className="font-bold mb-2">Global Scope</h4>
+        <p className="mb-3">Variables declared outside any function or block are globally scoped and accessible throughout the entire program.</p>
+
+        ```javascript
+        // These are global variables
+        var globalVar = 'Available everywhere';
+        let globalLet = 'Also available everywhere';
+        const globalConst = 'Available everywhere too';
+
+        function someFunction() {
+          console.log(globalVar); // Works
+        }
+        ```
+
+        <p className="mt-3">Important considerations:</p>
+        <ul className="list-disc pl-5">
+          <li>Avoid global variables when possible</li>
+          <li>Can lead to naming conflicts</li>
+          <li>Makes code harder to maintain</li>
+          <li>Creates potential security risks</li>
+        </ul>
+      </div>
+    </Tab>
+  </Tabs>
+
+  <h3 className="font-bold my-4">2. Variable Hoisting</h3>
+
+  <div className="p-4 border rounded-lg bg-white dark:bg-gray-800">
+    <p className="mb-3">Hoisting is JavaScript's default behavior of moving declarations to the top of their scope during the compilation phase.</p>
+
+    <Tabs items={["var Hoisting", "let/const Hoisting", "Function Hoisting"]}>
+      <Tab>
+        ```javascript
+        console.log(varVariable); // undefined
+        var varVariable = 'Hoisted';
+
+        // The above code is interpreted as:
+        var varVariable;
+        console.log(varVariable);
+        varVariable = 'Hoisted';
+        ```
+      </Tab>
+      <Tab>
+        ```javascript
+        console.log(letVariable); // ReferenceError
+        let letVariable = 'Not hoisted';
+
+        console.log(constVariable); // ReferenceError
+        const constVariable = 'Not hoisted';
+
+        // let and const exist in the "temporal dead zone" 
+        // from the start of their scope until declaration
+        ```
+      </Tab>
+      <Tab>
+        ```javascript
+        // Function declarations are hoisted completely
+        sayHello(); // "Hello!"
+
+        function sayHello() {
+          console.log("Hello!");
+        }
+
+        // But function expressions are not
+        sayGoodbye(); // ReferenceError
+
+        const sayGoodbye = function() {
+          console.log("Goodbye!");
+        };
+        ```
+      </Tab>
+    </Tabs>
+
+    <div className="mt-4">
+      <h4 className="font-bold mb-2">Key Differences in Hoisting Behavior:</h4>
+      <ol className="list-decimal pl-5">
+        <li className="mb-2"><strong>var declarations</strong>: Hoisted and initialized with undefined</li>
+        <li className="mb-2"><strong>let/const declarations</strong>: Hoisted but not initialized (temporal dead zone)</li>
+        <li className="mb-2"><strong>function declarations</strong>: Hoisted with their full definition</li>
+        <li className="mb-2"><strong>function expressions</strong>: Follow the rules of their declaration keyword (var/let/const)</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+## 3. Best Practices
+
+<Steps>
+  <Step>
+    <h3 className="font-bold mb-2">Use const by Default</h3>
+    Always start with `const`. If you need to reassign the variable later, refactor to `let`.
+  </Step>
+  <Step>
+    <h3 className="font-bold mb-2">Avoid var</h3>
+    Use `let` and `const` instead of `var` for better scoping control and clearer code intention.
+  </Step>
+  <Step>
+    <h3 className="font-bold mb-2">Meaningful Names</h3>
+    Choose descriptive variable names that explain their purpose:
+    ```javascript
+    // Bad
+    const x = 'John Doe';
+    
+    // Good
+    const userName = 'John Doe';
+    ```
+  </Step>
+  <Step>
+    <h3 className="font-bold mb-2">Naming Conventions</h3>
+    - Use camelCase for variables and functions
+    - Use UPPER_SNAKE_CASE for important constants
+    - Use PascalCase for classes
+  </Step>
+</Steps>
+
+## 4. Common Patterns and Examples
+
+<div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+  <h3 className="font-bold mb-4">Practical Usage Examples</h3>
+
+  ```javascript
+  // Constants for configuration
+  const MAX_ITEMS = 100;
+  const API_ENDPOINT = 'https://api.example.com';
+
+  // Mutable variables
+  let currentUser = null;
+  let itemCount = 0;
+
+  // Object with const (mutable but not reassignable)
+  const config = {
+    theme: 'dark',
+    language: 'en'
+  };
+  config.theme = 'light'; // Valid
+  // config = {}; // Invalid - cannot reassign
+
+  // Loop example
+  for (let i = 0; i < MAX_ITEMS; i++) {
+    // Block-scoped i
+  }
+  ```
+</div>
+
+## Sources
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+  <div className="p-4 border rounded-lg">
+    <h4 className="font-bold">Official Documentation</h4>
+    - [MDN Web Docs - Grammar and types](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types)
+    - [ECMAScript Specification](https://tc39.es/ecma262/)
+  </div>
+  <div className="p-4 border rounded-lg">
+    <h4 className="font-bold">Additional Resources</h4>
+    - [JavaScript.info - Variables](https://javascript.info/variables)
+    - [FreeCodeCamp - JavaScript Variables](https://www.freecodecamp.org/espanol/news/javascript-variables-para-principiantes/)
+    - [LenguajeJS - Variables y Constantes](https://lenguajejs.com/fundamentos/estructuras-de-datos/variables-y-constantes/)
+  </div>
+</div>

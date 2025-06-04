@@ -1,10 +1,292 @@
 ---
 title: XQuery
-description: XQuery
+description: A comprehensive guide to XML Query Language (XQuery) and XML data manipulation
+icon: CodeXml
 ---
 
-# XQuery
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 
-XQuery
+<div className="p-4 mb-8 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-xl shadow-sm">
+  <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">XQuery: XML Query Language</h1>
+  <p className="text-gray-600 dark:text-gray-300">
+    XQuery is a powerful query and functional programming language designed to query and transform XML data collections. Think of it as the SQL for XML - it provides a flexible and standardized way to extract, manipulate, and transform XML data.
+  </p>
+</div>
 
-## What is XQuery?
+## 1. Introduction to XQuery
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Understanding XQuery</h3>
+
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+      <h4 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">Key Features</h4>
+      <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+        <li>XML-centric query language</li>
+        <li>W3C Recommendation (since 2007)</li>
+        <li>Supports complex data transformations</li>
+        <li>Works with XML databases and files</li>
+        <li>Built on XPath expressions</li>
+      </ul>
+    </div>
+    <div className="p-4 bg-purple-50 dark:bg-purple-900/30 rounded-lg">
+      <h4 className="font-semibold text-purple-700 dark:text-purple-300 mb-2">Primary Uses</h4>
+      <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+        <li>Querying XML data</li>
+        <li>Data transformation</li>
+        <li>Report generation</li>
+        <li>Web service integration</li>
+        <li>Document processing</li>
+      </ul>
+    </div>
+  </div>
+
+  <div className="mt-6 p-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/30 dark:to-emerald-900/30 rounded-lg">
+    <h4 className="font-semibold text-green-700 dark:text-green-300 mb-2">Why XQuery?</h4>
+    <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+      <li>More efficient than DOM/SAX for complex queries</li>
+      <li>Simpler syntax compared to XSLT for data queries</li>
+      <li>Native support in XML databases</li>
+      <li>Powerful data transformation capabilities</li>
+    </ul>
+  </div>
+</div>
+
+## 2. FLWOR Expressions
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">The Building Blocks of XQuery</h3>
+
+  <div className="space-y-6">
+    <div className="p-4 bg-yellow-50 dark:bg-yellow-900/30 rounded-lg">
+      <h4 className="font-semibold text-yellow-800 dark:text-yellow-200 mb-2">FLWOR Structure</h4>
+      <p className="text-gray-600 dark:text-gray-300 mb-4">
+        FLWOR (pronounced "flower") is the core expression type in XQuery, similar to SQL's SELECT-FROM-WHERE structure:
+      </p>
+      <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+        <li><strong>FOR</strong> - Iteration over sequences</li>
+        <li><strong>LET</strong> - Variable binding</li>
+        <li><strong>WHERE</strong> - Filtering conditions</li>
+        <li><strong>ORDER BY</strong> - Result ordering</li>
+        <li><strong>RETURN</strong> - Result construction</li>
+      </ul>
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+        <h4 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">Basic FLWOR Example</h4>
+        ```xquery
+        for $book in doc("library.xml")//book
+        let $title := $book/title
+        where $book/price < 30
+        order by $title
+        return $title
+        ```
+      </div>
+      <div className="p-4 bg-green-50 dark:bg-green-900/30 rounded-lg">
+        <h4 className="font-semibold text-green-700 dark:text-green-300 mb-2">Complex FLWOR Example</h4>
+        ```xquery
+        for $author in distinct-values(//book/author)
+        let $books := //book[author = $author]
+        where count($books) > 1
+        order by $author
+        return
+          <author>
+            <name>{$author}</name>
+            <bookCount>{count($books)}</bookCount>
+          </author>
+        ```
+      </div>
+    </div>
+  </div>
+</div>
+
+## 3. Advanced Features
+
+<Tabs items={["Conditional Expressions", "Quantifiers", "Mathematical Operations"]}>
+  <Tab>
+    <div className="p-6 bg-white dark:bg-gray-800 rounded-lg">
+      <h4 className="font-bold mb-4 text-blue-600 dark:text-blue-400">IF-THEN-ELSE Expressions</h4>
+      
+      ```xquery
+      for $book in //book
+      return
+        if (count($book/author) > 1)
+        then <multiAuthor>{$book/title/text()}</multiAuthor>
+        else <singleAuthor>{$book/title/text()}</singleAuthor>
+      ```
+
+      <div className="mt-4 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+        <h5 className="font-semibold text-gray-800 dark:text-white mb-2">Key Points</h5>
+        <ul className="list-disc pl-5 text-gray-600 dark:text-gray-300">
+          <li>Supports nested conditions</li>
+          <li>Can be used within FLWOR expressions</li>
+          <li>Returns different XML structures based on conditions</li>
+        </ul>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-6 bg-white dark:bg-gray-800 rounded-lg">
+      <h4 className="font-bold mb-4 text-green-600 dark:text-green-400">Existential Quantifiers</h4>
+      
+      ```xquery
+      // some quantifier
+      some $price in //book/price 
+      satisfies $price < 10
+
+      // every quantifier
+      every $book in //book 
+      satisfies count($book/author) > 0
+      ```
+
+      <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+          <h5 className="font-semibold text-gray-800 dark:text-white mb-2">some</h5>
+          <p className="text-gray-600 dark:text-gray-300">
+            Returns true if at least one item satisfies the condition
+          </p>
+        </div>
+        <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+          <h5 className="font-semibold text-gray-800 dark:text-white mb-2">every</h5>
+          <p className="text-gray-600 dark:text-gray-300">
+            Returns true if all items satisfy the condition
+          </p>
+        </div>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-6 bg-white dark:bg-gray-800 rounded-lg">
+      <h4 className="font-bold mb-4 text-purple-600 dark:text-purple-400">Mathematical Operations</h4>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+          <h5 className="font-semibold text-gray-800 dark:text-white mb-2">Basic Operations</h5>
+          <ul className="list-disc pl-5 text-gray-600 dark:text-gray-300">
+            <li>Addition (+)</li>
+            <li>Subtraction (-)</li>
+            <li>Multiplication (*)</li>
+            <li>Division (div)</li>
+            <li>Modulus (mod)</li>
+          </ul>
+        </div>
+        <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+          <h5 className="font-semibold text-gray-800 dark:text-white mb-2">Example</h5>
+          ```xquery
+          let $total := sum(//book/price)
+          let $count := count(//book)
+          return
+            <average>
+              {$total div $count}
+            </average>
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+</Tabs>
+
+## 4. Practical Examples
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <div className="space-y-6">
+    <div className="p-4 bg-indigo-50 dark:bg-indigo-900/30 rounded-lg">
+      <h4 className="font-semibold text-indigo-700 dark:text-indigo-300 mb-3">Working with Multiple Files</h4>
+      ```xquery
+      let $books := doc("books.xml")//book
+      let $sales := doc("sales.xml")//sale
+      for $book in $books
+      where some $sale in $sales 
+        satisfies $sale/@isbn = $book/@isbn
+      return $book/title
+      ```
+    </div>
+
+    <div className="p-4 bg-rose-50 dark:bg-rose-900/30 rounded-lg">
+      <h4 className="font-semibold text-rose-700 dark:text-rose-300 mb-3">Custom Output Formatting</h4>
+      ```xquery
+      for $book in //book
+      return
+        <book>
+          <title>{$book/title/text()}</title>
+          <authors>
+          {
+            for $author in $book/author
+            return <author>{$author/text()}</author>
+          }
+          </authors>
+          <authorCount>{count($book/author)}</authorCount>
+        </book>
+      ```
+    </div>
+
+    <div className="p-4 bg-emerald-50 dark:bg-emerald-900/30 rounded-lg">
+      <h4 className="font-semibold text-emerald-700 dark:text-emerald-300 mb-3">Complex Transformations</h4>
+      ```xquery
+      for $author in distinct-values(//book/author)
+      let $authorBooks := //book[author = $author]
+      where count($authorBooks) > 1
+      order by count($authorBooks) descending
+      return
+        <authorSummary>
+          <name>{$author}</name>
+          <totalBooks>{count($authorBooks)}</totalBooks>
+          <titles>
+          {
+            for $book in $authorBooks
+            return <title>{$book/title/text()}</title>
+          }
+          </titles>
+        </authorSummary>
+      ```
+    </div>
+  </div>
+</div>
+
+## 5. Best Practices and Tips
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+      <h4 className="font-semibold text-blue-700 dark:text-blue-300 mb-3">Performance Tips</h4>
+      <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+        <li>Use specific paths instead of //</li>
+        <li>Leverage index-based queries</li>
+        <li>Minimize node construction</li>
+        <li>Use let for repeated values</li>
+      </ul>
+    </div>
+    <div className="p-4 bg-green-50 dark:bg-green-900/30 rounded-lg">
+      <h4 className="font-semibold text-green-700 dark:text-green-300 mb-3">Code Organization</h4>
+      <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+        <li>Use meaningful variable names</li>
+        <li>Break complex queries into modules</li>
+        <li>Comment complex expressions</li>
+        <li>Maintain consistent formatting</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+## Sources
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm">
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <a href="https://www.w3.org/TR/xquery-31/" 
+       className="p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg hover:shadow-md transition-shadow">
+      <h4 className="font-semibold text-blue-700 dark:text-blue-300">W3C XQuery 3.1 Specification</h4>
+      <p className="text-sm text-gray-600 dark:text-gray-300">Official XQuery documentation</p>
+    </a>
+    <a href="https://www.w3schools.com/xml/xquery_intro.asp" 
+       className="p-4 bg-green-50 dark:bg-green-900/30 rounded-lg hover:shadow-md transition-shadow">
+      <h4 className="font-semibold text-green-700 dark:text-green-300">W3Schools XQuery Tutorial</h4>
+      <p className="text-sm text-gray-600 dark:text-gray-300">Interactive learning resource</p>
+    </a>
+    <a href="https://developer.marklogic.com/learn/xquery/" 
+       className="p-4 bg-purple-50 dark:bg-purple-900/30 rounded-lg hover:shadow-md transition-shadow">
+      <h4 className="font-semibold text-purple-700 dark:text-purple-300">MarkLogic XQuery Guide</h4>
+      <p className="text-sm text-gray-600 dark:text-gray-300">Practical XQuery implementation</p>
+    </a>
+  </div>
+</div>

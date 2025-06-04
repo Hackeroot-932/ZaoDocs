@@ -1,0 +1,10 @@
+{
+    "index": "PowerShell",
+    "description": "PowerShell",
+    "icon": "Terminal",
+    "root": false,
+    "defaultOpen": false,
+    "pages": [
+      
+    ]
+  }

@@ -1,0 +1,12 @@
+{
+    "index": "JavaScript",
+    "description": "JavaScript",
+    "icon": "CodeXml",
+    "root": false,
+    "defaultOpen": false,
+    "pages": [
+      "basic",
+      "mid",
+      "advanced"
+    ]
+  }

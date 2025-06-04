@@ -1,0 +1,363 @@
+---
+title: Strings
+description: A comprehensive guide to JavaScript strings and string manipulation
+icon: CodeXml
+---
+
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+
+<div className="p-4 mb-8 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-xl shadow-sm">
+  <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">Strings on JavaScript</h1>
+  <p className="text-gray-600 dark:text-gray-300">
+    Strings in JavaScript are sequences of characters used to store and manipulate text. They are fundamental for handling text data in web applications, from simple messages to complex data processing.
+  </p>
+</div>
+
+## 1. Creating Strings in JavaScript
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Three Ways to Create Strings</h3>
+
+  ```js
+  // 1. Using quotes (single or double)
+  const producto = "Monitor";
+  const producto2 = 'Teclado';
+
+  // 2. Using String function
+  const producto3 = String("Televisión");
+
+  // 3. Using String constructor (not recommended)
+  const producto4 = new String("Monitor");
+  ```
+
+  <div className="mt-4 p-4 bg-yellow-50 dark:bg-yellow-900/30 rounded-lg">
+    <p className="text-yellow-800 dark:text-yellow-200">
+      ⚠️ Note: Using the String constructor (new String()) is not recommended as it creates a String object instead of a primitive string, which can lead to unexpected behavior when comparing strings.
+    </p>
+  </div>
+</div>
+
+## 2. String Methods: Length and Search
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Finding String Length and Content</h3>
+
+  ```js
+  const producto = "Monitor de 20 pulgadas";
+
+  // Get string length
+  console.log(producto.length); // 22
+
+  // Check if string includes a substring
+  console.log(producto.includes("Monitor")); // true
+  console.log(producto.includes("Tablet")); // false
+  console.log(producto.includes("monitor")); // false (case sensitive)
+
+  // Find position of substring
+  console.log(producto.indexOf("Monitor")); // 0
+  console.log(producto.indexOf("Tablet")); // -1 (not found)
+  ```
+
+  <div className="mt-4 space-y-2">
+    <p className="text-gray-600 dark:text-gray-300">
+      The <code>length</code> property returns the total number of characters in a string, including spaces and special characters.
+    </p>
+    <p className="text-gray-600 dark:text-gray-300">
+      The <code>includes()</code> method performs a case-sensitive search to determine whether a string contains another string.
+    </p>
+    <p className="text-gray-600 dark:text-gray-300">
+      The <code>indexOf()</code> method returns the position of the first occurrence of a substring, or -1 if not found.
+    </p>
+  </div>
+</div>
+
+## 3. String Concatenation and Template Literals
+
+<Tabs items={["Concatenation Methods", "Template Literals", "Examples"]}>
+  <Tab>
+    <div className="p-6 bg-white dark:bg-gray-800 rounded-lg">
+      ```js
+      const producto = "Monitor de 20 pulgadas";
+      const precio = "30$";
+
+      // Method 1: Using concat()
+      console.log(producto.concat(precio));
+      console.log(producto.concat(" En descuento"));
+
+      // Method 2: Using + operator
+      console.log(producto + " con precio de: " + precio);
+
+      // Method 3: Using comma operator
+      console.log(producto, "con precio de:", precio);
+      ```
+
+      <div className="mt-4 text-gray-600 dark:text-gray-300">
+        <p>JavaScript offers multiple ways to join strings together. The <code>concat()</code> method is specifically designed for string concatenation, while the <code>+</code> operator is more versatile and commonly used.</p>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-6 bg-white dark:bg-gray-800 rounded-lg">
+      ```js
+      const producto = "Monitor de 20 pulgadas";
+      const precio = "30$";
+
+      // Template literal syntax
+      console.log(`El producto ${producto} tiene un precio de ${precio}`);
+
+      // Template literals with expressions
+      const descuento = 0.1;
+      console.log(`
+        Producto: ${producto}
+        Precio: ${precio}
+        Precio con descuento: ${parseFloat(precio) * (1 - descuento)}$
+      `);
+      ```
+
+      <div className="mt-4 text-gray-600 dark:text-gray-300">
+        <p>Template literals (using backticks) offer a more elegant way to create strings with variables and expressions. They also support multiline strings without explicit line breaks.</p>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-6 bg-white dark:bg-gray-800 rounded-lg">
+      ```js
+      // Real-world examples
+      
+      // 1. Creating a dynamic HTML template
+      const user = {
+        name: "John",
+        age: 30,
+        role: "Developer"
+      };
+
+      const template = `
+        <div class="user-card">
+          <h2>${user.name}</h2>
+          <p>Age: ${user.age}</p>
+          <p>Role: ${user.role}</p>
+        </div>
+      `;
+
+      // 2. Formatting a message
+      const items = ["laptop", "mouse", "keyboard"];
+      const message = `You have selected ${items.length} items: ${items.join(", ")}`;
+      ```
+
+      <div className="mt-4 text-gray-600 dark:text-gray-300">
+        <p>Template literals are particularly useful when working with HTML templates or formatting complex strings with multiple variables.</p>
+      </div>
+    </div>
+  </Tab>
+</Tabs>
+
+## 4. String Transformation Methods
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Modifying String Content</h3>
+
+  ```js
+  const producto = "           Monitor de 20 pulgadas           ";
+
+  // 1. Trimming whitespace
+  console.log(producto.trimStart()); // Remove leading spaces
+  console.log(producto.trimEnd());   // Remove trailing spaces
+  console.log(producto.trim());      // Remove both leading and trailing spaces
+
+  // 2. Replacing content
+  const texto = "Monitor 20 pulgadas";
+  console.log(texto.replace("pulgadas", '"')); // 'Monitor 20 "'
+  console.log(texto.replace("Monitor", 'Monitor Curvo')); // 'Monitor Curvo 20 pulgadas'
+
+  // 3. Slicing strings
+  console.log(texto.slice(0, 10));  // "Monitor 20"
+  console.log(texto.slice(8));      // "20 pulgadas"
+  console.log(texto.substring(0, 10)); // "Monitor 20"
+  
+  // 4. Repeating strings
+  const texto2 = " en rebaja".repeat(3);
+  console.log(`${texto} ${texto2}`); // "Monitor 20 pulgadas en rebaja en rebaja en rebaja"
+  ```
+
+  <div className="mt-6 p-6 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 rounded-xl">
+    <h4 className="text-lg font-semibold mb-3 text-purple-800 dark:text-purple-200">Understanding slice() vs substring()</h4>
+    
+    ```js
+    const producto = "Monitor 20 pulgadas";
+
+    // Basic usage - both methods work similarly
+    console.log(producto.slice(0, 7));     // "Monitor"
+    console.log(producto.substring(0, 7));  // "Monitor"
+
+    // Key Difference 1: Handling negative indices
+    console.log(producto.slice(-9));        // "pulgadas" (counts from end)
+    console.log(producto.substring(-9));    // "Monitor 20 pulgadas" (treats negative as 0)
+
+    // Key Difference 2: Handling start > end
+    console.log(producto.slice(2, 1));      // "" (returns empty string)
+    console.log(producto.substring(2, 1));  // "o" (swaps arguments)
+
+    // Key Difference 3: End index behavior
+    console.log(producto.slice(8));         // "20 pulgadas" (to the end)
+    console.log(producto.substring(8));     // "20 pulgadas" (to the end)
+    ```
+
+    <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="p-4 bg-white/50 dark:bg-gray-800/50 rounded-lg">
+        <h5 className="font-semibold text-purple-700 dark:text-purple-300 mb-2">slice() Method</h5>
+        <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-1">
+          <li>Supports negative indices</li>
+          <li>Returns empty string if start > end</li>
+          <li>More similar to array slicing</li>
+          <li>Preferred for modern JavaScript</li>
+        </ul>
+      </div>
+      <div className="p-4 bg-white/50 dark:bg-gray-800/50 rounded-lg">
+        <h5 className="font-semibold text-pink-700 dark:text-pink-300 mb-2">substring() Method</h5>
+        <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-1">
+          <li>Treats negative indices as 0</li>
+          <li>Swaps arguments if start > end</li>
+          <li>Legacy method from early JavaScript</li>
+          <li>Less predictable behavior</li>
+        </ul>
+      </div>
+    </div>
+
+    <div className="mt-4 p-4 bg-yellow-50/50 dark:bg-yellow-900/30 rounded-lg">
+      <h5 className="font-semibold text-yellow-800 dark:text-yellow-200 mb-2">🤔 Why the Difference?</h5>
+      <p className="text-gray-600 dark:text-gray-300">
+        When <code>substring(2,1)</code> returns "o", it's because substring automatically swaps the arguments if start > end, effectively becoming <code>substring(1,2)</code>. In contrast, <code>slice(2,1)</code> follows a more logical approach: if the starting point is after the ending point, it returns an empty string.
+      </p>
+    </div>
+  </div>
+
+  <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+      <h4 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">Trim Methods</h4>
+      <p className="text-gray-600 dark:text-gray-300">
+        The trim methods are essential for cleaning user input and ensuring consistent string formatting. They remove unwanted whitespace without modifying the actual content.
+      </p>
+    </div>
+    <div className="p-4 bg-green-50 dark:bg-green-900/30 rounded-lg">
+      <h4 className="font-semibold text-green-700 dark:text-green-300 mb-2">Slice vs Substring</h4>
+      <p className="text-gray-600 dark:text-gray-300">
+        While both <code>slice()</code> and <code>substring()</code> extract parts of a string, <code>slice()</code> supports negative indices and is generally more flexible.
+      </p>
+    </div>
+  </div>
+</div>
+
+## 5. Case Manipulation and String Conversion
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  ```js
+  const producto = "Monitor 20 pulgadas";
+
+  // Converting case
+  console.log(producto.toUpperCase()); // "MONITOR 20 PULGADAS"
+  console.log(producto.toLowerCase()); // "monitor 20 pulgadas"
+
+  // Converting numbers to strings
+  const precio = 300;
+  console.log(precio.toString()); // "300"
+  ```
+
+  <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="p-4 bg-purple-50 dark:bg-purple-900/30 rounded-lg">
+      <h4 className="font-semibold text-purple-700 dark:text-purple-300 mb-2">Case Conversion Use Cases</h4>
+      <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+        <li>Standardizing data format</li>
+        <li>Case-insensitive comparisons</li>
+        <li>Display formatting</li>
+        <li>User input normalization</li>
+      </ul>
+    </div>
+    <div className="p-4 bg-pink-50 dark:bg-pink-900/30 rounded-lg">
+      <h4 className="font-semibold text-pink-700 dark:text-pink-300 mb-2">Type Conversion Tips</h4>
+      <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+        <li>Use <code>toString()</code> for explicit conversion</li>
+        <li>String concatenation auto-converts numbers</li>
+        <li>Template literals handle conversion automatically</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+## 6. Split and Join Operations
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  ```js
+  // Splitting strings
+  const actividad = "JavaScript Moderno";
+  console.log(actividad.split(" ")); // ["JavaScript", "Moderno"]
+
+  const hobbies = "Leer, caminar, programar, escribir";
+  console.log(hobbies.split(", ")); // ["Leer", "caminar", "programar", "escribir"]
+
+  // Practical example: URL parsing
+  const url = "https://www.example.com/products?category=electronics&sort=price";
+  const [baseUrl, queryString] = url.split("?");
+  const params = queryString.split("&").reduce((acc, param) => {
+    const [key, value] = param.split("=");
+    acc[key] = value;
+    return acc;
+  }, {});
+  ```
+
+  <div className="mt-4 p-4 bg-indigo-50 dark:bg-indigo-900/30 rounded-lg">
+    <h4 className="font-semibold text-indigo-700 dark:text-indigo-300 mb-2">Common Applications</h4>
+    <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
+      <li>Parsing CSV data</li>
+      <li>Processing user input</li>
+      <li>URL manipulation</li>
+      <li>Text analysis</li>
+    </ul>
+  </div>
+</div>
+
+## 7. Best Practices and Tips
+
+<div className="p-6 bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-xl shadow-sm mb-8">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="p-4 bg-white dark:bg-gray-700 rounded-lg shadow-sm">
+      <h4 className="font-semibold text-gray-800 dark:text-white mb-3">Performance Considerations</h4>
+      <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
+        <li>Use template literals for complex string interpolation</li>
+        <li>Avoid excessive string concatenation in loops</li>
+        <li>Consider using array methods for large-scale string operations</li>
+        <li>Cache string lengths in loops</li>
+      </ul>
+    </div>
+    <div className="p-4 bg-white dark:bg-gray-700 rounded-lg shadow-sm">
+      <h4 className="font-semibold text-gray-800 dark:text-white mb-3">Common Pitfalls</h4>
+      <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
+        <li>String comparison is case-sensitive</li>
+        <li>String methods don't modify the original string</li>
+        <li>Be careful with string-number conversions</li>
+        <li>Watch out for string encoding issues</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+## Sources
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm">
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" 
+       className="p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg hover:shadow-md transition-shadow">
+      <h4 className="font-semibold text-blue-700 dark:text-blue-300">MDN Web Docs</h4>
+      <p className="text-sm text-gray-600 dark:text-gray-300">Official JavaScript string documentation</p>
+    </a>
+    <a href="https://javascript.info/string" 
+       className="p-4 bg-green-50 dark:bg-green-900/30 rounded-lg hover:shadow-md transition-shadow">
+      <h4 className="font-semibold text-green-700 dark:text-green-300">JavaScript.info</h4>
+      <p className="text-sm text-gray-600 dark:text-gray-300">In-depth string manipulation guide</p>
+    </a>
+    <a href="https://www.w3schools.com/js/js_string_methods.asp" 
+       className="p-4 bg-purple-50 dark:bg-purple-900/30 rounded-lg hover:shadow-md transition-shadow">
+      <h4 className="font-semibold text-purple-700 dark:text-purple-300">W3Schools</h4>
+      <p className="text-sm text-gray-600 dark:text-gray-300">String methods reference and examples</p>
+    </a>
+  </div>
+</div>

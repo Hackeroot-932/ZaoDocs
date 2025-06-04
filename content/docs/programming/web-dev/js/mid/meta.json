@@ -1,0 +1,20 @@
+{
+    "index": "Mid",
+    "description": "Mid",
+    "icon": "CodeXml",
+    "root": false,
+    "defaultOpen": false,
+    "pages": [
+      "LocalStorage",
+      "dates",
+      "prototypes",
+      "oop",
+      "sets-maps-symbols",
+      "modules",
+      "indexeddb",
+      "promises-callbacks-asynchronous-prog",
+      "apis",
+      "fetch-apis",
+      "async-await"
+    ]
+  }

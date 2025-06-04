@@ -1,10 +1,340 @@
 ---
 title: XML
-description: XML
+description: A comprehensive guide to XML (Extensible Markup Language) and its applications
+icon: CodeXml
 ---
 
-# XML
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 
-XML
+<div className="p-4 mb-8 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-xl shadow-sm">
+  <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">XML (Extensible Markup Language)</h1>
+  <p className="text-gray-600 dark:text-gray-300">
+    XML is a versatile markup language designed to store and transport structured data. It serves as a foundation for numerous data exchange formats and document types, making it a cornerstone of modern web technologies and data management systems.
+  </p>
+</div>
 
-## What is XML?
+## 1. Introduction to Markup Languages
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Digital Information Representation</h3>
+
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+      <h4 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">Computer Data Storage</h4>
+      <ul className="list-disc pl-5">
+        <li>Computers store all information in binary format (0s and 1s)</li>
+        <li>Different types of data (text, images, sound, video) require specific encoding methods</li>
+        <li>Text is encoded using character encoding standards (e.g., ASCII, Unicode/UTF-8)</li>
+      </ul>
+    </div>
+    
+    <div className="p-4 bg-green-50 dark:bg-green-900/30 rounded-lg">
+      <h4 className="font-semibold text-green-700 dark:text-green-300 mb-2">Evolution of Markup Languages</h4>
+      <ul className="list-disc pl-5">
+        <li><strong>Charles Goldfarb</strong>: Considered the father of markup languages</li>
+        <li><strong>GML</strong>: Initial IBM markup language that laid the foundation for SGML</li>
+        <li><strong>SGML</strong>: Standard Generalized Markup Language, the parent of HTML and XML</li>
+        <li><strong>HTML</strong>: Created by Tim Berners-Lee for web document structure</li>
+        <li><strong>XML</strong>: Developed as a simplified version of SGML for data storage and transport</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+## 2. What is XML?
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <p className="mb-4">XML (Extensible Markup Language) is a markup language and file format for storing, transmitting, and reconstructing arbitrary data. It defines a set of rules for encoding documents in a format that is both human-readable and machine-readable.</p>
+
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+    <div className="p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+      <h4 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">Key Features</h4>
+      <ul className="list-disc pl-5 text-gray-600 dark:text-gray-300">
+        <li>Platform and language independent</li>
+        <li>Self-descriptive syntax</li>
+        <li>Strict rules for parsing</li>
+        <li>Hierarchical data structure</li>
+        <li>Unicode support for all languages</li>
+      </ul>
+    </div>
+    <div className="p-4 bg-green-50 dark:bg-green-900/30 rounded-lg">
+      <h4 className="font-semibold text-green-700 dark:text-green-300 mb-2">Common Uses</h4>
+      <ul className="list-disc pl-5 text-gray-600 dark:text-gray-300">
+        <li>Data exchange between systems</li>
+        <li>Configuration files</li>
+        <li>Web services (SOAP)</li>
+        <li>Document storage</li>
+        <li>Database data transfers</li>
+      </ul>
+    </div>
+  </div>
+
+  ```xml
+  <?xml version="1.0" encoding="UTF-8"?>
+  <bookstore>
+    <book category="fiction">
+      <title>The Great Gatsby</title>
+      <author>F. Scott Fitzgerald</author>
+      <year>1925</year>
+      <price>9.99</price>
+    </book>
+  </bookstore>
+  ```
+</div>
+
+## 3. XML Applications and Standards
+
+<Tabs items={["Common Applications", "Derived Languages", "Technical Standards"]}>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-4 text-blue-600 dark:text-blue-400">Popular XML Applications</h4>
+      
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+          <h5 className="font-semibold mb-2">WordPress</h5>
+          <ul className="list-disc pl-5">
+            <li>Content import/export between sites</li>
+            <li>XML sitemaps for search engine indexing</li>
+            <li>RSS feeds for content syndication</li>
+          </ul>
+        </div>
+        
+        <div className="p-4 bg-green-50 dark:bg-green-900/30 rounded-lg">
+          <h5 className="font-semibold mb-2">Office Documents</h5>
+          <ul className="list-disc pl-5">
+            <li>Microsoft Office (.docx, .xlsx, .pptx)</li>
+            <li>OpenOffice/LibreOffice documents</li>
+            <li>Document metadata storage</li>
+          </ul>
+        </div>
+        
+        <div className="p-4 bg-purple-50 dark:bg-purple-900/30 rounded-lg">
+          <h5 className="font-semibold mb-2">Configuration</h5>
+          <ul className="list-disc pl-5">
+            <li>Java application config (Spring)</li>
+            <li>Web services (SOAP)</li>
+            <li>Database data exchange</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">XML-Based Languages</h4>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="p-4 bg-green-50 dark:bg-green-900/30 rounded-lg">
+          <h5 className="font-semibold mb-2">Web Technologies</h5>
+          <ul className="list-disc pl-5">
+            <li><strong>XHTML</strong>: HTML reformulated as XML</li>
+            <li><strong>SVG</strong>: Scalable Vector Graphics</li>
+            <li><strong>RSS/Atom</strong>: Web feed formats</li>
+            <li><strong>SOAP</strong>: Simple Object Access Protocol</li>
+          </ul>
+        </div>
+        <div className="p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+          <h5 className="font-semibold mb-2">Specialized Formats</h5>
+          <ul className="list-disc pl-5">
+            <li><strong>MathML</strong>: Mathematical markup</li>
+            <li><strong>KML</strong>: Geographic data</li>
+            <li><strong>EPUB</strong>: Electronic publication</li>
+            <li><strong>DITA</strong>: Technical documentation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+      <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Technical Standards</h4>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="p-4 bg-purple-50 dark:bg-purple-900/30 rounded-lg">
+          <h5 className="font-semibold mb-2">Core Standards</h5>
+          <ul className="list-disc pl-5">
+            <li><strong>DTD</strong>: Document Type Definition</li>
+            <li><strong>XSD</strong>: XML Schema Definition</li>
+            <li><strong>XPath</strong>: XML Path Language</li>
+            <li><strong>XSLT</strong>: Stylesheet Language</li>
+          </ul>
+        </div>
+        <div className="p-4 bg-indigo-50 dark:bg-indigo-900/30 rounded-lg">
+          <h5 className="font-semibold mb-2">Processing Standards</h5>
+          <ul className="list-disc pl-5">
+            <li><strong>XQuery</strong>: Query Language</li>
+            <li><strong>SAX</strong>: Simple API for XML</li>
+            <li><strong>DOM</strong>: Document Object Model</li>
+            <li><strong>XLink</strong>: XML Linking Language</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </Tab>
+</Tabs>
+
+## 4. XML Document Structure
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="space-y-4">
+      <h4 className="font-semibold mb-2">Basic Structure</h4>
+      <ul className="list-disc pl-5">
+        <li><strong>Prolog</strong>: XML declaration and processing instructions</li>
+        <li><strong>Root Element</strong>: Single top-level element containing all others</li>
+        <li><strong>Child Elements</strong>: Nested elements forming the document hierarchy</li>
+        <li><strong>Attributes</strong>: Additional element properties</li>
+        <li><strong>Text Content</strong>: Actual data within elements</li>
+      </ul>
+      
+      ```xml
+      <?xml version="1.0" encoding="UTF-8"?>
+      <root>
+        <child attribute="value">
+          <grandchild>Content</grandchild>
+        </child>
+      </root>
+      ```
+    </div>
+    
+    <div className="space-y-4">
+      <h4 className="font-semibold mb-2">Namespaces</h4>
+      <p>XML namespaces provide a way to avoid element name conflicts by using unique identifiers:</p>
+      
+      ```xml
+      <root xmlns:h="http://www.w3.org/TR/html4/"
+            xmlns:f="http://www.example.com/furniture">
+        <h:table>HTML table</h:table>
+        <f:table>Furniture table</f:table>
+      </root>
+      ```
+    </div>
+  </div>
+</div>
+
+## 5. Well-Formed XML
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Rules for Well-Formed XML</h3>
+
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+      <h4 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">Element Rules</h4>
+      <ul className="list-disc pl-5 text-gray-600 dark:text-gray-300">
+        <li>Must have a single root element</li>
+        <li>All elements must be properly nested</li>
+        <li>Tags are case-sensitive</li>
+        <li>All elements must be closed</li>
+        <li>Empty elements can use self-closing tags</li>
+      </ul>
+    </div>
+    <div className="p-4 bg-green-50 dark:bg-green-900/30 rounded-lg">
+      <h4 className="font-semibold text-green-700 dark:text-green-300 mb-2">Attribute Rules</h4>
+      <ul className="list-disc pl-5 text-gray-600 dark:text-gray-300">
+        <li>Must be quoted (single or double quotes)</li>
+        <li>Cannot contain multiple values</li>
+        <li>Cannot contain tree structures</li>
+        <li>Cannot contain markup characters</li>
+        <li>Must have unique names within an element</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+## 6. XML Validation
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <Tabs items={["DTD", "XML Schema", "Tools"]}>
+    <Tab>
+      <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+        <h4 className="font-bold mb-2 text-blue-600 dark:text-blue-400">Document Type Definition (DTD)</h4>
+        <p className="mb-4">DTDs define the structure and legal elements of an XML document:</p>
+        
+        ```dtd
+        <!ELEMENT bookstore (book+)>
+        <!ELEMENT book (title, author, year, price)>
+        <!ATTLIST book category CDATA #REQUIRED>
+        <!ELEMENT title (#PCDATA)>
+        <!ELEMENT author (#PCDATA)>
+        <!ELEMENT year (#PCDATA)>
+        <!ELEMENT price (#PCDATA)>
+        ```
+      </div>
+    </Tab>
+    <Tab>
+      <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+        <h4 className="font-bold mb-2 text-green-600 dark:text-green-400">XML Schema (XSD)</h4>
+        <p className="mb-4">XML Schema provides a more powerful way to define XML structure:</p>
+        
+        ```xml
+        <xs:schema>
+          <xs:element name="bookstore">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="book" maxOccurs="unbounded">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="title" type="xs:string"/>
+                      <xs:element name="author" type="xs:string"/>
+                      <xs:element name="year" type="xs:integer"/>
+                      <xs:element name="price" type="xs:decimal"/>
+                    </xs:sequence>
+                    <xs:attribute name="category" type="xs:string"/>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:schema>
+        ```
+      </div>
+    </Tab>
+    <Tab>
+      <div className="p-4 border rounded-lg bg-white dark:bg-gray-800 my-4">
+        <h4 className="font-bold mb-2 text-purple-600 dark:text-purple-400">Validation Tools</h4>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="p-4 bg-purple-50 dark:bg-purple-900/30 rounded-lg">
+            <h5 className="font-semibold mb-2">Online Tools</h5>
+            <ul className="list-disc pl-5">
+              <li>W3C Validator</li>
+              <li>xmlvalidation.com</li>
+              <li>FreeFormatter.com</li>
+            </ul>
+          </div>
+          <div className="p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+            <h5 className="font-semibold mb-2">Development Tools</h5>
+            <ul className="list-disc pl-5">
+              <li>xmllint</li>
+              <li>Apache Xerces</li>
+              <li>Modern IDEs</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </Tab>
+  </Tabs>
+</div>
+
+## Sources
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm">
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <a href="https://www.w3.org/XML/" 
+       className="p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg hover:shadow-md transition-shadow">
+      <h4 className="font-semibold text-blue-700 dark:text-blue-300">W3C XML</h4>
+      <p className="text-sm text-gray-600 dark:text-gray-300">Official XML specification and standards</p>
+    </a>
+    <a href="https://www.w3schools.com/xml/" 
+       className="p-4 bg-green-50 dark:bg-green-900/30 rounded-lg hover:shadow-md transition-shadow">
+      <h4 className="font-semibold text-green-700 dark:text-green-300">W3Schools XML</h4>
+      <p className="text-sm text-gray-600 dark:text-gray-300">Comprehensive XML tutorials and references</p>
+    </a>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/XML/XML_introduction" 
+       className="p-4 bg-purple-50 dark:bg-purple-900/30 rounded-lg hover:shadow-md transition-shadow">
+      <h4 className="font-semibold text-purple-700 dark:text-purple-300">MDN Web Docs</h4>
+      <p className="text-sm text-gray-600 dark:text-gray-300">XML introduction and best practices</p>
+    </a>
+  </div>
+</div>

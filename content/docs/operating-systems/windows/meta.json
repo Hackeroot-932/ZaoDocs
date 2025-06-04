@@ -5,6 +5,11 @@
     "root": false,
     "defaultOpen": true,
     "pages": [
-      "basic-commands"
+      "basic-commands",
+      "partitions",
+      "uac",
+      "acls",
+      "batch",
+      "powershell"
     ]
   }

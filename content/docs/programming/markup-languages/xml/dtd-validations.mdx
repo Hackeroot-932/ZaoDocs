@@ -1,0 +1,258 @@
+---
+title: DTD Validations
+description: A comprehensive guide to DTD (Document Type Definition) validations in XML
+icon: CodeXml
+---
+
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+
+<div className="p-4 mb-8 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-xl shadow-sm">
+  <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">DTD Validations in XML</h1>
+  <p className="text-gray-600 dark:text-gray-300">
+    Document Type Definition (DTD) is a set of markup declarations that define a document type for XML. It specifies the structure and the legal elements and attributes of an XML document.
+  </p>
+</div>
+
+## 1. Introduction to DTD
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Understanding DTD</h3>
+
+  DTD serves two essential purposes in XML:
+  
+  1. **Structure Definition**: It defines the document structure with a list of valid elements and attributes
+  2. **Validation**: It provides a framework against which XML documents can be checked for validity
+
+  <div className="mt-4 p-4 bg-yellow-50 dark:bg-yellow-900/30 rounded-lg">
+    <p className="text-yellow-800 dark:text-yellow-200">
+      ⚠️ Note: While DTDs are still widely used due to their historical significance and broad support, newer validation methods like XML Schema (XSD) offer more advanced features and better integration with XML's namespace system.
+    </p>
+  </div>
+</div>
+
+## 2. DTD Declaration Methods
+
+<Tabs items={["Internal DTD", "External DTD (System)", "External DTD (Public)"]}>
+  <Tab>
+    ```xml
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE root [
+      <!ELEMENT root (element1)>
+      <!ELEMENT element1 (#PCDATA)>
+    ]>
+    <root>
+      <element1>Content</element1>
+    </root>
+    ```
+    <div className="mt-4 text-gray-600 dark:text-gray-300">
+      Internal DTD is defined within the XML document itself using the DOCTYPE declaration.
+    </div>
+  </Tab>
+  <Tab>
+    ```xml
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE root SYSTEM "document.dtd">
+    <root>
+      <element1>Content</element1>
+    </root>
+    ```
+    <div className="mt-4 text-gray-600 dark:text-gray-300">
+      External System DTD is stored in a separate file and referenced using the SYSTEM keyword.
+    </div>
+  </Tab>
+  <Tab>
+    ```xml
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+    ```
+    <div className="mt-4 text-gray-600 dark:text-gray-300">
+      Public DTDs are widely available DTDs that can be referenced using the PUBLIC keyword.
+    </div>
+  </Tab>
+</Tabs>
+
+## 3. Element Declarations
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Defining Elements</h3>
+
+  ```dtd
+  <!-- Basic element declaration -->
+  <!ELEMENT elementName (content-model)>
+
+  <!-- Empty element -->
+  <!ELEMENT br EMPTY>
+
+  <!-- Element with only text -->
+  <!ELEMENT title (#PCDATA)>
+
+  <!-- Element with any content -->
+  <!ELEMENT description ANY>
+
+  <!-- Element with child elements -->
+  <!ELEMENT book (title, author, year)>
+
+  <!-- Element with optional child -->
+  <!ELEMENT author (name, email?)>
+
+  <!-- Element with multiple occurrences -->
+  <!ELEMENT library (book+)>
+  ```
+
+  <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+      <h4 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">Content Indicators</h4>
+      <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+        <li><code>EMPTY</code>: No content allowed</li>
+        <li><code>(#PCDATA)</code>: Text content only</li>
+        <li><code>ANY</code>: Any content allowed</li>
+        <li><code>?</code>: Zero or one occurrence</li>
+        <li><code>+</code>: One or more occurrences</li>
+        <li><code>*</code>: Zero or more occurrences</li>
+      </ul>
+    </div>
+    <div className="p-4 bg-green-50 dark:bg-green-900/30 rounded-lg">
+      <h4 className="font-semibold text-green-700 dark:text-green-300 mb-2">Content Models</h4>
+      <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+        <li><code>,</code>: Sequence of elements</li>
+        <li><code>|</code>: Choice between elements</li>
+        <li><code>()</code>: Grouping of elements</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+## 4. Attribute Declarations
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Defining Attributes</h3>
+
+  ```dtd
+  <!ATTLIST element-name attribute-name attribute-type default-value>
+
+  <!-- Examples -->
+  <!ATTLIST person
+    id ID #REQUIRED
+    age CDATA #IMPLIED
+    gender (male|female) "male"
+    type CDATA #FIXED "human">
+  ```
+
+  <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="p-4 bg-purple-50 dark:bg-purple-900/30 rounded-lg">
+      <h4 className="font-semibold text-purple-700 dark:text-purple-300 mb-2">Attribute Types</h4>
+      <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+        <li><code>CDATA</code>: Character data</li>
+        <li><code>ID</code>: Unique identifier</li>
+        <li><code>IDREF</code>: Reference to ID</li>
+        <li><code>IDREFS</code>: Multiple ID references</li>
+        <li><code>NMTOKEN</code>: Name token</li>
+        <li><code>NMTOKENS</code>: Multiple name tokens</li>
+        <li><code>ENTITY</code>: External entity</li>
+        <li><code>ENTITIES</code>: Multiple entities</li>
+        <li><code>NOTATION</code>: Notation declaration</li>
+        <li><code>(value1|value2)</code>: Enumerated values</li>
+      </ul>
+    </div>
+    <div className="p-4 bg-pink-50 dark:bg-pink-900/30 rounded-lg">
+      <h4 className="font-semibold text-pink-700 dark:text-pink-300 mb-2">Default Values</h4>
+      <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+        <li><code>#REQUIRED</code>: Must be included</li>
+        <li><code>#IMPLIED</code>: Optional attribute</li>
+        <li><code>#FIXED</code>: Fixed value</li>
+        <li><code>"value"</code>: Default value</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+## 5. Entity Declarations
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Working with Entities</h3>
+
+  ```dtd
+  <!-- Internal Entity -->
+  <!ENTITY copyright "Copyright © 2024">
+
+  <!-- External Entity -->
+  <!ENTITY config SYSTEM "config.xml">
+
+  <!-- Parameter Entity -->
+  <!ENTITY % common-attributes "
+    id ID #REQUIRED
+    class CDATA #IMPLIED
+    style CDATA #IMPLIED">
+  ```
+
+  <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="p-4 bg-indigo-50 dark:bg-indigo-900/30 rounded-lg">
+      <h4 className="font-semibold text-indigo-700 dark:text-indigo-300 mb-2">Entity Types</h4>
+      <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+        <li>General Entities</li>
+        <li>Parameter Entities</li>
+        <li>External Entities</li>
+        <li>Unparsed Entities</li>
+      </ul>
+    </div>
+    <div className="p-4 bg-orange-50 dark:bg-orange-900/30 rounded-lg">
+      <h4 className="font-semibold text-orange-700 dark:text-orange-300 mb-2">Usage Examples</h4>
+      <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+        <li>Text replacement</li>
+        <li>File inclusion</li>
+        <li>Common attributes</li>
+        <li>External resources</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+## 6. Best Practices and Tips
+
+<div className="p-6 bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-xl shadow-sm mb-8">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="p-4 bg-white dark:bg-gray-700 rounded-lg shadow-sm">
+      <h4 className="font-semibold text-gray-800 dark:text-white mb-3">DTD Best Practices</h4>
+      <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
+        <li>Use external DTDs for reusability</li>
+        <li>Keep DTDs modular and organized</li>
+        <li>Document your DTD declarations</li>
+        <li>Use parameter entities for common patterns</li>
+        <li>Follow naming conventions consistently</li>
+      </ul>
+    </div>
+    <div className="p-4 bg-white dark:bg-gray-700 rounded-lg shadow-sm">
+      <h4 className="font-semibold text-gray-800 dark:text-white mb-3">Common Pitfalls</h4>
+      <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
+        <li>Overcomplicating element structures</li>
+        <li>Ignoring namespace considerations</li>
+        <li>Not planning for future extensions</li>
+        <li>Inconsistent attribute usage</li>
+        <li>Poor entity management</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+## Sources
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm">
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <a href="https://www.w3.org/TR/xml/" 
+       className="p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg hover:shadow-md transition-shadow">
+      <h4 className="font-semibold text-blue-700 dark:text-blue-300">W3C XML Specification</h4>
+      <p className="text-sm text-gray-600 dark:text-gray-300">Official XML 1.0 specification including DTD</p>
+    </a>
+    <a href="https://www.w3schools.com/xml/xml_dtd_intro.asp" 
+       className="p-4 bg-green-50 dark:bg-green-900/30 rounded-lg hover:shadow-md transition-shadow">
+      <h4 className="font-semibold text-green-700 dark:text-green-300">W3Schools DTD Tutorial</h4>
+      <p className="text-sm text-gray-600 dark:text-gray-300">Comprehensive DTD tutorial and examples</p>
+    </a>
+    <a href="https://www.xml.com/pub/a/98/10/guide0.html" 
+       className="p-4 bg-purple-50 dark:bg-purple-900/30 rounded-lg hover:shadow-md transition-shadow">
+      <h4 className="font-semibold text-purple-700 dark:text-purple-300">XML.com DTD Guide</h4>
+      <p className="text-sm text-gray-600 dark:text-gray-300">In-depth guide to DTD implementation</p>
+    </a>
+  </div>
+</div>
