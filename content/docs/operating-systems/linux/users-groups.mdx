@@ -1,13 +1,390 @@
 ---
 title: Users & Groups
-description: Users & Groups
+description: A comprehensive guide to Linux user and group management across different distributions
+icon: Users
 ---
 
-Welcome to the Linux docs!
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 
-## What is Next?
+<div className="p-4 mb-8 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-xl shadow-sm">
+  <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">Linux Users & Groups</h1>
+  <p className="text-gray-600 dark:text-gray-300">
+    User and group management is fundamental to Linux system administration and security. This guide covers everything from basic concepts to advanced management techniques across major Linux distributions.
+  </p>
+</div>
 
-<Cards>
-  <Card title="Learn more about Next.js" href="https://nextjs.org/docs" />
-  <Card title="Learn more about Fumadocs" href="https://fumadocs.vercel.app" />
-</Cards>
+## 1. Understanding Users and Groups
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Core Concepts</h3>
+
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+      <h4 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">Users</h4>
+      <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+        <li>Individual accounts for system access</li>
+        <li>Unique identifiers (UID)</li>
+        <li>Personal home directories</li>
+        <li>Customizable login shells</li>
+        <li>Access control through permissions</li>
+      </ul>
+    </div>
+    <div className="p-4 bg-purple-50 dark:bg-purple-900/30 rounded-lg">
+      <h4 className="font-semibold text-purple-700 dark:text-purple-300 mb-2">Groups</h4>
+      <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+        <li>Collections of users with shared permissions</li>
+        <li>Group identifiers (GID)</li>
+        <li>Primary and secondary group membership</li>
+        <li>Resource access management</li>
+        <li>Simplified permission control</li>
+      </ul>
+    </div>
+  </div>
+
+  ```bash
+  # View current user information
+  id
+  
+  # Example output:
+  uid=1000(user) gid=1000(user) groups=1000(user),4(adm),24(cdrom),27(sudo)
+  ```
+
+  <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div className="p-4 bg-green-50 dark:bg-green-900/30 rounded-lg">
+      <h4 className="font-semibold text-green-700 dark:text-green-300 mb-2">System Users</h4>
+      <p className="text-gray-600 dark:text-gray-300">
+        Special accounts for running system services and daemons
+      </p>
+    </div>
+    <div className="p-4 bg-yellow-50 dark:bg-yellow-900/30 rounded-lg">
+      <h4 className="font-semibold text-yellow-700 dark:text-yellow-300 mb-2">Regular Users</h4>
+      <p className="text-gray-600 dark:text-gray-300">
+        Standard accounts for human users with interactive login shells
+      </p>
+    </div>
+    <div className="p-4 bg-red-50 dark:bg-red-900/30 rounded-lg">
+      <h4 className="font-semibold text-red-700 dark:text-red-300 mb-2">Superuser (root)</h4>
+      <p className="text-gray-600 dark:text-gray-300">
+        Administrative account with complete system control
+      </p>
+    </div>
+  </div>
+</div>
+
+## 2. User Management
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Managing User Accounts</h3>
+
+  <Tabs items={["Creating Users", "Modifying Users", "Deleting Users", "Distribution Specifics"]}>
+    <Tab>
+      <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+        <h4 className="font-semibold text-gray-800 dark:text-white mb-3">Creating New Users</h4>
+        ```bash
+        # Create a new user with home directory
+        useradd -m username
+        
+        # Create user with specific shell
+        useradd -m -s /bin/bash username
+        
+        # Create user with custom home directory
+        useradd -m -d /custom/home username
+        
+        # Create system user
+        useradd -r -s /usr/sbin/nologin sysuser
+        
+        # Alternative commands (distribution specific)
+        adduser username  # Interactive (Debian/Ubuntu)
+        ```
+        <div className="mt-4 text-gray-600 dark:text-gray-300">
+          <p>Common options:</p>
+          <ul className="list-disc list-inside">
+            <li>-m: Create home directory</li>
+            <li>-s: Specify login shell</li>
+            <li>-r: Create system account</li>
+            <li>-G: Add to supplementary groups</li>
+            <li>-d: Specify home directory path</li>
+          </ul>
+        </div>
+      </div>
+    </Tab>
+    <Tab>
+      <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+        <h4 className="font-semibold text-gray-800 dark:text-white mb-3">Modifying Existing Users</h4>
+        ```bash
+        # Change username
+        usermod -l newname oldname
+        
+        # Change home directory
+        usermod -d /new/home -m username
+        
+        # Change shell
+        usermod -s /bin/shell username
+        
+        # Add to supplementary groups
+        usermod -aG group1,group2 username
+        
+        # Lock/Unlock account
+        usermod -L username  # Lock
+        usermod -U username  # Unlock
+        ```
+      </div>
+    </Tab>
+    <Tab>
+      <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+        <h4 className="font-semibold text-gray-800 dark:text-white mb-3">Removing Users</h4>
+        ```bash
+        # Remove user
+        userdel username
+        
+        # Remove user and home directory
+        userdel -r username
+        
+        # Alternative commands
+        deluser username  # Debian/Ubuntu
+        deluser --remove-home username
+        ```
+      </div>
+    </Tab>
+    <Tab>
+      <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+        <h4 className="font-semibold text-gray-800 dark:text-white mb-3">Distribution-Specific Tools</h4>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Debian/Ubuntu</h5>
+            <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+              <li>adduser (interactive)</li>
+              <li>deluser</li>
+              <li>addgroup</li>
+              <li>delgroup</li>
+            </ul>
+          </div>
+          <div>
+            <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">RHEL/CentOS</h5>
+            <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+              <li>useradd</li>
+              <li>userdel</li>
+              <li>groupadd</li>
+              <li>groupdel</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </Tab>
+  </Tabs>
+</div>
+
+## 3. Group Management
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <div className="space-y-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="p-4 bg-indigo-50 dark:bg-indigo-900/30 rounded-lg">
+        <h4 className="font-semibold text-indigo-700 dark:text-indigo-300 mb-2">Creating and Managing Groups</h4>
+        ```bash
+        # Create new group
+        groupadd groupname
+        
+        # Create system group
+        groupadd -r sysgroup
+        
+        # Modify group
+        groupmod -n newname oldname
+        
+        # Delete group
+        groupdel groupname
+        ```
+      </div>
+      <div className="p-4 bg-pink-50 dark:bg-pink-900/30 rounded-lg">
+        <h4 className="font-semibold text-pink-700 dark:text-pink-300 mb-2">Managing Group Membership</h4>
+        ```bash
+        # Add user to group
+        usermod -aG groupname username
+        
+        # Remove user from group
+        gpasswd -d username groupname
+        
+        # Change primary group
+        usermod -g groupname username
+        
+        # List group members
+        getent group groupname
+        ```
+      </div>
+    </div>
+    
+    <div className="p-4 bg-amber-50 dark:bg-amber-900/30 rounded-lg">
+      <h4 className="font-semibold text-amber-700 dark:text-amber-300 mb-2">Group Types and Best Practices</h4>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Group Categories</h5>
+          <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+            <li>System groups (GID < 1000)</li>
+            <li>User groups (GID ≥ 1000)</li>
+            <li>Primary groups</li>
+            <li>Secondary/supplementary groups</li>
+          </ul>
+        </div>
+        <div>
+          <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Best Practices</h5>
+          <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+            <li>Use descriptive group names</li>
+            <li>Regular group membership audits</li>
+            <li>Document group purposes</li>
+            <li>Follow least privilege principle</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+## 4. System Files and Configuration
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <div className="space-y-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="p-4 bg-cyan-50 dark:bg-cyan-900/30 rounded-lg">
+        <h4 className="font-semibold text-cyan-700 dark:text-cyan-300 mb-2">/etc/passwd File</h4>
+        ```text
+        username:x:UID:GID:GECOS:home:shell
+        
+        # Example:
+        john:x:1000:1000:John Doe:/home/john:/bin/bash
+        ```
+        <div className="mt-4">
+          <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Fields</h5>
+          <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+            <li>username: Login name</li>
+            <li>x: Password placeholder</li>
+            <li>UID: User ID number</li>
+            <li>GID: Primary group ID</li>
+            <li>GECOS: User information</li>
+            <li>home: Home directory path</li>
+            <li>shell: Login shell</li>
+          </ul>
+        </div>
+      </div>
+      <div className="p-4 bg-emerald-50 dark:bg-emerald-900/30 rounded-lg">
+        <h4 className="font-semibold text-emerald-700 dark:text-emerald-300 mb-2">/etc/group File</h4>
+        ```text
+        groupname:x:GID:user1,user2,user3
+        
+        # Example:
+        developers:x:1001:john,jane,bob
+        ```
+        <div className="mt-4">
+          <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Fields</h5>
+          <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+            <li>groupname: Group name</li>
+            <li>x: Password placeholder</li>
+            <li>GID: Group ID number</li>
+            <li>members: Comma-separated list</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div className="p-4 bg-violet-50 dark:bg-violet-900/30 rounded-lg">
+      <h4 className="font-semibold text-violet-700 dark:text-violet-300 mb-2">Shadow Files</h4>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">/etc/shadow</h5>
+          ```text
+          username:hash:lastchg:min:max:warn:inactive:expire:reserved
+          ```
+          <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+            <li>hash: Encrypted password</li>
+            <li>lastchg: Last password change</li>
+            <li>min/max: Password age limits</li>
+            <li>warn: Warning period</li>
+            <li>inactive: Account inactivity limit</li>
+            <li>expire: Account expiration date</li>
+          </ul>
+        </div>
+        <div>
+          <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">/etc/gshadow</h5>
+          ```text
+          groupname:password:administrators:members
+          ```
+          <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+            <li>password: Group password</li>
+            <li>administrators: Group admins</li>
+            <li>members: Group members</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+## 5. Password Management
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <div className="space-y-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="p-4 bg-rose-50 dark:bg-rose-900/30 rounded-lg">
+        <h4 className="font-semibold text-rose-700 dark:text-rose-300 mb-2">Password Commands</h4>
+        ```bash
+        # Set user password
+        passwd username
+        
+        # Change password expiry
+        chage -M 90 username
+        
+        # Lock account
+        passwd -l username
+        
+        # Unlock account
+        passwd -u username
+        
+        # Force password change
+        chage -d 0 username
+        ```
+      </div>
+      <div className="p-4 bg-teal-50 dark:bg-teal-900/30 rounded-lg">
+        <h4 className="font-semibold text-teal-700 dark:text-teal-300 mb-2">Password Policies</h4>
+        <div className="space-y-4">
+          <div>
+            <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Common Settings</h5>
+            <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+              <li>Minimum length</li>
+              <li>Complexity requirements</li>
+              <li>History restrictions</li>
+              <li>Maximum age</li>
+              <li>Account lockout</li>
+            </ul>
+          </div>
+          <div>
+            <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Configuration Files</h5>
+            <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+              <li>/etc/login.defs</li>
+              <li>/etc/pam.d/common-password</li>
+              <li>/etc/security/pwquality.conf</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+## Sources
+
+<div className="p-6">
+  <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Official Documentation</h3>
+  - [Red Hat User and Group Management](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/managing-users-groups-and-permissions_configuring-basic-system-settings)
+  - [Ubuntu User Management](https://ubuntu.com/server/docs/security-users)
+  - [Arch Linux User Management](https://wiki.archlinux.org/title/Users_and_groups)
+  - [Debian User Management](https://www.debian.org/doc/manuals/debian-reference/ch04.en.html)
+
+  <h3 className="text-xl font-semibold mb-4 mt-6 text-gray-800 dark:text-white">Community Resources</h3>
+  - [Linux Journey - Users and Groups](https://linuxjourney.com/lesson/users-and-groups)
+  - [The Linux Documentation Project](https://tldp.org/LDP/sag/html/managing-users.html)
+  - [Linux.com - User Management](https://www.linux.com/training-tutorials/linux-101-user-account-management/)
+
+  <h3 className="text-xl font-semibold mb-4 mt-6 text-gray-800 dark:text-white">Security Guidelines</h3>
+  - [CIS Benchmarks](https://www.cisecurity.org/benchmark/linux)
+  - [NIST Linux Security Guide](https://csrc.nist.gov/publications/detail/sp/800-123/final)
+  - [Linux Security Wiki](https://linuxsecurity.expert/security-guides/linux-security-guide/)
+</div>

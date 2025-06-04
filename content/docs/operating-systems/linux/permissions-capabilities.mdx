@@ -1,7 +1,590 @@
 ---
 title: Permissions & Capabilities
-description: Permissions & Capabilities
+description: A comprehensive guide to Linux file permissions, special permissions, and capabilities across different distributions
+icon: BookUser
 ---
 
-Welcome to the Linux docs!
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+
+<div className="p-4 mb-8 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-xl shadow-sm">
+  <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">Linux Permissions & Capabilities</h1>
+  <p className="text-gray-600 dark:text-gray-300">
+    Linux permissions and capabilities are fundamental security features that control access to files, directories, and system resources. This guide covers everything from basic file permissions to advanced capabilities across major Linux distributions.
+  </p>
+</div>
+
+## 1. Reading and Interpreting Permissions
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Understanding Permission Structure</h3>
+
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+      <h4 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">File Type Indicators</h4>
+      <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+        <li><code>-</code> Regular file</li>
+        <li><code>d</code> Directory</li>
+        <li><code>l</code> Symbolic link</li>
+        <li><code>c</code> Character device</li>
+        <li><code>b</code> Block device</li>
+        <li><code>s</code> Socket</li>
+        <li><code>p</code> Named pipe</li>
+      </ul>
+    </div>
+    <div className="p-4 bg-purple-50 dark:bg-purple-900/30 rounded-lg">
+      <h4 className="font-semibold text-purple-700 dark:text-purple-300 mb-2">Permission Categories</h4>
+      <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+        <li>Owner permissions (first triplet)</li>
+        <li>Group permissions (second triplet)</li>
+        <li>Others permissions (third triplet)</li>
+      </ul>
+    </div>
+  </div>
+
+  ```bash
+  # Example output of ls -l command
+  -rwxr-xr-- 1 user group 4096 Jan 15 10:00 example.txt
+  # |_||_||_|
+  # |  |  |
+  # |  |  +-> Others' permissions (r--)
+  # |  +----> Group permissions (r-x)
+  # +-------> Owner permissions (rwx)
+  ```
+
+  <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div className="p-4 bg-green-50 dark:bg-green-900/30 rounded-lg">
+      <h4 className="font-semibold text-green-700 dark:text-green-300 mb-2">Read (r)</h4>
+      <p className="text-gray-600 dark:text-gray-300">
+        View file contents or list directory contents
+      </p>
+    </div>
+    <div className="p-4 bg-yellow-50 dark:bg-yellow-900/30 rounded-lg">
+      <h4 className="font-semibold text-yellow-700 dark:text-yellow-300 mb-2">Write (w)</h4>
+      <p className="text-gray-600 dark:text-gray-300">
+        Modify file or directory contents
+      </p>
+    </div>
+    <div className="p-4 bg-red-50 dark:bg-red-900/30 rounded-lg">
+      <h4 className="font-semibold text-red-700 dark:text-red-300 mb-2">Execute (x)</h4>
+      <p className="text-gray-600 dark:text-gray-300">
+        Run files or access directory contents
+      </p>
+    </div>
+  </div>
+</div>
+
+## 2. Permission Assignment
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Changing Permissions</h3>
+
+  <Tabs items={["chmod Command", "chown Command", "Examples"]}>
+    <Tab>
+      <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+        <h4 className="font-semibold text-gray-800 dark:text-white mb-3">chmod Syntax</h4>
+        ```bash
+        # Symbolic mode
+        chmod [ugoa][+-=][rwx] file
+
+        # Numeric mode
+        chmod ### file
+        ```
+        <div className="mt-4 text-gray-600 dark:text-gray-300">
+          <p>Where:</p>
+          <ul className="list-disc list-inside">
+            <li>u (user), g (group), o (others), a (all)</li>
+            <li>+ (add), - (remove), = (set exactly)</li>
+            <li>r (read), w (write), x (execute)</li>
+          </ul>
+        </div>
+      </div>
+    </Tab>
+    <Tab>
+      <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+        <h4 className="font-semibold text-gray-800 dark:text-white mb-3">chown Syntax</h4>
+        ```bash
+        # Change owner
+        chown user file
+
+        # Change owner and group
+        chown user:group file
+
+        # Change group only
+        chown :group file
+        ```
+      </div>
+    </Tab>
+    <Tab>
+      <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+        <h4 className="font-semibold text-gray-800 dark:text-white mb-3">Common Examples</h4>
+        ```bash
+        # Give execute permission to owner
+        chmod u+x script.sh
+
+        # Remove write permission from others
+        chmod o-w file.txt
+
+        # Set full permissions for owner, read-only for others
+        chmod 744 important.txt
+
+        # Change owner and group
+        chown john:developers project/
+        ```
+      </div>
+    </Tab>
+  </Tabs>
+</div>
+
+## 3. Octal Permission Notation
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+      <h4 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">Octal Values</h4>
+      <table className="min-w-full">
+        <thead>
+          <tr>
+            <th className="px-4 py-2">Permission</th>
+            <th className="px-4 py-2">Binary</th>
+            <th className="px-4 py-2">Octal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td className="px-4 py-2">---</td>
+            <td className="px-4 py-2">000</td>
+            <td className="px-4 py-2">0</td>
+          </tr>
+          <tr>
+            <td className="px-4 py-2">--x</td>
+            <td className="px-4 py-2">001</td>
+            <td className="px-4 py-2">1</td>
+          </tr>
+          <tr>
+            <td className="px-4 py-2">-w-</td>
+            <td className="px-4 py-2">010</td>
+            <td className="px-4 py-2">2</td>
+          </tr>
+          <tr>
+            <td className="px-4 py-2">-wx</td>
+            <td className="px-4 py-2">011</td>
+            <td className="px-4 py-2">3</td>
+          </tr>
+          <tr>
+            <td className="px-4 py-2">r--</td>
+            <td className="px-4 py-2">100</td>
+            <td className="px-4 py-2">4</td>
+          </tr>
+          <tr>
+            <td className="px-4 py-2">r-x</td>
+            <td className="px-4 py-2">101</td>
+            <td className="px-4 py-2">5</td>
+          </tr>
+          <tr>
+            <td className="px-4 py-2">rw-</td>
+            <td className="px-4 py-2">110</td>
+            <td className="px-4 py-2">6</td>
+          </tr>
+          <tr>
+            <td className="px-4 py-2">rwx</td>
+            <td className="px-4 py-2">111</td>
+            <td className="px-4 py-2">7</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div className="p-4 bg-green-50 dark:bg-green-900/30 rounded-lg">
+      <h4 className="font-semibold text-green-700 dark:text-green-300 mb-2">Common Permission Combinations</h4>
+      <table className="min-w-full">
+        <thead>
+          <tr>
+            <th className="px-4 py-2">Octal</th>
+            <th className="px-4 py-2">Meaning</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td className="px-4 py-2">777</td>
+            <td className="px-4 py-2">Full permissions for all</td>
+          </tr>
+          <tr>
+            <td className="px-4 py-2">755</td>
+            <td className="px-4 py-2">Common for executables</td>
+          </tr>
+          <tr>
+            <td className="px-4 py-2">644</td>
+            <td className="px-4 py-2">Common for data files</td>
+          </tr>
+          <tr>
+            <td className="px-4 py-2">600</td>
+            <td className="px-4 py-2">Owner only</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+## 4. Special Permissions - Sticky Bit
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="p-4 bg-indigo-50 dark:bg-indigo-900/30 rounded-lg">
+      <h4 className="font-semibold text-indigo-700 dark:text-indigo-300 mb-2">Understanding Sticky Bit</h4>
+      <p className="text-gray-600 dark:text-gray-300">
+        The sticky bit is a permission bit that is set on directories, preventing users from deleting or renaming files within the directory unless they own the file or have write permission on the directory.
+      </p>
+      
+      ```bash
+      # Set sticky bit
+      chmod +t directory/
+      
+      # Octal notation (add 1 before permissions)
+      chmod 1755 directory/
+      ```
+    </div>
+    <div className="p-4 bg-pink-50 dark:bg-pink-900/30 rounded-lg">
+      <h4 className="font-semibold text-pink-700 dark:text-pink-300 mb-2">Common Use Cases</h4>
+      <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+        <li>/tmp directory</li>
+        <li>/var/tmp directory</li>
+        <li>Shared directories</li>
+        <li>Public upload folders</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+## 5. File Attributes Control in Linux - Chattr and Lsattr
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <div className="space-y-6">
+    <div className="p-4 bg-violet-50 dark:bg-violet-900/30 rounded-lg">
+      <h4 className="font-semibold text-violet-700 dark:text-violet-300 mb-2">Understanding File Attributes</h4>
+      <p className="text-gray-600 dark:text-gray-300">
+        Linux file systems (particularly ext2/ext3/ext4) support special hidden attributes that provide additional control over files beyond traditional permissions. These attributes can be used to enhance security and control file behavior at the filesystem level.
+      </p>
+    </div>
+
+    <Tabs items={["chattr Command", "lsattr Command", "Common Attributes", "Practical Examples"]}>
+      <Tab>
+        <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+          <h4 className="font-semibold text-gray-800 dark:text-white mb-3">chattr Usage</h4>
+          ```bash
+          # Basic syntax
+          chattr [options] [operator][attributes] files...
+
+          # Options:
+          # -R: Recursive changes for directories
+          # -V: Verbose output
+          # -f: Suppress error messages
+          # -v: Set file version/generation number
+
+          # Operators:
+          # +: Add attributes
+          # -: Remove attributes
+          # =: Set exact attributes
+
+          # Examples
+          chattr +i file.txt  # Make immutable
+          chattr +a log.txt   # Append-only
+          chattr +AiS file.txt # Multiple attributes
+          ```
+        </div>
+      </Tab>
+      <Tab>
+        <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+          <h4 className="font-semibold text-gray-800 dark:text-white mb-3">lsattr Usage</h4>
+          ```bash
+          # Basic listing
+          lsattr file.txt
+
+          # List all files including hidden
+          lsattr -a
+
+          # Recursive listing
+          lsattr -R directory/
+
+          # Example output:
+          # ----i-------- file.txt    # Immutable file
+          # -----a------- log.txt     # Append-only file
+          # ------------- normal.txt   # No special attributes
+          ```
+        </div>
+      </Tab>
+      <Tab>
+        <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+          <h4 className="font-semibold text-gray-800 dark:text-white mb-3">Key Attributes</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Security Attributes</h5>
+              <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+                <li><code>i</code> - Immutable: Cannot be modified, deleted, or renamed (even by root)</li>
+                <li><code>a</code> - Append-only: File can only be opened in append mode</li>
+                <li><code>s</code> - Secure deletion: Blocks are zeroed when file is deleted</li>
+                <li><code>u</code> - Undeletable: Content is saved for recovery when deleted</li>
+              </ul>
+            </div>
+            <div>
+              <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Performance Attributes</h5>
+              <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+                <li><code>A</code> - No atime updates: Don't modify access time</li>
+                <li><code>c</code> - Compressed: Automatically compress data</li>
+                <li><code>S</code> - Synchronous updates: Write changes immediately</li>
+                <li><code>j</code> - Journal data: Write changes to journal first</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </Tab>
+      <Tab>
+        <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+          <h4 className="font-semibold text-gray-800 dark:text-white mb-3">Real-world Examples</h4>
+          ```bash
+          # Protect system logs from tampering
+          chattr +a /var/log/auth.log
+          
+          # Protect critical configuration
+          chattr +i /etc/passwd
+          chattr +i /etc/shadow
+          
+          # Optimize database files
+          chattr +A /var/lib/mysql/*
+          
+          # Secure deletion for sensitive data
+          chattr +s /path/to/sensitive/files/*
+          
+          # Check current attributes
+          lsattr /etc/passwd
+          lsattr -R /var/log/
+          ```
+        </div>
+      </Tab>
+    </Tabs>
+  </div>
+</div>
+
+## 6. Special Permissions - SUID and SGID
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <div className="space-y-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="p-4 bg-orange-50 dark:bg-orange-900/30 rounded-lg">
+        <h4 className="font-semibold text-orange-700 dark:text-orange-300 mb-2">SUID (Set User ID)</h4>
+        <div className="space-y-4">
+          <p className="text-gray-600 dark:text-gray-300">
+            SUID allows a file to be executed with the permissions of the file owner instead of the user executing it. This is crucial for programs that need elevated privileges to function.
+          </p>
+          
+          ```bash
+          # Set SUID (symbolic)
+          chmod u+s file
+          
+          # Set SUID (octal - add 4000)
+          chmod 4755 file
+          
+          # Example: passwd command
+          ls -l /usr/bin/passwd
+          -rwsr-xr-x root root /usr/bin/passwd
+          ```
+          
+          <div className="mt-2">
+            <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Key Points</h5>
+            <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+              <li>Represented by 's' in owner execute position</li>
+              <li>Only works on executables</li>
+              <li>Common in system utilities needing root access</li>
+              <li>Security risk if misused</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div className="p-4 bg-cyan-50 dark:bg-cyan-900/30 rounded-lg">
+        <h4 className="font-semibold text-cyan-700 dark:text-cyan-300 mb-2">SGID (Set Group ID)</h4>
+        <div className="space-y-4">
+          <p className="text-gray-600 dark:text-gray-300">
+            SGID has different effects on files and directories. On files, it allows execution with the group's permissions. On directories, it ensures new files inherit the directory's group ownership.
+          </p>
+          
+          ```bash
+          # Set SGID (symbolic)
+          chmod g+s directory
+          
+          # Set SGID (octal - add 2000)
+          chmod 2755 directory
+          
+          # Example: shared directory
+          mkdir /shared
+          chgrp developers /shared
+          chmod g+s /shared
+          ```
+          
+          <div className="mt-2">
+            <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Use Cases</h5>
+            <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+              <li>Collaborative directories</li>
+              <li>Shared project folders</li>
+              <li>Group-executable programs</li>
+              <li>Maintaining group ownership hierarchy</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div className="p-4 bg-yellow-50 dark:bg-yellow-900/30 rounded-lg">
+      <h4 className="font-semibold text-yellow-700 dark:text-yellow-300 mb-2">Security Considerations</h4>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Risks</h5>
+          <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+            <li>Privilege escalation vulnerabilities</li>
+            <li>Unauthorized access to sensitive data</li>
+            <li>System compromise through SUID shell scripts</li>
+            <li>Group permission abuse</li>
+          </ul>
+        </div>
+        <div>
+          <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Best Practices</h5>
+          <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+            <li>Regularly audit SUID/SGID files</li>
+            <li>Avoid SUID on shell scripts</li>
+            <li>Use capabilities instead when possible</li>
+            <li>Implement principle of least privilege</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+## 7. Special Privileges - Capabilities
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <div className="space-y-6">
+    <div className="p-4 bg-violet-50 dark:bg-violet-900/30 rounded-lg">
+      <h4 className="font-semibold text-violet-700 dark:text-violet-300 mb-2">Understanding Linux Capabilities</h4>
+      <p className="text-gray-600 dark:text-gray-300">
+        Linux capabilities provide a way to divide the privileges of the root user into distinct units. This allows for more fine-grained control over privileged operations, following the principle of least privilege.
+      </p>
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+        <h4 className="font-semibold text-gray-800 dark:text-white mb-3">Core Concepts</h4>
+        <div className="space-y-4">
+          <div>
+            <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Capability States</h5>
+            <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+              <li>Permitted (p): Capabilities available for use</li>
+              <li>Effective (e): Currently active capabilities</li>
+              <li>Inheritable (i): Passed to child processes</li>
+              <li>Ambient (a): Inherited across execve</li>
+            </ul>
+          </div>
+          
+          <div>
+            <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Common Capabilities</h5>
+            <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+              <li>CAP_NET_BIND_SERVICE: Bind to privileged ports</li>
+              <li>CAP_CHOWN: Change file ownership</li>
+              <li>CAP_DAC_OVERRIDE: Bypass file permissions</li>
+              <li>CAP_KILL: Send signals to any process</li>
+              <li>CAP_SETUID: Change process UID</li>
+              <li>CAP_SYS_ADMIN: Perform system administration</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+        <h4 className="font-semibold text-gray-800 dark:text-white mb-3">Management Commands</h4>
+        ```bash
+        # View file capabilities
+        getcap /usr/bin/ping
+        
+        # Set capabilities
+        setcap cap_net_raw+ep /usr/bin/ping
+        
+        # Remove capabilities
+        setcap -r /usr/bin/ping
+        
+        # View process capabilities
+        getpcaps PID
+        
+        # Complex capability sets
+        setcap "cap_net_raw,cap_net_admin+ep" /usr/bin/custom_tool
+        
+        # Verify capabilities
+        getcap -v /usr/bin/ping
+        ```
+        
+        <div className="mt-4">
+          <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Capability Operators</h5>
+          <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+            <li>+: Add capability to set</li>
+            <li>-: Remove capability from set</li>
+            <li>=: Set capabilities exactly</li>
+            <li>e: Effective set</li>
+            <li>p: Permitted set</li>
+            <li>i: Inheritable set</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div className="p-4 bg-green-50 dark:bg-green-900/30 rounded-lg">
+      <h4 className="font-semibold text-green-700 dark:text-green-300 mb-2">Practical Applications</h4>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Use Cases</h5>
+          ```bash
+          # Allow non-root to bind to port 80
+          setcap cap_net_bind_service=+ep /usr/bin/nginx
+          
+          # Custom network tool
+          setcap cap_net_raw,cap_net_admin=ep /usr/local/bin/netool
+          
+          # Security scanner
+          setcap cap_sys_ptrace,cap_sys_admin=ep /usr/bin/scanner
+          ```
+        </div>
+        <div>
+          <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Best Practices</h5>
+          <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+            <li>Use minimal required capabilities</li>
+            <li>Regularly audit capability assignments</li>
+            <li>Document capability requirements</li>
+            <li>Consider security implications</li>
+            <li>Prefer capabilities over SUID</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+## Sources
+
+<div className="p-6">
+  <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">General Documentation</h3>
+  - [Linux File Permissions Explained](https://www.redhat.com/sysadmin/linux-file-permissions-explained) - Red Hat
+  - [File Permissions and Attributes](https://wiki.archlinux.org/title/File_permissions_and_attributes) - Arch Linux Wiki
+  - [User Account Management](https://www.debian.org/doc/manuals/debian-reference/ch01.en.html) - Debian Reference
+
+  <h3 className="text-xl font-semibold mb-4 mt-6 text-gray-800 dark:text-white">File Attributes</h3>
+  - [Chattr and Lsattr: File Attributes in Linux](https://rm-rf.es/chattr-y-lsattr-visualizar-y-modificar-atributos-en-sistemas-de-ficheros-linux/) - rm-rf.es
+  - [Linux Chattr and Lsattr Commands](https://programmerclick.com/article/5604675172/) - Programmer Click
+
+  <h3 className="text-xl font-semibold mb-4 mt-6 text-gray-800 dark:text-white">Special Permissions</h3>
+  - [SGID, SUID and Sticky Bit Permissions](https://deephacking.tech/permisos-sgid-suid-y-sticky-bit-linux/) - Deep Hacking
+  - [Special Permissions in Linux](https://www.ochobitshacenunbyte.com/2019/06/17/permisos-especiales-en-linux-sticky-bit-suid-y-sgid/) - Ocho Bits Hacen un Byte
+  - [Unix Security Documentation](https://www.ibiblio.org/pub/linux/docs/LuCaS/Manuales-LuCAS/SEGUNIX/unixsec-2.1-html/node56.html) - LuCaS Manuals
+
+  <h3 className="text-xl font-semibold mb-4 mt-6 text-gray-800 dark:text-white">Linux Capabilities</h3>
+  - [Using Linux Capabilities](https://medium.com/thg-tech-blog/using-capabilities-73dd2ae691d) - THG Tech Blog
+  - [Linux Capabilities Manual](https://man7.org/linux/man-pages/man7/capabilities.7.html) - Linux man-pages
+  - [Linux Capabilities 101](https://linux-audit.com/linux-capabilities-101/) - Linux Audit
+</div>
 

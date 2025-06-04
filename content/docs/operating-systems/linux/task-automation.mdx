@@ -1,13 +1,469 @@
 ---
 title: Task Automation
-description: Task Automation
+description: A comprehensive guide to task automation across different Linux distributions
+icon: Clock
 ---
 
-Welcome to the Linux docs!
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 
-## What is Next?
+<div className="p-4 mb-8 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-xl shadow-sm">
+  <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">Linux Task Automation</h1>
+  <p className="text-gray-600 dark:text-gray-300">
+    Task automation in Linux systems allows users to schedule and execute commands, scripts, or programs at specified intervals. This guide covers everything from basic cron usage to advanced automation techniques across major Linux distributions.
+  </p>
+</div>
 
-<Cards>
-  <Card title="Learn more about Next.js" href="https://nextjs.org/docs" />
-  <Card title="Learn more about Fumadocs" href="https://fumadocs.vercel.app" />
-</Cards>
+## 1. Understanding Cron
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">What is Cron?</h3>
+
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+      <h4 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">Core Concepts</h4>
+      <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+        <li>Background daemon process</li>
+        <li>Derived from Greek "chronos" (time)</li>
+        <li>Executes scheduled tasks</li>
+        <li>Runs at system startup</li>
+        <li>Checks for tasks every minute</li>
+      </ul>
+    </div>
+    <div className="p-4 bg-purple-50 dark:bg-purple-900/30 rounded-lg">
+      <h4 className="font-semibold text-purple-700 dark:text-purple-300 mb-2">System Integration</h4>
+      <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+        <li>Starts from /etc/rc.d/ or /etc/init.d</li>
+        <li>Reads from /etc/crontab</li>
+        <li>User tasks in /var/spool/cron</li>
+        <li>Distribution-specific locations</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+## 2. Crontab Structure
+
+<Tabs items={["Time Format", "Practical Examples", "Field Values"]}>
+  <Tab>
+    <div className="p-6 bg-white dark:bg-gray-800 rounded-lg">
+      <div className="space-y-4">
+        <h4 className="font-semibold text-gray-800 dark:text-white mb-2">Time Format Structure</h4>
+        ```bash
+        # Minute Hour Day-of-Month Month Day-of-Week Command
+        # m      h    dom          mon   dow         command
+        ```
+        <div className="mt-4 grid grid-cols-1 md:grid-cols-5 gap-4">
+          <div className="p-3 bg-white dark:bg-gray-700 rounded-lg">
+            <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Minutes (m)</h5>
+            <p className="text-sm text-gray-600 dark:text-gray-400">0-59</p>
+          </div>
+          <div className="p-3 bg-white dark:bg-gray-700 rounded-lg">
+            <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Hours (h)</h5>
+            <p className="text-sm text-gray-600 dark:text-gray-400">0-23</p>
+          </div>
+          <div className="p-3 bg-white dark:bg-gray-700 rounded-lg">
+            <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Day (dom)</h5>
+            <p className="text-sm text-gray-600 dark:text-gray-400">1-31</p>
+          </div>
+          <div className="p-3 bg-white dark:bg-gray-700 rounded-lg">
+            <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Month (mon)</h5>
+            <p className="text-sm text-gray-600 dark:text-gray-400">1-12</p>
+          </div>
+          <div className="p-3 bg-white dark:bg-gray-700 rounded-lg">
+            <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Weekday (dow)</h5>
+            <p className="text-sm text-gray-600 dark:text-gray-400">0-7 (0=Sunday)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-6 bg-white dark:bg-gray-800 rounded-lg">
+      <div className="space-y-4">
+        <h4 className="font-semibold text-gray-800 dark:text-white mb-2">Common Usage Examples</h4>
+        ```bash
+        # Run backup at 3:30 AM every day
+        30 3 * * * /home/user/scripts/backup.sh
+
+        # Run system update every Monday at 2 AM
+        0 2 * * 1 apt-get update && apt-get -y upgrade
+
+        # Execute script every 15 minutes
+        */15 * * * * /home/user/scripts/monitor.sh
+
+        # Run task at 12:00 PM on the first day of every month
+        0 12 1 * * /home/user/scripts/monthly_report.sh
+
+        # Multiple tasks in one line
+        0 9 * * 1-5 /scripts/workdays.sh ; /scripts/cleanup.sh
+
+        # Run at specific times during work hours
+        0 9-17/2 * * 1-5 /scripts/work_hours_task.sh
+
+        # Weekend maintenance
+        0 0 * * 6,0 /scripts/weekend_maintenance.sh
+        ```
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-6 bg-white dark:bg-gray-800 rounded-lg">
+      <div className="space-y-4">
+        <h4 className="font-semibold text-gray-800 dark:text-white mb-2">Field Value Options</h4>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Basic Values</h5>
+            <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+              <li>Single value (e.g., 5)</li>
+              <li>Multiple values (e.g., 1,3,5)</li>
+              <li>Range of values (e.g., 1-5)</li>
+              <li>Step values (e.g., */15)</li>
+              <li>Combinations (e.g., 1-5,23)</li>
+            </ul>
+          </div>
+          <div>
+            <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Special Characters</h5>
+            <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+              <li>* - Every value</li>
+              <li>, - Value list separator</li>
+              <li>- - Range of values</li>
+              <li>/ - Step values</li>
+              <li>L - Last day (month/week)</li>
+              <li>W - Nearest weekday</li>
+              <li># - Nth day of the week</li>
+            </ul>
+          </div>
+        </div>
+        <div className="mt-4">
+          <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Examples with Special Characters</h5>
+          ```bash
+          # Last day of every month
+          0 0 L * * /scripts/month_end.sh
+
+          # Every Monday to Friday at 3 PM
+          0 15 * * 1-5 /scripts/workday.sh
+
+          # First Monday of every month
+          0 0 * * 1#1 /scripts/monthly_monday.sh
+
+          # Nearest weekday to the 1st of every month
+          0 0 1W * * /scripts/first_workday.sh
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+</Tabs>
+
+## 3. Special Characters and Ranges
+
+<Tabs items={["Special Characters", "Time Ranges", "Special Keywords"]}>
+  <Tab>
+    <div className="p-6 bg-white dark:bg-gray-800 rounded-lg">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="p-4 bg-indigo-50 dark:bg-indigo-900/30 rounded-lg">
+          <h4 className="font-semibold text-indigo-700 dark:text-indigo-300 mb-2">Basic Characters</h4>
+          <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+            <li>* (asterisk): Every value</li>
+            <li>, (comma): Value list separator</li>
+            <li>- (hyphen): Range of values</li>
+            <li>/ (forward slash): Step values</li>
+          </ul>
+        </div>
+        <div className="p-4 bg-violet-50 dark:bg-violet-900/30 rounded-lg">
+          <h4 className="font-semibold text-violet-700 dark:text-violet-300 mb-2">Examples</h4>
+          ```bash
+          # Every minute
+          * * * * * command
+          
+          # Every 5 minutes
+          */5 * * * * command
+          
+          # Multiple specific hours
+          0 2,14 * * * command
+          ```
+        </div>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-6 bg-white dark:bg-gray-800 rounded-lg">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="p-4 bg-amber-50 dark:bg-amber-900/30 rounded-lg">
+          <h4 className="font-semibold text-amber-700 dark:text-amber-300 mb-2">Common Ranges</h4>
+          ```bash
+          # Monday to Friday at 3 PM
+          0 15 * * 1-5 command
+          
+          # First 15 days at noon
+          0 12 1-15 * * command
+          
+          # Every 10 minutes
+          */10 * * * * command
+          ```
+        </div>
+        <div className="p-4 bg-emerald-50 dark:bg-emerald-900/30 rounded-lg">
+          <h4 className="font-semibold text-emerald-700 dark:text-emerald-300 mb-2">Best Practices</h4>
+          <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+            <li>Use descriptive comments</li>
+            <li>Validate time ranges</li>
+            <li>Consider timezone settings</li>
+            <li>Test with echo commands first</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-6 bg-white dark:bg-gray-800 rounded-lg">
+      <div className="p-4 bg-rose-50 dark:bg-rose-900/30 rounded-lg">
+        <h4 className="font-semibold text-rose-700 dark:text-rose-300 mb-2">Special Keywords</h4>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Time-based</h5>
+            <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+              <li>@yearly (0 0 1 1 *)</li>
+              <li>@monthly (0 0 1 * *)</li>
+              <li>@weekly (0 0 * * 0)</li>
+              <li>@daily (0 0 * * *)</li>
+              <li>@hourly (0 * * * *)</li>
+            </ul>
+          </div>
+          <div>
+            <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Special Events</h5>
+            <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+              <li>@reboot (At system startup)</li>
+              <li>@midnight (Alias for @daily)</li>
+              <li>@annually (Alias for @yearly)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Tab>
+</Tabs>
+
+## 4. Distribution-Specific Considerations
+
+<Tabs items={["Debian/Ubuntu", "Red Hat/Fedora", "Arch Linux"]}>
+  <Tab>
+    <div className="p-6 bg-white dark:bg-gray-800 rounded-lg">
+      <div className="p-4 bg-red-50 dark:bg-red-900/30 rounded-lg">
+        <h4 className="font-semibold text-red-700 dark:text-red-300 mb-2">Debian-based Systems</h4>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Configuration</h5>
+            ```bash
+            # Update system example
+            0 2 * * * apt-get update && apt-get -y upgrade
+            
+            # Editor selection
+            EDITOR=nano crontab -e
+            ```
+          </div>
+          <div>
+            <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Key Locations</h5>
+            <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+              <li>/etc/cron.d/</li>
+              <li>/etc/cron.daily/</li>
+              <li>/etc/cron.hourly/</li>
+              <li>/var/spool/cron/crontabs/</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-6 bg-white dark:bg-gray-800 rounded-lg">
+      <div className="p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+        <h4 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">Red Hat-based Systems</h4>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Configuration</h5>
+            ```bash
+            # Update system example
+            0 2 * * * dnf -y update
+            
+            # SELinux considerations
+            restorecon /etc/crontab
+            ```
+          </div>
+          <div>
+            <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Key Locations</h5>
+            <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+              <li>/etc/cron.d/</li>
+              <li>/var/spool/cron/</li>
+              <li>/etc/anacrontab</li>
+              <li>/etc/cron.deny</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-6 bg-white dark:bg-gray-800 rounded-lg">
+      <div className="p-4 bg-purple-50 dark:bg-purple-900/30 rounded-lg">
+        <h4 className="font-semibold text-purple-700 dark:text-purple-300 mb-2">Arch Linux</h4>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Configuration</h5>
+            ```bash
+            # Install cronie
+            pacman -S cronie
+            
+            # Enable service
+            systemctl enable --now cronie
+            
+            # Update system example
+            0 2 * * * pacman -Syu --noconfirm
+            ```
+          </div>
+          <div>
+            <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Key Locations</h5>
+            <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+              <li>/var/spool/cron/</li>
+              <li>/etc/cron.d/</li>
+              <li>/var/log/crond.log</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Tab>
+</Tabs>
+
+## 5. Crontab Management
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="p-4 bg-teal-50 dark:bg-teal-900/30 rounded-lg">
+      <h4 className="font-semibold text-teal-700 dark:text-teal-300 mb-2">Basic Commands</h4>
+      ```bash
+      # Edit crontab
+      crontab -e
+      
+      # List tasks
+      crontab -l
+      
+      # Remove crontab
+      crontab -r
+      
+      # Edit other user's crontab
+      sudo crontab -u username -e
+      ```
+    </div>
+    <div className="p-4 bg-orange-50 dark:bg-orange-900/30 rounded-lg">
+      <h4 className="font-semibold text-orange-700 dark:text-orange-300 mb-2">Best Practices</h4>
+      <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+        <li>Use absolute paths in commands</li>
+        <li>Redirect output to logs</li>
+        <li>Set appropriate permissions</li>
+        <li>Test scripts before automation</li>
+        <li>Document all scheduled tasks</li>
+        <li>Monitor task execution</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+## 6. Advanced Usage and Troubleshooting
+
+<Tabs items={["Advanced Features", "Troubleshooting"]}>
+  <Tab>
+    <div className="p-6 bg-white dark:bg-gray-800 rounded-lg">
+      <div className="space-y-4">
+        <h4 className="font-semibold text-gray-800 dark:text-white mb-2">Advanced Features</h4>
+        ```bash
+        # With error logging
+        * * * * * command 2>&1 | logger -t mycron
+
+        # Multiple commands
+        * * * * * command1 && command2
+
+        # Using environment variables
+        SHELL=/bin/bash
+        PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+        * * * * * $HOME/scripts/backup.sh
+
+        # Redirect output to file
+        * * * * * command >> /var/log/cron_output.log 2>&1
+
+        # Run with specific environment
+        * * * * * . $HOME/.profile; command
+
+        # Complex scheduling
+        0 0 1-7 * * [ "$(date '+\%a')" = "Mon" ] && command
+        ```
+        <div className="mt-4">
+          <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Environment Setup</h5>
+          <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+            <li>Set default shell and path</li>
+            <li>Configure mail settings</li>
+            <li>Define custom variables</li>
+            <li>Source profile files</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </Tab>
+  <Tab>
+    <div className="p-6 bg-white dark:bg-gray-800 rounded-lg">
+      <div className="space-y-4">
+        <h4 className="font-semibold text-gray-800 dark:text-white mb-2">Troubleshooting</h4>
+        ```bash
+        # Check cron service
+        systemctl status cron
+
+        # View cron logs
+        grep CRON /var/log/syslog
+
+        # Test script permissions
+        ls -l /path/to/script.sh
+        chmod +x /path/to/script.sh
+
+        # Check cron environment
+        printenv > /tmp/env.txt
+        * * * * * env > /tmp/cron_env.txt
+
+        # Debug script execution
+        * * * * * /path/to/script.sh 2>&1 | logger -t script_debug
+        ```
+        <div className="mt-4">
+          <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Common Issues</h5>
+          <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+            <li>Check system logs</li>
+            <li>Verify cron service status</li>
+            <li>Confirm user permissions</li>
+            <li>Validate script permissions</li>
+            <li>Test commands manually</li>
+            <li>Monitor mail for cron output</li>
+            <li>Check script path and dependencies</li>
+            <li>Verify environment variables</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </Tab>
+</Tabs>
+
+## Sources
+
+<h3>Official Documentation</h3>
+- [Manual cron](http://linux.die.net/man/8/cron)
+- [Manual crontab](http://linux.die.net/man/5/crontab)
+- [Ubuntu Wiki - Cron HowTo](https://help.ubuntu.com/community/CronHowto)
+- [Debian Policy Manual - Cron Jobs](https://www.debian.org/doc/debian-policy/ch-opersys.html#cron-jobs)
+
+<h3>Distribution-Specific Resources</h3>
+- [Arch Linux Wiki - Cron](https://wiki.archlinux.org/title/Cron)
+- [Red Hat - Automating System Tasks](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/ch-automating_system_tasks)
+
+<h3>Tools and Generators</h3>
+- [Crontab Generator Tool](https://www.site24x7.com/es/tools/crontab/cron-generator.html)
+- [Crontab Guru - Quick and Simple Editor](https://crontab.guru)
+
+<h3>Additional Resources</h3>
+- [Blog DesdeLinux - Tutorial Instalar Paquetes](https://blog.desdelinux.net/tutorial-instalar-paquetes-tar-gz-y-tar-bz2)
+- [Blog DesdeLinux - Comandos Sistema](https://blog.desdelinux.net/comandos-para-conocer-el-sistema-identificar-hardware-y-algunas-configuraciones-de-software)

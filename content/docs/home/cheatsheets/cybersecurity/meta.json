@@ -3,7 +3,7 @@
     "description": "Brief Guides of Cybersecurity Tools",
     "icon": "BookLock",
     "root": false,
-    "defaultOpen": false,
+    "defaultOpen": true,
     "pages": [
       "metasploit",
       "nmap",

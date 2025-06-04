@@ -3,7 +3,7 @@
     "description": "Brief Guides of DevOps Tools",
     "icon": "RefreshCcw",
     "root": false,
-    "defaultOpen": false,
+    "defaultOpen": true,
     "pages": [
       "git",
       "docker",

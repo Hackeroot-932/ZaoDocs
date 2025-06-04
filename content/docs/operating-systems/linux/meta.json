@@ -10,6 +10,8 @@
       "users-groups",
       "system-dirs",
       "networking",
-      "task-automation"
+      "task-automation",
+      "bash",
+      "linux-tools"
     ]
   }
