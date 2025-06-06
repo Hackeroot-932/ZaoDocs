@@ -1,13 +1,357 @@
 ---
-title: Networking on Linux
-description: Networking on Linux
+title: Linux Networking
+description: A comprehensive guide to Linux networking across different distributions
+icon: Network
 ---
 
-Welcome to the Linux docs!
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 
-## What is Next?
+<div className="p-4 mb-8 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-xl shadow-sm">
+  <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">Linux Networking Guide</h1>
+  <p className="text-gray-600 dark:text-gray-300">
+    A comprehensive guide to understanding and managing networking in Linux systems across different distributions. From basic concepts to advanced configurations, this guide covers everything you need to know about Linux networking.
+  </p>
+</div>
 
-<Cards>
-  <Card title="Learn more about Next.js" href="https://nextjs.org/docs" />
-  <Card title="Learn more about Fumadocs" href="https://fumadocs.vercel.app" />
-</Cards>
+## 1. Network Fundamentals
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+      <h4 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">Core Concepts</h4>
+      <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+        <li>TCP/IP Protocol Suite</li>
+        <li>OSI Model</li>
+        <li>IP Addressing</li>
+        <li>Subnetting</li>
+        <li>Network Interfaces</li>
+      </ul>
+    </div>
+    <div className="p-4 bg-purple-50 dark:bg-purple-900/30 rounded-lg">
+      <h4 className="font-semibold text-purple-700 dark:text-purple-300 mb-2">Network Types</h4>
+      <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+        <li>Local Area Network (LAN)</li>
+        <li>Wide Area Network (WAN)</li>
+        <li>Virtual Private Network (VPN)</li>
+        <li>Software-Defined Network (SDN)</li>
+      </ul>
+    </div>
+  </div>
+
+  ```bash
+  # Example of basic network interface information
+  ip addr show
+  
+  # View routing table
+  ip route show
+  
+  # Check network connectivity
+  ping -c 4 8.8.8.8
+  ```
+
+  <div className="mt-4 p-4 bg-yellow-50 dark:bg-yellow-900/30 rounded-lg">
+    <h4 className="font-semibold text-yellow-700 dark:text-yellow-300 mb-2">Key Points</h4>
+    <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+      <li>Every network interface has a unique MAC address</li>
+      <li>IP addresses can be static or dynamic (DHCP)</li>
+      <li>IPv4 and IPv6 are the main IP protocols</li>
+      <li>Network masks define the subnet size</li>
+    </ul>
+  </div>
+</div>
+
+## 2. Network Configuration
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <Tabs items={["Debian/Ubuntu", "Red Hat/CentOS", "Arch Linux"]}>
+    <Tab>
+      <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+        <h4 className="font-semibold text-gray-800 dark:text-white mb-3">Debian-based Systems</h4>
+        ```bash
+        # Network interface configuration
+        sudo nano /etc/network/interfaces
+
+        # Example configuration
+        auto eth0
+        iface eth0 inet static
+            address 192.168.1.100
+            netmask 255.255.255.0
+            gateway 192.168.1.1
+            dns-nameservers 8.8.8.8 8.8.4.4
+        
+        # Restart networking
+        sudo systemctl restart networking
+        ```
+      </div>
+    </Tab>
+    <Tab>
+      <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+        <h4 className="font-semibold text-gray-800 dark:text-white mb-3">Red Hat-based Systems</h4>
+        ```bash
+        # Network interface configuration
+        sudo nano /etc/sysconfig/network-scripts/ifcfg-eth0
+
+        # Example configuration
+        DEVICE=eth0
+        BOOTPROTO=static
+        IPADDR=192.168.1.100
+        NETMASK=255.255.255.0
+        GATEWAY=192.168.1.1
+        DNS1=8.8.8.8
+        DNS2=8.8.4.4
+        ONBOOT=yes
+        
+        # Restart networking
+        sudo systemctl restart NetworkManager
+        ```
+      </div>
+    </Tab>
+    <Tab>
+      <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+        <h4 className="font-semibold text-gray-800 dark:text-white mb-3">Arch Linux</h4>
+        ```bash
+        # Using systemd-networkd
+        sudo nano /etc/systemd/network/20-wired.network
+
+        # Example configuration
+        [Match]
+        Name=eth0
+
+        [Network]
+        Address=192.168.1.100/24
+        Gateway=192.168.1.1
+        DNS=8.8.8.8
+        DNS=8.8.4.4
+        
+        # Restart networking
+        sudo systemctl restart systemd-networkd
+        ```
+      </div>
+    </Tab>
+  </Tabs>
+</div>
+
+## 3. Essential Networking Commands
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="p-4 bg-green-50 dark:bg-green-900/30 rounded-lg">
+      <h4 className="font-semibold text-green-700 dark:text-green-300 mb-2">Basic Commands</h4>
+      <div className="space-y-2">
+        ```bash
+        # Show IP addresses
+        ip addr show
+        
+        # Show routing table
+        ip route show
+        
+        # Test connectivity
+        ping example.com
+        
+        # Trace route to host
+        traceroute example.com
+        
+        # Show network statistics
+        netstat -tuln
+        
+        # DNS lookup
+        dig example.com
+        ```
+      </div>
+    </div>
+    <div className="p-4 bg-red-50 dark:bg-red-900/30 rounded-lg">
+      <h4 className="font-semibold text-red-700 dark:text-red-300 mb-2">Advanced Commands</h4>
+      <div className="space-y-2">
+        ```bash
+        # Capture network traffic
+        tcpdump -i eth0
+        
+        # Show socket statistics
+        ss -tuln
+        
+        # Network interface statistics
+        ip -s link show
+        
+        # ARP table
+        ip neigh show
+        
+        # Network scanning
+        nmap -sn 192.168.1.0/24
+        ```
+      </div>
+    </div>
+  </div>
+</div>
+
+## 4. Network Services
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <div className="space-y-6">
+    <div className="p-4 bg-indigo-50 dark:bg-indigo-900/30 rounded-lg">
+      <h4 className="font-semibold text-indigo-700 dark:text-indigo-300 mb-2">Common Network Services</h4>
+      <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+        <li>DHCP (Dynamic Host Configuration Protocol)</li>
+        <li>DNS (Domain Name System)</li>
+        <li>SSH (Secure Shell)</li>
+        <li>FTP (File Transfer Protocol)</li>
+        <li>HTTP/HTTPS (Web Services)</li>
+      </ul>
+    </div>
+
+    <Tabs items={["DHCP Configuration", "DNS Setup", "SSH Configuration"]}>
+      <Tab>
+        <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+          <h4 className="font-semibold text-gray-800 dark:text-white mb-3">DHCP Server Setup</h4>
+          ```bash
+          # Install DHCP server
+          sudo apt install isc-dhcp-server   # Debian/Ubuntu
+          sudo dnf install dhcp-server       # Red Hat/CentOS
+          sudo pacman -S dhcp                # Arch Linux
+
+          # Basic configuration
+          sudo nano /etc/dhcp/dhcpd.conf
+
+          subnet 192.168.1.0 netmask 255.255.255.0 {
+              range 192.168.1.100 192.168.1.200;
+              option routers 192.168.1.1;
+              option domain-name-servers 8.8.8.8, 8.8.4.4;
+          }
+          ```
+        </div>
+      </Tab>
+      <Tab>
+        <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+          <h4 className="font-semibold text-gray-800 dark:text-white mb-3">DNS Server Setup</h4>
+          ```bash
+          # Install BIND DNS server
+          sudo apt install bind9              # Debian/Ubuntu
+          sudo dnf install bind              # Red Hat/CentOS
+          sudo pacman -S bind                # Arch Linux
+
+          # Basic zone configuration
+          sudo nano /etc/bind/named.conf.local
+
+          zone "example.com" {
+              type master;
+              file "/etc/bind/zones/example.com.zone";
+          };
+          ```
+        </div>
+      </Tab>
+      <Tab>
+        <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+          <h4 className="font-semibold text-gray-800 dark:text-white mb-3">SSH Server Setup</h4>
+          ```bash
+          # Install OpenSSH server
+          sudo apt install openssh-server     # Debian/Ubuntu
+          sudo dnf install openssh-server     # Red Hat/CentOS
+          sudo pacman -S openssh              # Arch Linux
+
+          # Basic configuration
+          sudo nano /etc/ssh/sshd_config
+
+          Port 22
+          PermitRootLogin no
+          PasswordAuthentication yes
+          PubkeyAuthentication yes
+          ```
+        </div>
+      </Tab>
+    </Tabs>
+  </div>
+</div>
+
+## 5. Network Security
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <div className="p-4 bg-orange-50 dark:bg-orange-900/30 rounded-lg w-full">
+    <h4 className="font-semibold text-orange-700 dark:text-orange-300 mb-2">Firewall Configuration</h4>
+    ```bash
+    # UFW (Uncomplicated Firewall)
+    sudo ufw enable
+    sudo ufw allow 22/tcp
+    sudo ufw status
+    
+    # firewalld
+    sudo firewall-cmd --permanent --add-service=ssh
+    sudo firewall-cmd --reload
+    
+    # iptables
+    sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+    sudo iptables-save
+    ```
+  </div>
+</div>
+
+## 6. Network Troubleshooting
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <div className="space-y-6">
+    <div className="p-4 bg-violet-50 dark:bg-violet-900/30 rounded-lg">
+      <h4 className="font-semibold text-violet-700 dark:text-violet-300 mb-2">Common Issues and Solutions</h4>
+      <div className="space-y-4">
+        <div>
+          <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Connectivity Issues</h5>
+          ```bash
+          # Check interface status
+          ip link show
+          
+          # Test DNS resolution
+          dig google.com
+          
+          # Check routing
+          ip route get 8.8.8.8
+          
+          # Test connectivity
+          ping -c 4 8.8.8.8
+          ```
+        </div>
+        
+        <div>
+          <h5 className="font-medium text-gray-700 dark:text-gray-300 mb-2">Performance Issues</h5>
+          ```bash
+          # Monitor bandwidth
+          iftop -i eth0
+          
+          # Check network statistics
+          netstat -s
+          
+          # Monitor connections
+          ss -s
+          
+          # Analyze network traffic
+          tcpdump -i eth0
+          ```
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+## Sources
+
+<div className="p-6">
+  <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Official Documentation</h3>
+  - [Red Hat Networking Guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_and_managing_networking/index)
+  - [Debian Network Configuration](https://wiki.debian.org/NetworkConfiguration)
+  - [Arch Linux Network Configuration](https://wiki.archlinux.org/title/Network_configuration)
+  - [Ubuntu Networking Guide](https://ubuntu.com/server/docs/network-configuration)
+
+  <h3 className="text-xl font-semibold mb-4 mt-6 text-gray-800 dark:text-white">Tools and Commands</h3>
+  - [Linux Network Commands](https://phoenixnap.com/kb/linux-network-commands)
+  - [iproute2 Documentation](https://www.kernel.org/doc/Documentation/networking/ipv4.txt)
+  - [BIND DNS Server Documentation](https://www.isc.org/bind/)
+  - [OpenSSH Documentation](https://www.openssh.com/manual.html)
+
+  <h3 className="text-xl font-semibold mb-4 mt-6 text-gray-800 dark:text-white">Security Resources</h3>
+  - [Linux Security - Networking](https://www.linux.com/topic/networking/)
+  - [UFW Documentation](https://help.ubuntu.com/community/UFW)
+  - [firewalld Documentation](https://firewalld.org/)
+  - [iptables Tutorial](https://www.frozentux.net/iptables-tutorial/iptables-tutorial.html)
+
+  <h3 className="text-xl font-semibold mb-4 mt-6 text-gray-800 dark:text-white">Additional Resources</h3>
+  - [Linux Foundation Networking](https://www.linuxfoundation.org/projects/networking/)
+  - [Linux Network Administrators Guide](https://www.tldp.org/LDP/nag2/index.html)
+  - [TCP/IP Guide](http://www.tcpipguide.com/)
+  - [Linux Journal - Networking Articles](https://www.linuxjournal.com/tag/networking)
+</div>

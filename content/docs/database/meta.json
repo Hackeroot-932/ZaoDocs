@@ -1,0 +1,13 @@
+{
+    "index": "Database",
+    "description": "SQL & NoSQL Explained",
+    "icon": "Database",
+    "root": true,
+    "pages": [
+      "index",
+      "database-basics",
+      "database-design",
+      "database-optimization",
+      "database-security"
+    ]
+}

@@ -1,13 +1,270 @@
 ---
 title: Search & Filters
-description: Search & Filters
+description: A comprehensive guide to searching and filtering in Linux systems across different distributions
+icon: Search
 ---
 
-Welcome to the Linux docs!
+<div className="p-4 mb-8 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-xl shadow-sm">
+  <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">Linux Search & Filters</h1>
+  <p className="text-gray-600 dark:text-gray-300">
+    Linux provides powerful tools for searching and filtering files and content. This guide covers everything from basic file searches to advanced filtering techniques across major Linux distributions.
+  </p>
+</div>
 
-## What is Next?
+## 1. The Find Command
 
-<Cards>
-  <Card title="Learn more about Next.js" href="https://nextjs.org/docs" />
-  <Card title="Learn more about Fumadocs" href="https://fumadocs.vercel.app" />
-</Cards>
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Understanding the Find Command</h3>
+
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+      <h4 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">Basic Syntax</h4>
+      ```bash
+      find [path] [options] [expression]
+      ```
+      <p className="mt-2 text-gray-600 dark:text-gray-300">
+        The find command searches for files in a directory hierarchy based on various criteria.
+      </p>
+    </div>
+    
+    <div className="p-4 bg-purple-50 dark:bg-purple-900/30 rounded-lg">
+      <h4 className="font-semibold text-purple-700 dark:text-purple-300 mb-2">Common Options</h4>
+      <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+        <li>-name: Search by filename</li>
+        <li>-type: Search by file type</li>
+        <li>-size: Search by file size</li>
+        <li>-mtime: Search by modification time</li>
+        <li>-user: Search by owner</li>
+        <li>-perm: Search by permissions</li>
+      </ul>
+    </div>
+  </div>
+
+  <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/30 rounded-lg">
+    <h4 className="font-semibold text-green-700 dark:text-green-300 mb-2">Common Usage Examples</h4>
+    ```bash
+    # Find files by name
+    find /home -name "*.txt"
+
+    # Find files modified in last 7 days
+    find /var/log -mtime -7
+
+    # Find files larger than 100MB
+    find / -size +100M
+
+    # Find empty files
+    find . -type f -empty
+
+    # Find files with specific permissions
+    find /etc -perm 644
+    ```
+  </div>
+</div>
+
+## 2. The Locate Command
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <div className="space-y-6">
+    <div className="p-4 bg-yellow-50 dark:bg-yellow-900/30 rounded-lg">
+      <h4 className="font-semibold text-yellow-700 dark:text-yellow-300 mb-2">Overview</h4>
+      <p className="text-gray-600 dark:text-gray-300">
+        The locate command provides a faster alternative to find by using a pre-built database. It's ideal for quick searches but may not show recent changes until the database is updated.
+      </p>
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+        <h4 className="font-semibold text-gray-800 dark:text-white mb-3">Basic Usage</h4>
+        ```bash
+        # Basic search
+        locate filename
+
+        # Update database
+        sudo updatedb
+
+        # Case-insensitive search
+        locate -i filename
+
+        # Count matches
+        locate -c pattern
+        ```
+      </div>
+      
+      <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+        <h4 className="font-semibold text-gray-800 dark:text-white mb-3">Installation</h4>
+        ```bash
+        # Debian/Ubuntu
+        sudo apt-get install plocate
+
+        # RHEL/CentOS
+        sudo yum install mlocate
+
+        # Arch Linux
+        sudo pacman -S mlocate
+        ```
+      </div>
+    </div>
+  </div>
+</div>
+
+## 3. Text Filtering Commands
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <div className="space-y-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="p-4 bg-indigo-50 dark:bg-indigo-900/30 rounded-lg">
+        <h4 className="font-semibold text-indigo-700 dark:text-indigo-300 mb-2">grep Command</h4>
+        ```bash
+        # Basic search
+        grep "pattern" file.txt
+
+        # Recursive search
+        grep -r "pattern" directory/
+
+        # Case-insensitive search
+        grep -i "pattern" file.txt
+
+        # Show line numbers
+        grep -n "pattern" file.txt
+
+        # Count matches
+        grep -c "pattern" file.txt
+        ```
+      </div>
+      
+      <div className="p-4 bg-pink-50 dark:bg-pink-900/30 rounded-lg">
+        <h4 className="font-semibold text-pink-700 dark:text-pink-300 mb-2">sed Command</h4>
+        ```bash
+        # Replace text
+        sed 's/old/new/' file.txt
+
+        # Replace all occurrences
+        sed 's/old/new/g' file.txt
+
+        # Delete lines
+        sed '/pattern/d' file.txt
+
+        # Print specific lines
+        sed -n '1,5p' file.txt
+        ```
+      </div>
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="p-4 bg-orange-50 dark:bg-orange-900/30 rounded-lg">
+        <h4 className="font-semibold text-orange-700 dark:text-orange-300 mb-2">head/tail</h4>
+        ```bash
+        # Show first 10 lines
+        head file.txt
+
+        # Show last 10 lines
+        tail file.txt
+
+        # Follow file changes
+        tail -f log.txt
+        ```
+      </div>
+      
+      <div className="p-4 bg-cyan-50 dark:bg-cyan-900/30 rounded-lg">
+        <h4 className="font-semibold text-cyan-700 dark:text-cyan-300 mb-2">sort/uniq</h4>
+        ```bash
+        # Sort file
+        sort file.txt
+
+        # Remove duplicates
+        sort file.txt | uniq
+
+        # Count occurrences
+        sort file.txt | uniq -c
+        ```
+      </div>
+
+      <div className="p-4 bg-teal-50 dark:bg-teal-900/30 rounded-lg">
+        <h4 className="font-semibold text-teal-700 dark:text-teal-300 mb-2">wc Command</h4>
+        ```bash
+        # Count lines
+        wc -l file.txt
+
+        # Count words
+        wc -w file.txt
+
+        # Count characters
+        wc -c file.txt
+        ```
+      </div>
+    </div>
+  </div>
+</div>
+
+## 4. Advanced Filtering Techniques
+
+<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-8">
+  <div className="space-y-6">
+    <div className="p-4 bg-violet-50 dark:bg-violet-900/30 rounded-lg">
+      <h4 className="font-semibold text-violet-700 dark:text-violet-300 mb-2">Combining Commands with Pipes</h4>
+      ```bash
+      # Find and grep combination
+      find . -type f -exec grep "pattern" {} \;
+
+      # Complex filtering
+      cat file.txt | grep "pattern" | sort | uniq -c
+
+      # Advanced log analysis
+      tail -f log.txt | grep --color "ERROR"
+      ```
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+        <h4 className="font-semibold text-gray-800 dark:text-white mb-3">Regular Expressions</h4>
+        ```bash
+        # Basic regex
+        grep "^start" file.txt
+
+        # Extended regex
+        grep -E "[0-9]{3}" file.txt
+
+        # Perl regex
+        grep -P "\d{3}-\d{2}" file.txt
+        ```
+      </div>
+      
+      <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+        <h4 className="font-semibold text-gray-800 dark:text-white mb-3">awk Command</h4>
+        ```bash
+        # Print specific columns
+        awk '{print $1,$3}' file.txt
+
+        # Filter by condition
+        awk '$3 > 100' file.txt
+
+        # Calculate sum
+        awk '{sum+=$1} END {print sum}' file.txt
+        ```
+      </div>
+    </div>
+  </div>
+</div>
+
+## Sources
+
+<div className="p-6">
+  <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Documentation & Tutorials</h3>
+  
+  - [GNU Find Documentation](https://www.gnu.org/software/findutils/manual/html_mono/find.html)
+  - [Linux File Filters](https://www.geeksforgeeks.org/filters-in-linux/)
+  - [Find Command in Linux](https://bitlaunch.io/blog/how-to-find-and-filter-linux-files-via-the-command-line/)
+  - [Linux Commands Cheat Sheet](https://www.redhat.com/sysadmin/linux-commands-cheat-sheet)
+
+  <h3 className="text-xl font-semibold mb-4 mt-6 text-gray-800 dark:text-white">Distribution-specific Resources</h3>
+  
+  - [Debian Wiki - File Search](https://wiki.debian.org/FileSearch)
+  - [RHEL Documentation - File Search](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8)
+  - [Arch Linux Wiki - File Search](https://wiki.archlinux.org/title/Core_utilities#File_searching)
+
+  <h3 className="text-xl font-semibold mb-4 mt-6 text-gray-800 dark:text-white">Additional Resources</h3>
+  
+  - [Advanced Text Processing in Linux](https://tldp.org/LDP/abs/html/textproc.html)
+  - [Regular Expressions Guide](https://www.regular-expressions.info/)
+  - [GNU Grep Manual](https://www.gnu.org/software/grep/manual/grep.html)
+</div>

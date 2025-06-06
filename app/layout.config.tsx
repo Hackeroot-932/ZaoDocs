@@ -1,5 +1,5 @@
 import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
-import { BookIcon, NetworkIcon, HouseIcon, ServerCogIcon, ShieldHalfIcon, BrainCogIcon, GlobeIcon, LayoutTemplateIcon, BugIcon, CodeIcon } from 'lucide-react';
+import { BookIcon, NetworkIcon, HouseIcon, ServerCogIcon, ShieldHalfIcon, BrainCogIcon, GlobeIcon, LayoutTemplateIcon, BugIcon, CodeIcon, DatabaseIcon } from 'lucide-react';
 
 /**
  * Shared layout configurations
@@ -53,6 +53,12 @@ export const baseOptions: BaseLayoutProps = {
           description: 'Knowledge about Computer Security (CISSP)',
           url: '/docs/it-sec',
           icon: <ShieldHalfIcon />,
+        },
+        {
+          text: 'Database',
+          description: 'Database',
+          url: '/docs/database',
+          icon: <DatabaseIcon />,
         },
         {
           text: 'Programming',
