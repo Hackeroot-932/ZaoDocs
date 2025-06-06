@@ -71,6 +71,81 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
       </p>
     </div>
   </div>
+
+  <div className="mt-6">
+    <h4 className="font-semibold text-gray-800 dark:text-white mb-3">Permission Values Reference Table</h4>
+    <div className="overflow-x-auto">
+      <table className="min-w-full bg-white dark:bg-gray-800 rounded-lg">
+        <thead>
+          <tr className="bg-gray-100 dark:bg-gray-700">
+            <th className="px-4 py-2 text-left">Number</th>
+            <th className="px-4 py-2 text-left">Binary</th>
+            <th className="px-4 py-2 text-center">Read (r)</th>
+            <th className="px-4 py-2 text-center">Write (w)</th>
+            <th className="px-4 py-2 text-center">Execute (x)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr className="border-t dark:border-gray-600">
+            <td className="px-4 py-2">0</td>
+            <td className="px-4 py-2">000</td>
+            <td className="px-4 py-2 text-center">-</td>
+            <td className="px-4 py-2 text-center">-</td>
+            <td className="px-4 py-2 text-center">-</td>
+          </tr>
+          <tr className="border-t dark:border-gray-600">
+            <td className="px-4 py-2">1</td>
+            <td className="px-4 py-2">001</td>
+            <td className="px-4 py-2 text-center">-</td>
+            <td className="px-4 py-2 text-center">-</td>
+            <td className="px-4 py-2 text-center">x</td>
+          </tr>
+          <tr className="border-t dark:border-gray-600">
+            <td className="px-4 py-2">2</td>
+            <td className="px-4 py-2">010</td>
+            <td className="px-4 py-2 text-center">-</td>
+            <td className="px-4 py-2 text-center">w</td>
+            <td className="px-4 py-2 text-center">-</td>
+          </tr>
+          <tr className="border-t dark:border-gray-600">
+            <td className="px-4 py-2">3</td>
+            <td className="px-4 py-2">011</td>
+            <td className="px-4 py-2 text-center">-</td>
+            <td className="px-4 py-2 text-center">w</td>
+            <td className="px-4 py-2 text-center">x</td>
+          </tr>
+          <tr className="border-t dark:border-gray-600">
+            <td className="px-4 py-2">4</td>
+            <td className="px-4 py-2">100</td>
+            <td className="px-4 py-2 text-center">r</td>
+            <td className="px-4 py-2 text-center">-</td>
+            <td className="px-4 py-2 text-center">-</td>
+          </tr>
+          <tr className="border-t dark:border-gray-600">
+            <td className="px-4 py-2">5</td>
+            <td className="px-4 py-2">101</td>
+            <td className="px-4 py-2 text-center">r</td>
+            <td className="px-4 py-2 text-center">-</td>
+            <td className="px-4 py-2 text-center">x</td>
+          </tr>
+          <tr className="border-t dark:border-gray-600">
+            <td className="px-4 py-2">6</td>
+            <td className="px-4 py-2">110</td>
+            <td className="px-4 py-2 text-center">r</td>
+            <td className="px-4 py-2 text-center">w</td>
+            <td className="px-4 py-2 text-center">-</td>
+          </tr>
+          <tr className="border-t dark:border-gray-600">
+            <td className="px-4 py-2">7</td>
+            <td className="px-4 py-2">111</td>
+            <td className="px-4 py-2 text-center">r</td>
+            <td className="px-4 py-2 text-center">w</td>
+            <td className="px-4 py-2 text-center">x</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 
 ## 2. Permission Assignment
