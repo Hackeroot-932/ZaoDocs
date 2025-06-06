@@ -371,20 +371,34 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 
 ## Sources
 
-<div className="p-6">
-  <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Official Documentation</h3>
-  - [Red Hat User and Group Management](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/managing-users-groups-and-permissions_configuring-basic-system-settings)
-  - [Ubuntu User Management](https://ubuntu.com/server/docs/security-users)
-  - [Arch Linux User Management](https://wiki.archlinux.org/title/Users_and_groups)
-  - [Debian User Management](https://www.debian.org/doc/manuals/debian-reference/ch04.en.html)
+<div className="pl-4">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Official Documentation</h3>
+      <ul>
+        <li><a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/managing-users-groups-and-permissions_configuring-basic-system-settings">Red Hat User and Group Management</a></li>
+        <li><a href="https://ubuntu.com/server/docs/security-users">Ubuntu User Management</a></li>
+        <li><a href="https://wiki.archlinux.org/title/Users_and_groups">Arch Linux User Management</a></li>
+        <li><a href="https://www.debian.org/doc/manuals/debian-reference/ch04.en.html">Debian User Management</a></li>
+      </ul>
+    </div>
 
-  <h3 className="text-xl font-semibold mb-4 mt-6 text-gray-800 dark:text-white">Community Resources</h3>
-  - [Linux Journey - Users and Groups](https://linuxjourney.com/lesson/users-and-groups)
-  - [The Linux Documentation Project](https://tldp.org/LDP/sag/html/managing-users.html)
-  - [Linux.com - User Management](https://www.linux.com/training-tutorials/linux-101-user-account-management/)
+    <div>
+      <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Community Resources</h3>
+      <ul>
+        <li><a href="https://linuxjourney.com/lesson/users-and-groups">Linux Journey - Users and Groups</a></li>
+        <li><a href="https://tldp.org/LDP/sag/html/managing-users.html">The Linux Documentation Project</a></li>
+        <li><a href="https://www.linux.com/training-tutorials/linux-101-user-account-management/">Linux.com - User Management</a></li>
+      </ul>
+    </div>
 
-  <h3 className="text-xl font-semibold mb-4 mt-6 text-gray-800 dark:text-white">Security Guidelines</h3>
-  - [CIS Benchmarks](https://www.cisecurity.org/benchmark/linux)
-  - [NIST Linux Security Guide](https://csrc.nist.gov/publications/detail/sp/800-123/final)
-  - [Linux Security Wiki](https://linuxsecurity.expert/security-guides/linux-security-guide/)
+    <div>
+      <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Security Guidelines</h3>
+      <ul>
+        <li><a href="https://www.cisecurity.org/benchmark/linux">CIS Benchmarks</a></li>
+        <li><a href="https://csrc.nist.gov/publications/detail/sp/800-123/final">NIST Linux Security Guide</a></li>
+        <li><a href="https://linuxsecurity.expert/security-guides/linux-security-guide/">Linux Security Wiki</a></li>
+      </ul>
+    </div>
+  </div>
 </div>

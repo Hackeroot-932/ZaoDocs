@@ -315,23 +315,41 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 
 ## Sources
 
-<div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm">
-  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-    <a href="https://www.redhat.com/sysadmin/basic-linux-commands" 
-       className="p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg hover:shadow-md transition-shadow">
-      <h4 className="font-semibold text-blue-700 dark:text-blue-300">Red Hat System Administration</h4>
-      <p className="text-sm text-gray-600 dark:text-gray-300">Official system administration guide</p>
-    </a>
-    <a href="https://wiki.archlinux.org/title/Core_utilities" 
-       className="p-4 bg-green-50 dark:bg-green-900/30 rounded-lg hover:shadow-md transition-shadow">
-      <h4 className="font-semibold text-green-700 dark:text-green-300">Arch Linux Documentation</h4>
-      <p className="text-sm text-gray-600 dark:text-gray-300">Core utilities reference</p>
-    </a>
-    <a href="https://www.debian.org/doc/manuals/debian-reference/ch01.en.html" 
-       className="p-4 bg-purple-50 dark:bg-purple-900/30 rounded-lg hover:shadow-md transition-shadow">
-      <h4 className="font-semibold text-purple-700 dark:text-purple-300">Debian Reference Manual</h4>
-      <p className="text-sm text-gray-600 dark:text-gray-300">Comprehensive command guide</p>
-    </a>
+<div className="pl-4">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">General Documentation</h3>
+      <ul>
+        <li><a href="https://www.redhat.com/sysadmin/basic-linux-commands">Red Hat System Administration</a></li>
+        <li><a href="https://wiki.archlinux.org/title/Core_utilities">Arch Linux Wiki</a></li>
+        <li><a href="https://www.debian.org/doc/manuals/debian-reference/ch01.en.html">Debian Reference Manual</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Command References</h3>
+      <ul>
+        <li><a href="https://www.gnu.org/software/coreutils/manual/coreutils.html">GNU Core Utilities</a></li>
+        <li><a href="https://linux.die.net/man/">Linux Man Pages</a></li>
+        <li><a href="https://ss64.com/bash/">SS64 Bash Reference</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Process Management</h3>
+      <ul>
+        <li><a href="https://www.kernel.org/doc/html/latest/admin-guide/sysctl/">Linux Kernel Documentation</a></li>
+        <li><a href="https://www.tecmint.com/linux-process-management/">Process Management Guide</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Network Operations</h3>
+      <ul>
+        <li><a href="https://linux-ip.net/html/tools-ip-addressing.html">Linux IP Networking</a></li>
+        <li><a href="https://www.networkworld.com/article/3219684/unix-how-to-basic-networking-commands-for-managing-and-troubleshooting.html">Network Management</a></li>
+      </ul>
+    </div>
   </div>
 </div>
 

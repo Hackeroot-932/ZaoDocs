@@ -642,24 +642,42 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 
 ## Sources
 
-<div className="p-6">
-  <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">General Documentation</h3>
-  - [Linux File Permissions Explained](https://www.redhat.com/sysadmin/linux-file-permissions-explained) - Red Hat
-  - [File Permissions and Attributes](https://wiki.archlinux.org/title/File_permissions_and_attributes) - Arch Linux Wiki
-  - [User Account Management](https://www.debian.org/doc/manuals/debian-reference/ch01.en.html) - Debian Reference
+<div className="pl-4">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">General Documentation</h3>
+      <ul>
+        <li><a href="https://www.redhat.com/sysadmin/linux-file-permissions-explained">Red Hat</a></li>
+        <li><a href="https://wiki.archlinux.org/title/File_permissions_and_attributes">Arch Linux Wiki</a></li>
+        <li><a href="https://www.debian.org/doc/manuals/debian-reference/ch01.en.html">Debian Reference</a></li>
+      </ul>
+    </div>
 
-  <h3 className="text-xl font-semibold mb-4 mt-6 text-gray-800 dark:text-white">File Attributes</h3>
-  - [Chattr and Lsattr: File Attributes in Linux](https://rm-rf.es/chattr-y-lsattr-visualizar-y-modificar-atributos-en-sistemas-de-ficheros-linux/) - rm-rf.es
-  - [Linux Chattr and Lsattr Commands](https://programmerclick.com/article/5604675172/) - Programmer Click
+    <div>
+      <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">File Attributes</h3>
+      <ul>
+        <li><a href="https://rm-rf.es/chattr-y-lsattr-visualizar-y-modificar-atributos-en-sistemas-de-ficheros-linux/">rm-rf.es</a></li>
+        <li><a href="https://programmerclick.com/article/5604675172/">Programmer Click</a></li>
+      </ul>
+    </div>
 
-  <h3 className="text-xl font-semibold mb-4 mt-6 text-gray-800 dark:text-white">Special Permissions</h3>
-  - [SGID, SUID and Sticky Bit Permissions](https://deephacking.tech/permisos-sgid-suid-y-sticky-bit-linux/) - Deep Hacking
-  - [Special Permissions in Linux](https://www.ochobitshacenunbyte.com/2019/06/17/permisos-especiales-en-linux-sticky-bit-suid-y-sgid/) - Ocho Bits Hacen un Byte
-  - [Unix Security Documentation](https://www.ibiblio.org/pub/linux/docs/LuCaS/Manuales-LuCAS/SEGUNIX/unixsec-2.1-html/node56.html) - LuCaS Manuals
+    <div>
+      <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Special Permissions</h3>
+      <ul>
+        <li><a href="https://deephacking.tech/permisos-sgid-suid-y-sticky-bit-linux/">Deep Hacking</a></li>
+        <li><a href="https://www.ochobitshacenunbyte.com/2019/06/17/permisos-especiales-en-linux-sticky-bit-suid-y-sgid/">Ocho Bits Hacen un Byte</a></li>
+        <li><a href="https://www.ibiblio.org/pub/linux/docs/LuCaS/Manuales-LuCAS/SEGUNIX/unixsec-2.1-html/node56.html">LuCaS Manuals</a></li>
+      </ul>
+    </div>
 
-  <h3 className="text-xl font-semibold mb-4 mt-6 text-gray-800 dark:text-white">Linux Capabilities</h3>
-  - [Using Linux Capabilities](https://medium.com/thg-tech-blog/using-capabilities-73dd2ae691d) - THG Tech Blog
-  - [Linux Capabilities Manual](https://man7.org/linux/man-pages/man7/capabilities.7.html) - Linux man-pages
-  - [Linux Capabilities 101](https://linux-audit.com/linux-capabilities-101/) - Linux Audit
+    <div>
+      <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Linux Capabilities</h3>
+      <ul>
+        <li><a href="https://medium.com/thg-tech-blog/using-capabilities-73dd2ae691d">THG Tech Blog</a></li>
+        <li><a href="https://man7.org/linux/man-pages/man7/capabilities.7.html">Linux man-pages</a></li>
+        <li><a href="https://linux-audit.com/linux-capabilities-101/">Linux Audit</a></li>
+      </ul>
+    </div>
+  </div>
 </div>
 

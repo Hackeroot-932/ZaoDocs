@@ -783,22 +783,42 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 
 ## Sources
 
-<h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Official Documentation</h3>
-- [Filesystem Hierarchy Standard](https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html) - Official FHS Documentation by Linux Foundation
-- [Linux Kernel Documentation](https://www.kernel.org/doc/Documentation/filesystems/) - Kernel Filesystem Documentation
-- [Systemd Documentation](https://www.freedesktop.org/software/systemd/man/file-hierarchy.html) - Modern Linux File Hierarchy
+<div className="pl-4">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Official Documentation</h3>
+      <ul>
+        <li><a href="https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html">Filesystem Hierarchy Standard</a></li>
+        <li><a href="https://www.kernel.org/doc/Documentation/filesystems/">Linux Kernel Documentation</a></li>
+        <li><a href="https://www.freedesktop.org/software/systemd/man/file-hierarchy.html">Systemd Documentation</a></li>
+      </ul>
+    </div>
 
-<h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Distribution-Specific Resources</h3>
-- [Arch Linux Wiki - File Hierarchy](https://wiki.archlinux.org/title/File_hierarchy) - Comprehensive File Hierarchy Guide
-- [Debian Policy Manual](https://www.debian.org/doc/debian-policy/ch-opersys.html) - Filesystem Organization Standards
-- [Red Hat Documentation](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/storage_administration_guide/ch-filesystem) - Enterprise Linux Filesystem Guide
+    <div>
+      <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Distribution-Specific Resources</h3>
+      <ul>
+        <li><a href="https://wiki.archlinux.org/title/File_hierarchy">Arch Linux Wiki - File Hierarchy</a></li>
+        <li><a href="https://www.debian.org/doc/debian-policy/ch-opersys.html">Debian Policy Manual</a></li>
+        <li><a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/storage_administration_guide/ch-filesystem">Red Hat Documentation</a></li>
+      </ul>
+    </div>
 
-<h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Additional Resources</h3>
-- [Linux Documentation Project](https://tldp.org/LDP/Linux-Filesystem-Hierarchy/html/) - In-depth Filesystem Guide
-- [Pathname Guide](https://www.pathname.com/fhs/) - FHS Reference and History
-- [Linux Man Pages](https://man7.org/linux/man-pages/man7/hier.7.html) - Filesystem Hierarchy Manual
+    <div>
+      <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Additional Resources</h3>
+      <ul>
+        <li><a href="https://tldp.org/LDP/Linux-Filesystem-Hierarchy/html/">Linux Documentation Project</a></li>
+        <li><a href="https://www.pathname.com/fhs/">Pathname Guide</a></li>
+        <li><a href="https://man7.org/linux/man-pages/man7/hier.7.html">Linux Man Pages</a></li>
+      </ul>
+    </div>
 
-<h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Community and Learning Resources</h3>
-- [Linux Journey](https://linuxjourney.com/lesson/filesystem-hierarchy) - Interactive Learning Guide
-- [Linux Handbook](https://linuxhandbook.com/linux-directory-structure/) - Practical Directory Guide
-- [Linux.com](https://www.linux.com/training-tutorials/linux-filesystem-explained/) - Training and Tutorials
+    <div>
+      <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Community and Learning Resources</h3>
+      <ul>
+        <li><a href="https://linuxjourney.com/lesson/filesystem-hierarchy">Linux Journey</a></li>
+        <li><a href="https://linuxhandbook.com/linux-directory-structure/">Linux Handbook</a></li>
+        <li><a href="https://www.linux.com/training-tutorials/linux-filesystem-explained/">Linux.com</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

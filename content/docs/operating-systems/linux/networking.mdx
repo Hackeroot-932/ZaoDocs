@@ -330,28 +330,46 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 
 ## Sources
 
-<div className="p-6">
-  <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Official Documentation</h3>
-  - [Red Hat Networking Guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_and_managing_networking/index)
-  - [Debian Network Configuration](https://wiki.debian.org/NetworkConfiguration)
-  - [Arch Linux Network Configuration](https://wiki.archlinux.org/title/Network_configuration)
-  - [Ubuntu Networking Guide](https://ubuntu.com/server/docs/network-configuration)
+<div className="pl-4">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Official Documentation</h3>
+      <ul>
+        <li><a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_and_managing_networking/index">Red Hat Networking Guide</a></li>
+        <li><a href="https://wiki.debian.org/NetworkConfiguration">Debian Network Configuration</a></li>
+        <li><a href="https://wiki.archlinux.org/title/Network_configuration">Arch Linux Network Configuration</a></li>
+        <li><a href="https://ubuntu.com/server/docs/network-configuration">Ubuntu Networking Guide</a></li>
+      </ul>
+    </div>
 
-  <h3 className="text-xl font-semibold mb-4 mt-6 text-gray-800 dark:text-white">Tools and Commands</h3>
-  - [Linux Network Commands](https://phoenixnap.com/kb/linux-network-commands)
-  - [iproute2 Documentation](https://www.kernel.org/doc/Documentation/networking/ipv4.txt)
-  - [BIND DNS Server Documentation](https://www.isc.org/bind/)
-  - [OpenSSH Documentation](https://www.openssh.com/manual.html)
+    <div>
+      <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Tools and Commands</h3>
+      <ul>
+        <li><a href="https://phoenixnap.com/kb/linux-network-commands">Linux Network Commands</a></li>
+        <li><a href="https://www.kernel.org/doc/Documentation/networking/ipv4.txt">iproute2 Documentation</a></li>
+        <li><a href="https://www.isc.org/bind/">BIND DNS Server Documentation</a></li>
+        <li><a href="https://www.openssh.com/manual.html">OpenSSH Documentation</a></li>
+      </ul>
+    </div>
 
-  <h3 className="text-xl font-semibold mb-4 mt-6 text-gray-800 dark:text-white">Security Resources</h3>
-  - [Linux Security - Networking](https://www.linux.com/topic/networking/)
-  - [UFW Documentation](https://help.ubuntu.com/community/UFW)
-  - [firewalld Documentation](https://firewalld.org/)
-  - [iptables Tutorial](https://www.frozentux.net/iptables-tutorial/iptables-tutorial.html)
+    <div>
+      <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Security Resources</h3>
+      <ul>
+        <li><a href="https://www.linux.com/topic/networking/">Linux Security - Networking</a></li>
+        <li><a href="https://help.ubuntu.com/community/UFW">UFW Documentation</a></li>
+        <li><a href="https://firewalld.org/">firewalld Documentation</a></li>
+        <li><a href="https://www.frozentux.net/iptables-tutorial/iptables-tutorial.html">iptables Tutorial</a></li>
+      </ul>
+    </div>
 
-  <h3 className="text-xl font-semibold mb-4 mt-6 text-gray-800 dark:text-white">Additional Resources</h3>
-  - [Linux Foundation Networking](https://www.linuxfoundation.org/projects/networking/)
-  - [Linux Network Administrators Guide](https://www.tldp.org/LDP/nag2/index.html)
-  - [TCP/IP Guide](http://www.tcpipguide.com/)
-  - [Linux Journal - Networking Articles](https://www.linuxjournal.com/tag/networking)
+    <div>
+      <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Additional Resources</h3>
+      <ul>
+        <li><a href="https://www.linuxfoundation.org/projects/networking/">Linux Foundation Networking</a></li>
+        <li><a href="https://www.tldp.org/LDP/nag2/index.html">Linux Network Administrators Guide</a></li>
+        <li><a href="http://www.tcpipguide.com/">TCP/IP Guide</a></li>
+        <li><a href="https://www.linuxjournal.com/tag/networking">Linux Journal - Networking Articles</a></li>
+      </ul>
+    </div>
+  </div>
 </div>
